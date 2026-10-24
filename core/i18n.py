@@ -203,7 +203,7 @@ _UNITS.update({
     # Ukrainian: CLDR-style decimal comma and group spacing; currency
     # follows the amount, and /100k means per 100,000 residents.
     "uk": _one_for_one(
-        [("₴", "грн"), (r"US\\$", "дол. США"), ("€", "євро")],
+        [("₴", "грн"), (r"US\$", "дол. США"), ("€", "євро")],
         {"tn": "трлн", "bn": "млрд", "mn": "млн"},
         "/100,000 осіб", f"{NBSP}в. п.", pct_space=True),
     # Duden / DIN 5008.
