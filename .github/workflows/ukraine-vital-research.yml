@@ -7,6 +7,8 @@ on:
       - feat/ukraine-demography-followup
     paths:
       - "countries/ukraine/fetch/probe_vital_sdmx.py"
+      - "countries/ukraine/fetch/fetch_vital_sdmx.py"
+      - "countries/ukraine/data/demography/vital_ukrstat.csv"
       - "countries/ukraine/tests/test_vital_source.py"
       - ".github/workflows/ukraine-vital-research.yml"
   workflow_dispatch:
@@ -25,6 +27,12 @@ jobs:
           python-version: "3.13"
       - name: Syntax gate
         run: python -m compileall -q countries/ukraine/fetch/probe_vital_sdmx.py
+      - name: Offline demographic invariants
+        run: python -m unittest discover -s countries/ukraine/tests -p test_vital_source.py -v
+      - name: Rebuild official Ukrstat annual vital records into review sidecar
+        run: |
+          python countries/ukraine/fetch/fetch_vital_sdmx.py
+          diff -u countries/ukraine/data/demography/vital_ukrstat.csv countries/ukraine/data/demography/vital_ukrstat_from_sssu.csv
       - name: Check official Ukrstat vital series (read only)
         run: python countries/ukraine/fetch/probe_vital_sdmx.py --live
       - name: Preserve official responses, audit and errors
