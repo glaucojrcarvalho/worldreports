@@ -111,10 +111,21 @@ lists **2025 defence = 3,069,857,418,255.98 UAH**, matching the NBU
 defence series to 0.1 million. But its displayed **total =
 5,999,467.1 million UAH**, versus the NBU functional reported total
 **6,006,387.3 million UAH**. The **6,920.2 million UAH difference
-is unresolved** (possibly a different extraction/classification or
-revision vintage). Do not describe the 2025 overall total as
-independently reconciled with the portal. Keep the NBU series intact
-and investigate the discrepancy before upstream publication.
+is unresolved** (potentially a revision or extraction-vintage issue).
+A second, **non-official** public presentation of Treasury totals,
+[index.minfin.com.ua](https://index.minfin.com.ua/ua/finance/budget/cons/expense/2025/),
+also lists the 5,999,467.1 million total. The 2025 mismatch is
+**predominantly in code 0400 (economic affairs)**: NBU
+264,998.3 million vs the other presentation's 258,106.1 million
+(a 6,892.2 million difference). Remaining differences are
+minor: general public services +11.7, culture/recreation +0.3,
+and education +16.1 million UAH on the NBU side.
+Older years also show deviations in totals, e.g. 2023 +424.4
+and 2024 +1,654.6 million UAH (NBU less the non-official index).
+The publisher's revision/vintage and inclusion rules must be
+confirmed with the Treasury before presenting this series as an
+officially *reconciled* outturn. Neither source is silently swapped,
+and these gaps are NOT rounding.
 
 The economic-classification total `gf_budgtee_Total` does not agree
 exactly (for example, the 2023 fiscal-year observation is 4,433,206.4
