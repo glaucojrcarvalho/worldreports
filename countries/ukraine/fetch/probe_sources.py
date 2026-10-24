@@ -32,6 +32,9 @@ SSSU_PRIORITY_DSD = {
     "national_accounts": "DSD_ANNUAL_NATIONAL_ACCOUNTS",
     "consumer_prices": "DSD_PRICE_CHANGE_CONSUMER_GOODS_SERVICE",
     "population": "DSD_POPULATION_STR",
+    "labour_force_annual": "DSD_LABOR_FORCE_A",
+    "goods_trade": "DSD_EXTERNAL_TRADE_OF_GOODS",
+    "deaths_by_cause": "DSD_POPULATION_DEATH_CAUSE",
 }
 NBU_FX = "https://bank.gov.ua/NBU_Exchange/exchange_site"
 GDP_2022_OFFICIAL = -28.8
@@ -122,15 +125,59 @@ def parse_dsd_dimensions(payload: bytes) -> list[dict]:
             continue
         ref = next((el.attrib for el in item.iter()
                     if el.tag.rsplit("}", 1)[-1] == "Ref"), {})
+        enumeration = next(
+            (el for el in item.iter() if el.tag.rsplit("}", 1)[-1] == "Enumeration"),
+            None,
+        )
+        codelist_ref = ""
+        if enumeration is not None:
+            codelist_ref = next(
+                (el.attrib.get("id", "") for el in enumeration.iter()
+                 if el.tag.rsplit("}", 1)[-1] == "Ref"), ""
+            )
         result.append({
             "dimension": code,
             "position": item.attrib.get("position", ""),
             "concept_ref": ref.get("id", ""),
+            "codelist_ref": codelist_ref,
             "local_name": short,
         })
     if not result:
         raise ValueError("No SDMX dimensions were found in DSD response")
     return result
+
+
+
+def make_sssu_codelist_url(codelist_id: str) -> str:
+    if not re.fullmatch(r"[A-Z0-9_]+", codelist_id):
+        raise ValueError("Invalid SDMX codelist ID")
+    base = SSSU_DSD_ROOT.rsplit("/datastructure/", 1)[0]
+    return f"{base}/codelist/SSSU/{codelist_id}/latest?references=none"
+
+
+def parse_sssu_codelist(payload: bytes) -> list[dict]:
+    """Extract official SDMX code IDs and English/Ukrainian labels."""
+    try:
+        root = ET.fromstring(payload)
+    except ET.ParseError as exc:
+        raise ValueError("Invalid SSSU codelist XML") from exc
+    results = []
+    for item in root.iter():
+        if item.tag.rsplit("}", 1)[-1] != "Code":
+            continue
+        code = item.attrib.get("id")
+        if not code:
+            continue
+        names = {}
+        for node in item:
+            if node.tag.rsplit("}", 1)[-1] == "Name" and node.text:
+                lang = node.attrib.get("{http://www.w3.org/XML/1998/namespace}lang", "und")
+                names[lang] = node.text.strip()
+        results.append({"code": code, "name_en": names.get("en", ""),
+                        "name_uk": names.get("uk", "")})
+    if not results:
+        raise ValueError("No SDMX codelist Code elements in response")
+    return results
 
 
 def make_fx_url(start: str = "20220104", end: str = "20220110", currency: str = "USD") -> str:
@@ -238,6 +285,35 @@ def run_live() -> dict:
                 "error": f"{type(exc).__name__}: {exc}",
             }
     probes["sssu_priority_dsd"] = structures
+    # Inspect official code values for national accounts only; still no
+    # assumption about which combination is valid or comparable.
+    na_codes = {}
+    target = structures.get("national_accounts", {})
+    for dimension in target.get("dimensions", []):
+        if dimension["dimension"] not in {"INDICATOR", "PRICE_TYPE", "REGION", "FREQ"}:
+            continue
+        code_id = dimension.get("codelist_ref")
+        if not code_id:
+            na_codes[dimension["dimension"]] = {
+                "result": "unverified", "reason": "DSD lacks direct codelist reference"}
+            continue
+        catalog_url = make_sssu_codelist_url(code_id)
+        try:
+            values = parse_sssu_codelist(download(catalog_url, accept="application/xml"))
+            na_codes[dimension["dimension"]] = {
+                "result": "parsed_codes_only",
+                "endpoint": catalog_url,
+                "codelist": code_id,
+                "count": len(values),
+                "values": values[:200],
+            }
+        except Exception as exc:
+            na_codes[dimension["dimension"]] = {
+                "result": "unverified",
+                "endpoint": catalog_url,
+                "error": f"{type(exc).__name__}: {exc}",
+            }
+    probes["sssu_national_accounts_codelists"] = na_codes
     url = make_fx_url()
     try:
         points = parse_fx(download(url, accept="application/json"),
@@ -276,7 +352,11 @@ def main() -> None:
     REPORT.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Discovery report written to {REPORT}")
     for name, value in result["source_probes"].items():
-        print(f"{name}: {value['result']}")
+        if "result" in value:
+            print(f"{name}: {value['result']}")
+        else:
+            for topic, item in value.items():
+                print(f"{name}.{topic}: {item.get('result', 'not_processed')}")
 
 
 if __name__ == "__main__":
