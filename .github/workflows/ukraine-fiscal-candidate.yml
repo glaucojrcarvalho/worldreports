@@ -51,5 +51,7 @@ jobs:
           name: ukraine-treasury-national-review
           path: /tmp/ukraine-treasury-preview/*.svg
           retention-days: 14
+      - name: Build multilingual site offline from committed CSVs
+        run: python3 -m core.page --out _site
       - name: Repository test suite
         run: python3 -m pytest -q
