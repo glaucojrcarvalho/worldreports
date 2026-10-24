@@ -2,7 +2,7 @@
 
 Research date: 2026-10-24. Related proposal: https://github.com/akitaonrails/worldreports/issues/1
 
-**Status: Phase A. One verified national FX dataset is accepted (`data/markets/fx.csv`, 2006–2025); the remaining chapters are exploratory. There is no published country atlas yet.** This folder intentionally lacks `country.yaml` so it is not registered by `core.country.Country.all()` until the required datasets, plate implementation and localization are verified. Follow `SOURCING_A_COUNTRY.md`, `COUNTRIES.md`, `ADDING_A_COUNTRY.md`, `AGENTS.md`, `PLATE_SPINE.md`.
+**Status: Phase A. Two curated national series: NBU USD/UAH averages (`data/markets/fx.csv`, 2006–2025) and SSSU real GDP growth (`data/macro/gdp_growth.csv`, 2011–2024). Other chapters and unavailable years remain unverified. There is no published Ukraine atlas yet.** This folder intentionally lacks `country.yaml` so it is not registered by `core.country.Country.all()` until the required datasets, plate implementation and localization are verified. Follow `SOURCING_A_COUNTRY.md`, `COUNTRIES.md`, `ADDING_A_COUNTRY.md`, `AGENTS.md`, `PLATE_SPINE.md`.
 
 ## First accepted curated series: official NBU USD/UAH (2006–2025)
 
@@ -40,6 +40,20 @@ Official, independently fetched [national-accounts codelists](https://stat.gov.u
 | `REGION` | `CL_KATOTTG` (1.2.19) | **Pending**: oversized API response with current bounded probe; do not guess all-Ukraine identifier |
 
 The precise dataflow/code list references are verifiable in the GitHub Actions artifact for the [successful SDMX research run](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40074160250). **No GDP observations have yet been accepted** from this API. The next step is to establish `REGION`, aggregate `BREAKDOWN` values, all-series attributes and observed coverage via the availability/data endpoints, then cross-check growth (2022: −28.8%) on a consistent statistical vintage.
+
+## Second accepted series: SSSU real GDP growth (2011–2024)
+
+On **2026-10-24**, the exact SDMX-CSV v2 response for `SSSU:DF_ANNUAL_NATIONAL_ACCOUNTS(7.0.0)` was extracted with dimensions `GDP_CUR_PRC.IDX_VOL_PY.UA00000000000000000._T._T.S_1.A`. Its 14 observed annual volume indices cover 2011–2024 inclusive; `UNITS_OF_MEASURE=1010` and `SCALE=0`. The derived annual growth is `volume_index_py - 100`:
+
+- 2014: 93.4 → −6.6%; 2015: 90.2 → −9.8%.
+- 2022: 71.2 → **−28.8%**, matching the SSSU official release.
+- 2023: 105.5 → +5.5%; 2024: 103.2 → +3.2%.
+
+The precise API response **did not include a 2025 row**, even though the catalog's availability metadata advertised a 2011–2025 window. A separate official 2025 release exists, but the series is not silently joined across publication vintages. There were also no rows for 2006–2010. The curated snapshot is `data/macro/gdp_growth.csv`; `fetch/fetch_sssu_gdp.py` can regenerate the review-only `gdp_growth_from_sssu.csv` sidecar with strict dimension, unit, coverage, and known-value validation. 
+
+The publisher's **territorial scope** notes exclude Crimea/Sevastopol from 2010–2021, parts of occupied Donetsk and Luhansk from 2014–2021, and occupied or certain hostilities-affected regions from 2022–2024. These must be explained; they do not change Ukraine's internationally recognized borders. The 2022 contraction also exceeds the atlas's shared −18% GDP-growth scale and will require a shared scale review and peer-plate regeneration.
+
+Source: [official SSSU SDMX documentation](https://stat.gov.ua/en/development-api/sdmx-api-v3) and [official GDP release](https://stat.gov.ua/uk/news/valovyy-vnutrishniy-produkt-ukrayiny-u-2022-2025-rokakh-dynamika-struktura-ta-chynnyky-zmin).
 
 ## Confirmed official access routes
 
