@@ -30,6 +30,12 @@ The live endpoint returned no values for 2006–2010 or 2025. Although metadata 
 
 The regional aggregate code `UA00000000000000000` identifies Ukraine in the source, while the source notes document periods when portions of internationally recognized Ukrainian territory were omitted from actual measurements. The curated file and sidecar refresher `fetch/fetch_sssu_gdp_nominal.py` retain these semantics separately from the real GDP series.
 
+### Official monetary-policy decisions (NBU, 2006–2025)
+
+The NBU's official [historical policy-rate archive](https://bank.gov.ua/en/monetary/archive-rish) publishes **effective-dated changes**, not annual average rates. For each calendar-year end, the accepted `data/markets/policy_rate.csv` selects the last decision *effective by 31 December*. The 2011 row records **7.75% effective from 2010-08-10**, even though there is no 2011 decision in the publisher's archive: this is an active standing rate, **not** interpolation, a provisional estimate, or an absent survey observation. The date used is retained in `last_change_date`.
+
+The annual source anchors include **22.00% (2015), 25.00% (2022), 13.50% (2024) and 15.50% (2025)**. The editor's chart compares the December 31 NBU rate with SSSU **annual-average CPI inflation**, two explicitly different annual time conventions. Do **not** describe this as an annual-average rate, average borrowing cost, 10-year bond yield, real policy rate or a rate effective throughout the year. `fetch/fetch_nbu_policy_rate.py` stages an exact reviewer sidecar; the fork's live `[research]` CI checks byte-for-byte equality with the accepted CSV.
+
 ### Consumer prices, trade, fixed investment: verified sources
 
 The accepted `data/macro/cpi.csv` uses SSSU's `INDEX_CONSUMPRICE` with annual frequency and `BASE_PERIOD=PREV_YEAR`, which measures **annual-average CPI compared with the previous calendar year's average**. Values are a base-100 index, converted to inflation by subtracting 100; the 2022 observation is 120.2 → 20.2%. This must not be confused with December-to-December inflation. The publisher's 2014/2022 territorial restrictions are carried in `SOURCES.yaml`.
@@ -62,4 +68,4 @@ Ministry of Finance state-budget cash reporting, state/state-guaranteed debt, an
 
 The official publisher is preferred where it computes the measure. Keep harmonized/market providers separately labelled and `official: false` where required. A successful transport probe only confirms schema access—not the statistical meaning, revisions, coverage or fitness of a series. Network I/O belongs exclusively in `fetch/`, output in review-only sidecars or cache, and chart render remains offline.
 
-As of 2026-10-24, six curated datasets have been verified: NBU USD/UAH annual averages (2006–2025); Ukrstat GDP growth (2011–2024), nominal GDP (2010–2024), CPI annual-average inflation (2006–2025), trade in goods and services as a share of GDP (2010–2024), and whole-economy GFCF as a share of GDP (2010–2024). These do not constitute a finished 12-chapter atlas; specific missing years, other chapters, and all full render/localization gates remain pending. See `DISCOVERY.md` and `SOURCES.yaml`.
+As of 2026-10-24, seven curated datasets have been verified: NBU USD/UAH annual averages (2006–2025); Ukrstat GDP growth (2011–2024), nominal GDP (2010–2024), CPI annual-average inflation (2006–2025), trade in goods and services as a share of GDP (2010–2024), and whole-economy GFCF as a share of GDP (2010–2024). These do not constitute a finished 12-chapter atlas; specific missing years, other chapters, and all full render/localization gates remain pending. See `DISCOVERY.md` and `SOURCES.yaml`.
