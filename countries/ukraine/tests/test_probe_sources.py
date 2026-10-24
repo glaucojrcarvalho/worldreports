@@ -36,6 +36,37 @@ class SourceDiscoveryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Invalid SSSU"):
             probe.parse_dataflows(b"<html")
 
+    def test_sssu_dsd_url_sanitization_and_dimensions(self):
+        target = probe.make_sssu_dsd_url("DSD_ANNUAL_NATIONAL_ACCOUNTS")
+        self.assertIn("/datastructure/SSSU/DSD_ANNUAL_NATIONAL_ACCOUNTS/", target)
+        self.assertIn("references=none", target)
+        with self.assertRaises(ValueError):
+            probe.make_sssu_dsd_url("../invalid")
+        payload = b"""<Message xmlns:str="urn:sdmx:structure">
+          <str:DataStructure>
+            <str:DataStructureComponents>
+              <str:DimensionList>
+                <str:Dimension id="FREQ" position="1">
+                  <str:ConceptIdentity><Ref id="FREQ"/></str:ConceptIdentity>
+                </str:Dimension>
+                <str:Dimension id="MEASURE" position="2"/>
+                <str:TimeDimension id="TIME_PERIOD"/>
+              </str:DimensionList>
+            </str:DataStructureComponents>
+          </str:DataStructure>
+        </Message>"""
+        result = probe.parse_dsd_dimensions(payload)
+        self.assertEqual([x["dimension"] for x in result],
+                         ["FREQ", "MEASURE", "TIME_PERIOD"])
+        self.assertEqual(result[0]["concept_ref"], "FREQ")
+        self.assertEqual(result[0]["position"], "1")
+
+    def test_sssu_dsd_parse_fail_closed(self):
+        with self.assertRaisesRegex(ValueError, "No SDMX dimensions"):
+            probe.parse_dsd_dimensions(b"<Message/>")
+        with self.assertRaisesRegex(ValueError, "Invalid SSSU DSD"):
+            probe.parse_dsd_dimensions(b"<xml")
+
     def test_nbu_official_url_and_date_validation(self):
         url = probe.make_fx_url("20220104", "20220110", "USD")
         self.assertIn("start=20220104", url)
