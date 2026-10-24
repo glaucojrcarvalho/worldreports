@@ -60,8 +60,10 @@ class UkrainePlateDraftTests(unittest.TestCase):
         )
         self.assertEqual(groups, [
             ([2012, 2013], [10, 20]),
-            ([2014, 2015, 2021], [30, 40, 50]),
-            ([2022, 2024], [60, 70]),
+            ([2014, 2015], [30, 40]),
+            ([2021], [50]),
+            ([2022], [60]),
+            ([2024], [70]),
         ])
 
     def test_only_verified_measurements_have_render_handlers(self):
