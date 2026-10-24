@@ -2,7 +2,7 @@
 
 Research date: 2026-10-24. Related proposal: https://github.com/akitaonrails/worldreports/issues/1
 
-**Status: Phase A. Two curated national series: NBU USD/UAH averages (`data/markets/fx.csv`, 2006–2025) and SSSU real GDP growth (`data/macro/gdp_growth.csv`, 2011–2024). Other chapters and unavailable years remain unverified. There is no published Ukraine atlas yet.** This folder intentionally lacks `country.yaml` so it is not registered by `core.country.Country.all()` until the required datasets, plate implementation and localization are verified. Follow `SOURCING_A_COUNTRY.md`, `COUNTRIES.md`, `ADDING_A_COUNTRY.md`, `AGENTS.md`, `PLATE_SPINE.md`.
+**Status: Phase A. Three curated national series: NBU USD/UAH annual averages (2006–2025), SSSU real GDP growth (2011–2024), and SSSU nominal GDP (2010–2024). CPI and other chapters remain unverified. Ukraine is not registered or published yet.** This folder intentionally lacks `country.yaml` so it is not registered by `core.country.Country.all()` until the required datasets, plate implementation and localization are verified. Follow `SOURCING_A_COUNTRY.md`, `COUNTRIES.md`, `ADDING_A_COUNTRY.md`, `AGENTS.md`, `PLATE_SPINE.md`.
 
 ## First accepted curated series: official NBU USD/UAH (2006–2025)
 
@@ -54,6 +54,12 @@ The precise API response **did not include a 2025 row**, even though the catalog
 The publisher's **territorial scope** notes exclude Crimea/Sevastopol from 2010–2021, parts of occupied Donetsk and Luhansk from 2014–2021, and occupied or certain hostilities-affected regions from 2022–2024. These must be explained; they do not change Ukraine's internationally recognized borders. The 2022 contraction also exceeds the atlas's shared −18% GDP-growth scale and will require a shared scale review and peer-plate regeneration.
 
 Source: [official SSSU SDMX documentation](https://stat.gov.ua/en/development-api/sdmx-api-v3) and [official GDP release](https://stat.gov.ua/uk/news/valovyy-vnutrishniy-produkt-ukrayiny-u-2022-2025-rokakh-dynamika-struktura-ta-chynnyky-zmin).
+
+## Third accepted series: SSSU nominal GDP (2010–2024)
+
+From the same official `SSSU:DF_ANNUAL_NATIONAL_ACCOUNTS(7.0.0)` release, a distinct query with `INDICATOR=GDP_CUR_PRC`, `PRICE_TYPE=CURR_PRICES`, and the same total-economy/Ukraine/annual dimensions returned **15 observations for 2010–2024**. Its unit fields differ from the real growth index: `UNITS_OF_MEASURE=1090` and `SCALE=6`, meaning nominal GDP is reported in **millions of hryvnias**. Source anchors: 2010 = 1,079,346; 2022 = 5,239,114; 2024 = **7,662,376 million UAH**. These were checked against the actual SDMX-CSV and the public 2024 indicator release. No nominal 2006–2009 or 2025 row was returned by this exact selection.
+
+The accepted `data/macro/gdp_nominal.csv` and corresponding `fetch/fetch_sssu_gdp_nominal.py` preserve the source vintage and territorial scope. The fetcher writes only a review sidecar. This nominal local-currency level may support appropriately denominated national indicators, but it must **not** be passed to an international GDP-in-US$ comparison slot as though it had that unit. A comparable USD measure requires separate source verification and a documented conversion.
 
 ## Confirmed official access routes
 
