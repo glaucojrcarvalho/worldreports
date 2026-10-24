@@ -27,6 +27,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATASETS = (
     "markets/fx.csv",
     "spending/investment.csv",
+    "macro/reserves.csv",
 )
 
 
@@ -66,7 +67,7 @@ def isolated_country(tmp_path):
     return Country.from_dir(home)
 
 
-@pytest.mark.parametrize("topic", ["markets", "spending"])
+@pytest.mark.parametrize("topic", ["markets", "spending", "world"])
 def test_accepted_source_panel_can_be_rendered_offline(isolated_country, topic, tmp_path):
     i18n.bind(isolated_country)
     i18n.set_lang("en")
