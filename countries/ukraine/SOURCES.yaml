@@ -2,7 +2,7 @@
 # Accepted curated CSVs require exact publisher attribution; other entries
 # under meta.pending remain research candidates, not chart-ready data.
 meta:
-  status: phase_a_eight_verified_national_series
+  status: phase_a_nine_verified_national_series
   snapshot_date: '2026-10-24'
   upstream_issue: https://github.com/akitaonrails/worldreports/issues/1
   no_country_config_yet: true
@@ -192,6 +192,42 @@ macro:
       The fetcher writes review sidecar gdp_growth_from_sssu.csv
       and NEVER overwrites this curated dataset.
     compiled: exact SSSU SDMX-CSV extraction, 2026-10-24
+
+social:
+  population.csv:
+    source: State Statistics Service of Ukraine — estimated present population on January 1
+    url: https://stat.gov.ua/sdmx/workspaces/default:integration/registry/sdmx/3.0/data/dataflow/SSSU/DF_POPULATION_STRUCTURE/8.0.1/*
+    refreshed_by: fetch/fetch_sssu_population.py
+    notes: >-
+      Official SSSU SDMX dataflow SSSU:DF_POPULATION_STRUCTURE(8.0.1),
+      DSD SSSU:DSD_POPULATION_STR(3.0.0); source indicator PNMI_01
+      = estimated PRESENT population on January 1, not permanent population,
+      middle-of-year average, end-of-year total, or post-2022 census.
+      Dimensions REGION=UA00000000000000000 (Ukraine total), AGE=_T,
+      GENDER=_T, TERRAIN_TYPE=_T (urban AND rural together), FREQ=A.
+      Units 1760 persons, SCALE=0, direct integer OBS_VALUE for all
+      calendar years 2006-2022 (17 observed years). Source anchors:
+      2006-01-01 46929525 people, 2014-01-01 45426249, 2015-01-01
+      42929298, 2021-01-01 41588354, 2022-01-01 41167335.
+      2023/2024/2025 rows are present in publisher SDMX metadata,
+      but OBS_VALUE is actually BLANK and OBS_FLAG is c (suppressed),
+      with NOTES_OBS explaining statistical confidentiality under
+      martial law; never render zeros or substitute refugee estimates.
+      Date label is the January 1 snapshot of the NAMED calendar year:
+      2022 is a pre-full-scale-invasion present-population estimate.
+      The series geography is discontinuous: the January 2015-2022
+      estimates exclude Crimea, Sevastopol and specified occupied parts
+      of Donetsk and Luhansk. The change from January 2014 to January
+      2015 is NOT attributable solely to deaths or net emigration.
+      Do not join it with national-account flows or crime/vital-event
+      rates absent matched population geography. On the canonical
+      demography.population index (2006=100), draw separate 2006-2014
+      and 2015-2022 segments with a visible 2015 scope seam; no line
+      continues into suppressed 2023-2025 rows. The source API includes
+      other age, gender and rural/urban breakdowns, which must never be
+      silently summed with the national total. Refresher writes only
+      population_from_sssu.csv as a review sidecar.
+    compiled: exact official SSSU national PNMI_01 observations 2006-2025, reviewed 2026-10-24
 
 trade:
   trade_na.csv:
