@@ -84,3 +84,45 @@ def test_2025_calendar_mapping_is_nonnegotiable():
     nbu[-1] = {**nbu[-1], "source_dt": "20250101"}
     with pytest.raises(ValueError, match="year-end mapping"):
         audit.reconcile(nbu, portal)
+
+
+def test_trilingual_fiscal_disclosure_tracks_source_and_pending_spine():
+    """Every published locale must distinguish staged Treasury data from IMF fiscal."""
+    import json
+    ui = json.loads((ROOT / "ui.json").read_text(encoding="utf-8"))
+    for language, search_term in (
+        ("en", "Public finances"),
+        ("uk", "Державні фінанси"),
+        ("pt", "Contas públicas"),
+    ):
+        records = ui[language]["unavailable"]
+        matches = [item for item in records if item["term"] == search_term]
+        assert len(matches) == 1, f"{language}: stale/missing fiscal disclosure"
+        claim = matches[0]["detail"]
+        assert "2011" in claim and "2025" in claim
+        assert "6.92" in claim or "6,92" in claim
+        assert ("IMF" in claim or "МВФ" in claim or "FMI" in claim)
+        assert ui[language]["notes"] and ui[language]["colophon"]
+
+
+def test_treasury_dataset_is_not_misrepresented_as_comparable_gg():
+    """Official cash data may appear in source table, never as a canonical slot."""
+    from core.country import Country
+    from core import sitebuild
+    country = Country.load("ukraine")
+    dataset = [d for d in sitebuild.datasets_for(country)
+               if d["file"] == "fiscal/treasury_functional.csv"]
+    assert len(dataset) == 1
+    assert dataset[0]["official"] is True
+    assert dataset[0]["coverage"] == "2011-2025"
+    assert "Treasury" in dataset[0]["publisher"]
+    import importlib.util
+    module_path = country.dir / "plates.py"
+    spec = importlib.util.spec_from_file_location("ukraine_fiscal_country_plates", module_path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    assert {entry["topic"] for entry in module.PLATES} == {
+        "economy", "world", "demography", "people"
+    }
+    # A Treasury cash outturn must not appear on a general-government axis.
+    assert "fiscal/treasury_functional.csv" not in module_path.read_text(encoding="utf-8")
