@@ -394,5 +394,41 @@
   "the war's price shock, after the 2015 hryvnia collapse": {
     "uk": "ціновий шок війни, після обвалу гривні 2015 року",
     "pt": "o choque de preços da guerra, depois do colapso da hryvnia em 2015"
+  },
+  "Ukrstat total fertility, national": {
+    "uk": "Сумарна народжуваність Укрстату, Україна",
+    "pt": "Fecundidade total do Ukrstat, Ucrânia"
+  },
+  "The source fertility rate stops in 2021;": {
+    "uk": "Опублікований показник фертильності закінчується 2021 роком;",
+    "pt": "A fecundidade publicada termina em 2021;"
+  },
+  "2022–2025 were suppressed": {
+    "uk": "показники 2022–2025 років не оприлюднено",
+    "pt": "os dados de 2022–2025 foram suprimidos"
+  },
+  "Ukrstat fertility; 2014 geographical scope break": {
+    "uk": "Фертильність Укрстату; розрив територіального охоплення у 2014 році",
+    "pt": "Fecundidade do Ukrstat; mudança territorial em 2014"
+  },
+  "Live births / 1,000 residents": {
+    "uk": "Живонароджені на 1 000 осіб",
+    "pt": "Nascidos vivos por 1.000 residentes"
+  },
+  "Deaths / 1,000 residents": {
+    "uk": "Померлі на 1 000 осіб",
+    "pt": "Mortes por 1.000 residentes"
+  },
+  "Publisher's crude rates stop in 2021;": {
+    "uk": "Офіційні загальні коефіцієнти закінчуються 2021 роком;",
+    "pt": "As taxas brutas oficiais terminam em 2021;"
+  },
+  "2022–2025 suppressed, not zero": {
+    "uk": "2022–2025: дані приховані, а не нульові",
+    "pt": "2022–2025: dados suprimidos, não zero"
+  },
+  "Ukrstat national rates per 1,000 present residents": {
+    "uk": "Загальнодержавні коефіцієнти Укрстату на 1 000 осіб наявного населення",
+    "pt": "Taxas nacionais do Ukrstat por 1.000 residentes presentes"
   }
 }
