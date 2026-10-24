@@ -30,6 +30,16 @@ The live endpoint returned no values for 2006–2010 or 2025. Although metadata 
 
 The regional aggregate code `UA00000000000000000` identifies Ukraine in the source, while the source notes document periods when portions of internationally recognized Ukrainian territory were omitted from actual measurements. The curated file and sidecar refresher `fetch/fetch_sssu_gdp_nominal.py` retain these semantics separately from the real GDP series.
 
+### Consumer prices, trade, fixed investment: verified sources
+
+The accepted `data/macro/cpi.csv` uses SSSU's `INDEX_CONSUMPRICE` with annual frequency and `BASE_PERIOD=PREV_YEAR`, which measures **annual-average CPI compared with the previous calendar year's average**. Values are a base-100 index, converted to inflation by subtracting 100; the 2022 observation is 120.2 → 20.2%. This must not be confused with December-to-December inflation. The publisher's 2014/2022 territorial restrictions are carried in `SOURCES.yaml`.
+
+`data/trade/trade_na.csv` uses SSSU goods-**and-services** national-accounts exports and imports (not merchandise customs or BoP) divided by the same-vintage current-price nominal GDP. Imported goods and services are reported as *positive magnitudes* despite the national-accounts minus label; the trade balance is exports minus imports. The 2022–2024 deficit ratios fall below the atlas-wide `trade.balance` axis of −15%; Ukraine-only clipping or rescaling is prohibited. All country comparison peers will need regeneration once the shared scale is widened.
+
+`data/spending/investment.csv` is gross fixed capital formation for the **whole economy** as % of GDP, not general-government capital investment. Treat government consumption and government GFCF as distinct and leave their canonical panels pending until compatible source data are collected.
+
+All three sources span their actual observed years only, with no automatic 2025 national-accounts substitution. Their fetchers write review sidecars; live CI compares re-fetched datasets against the curated snapshot byte-for-byte.
+
 ### Observed data and missing values
 
 2022–2025 Gini observations are **missing** in the SSSU SDG publication after suspension of the household survey, not equal to zero. The 2021 observation is reported as 0.244 on a 0–1 scale; a 0–100 display would be 24.4. Historical survey unemployment should not be joined to registered-unemployed counts or projections. Refugee registrations, border crossings, IDP survey estimates and national immigration flows must remain different populations and definitions.
@@ -52,4 +62,4 @@ Ministry of Finance state-budget cash reporting, state/state-guaranteed debt, an
 
 The official publisher is preferred where it computes the measure. Keep harmonized/market providers separately labelled and `official: false` where required. A successful transport probe only confirms schema access—not the statistical meaning, revisions, coverage or fitness of a series. Network I/O belongs exclusively in `fetch/`, output in review-only sidecars or cache, and chart render remains offline.
 
-As of 2026-10-24, three curated sources have been verified: NBU USD/UAH annual averages (2006–2025), SSSU real GDP growth indices (2011–2024), and SSSU nominal GDP at current prices in million UAH (2010–2024). Missing historical/2025 GDP years and all other chapters remain pending. See `DISCOVERY.md` and `SOURCES.yaml`.
+As of 2026-10-24, six curated datasets have been verified: NBU USD/UAH annual averages (2006–2025); Ukrstat GDP growth (2011–2024), nominal GDP (2010–2024), CPI annual-average inflation (2006–2025), trade in goods and services as a share of GDP (2010–2024), and whole-economy GFCF as a share of GDP (2010–2024). These do not constitute a finished 12-chapter atlas; specific missing years, other chapters, and all full render/localization gates remain pending. See `DISCOVERY.md` and `SOURCES.yaml`.
