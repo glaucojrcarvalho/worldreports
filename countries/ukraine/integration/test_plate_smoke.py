@@ -38,6 +38,7 @@ def isolated_country(tmp_path):
         "ink": "#151515", "muted": "#5a6170", "faint": "#9296a0",
         "paper": "#faf9f5", "card": "#ffffff", "grid": "#e6e3db",
         "spine": "#c6c1b7", "band": "#e9e5db", "primary": "#1b5e9a",
+        "BLUE": "#1b5e9a", "RED": "#ac3030", "GREEN": "#327751",
         "alert": "#ac3030",
         "series": ["#1b5e9a", "#ac3030", "#e9bc39"],
         "flag_bands": ["#155ca3", "#f6c846", "#155ca3"],
