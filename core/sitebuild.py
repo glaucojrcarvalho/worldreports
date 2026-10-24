@@ -132,6 +132,22 @@ CURRENCY_AFFIX = {
 # magnitude one-for-one and never has the placeholder.
 _N = NBSP
 _STYLE_AFFIX = {
+    # Ukrainian national statistical usage: thin/nonbreaking grouping space,
+    # decimal comma, amount before the hryvnia unit, space before percent.
+    "uk": {
+        "pct": ("", f"{_N}%"), "pct_s": ("", f"{_N}%"),
+        "pct2": ("", f"{_N}%"),
+        "pct_gdp": ("", f"{_N}% ВВП"),
+        "pct_gdp_s": ("", f"{_N}% ВВП"),
+        "rank": ("№ ", ""), "score100": ("", "/100"),
+        "pop_mn": ("", f"{_N}млн"),
+        "per100k": ("", "/100 тис. осіб"),
+        "per100k2": ("", "/100 тис. осіб"),
+        "years": ("", " років"),
+        "usd_bn": ("", f"{_N}млрд дол. США"),
+        "usd_bn_s": ("", f"{_N}млрд дол. США"),
+        "usd_bn1": ("", f"{_N}млрд дол. США"),
+    },
     # Duden and DIN 5008: a space before %, the amount before the unit,
     # "Mrd." and "Mio." with their points, "US-$" (Duden). The EU style
     # guide's German section agrees on the order and the space.
@@ -245,6 +261,16 @@ for _style, _forms in _STYLE_AFFIX.items():
 # uses them. English follows the EU style guide: the symbol before the
 # amount, an ISO code (CHF) before it with a space.
 _STYLE_CURRENCY = {
+    "UAH": {
+        "money_bn": {"en": ("₴", "bn"), "pt": ("₴ ", " bi"),
+                     "uk": ("", f"{_N}млрд грн")},
+        "money_tn": {"en": ("₴", "tn"), "pt": ("₴ ", " tri"),
+                     "uk": ("", f"{_N}трлн грн")},
+        "money": {"en": ("₴", ""), "pt": ("₴ ", ""),
+                  "uk": ("", f"{_N}грн")},
+        "money2": {"en": ("₴", ""), "pt": ("₴ ", ""),
+                   "uk": ("", f"{_N}грн")},
+    },
     "EUR": {
         "money_bn": {"de": ("", f"{_N}Mrd.{_N}€"), "it": ("", f"{_N}mld{_N}€"),
                      "pt-PT": ("", f"{_N}mil milhões de euros")},
