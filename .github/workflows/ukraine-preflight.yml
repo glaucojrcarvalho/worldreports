@@ -1,5 +1,4 @@
-# Fork-only Phase A preflight. Keep this workflow scoped to the development
-# branch; remove or consolidate it before submitting an upstream PR.
+# Fork-only workflow for Phase A. Remove/consolidate before upstream PR.
 name: Ukraine source preflight
 
 on:
@@ -29,15 +28,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Compile Ukraine research utilities
+      - name: Compile source utilities
         run: python -m compileall -q countries/ukraine/fetch countries/ukraine/tests
-      - name: Validate source parsing and safety guards (offline)
+      - name: Test Ukraine parsers and safeguards (offline)
         run: python -m unittest discover -s countries/ukraine/tests -p 'test_*.py' -v
-      - name: Verify only Ukraine files changed compared with fork main
+      - name: Check change scope against fork main
         run: |
           git diff --name-only origin/main...HEAD > /tmp/changed.txt
-          grep -vE '^countries/ukraine/|^\\.github/workflows/ukraine-preflight\\.yml
- /tmp/changed.txt > /tmp/unexpected.txt || true
+          grep -vE '^countries/ukraine/|^[.]github/workflows/ukraine-preflight[.]yml$' /tmp/changed.txt > /tmp/unexpected.txt || true
           if test -s /tmp/unexpected.txt; then
             cat /tmp/unexpected.txt
             exit 1
