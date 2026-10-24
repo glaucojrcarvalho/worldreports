@@ -1,0 +1,143 @@
+{
+  "en": {
+    "line": "{n} evidence-based data plates, {window} — research edition",
+    "dek": "Ukraine's official NBU exchange rates and Ukrstat national accounts and price indices are sourced from reviewed, committed CSVs. Wartime territorial exclusions and interrupted surveys are documented rather than silently combined or replaced with estimates. This is a development edition: unverified comparison panels remain visibly pending.",
+    "notes": [
+      "2026 is incomplete. Verified full calendar-year CPI and FX end in 2025, while the accepted national-accounts GDP, trade and investment series end in 2024. A later year in metadata is not a verified observation.",
+      "Ukraine's internationally recognized territory is not the same as the actual collection area of wartime statistics. Published national-account and CPI series exclude certain occupied or hostilities-affected territories after the 2014 and 2022 events.",
+      "National-accounts trade in goods and services is not the same thing as customs merchandise trade. Whole-economy gross fixed capital formation is not government investment.",
+      "Missing surveys, unverified fiscal series and incompatible population denominators are explicitly identified as research pending. No missing observation is treated as zero.",
+      "The Ukrainian, English and Portuguese texts are research-stage copy; the atlas remains unpublished until all panels, translations and render checks are approved."
+    ],
+    "colophon": [
+      {
+        "term": "Official currency",
+        "detail": "National Bank of Ukraine — daily USD/UAH exchange rates, calendar-day annual averages"
+      },
+      {
+        "term": "GDP, inflation and trade",
+        "detail": "State Statistics Service of Ukraine — SDMX annual national accounts and annual-average CPI"
+      },
+      {
+        "term": "Wartime statistical scope",
+        "detail": "Publisher methodology and territorial-coverage annotations, kept alongside each reviewed series"
+      }
+    ],
+    "unavailable": [
+      {
+        "term": "General-government fiscal accounts",
+        "detail": "Research pending: Ministry of Finance cash-budget totals have not been validated as harmonized general-government accrual revenue, balance or gross debt."
+      },
+      {
+        "term": "Household surveys",
+        "detail": "Research pending: inequality and poverty history has not been accepted; household survey observations after 2021 cannot be assumed available."
+      },
+      {
+        "term": "Population and displacement",
+        "detail": "Research pending: population denominators, births, deaths, migration flows and humanitarian displacement require distinct source and territorial-scope checks."
+      },
+      {
+        "term": "Banking, financial markets and security",
+        "detail": "Research pending: household credit, comparable sovereign yields and equity index, police crime counts and underlying-cause mortality do not yet have accepted source snapshots."
+      },
+      {
+        "term": "International comparison data",
+        "detail": "Research pending: comparable GDP in US dollars, GDP per person, HDI, corruption index and reserves remain unaccepted; nominal UAH GDP cannot fill the canonical US$ slot."
+      }
+    ]
+  },
+  "uk": {
+    "line": "{n} перевірених статистичних панелей, {window} — дослідницька версія",
+    "dek": "Офіційні курси НБУ, національні рахунки та індекси цін Держстату відтворюються з перевірених CSV. Територіальні обмеження під час війни та перерви в обстеженнях задокументовані, а несумісні дані не об'єднуються. Це робоча версія: неперевірені міжнародні показники залишаються позначеними як такі.",
+    "notes": [
+      "2026 рік ще не завершено. Перевірені повні річні дані щодо ІСЦ та курсу валют завершуються 2025 роком, а дані щодо ВВП, торгівлі та інвестицій — 2024 роком. Наявність року в метаданих не доводить існування спостереження.",
+      "Міжнародно визнана територія України не тотожна фактичному охопленню збору статистики в умовах війни. У 2014 та 2022 роках змінювалося охоплення окремих територій, що документується в методології.",
+      "Торгівля товарами й послугами за національними рахунками не тотожна митній статистиці торгівлі товарами. Валове нагромадження основного капіталу всієї економіки не є державними інвестиціями.",
+      "Відсутні опитування, неперевірені фіскальні ряди та несумісні знаменники чисельності населення позначені як теми дослідження. Пропуски не означають нуль.",
+      "Тексти українською, англійською й португальською перебувають на перевірці; атлас не опубліковано до завершення панелей, перекладів і перевірки відображення."
+    ],
+    "colophon": [
+      {
+        "term": "Офіційний валютний курс",
+        "detail": "Національний банк України — щоденні курси USD/UAH, середнє за календарний рік"
+      },
+      {
+        "term": "ВВП, ціни та торгівля",
+        "detail": "Державна служба статистики України — SDMX національних рахунків та середньорічний ІСЦ"
+      },
+      {
+        "term": "Територіальне охоплення",
+        "detail": "Методологічні примітки установ-видавців щодо охоплення й обмежень під час війни"
+      }
+    ],
+    "unavailable": [
+      {
+        "term": "Фінанси сектору загального державного управління",
+        "detail": "Триває перевірка: касове виконання бюджету не підтверджене як міжнародно порівнювані доходи, баланс чи валовий борг сектору загального державного управління."
+      },
+      {
+        "term": "Обстеження домогосподарств",
+        "detail": "Триває перевірка: історичні показники нерівності та бідності ще не прийняті; результати обстежень після 2021 року не можна вважати доступними."
+      },
+      {
+        "term": "Населення та переміщення",
+        "detail": "Триває перевірка: чисельність населення, народження, смерті, міграція й вимушене переміщення потребують окремої перевірки визначень та територіального охоплення."
+      },
+      {
+        "term": "Кредитування, ринки та безпека",
+        "detail": "Триває перевірка: показники кредитування домогосподарств, дохідності облігацій, фондового ринку, злочинності та причин смерті ще не прийняті."
+      },
+      {
+        "term": "Міжнародні порівняння",
+        "detail": "Триває перевірка: ВВП у доларах США, ВВП на особу, ІЛР, індекс сприйняття корупції та резерви не підтверджені; номінальний ВВП у гривнях не замінює показник у доларах."
+      }
+    ]
+  },
+  "pt": {
+    "line": "{n} painéis de dados verificados, {window} — versão de pesquisa",
+    "dek": "Os câmbios oficiais do Banco Nacional da Ucrânia e as contas nacionais e índices de preços da agência estatística ucraniana são reproduzidos de CSVs revisados. Exceções territoriais durante a guerra e interrupções nas pesquisas são documentadas, sem emendar definições incompatíveis. Esta é uma versão de desenvolvimento: comparações não verificadas permanecem explicitamente pendentes.",
+    "notes": [
+      "2026 ainda está incompleto. As séries anuais completas de inflação e câmbio chegam a 2025, enquanto PIB, comércio e investimento das contas nacionais chegam a 2024. A presença de um ano em metadados não equivale a observação confirmada.",
+      "O território internacionalmente reconhecido da Ucrânia difere da cobertura estatística efetivamente mensurada durante a guerra. As mudanças de cobertura em 2014 e 2022 são registradas por fonte.",
+      "Comércio de bens e serviços das contas nacionais não equivale ao comércio aduaneiro apenas de mercadorias. Formação bruta de capital fixo de toda a economia não equivale a investimento público.",
+      "Pesquisas domiciliares interrompidas, contas fiscais não verificadas e denominadores populacionais incompatíveis são identificados como pendências; nenhum dado ausente é tratado como zero.",
+      "Os textos e os painéis em ucraniano, inglês e português estão em revisão; o atlas ainda não foi publicado."
+    ],
+    "colophon": [
+      {
+        "term": "Câmbio oficial",
+        "detail": "Banco Nacional da Ucrânia — taxas diárias USD/UAH, médias dos dias do ano civil"
+      },
+      {
+        "term": "PIB, preços e comércio",
+        "detail": "Serviço Estatal de Estatísticas da Ucrânia — contas nacionais anuais SDMX e IPC médio anual"
+      },
+      {
+        "term": "Cobertura territorial na guerra",
+        "detail": "Notas metodológicas dos publicadores, preservadas ao lado de cada série validada"
+      }
+    ],
+    "unavailable": [
+      {
+        "term": "Finanças do governo geral",
+        "detail": "Em verificação: execução de caixa do orçamento ainda não foi validada como receita, saldo ou dívida bruta do governo geral em regime de competência."
+      },
+      {
+        "term": "Pesquisas domiciliares",
+        "detail": "Em verificação: séries históricas de desigualdade e pobreza não foram aceitas; não se pode presumir observações domiciliares após 2021."
+      },
+      {
+        "term": "População e deslocamento",
+        "detail": "Em verificação: denominadores populacionais, nascimentos, óbitos, migração e deslocamento humanitário exigem verificação separada de definição e território."
+      },
+      {
+        "term": "Crédito, mercados e segurança",
+        "detail": "Em verificação: crédito familiar, rendimentos comparáveis de títulos, índices de ações, crimes registrados e causas básicas de morte não têm ainda séries aceitas."
+      },
+      {
+        "term": "Comparações internacionais",
+        "detail": "Em verificação: PIB em dólares, PIB per capita, IDH, índice de corrupção e reservas não foram aceitos; PIB nominal em hryvnias não substitui a série em dólares."
+      }
+    ]
+  }
+}
