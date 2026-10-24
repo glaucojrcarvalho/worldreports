@@ -2,12 +2,12 @@
 # Accepted curated CSVs require exact publisher attribution; other entries
 # under meta.pending remain research candidates, not chart-ready data.
 meta:
-  status: phase_a_three_verified_national_series
+  status: phase_a_four_verified_national_series
   snapshot_date: '2026-10-24'
   upstream_issue: https://github.com/akitaonrails/worldreports/issues/1
   no_country_config_yet: true
   pending:
-    - name: Real GDP growth 2006-2010/2025; nominal GDP 2006-2009/2025; CPI
+    - name: Real GDP growth 2006-2010/2025; nominal GDP 2006-2009/2025
       publisher: State Statistics Service of Ukraine
       url: https://stat.gov.ua/en/development-api
       notes: >-
@@ -15,7 +15,7 @@ meta:
         in separate dimension selections of one official SDMX dataflow.
         The current exact queries returned no GDP data for earlier years
         or 2025; do not splice other publishers or a press release.
-        Consumer prices and other national-account series remain pending.
+        Other national-account series remain pending.
     - name: Consolidated/general-government fiscal series
       publisher: Ministry of Finance and appropriate harmonizing institution
       url: https://openbudget.gov.ua/en/about-portal
@@ -59,6 +59,32 @@ markets:
     compiled: direct API daily extraction and complete-year validation, 2026-10-24
 
 macro:
+  cpi.csv:
+    source: State Statistics Service of Ukraine — national headline consumer price index, annual average versus previous year
+    url: https://stat.gov.ua/sdmx/workspaces/default:integration/registry/sdmx/3.0/data/dataflow/SSSU/DF_PRICE_CHANGE_CONSUMER_GOODS_SERVICE/27.2.0/*
+    refreshed_by: fetch/fetch_sssu_cpi.py
+    notes: >-
+      SSSU dataflow DF_PRICE_CHANGE_CONSUMER_GOODS_SERVICE(27.2.0),
+      dimensions INDICATOR=INDEX_CONSUMPRICE, BASE_PERIOD=PREV_YEAR,
+      REGION=UA00000000000000000, GOODS_SERVICES_TYPE=0, FREQ=A.
+      The price index is a base-100 average of the calendar year's prices
+      against the average of the preceding year; annual_inflation_pct =
+      cpi_index_prev_year - 100. It is NOT December-to-December inflation,
+      a month-over-month index, or an observation for the running year.
+      All 20 calendar years 2006-2025 were retrieved directly via the
+      official SDMX-CSV v2 endpoint on 2026-10-24. Units=1010, SCALE=0;
+      OBS_FLAG is blank in every accepted row. Anchors: 2008=125.2 (25.2%),
+      2015=148.7 (48.7%), 2022=120.2 (20.2%), 2024=106.5 (6.5%),
+      2025=112.7 (12.7%). The full API stream includes older 2002-2005
+      data but this snapshot follows the atlas's common year window. The
+      publisher identifies territorial coverage breaks: 2014-2021 excluded
+      Crimea, Sevastopol and parts of occupied Donetsk/Luhansk; from 2022
+      onward, occupied territory and some hostilities-affected regions
+      were also excluded from statistical coverage. These measurement
+      exclusions must be annotated; this does not change Ukraine's legal
+      territory. Refresh only writes cpi_from_sssu.csv for human review;
+      never overwrite this curated CSV automatically.
+    compiled: official annual CPI SDMX-CSV extraction, verified 2026-10-24
   gdp_nominal.csv:
     source: State Statistics Service of Ukraine — Annual national accounts, GDP at current prices (UAH million)
     url: https://stat.gov.ua/sdmx/workspaces/default:integration/registry/sdmx/3.0/data/dataflow/SSSU/DF_ANNUAL_NATIONAL_ACCOUNTS/7.0.0/*
