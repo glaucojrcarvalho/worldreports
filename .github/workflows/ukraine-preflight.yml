@@ -29,51 +29,13 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Compile source utilities
-        run: python -m compileall -q countries/ukraine/fetch countries/ukraine/tests
+        run: python -m compileall -q countries/ukraine/fetch countries/ukraine/tests countries/ukraine/plates.py countries/ukraine/chapters.py countries/ukraine/events.py
       - name: Test Ukraine parsers and safeguards (offline)
         run: python -m unittest discover -s countries/ukraine/tests -p 'test_*.py' -v
       - name: Check change scope against fork main
         run: |
           git diff --name-only origin/main...HEAD > /tmp/changed.txt
-          grep -vE '^countries/ukraine/|^[.]github/workflows/ukraine-preflight[.]yml$|^core/style[.]py /tmp/changed.txt > /tmp/unexpected.txt || true
-          if test -s /tmp/unexpected.txt; then
-            cat /tmp/unexpected.txt
-            exit 1
-          fi
-
-  live-source-discovery:
-    if: ${{ github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[research]') }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 8
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-      - name: Query official SSSU catalog and NBU historical FX (read only)
-        run: |
-          python countries/ukraine/fetch/probe_sources.py --live
-          python countries/ukraine/fetch/probe_gdp.py --live
-          python countries/ukraine/fetch/probe_cpi.py --live
-          python countries/ukraine/fetch/probe_macro_components.py
-          python countries/ukraine/fetch/fetch_sssu_macro_ratios.py
-          diff -u countries/ukraine/data/trade/trade_na.csv countries/ukraine/data/trade/trade_na_from_sssu.csv
-          diff -u countries/ukraine/data/spending/investment.csv countries/ukraine/data/spending/investment_from_sssu.csv
-          python countries/ukraine/fetch/fetch_sssu_cpi.py
-          diff -u countries/ukraine/data/macro/cpi.csv countries/ukraine/data/macro/cpi_from_sssu.csv
-          python countries/ukraine/fetch/fetch_sssu_gdp.py
-          python countries/ukraine/fetch/fetch_sssu_gdp_nominal.py
-          diff -u countries/ukraine/data/macro/gdp_growth.csv countries/ukraine/data/macro/gdp_growth_from_sssu.csv
-          diff -u countries/ukraine/data/macro/gdp_nominal.csv countries/ukraine/data/macro/gdp_nominal_from_sssu.csv
-      - name: Preserve raw discovery metadata for review
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: ukraine-live-discovery
-          path: countries/ukraine/cache/
-          if-no-files-found: warn
-          retention-days: 14
- /tmp/changed.txt > /tmp/unexpected.txt || true
+          grep -vE '^countries/ukraine/|^[.]github/workflows/ukraine-preflight[.]yml$|^core/style[.]py$' /tmp/changed.txt > /tmp/unexpected.txt || true
           if test -s /tmp/unexpected.txt; then
             cat /tmp/unexpected.txt
             exit 1
