@@ -104,9 +104,13 @@ def _specs(ctx):
                  "trade/trade_na.csv", "balance_pct_gdp", "pct_gdp_s"),
             ]),
         "markets": (
-            "markets/fx.csv", "avg_uah_per_usd",
-            [(("Official UAH per US dollar", "Офіційний курс гривні за долар США", "Taxa oficial UAH por dólar"),
-              "markets/fx.csv", "avg_uah_per_usd", "dec2")],
+            "markets/policy_rate.csv", "policy_rate_eoy_pct",
+            [
+                (("NBU policy rate, year-end", "Облікова ставка НБУ на кінець року", "Taxa básica do BNU no fim do ano"),
+                 "markets/policy_rate.csv", "policy_rate_eoy_pct", "pct2"),
+                (("Official UAH per US dollar", "Офіційний курс гривні за долар США", "Taxa oficial UAH por dólar"),
+                 "markets/fx.csv", "avg_uah_per_usd", "dec2"),
+            ],
         ),
     }
 
