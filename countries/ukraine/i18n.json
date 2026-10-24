@@ -91,10 +91,6 @@
     "uk": "9,8% у 2021 — останнє модельоване значення —",
     "pt": "9,8% em 2021 é o último valor modelado —"
   },
-  "Births and deaths are published by Ukrstat to 2022;": {
-    "uk": "Народжуваність і смертність Укрстат публікує до 2022 року;",
-    "pt": "Nascimentos e óbitos são publicados pelo Ukrstat até 2022;"
-  },
   "COVID-19": {
     "uk": "COVID-19",
     "pt": "COVID-19"
@@ -134,10 +130,6 @@
   "HDI, 0–1": {
     "uk": "ІЛР, 0–1",
     "pt": "IDH, 0–1"
-  },
-  "Holes are not filled.": {
-    "uk": "Прогалини не заповнюються.",
-    "pt": "Lacunas não são preenchidas."
   },
   "Human Development Index (UNDP)": {
     "uk": "Індекс людського розвитку (ПРООН)",
@@ -239,10 +231,6 @@
     "uk": "Україна у світі — розмір, розвиток і резерви",
     "pt": "Ucrânia no Mundo — tamanho, desenvolvimento e reservas"
   },
-  "Ukrstat's fertility dataflow is cached but its": {
-    "uk": "Набір даних Укрстату про народжуваність є в кеші, але його",
-    "pt": "O conjunto do Ukrstat sobre fecundidade está em cache, mas a sua"
-  },
   "Unemployment rate (% of the labour force)": {
     "uk": "Рівень безробіття (% робочої сили)",
     "pt": "Taxa de desemprego (% da força de trabalho)"
@@ -294,10 +282,6 @@
   "data pending — run fetchers / add CSV": {
     "uk": "дані відсутні — запустіть збирачі / додайте CSV",
     "pt": "dados pendentes — rode os coletores / adicione o CSV"
-  },
-  "dimension code list does not identify the total-births": {
-    "uk": "перелік кодів вимірів не визначає підсумковий ряд народжуваності",
-    "pt": "a lista de códigos de dimensão não identifica a série total de nascimentos"
   },
   "from 2026); no official monthly US$ series is staged, and": {
     "uk": "з 2026 року); офіційного місячного ряду в доларах не зібрано, і",
@@ -363,10 +347,6 @@
     "uk": "оцінка, 0–100",
     "pt": "pontuação, 0–100"
   },
-  "series unambiguously — not yet definition-checked.": {
-    "uk": "однозначно — визначення ще не перевірено.",
-    "pt": "de forma inequívoca — definição ainda não verificada."
-  },
   "the ILO series stops there: no survey was run in the war years": {
     "uk": "ряд МОП на цьому спиняється: у воєнні роки обстежень не було",
     "pt": "a série da OIT para aí: não houve inquérito nos anos de guerra"
@@ -386,10 +366,6 @@
   "the occupied territories": {
     "uk": "окуповані території",
     "pt": "os territórios ocupados"
-  },
-  "the routing is pending with the same code-list check.": {
-    "uk": "маршрут відкладено до тієї ж перевірки кодів.",
-    "pt": "a rota está pendente da mesma verificação de códigos."
   },
   "the war's price shock, after the 2015 hryvnia collapse": {
     "uk": "ціновий шок війни, після обвалу гривні 2015 року",
