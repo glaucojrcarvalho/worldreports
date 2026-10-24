@@ -12,6 +12,35 @@ Important quotation pitfall: the NBU's older USD observations have `rate=505, un
 
 The fetcher `fetch/fetch_nbu_fx.py` writes only the review sidecar `data/markets/fx_from_nbu.csv`. It does not automatically overwrite the accepted snapshot, and failure in any year does not write a partial dataset. Semantic tests pin calendar-day completeness and historical annual anchors.
 
+## Live SSSU SDMX metadata verification — 2026-10-24
+
+The official SDMX 2.1 dataflow endpoint returned **121 dataflows**. The following publisher IDs and revisions were extracted, not inferred from URLs:
+
+| Topic | Exact SSSU dataflow | Version | Structure |
+| --- | --- | --- | --- |
+| Annual national accounts | `DF_ANNUAL_NATIONAL_ACCOUNTS` | `7.0.0` | `DSD_ANNUAL_NATIONAL_ACCOUNTS` |
+| Consumer prices | `DF_PRICE_CHANGE_CONSUMER_GOODS_SERVICE` | `27.2.0` | `DSD_PRICE_CHANGE_CONSUMER_GOODS_SERVICE` |
+| Population | `DF_POPULATION_STRUCTURE` | `8.0.1` | `DSD_POPULATION_STR` |
+| Annual labour force | `DF_LABOR_FORCE_A` | `2.0.1` | `DSD_LABOR_FORCE_A` |
+| Goods trade | `DF_EXTERNAL_TRADE_OF_GOODS` | `6.0.0` | `DSD_EXTERNAL_TRADE_OF_GOODS` |
+| Deaths by cause | `DF_POPULATION_DEATH_CAUSE` | `3.0.1` | `DSD_POPULATION_DEATH_CAUSE` |
+
+The national accounts DSD has dimensions in this order: `INDICATOR`, `PRICE_TYPE`, `REGION`, `BREAKDOWN_CATEGORY`, `BREAKDOWN`, `SECTOR_ECONOMY`, `FREQ`, `TIME_PERIOD`. Its concepts come from versioned SSSU concept schemes, not directly enumerated within the DSD.
+
+Official, independently fetched [national-accounts codelists](https://stat.gov.ua/en/node/5823) establish the following IDs:
+
+| Field | Codelist | Confirmed code/definition |
+| --- | --- | --- |
+| `INDICATOR` | `CL_ANNUAL_NATIONAL_ACCOUNTS_INDICATOR` (1.4.0) | `GDP_CUR_PRC` = gross domestic product; `GDP_PER_CAP` = GDP per capita |
+| `PRICE_TYPE` | `CL_PRICE_TYPE` (1.3.0) | `CURR_PRICES` = current prices; `CONST_PRICES_2016` and `CONST_PRICES_2021` = constant price bases; `IDX_VOL_PY` = volume index vs previous year |
+| `SECTOR_ECONOMY` | `CL_CIS_UA` (1.0.1) | `S_1` = total economy |
+| `FREQ` | `CL_FREQ` (2.0.2; SDMX agency) | `A` = annual |
+| `BREAKDOWN_CATEGORY` | `CL_ANNUAL_NATIONAL_ACCOUNTS_BREAKDOWN_CATEGORY` (1.0.0) | 12 published codes; requires selection of appropriate aggregate |
+| `BREAKDOWN` | `CL_ANNUAL_NATIONAL_ACCOUNTS_BREAKDOWN` (1.0.0) | 1,603 codes, hierarchical sector/activity detail |
+| `REGION` | `CL_KATOTTG` (1.2.19) | **Pending**: oversized API response with current bounded probe; do not guess all-Ukraine identifier |
+
+The precise dataflow/code list references are verifiable in the GitHub Actions artifact for the [successful SDMX research run](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40074160250). **No GDP observations have yet been accepted** from this API. The next step is to establish `REGION`, aggregate `BREAKDOWN` values, all-series attributes and observed coverage via the availability/data endpoints, then cross-check growth (2022: −28.8%) on a consistent statistical vintage.
+
 ## Confirmed official access routes
 
 * [State Statistics Service of Ukraine (SSSU) SDMX development API](https://stat.gov.ua/en/development-api) and [worked dataflow/DSD/data examples](https://stat.gov.ua/en/node/5823). SSSU documents a machine-readable SDMX 2.1 and 3.0 interface, including CSV/JSON/XML data. **Dataset-specific codes, dimensional keys and historical completeness are not yet established**; do not infer them from a web page title.
