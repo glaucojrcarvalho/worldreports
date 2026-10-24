@@ -2,7 +2,7 @@
 
 Research date: 2026-10-24. Related proposal: https://github.com/akitaonrails/worldreports/issues/1
 
-**Status: Phase A. Eight curated national datasets: official NBU FX (2006–2025), NBU policy rate effective at year-end (2006–2025), NBU official international reserves at year-end (2006–2025), Ukrstat real GDP growth (2011–2024), nominal GDP (2010–2024), annual-average CPI (2006–2025), goods-and-services national-accounts trade (2010–2024), and whole-economy GFCF (2010–2024). Other chapters are pending. Ukraine is not registered or published yet.** This folder intentionally lacks `country.yaml` so it is not registered by `core.country.Country.all()` until the required datasets, plate implementation and localization are verified. Follow `SOURCING_A_COUNTRY.md`, `COUNTRIES.md`, `ADDING_A_COUNTRY.md`, `AGENTS.md`, `PLATE_SPINE.md`.
+**Status: Phase A. Nine verified curated datasets: official NBU FX (2006–2025), NBU policy rate at year-end (2006–2025), NBU official reserve assets at year-end (2006–2025), Ukrstat real GDP growth (2011–2024), nominal GDP (2010–2024), annual-average CPI (2006–2025), goods-and-services national-accounts trade (2010–2024), whole-economy GFCF (2010–2024), and SSSU present-population January 1 counts (2006–2022 with 2023–2025 suppressed). Other chapters are pending. Ukraine is not registered or published yet.** This folder intentionally lacks `country.yaml` so it is not registered by `core.country.Country.all()` until the required datasets, plate implementation and localization are verified. Follow `SOURCING_A_COUNTRY.md`, `COUNTRIES.md`, `ADDING_A_COUNTRY.md`, `AGENTS.md`, `PLATE_SPINE.md`.
 
 ## First accepted curated series: official NBU USD/UAH (2006–2025)
 
@@ -85,11 +85,32 @@ The new fetcher `fetch/fetch_sssu_macro_ratios.py` validates all three official 
 
 The 2022 policy rate and reserves series are *not* national GDP, household borrowing costs, budget financing, or census records. Their publisher and definition remain separate from SSSU national accounts.
 
-## Population research: discovered metadata but no accepted observations
+## Ninth accepted source: present population on January 1, with explicit wartime suppression
+
+On **2026-10-24**, the official SSSU SDMX-CSV national total `PNMI_01`
+returned 17 unflagged integer observations (2006–2022) for
+`INDICATOR=PNMI_01`, `REGION=UA00000000000000000`, `AGE=_T`,
+`GENDER=_T`, `TERRAIN_TYPE=_T`, `FREQ=A`, `UNITS_OF_MEASURE=1760`
+(persons), `SCALE=0`. On **2023, 2024 and 2025** it returned
+`OBS_VALUE` genuinely empty with `OBS_FLAG=c`, citing Ukraine's
+statistical-confidentiality and martial-law release restrictions.
+Those years are committed with **empty numeric fields**, not zeros.
+
+`data/social/population.csv` preserves all 20 rows and the flags.
+`fetch/fetch_sssu_population.py` writes only an official-API review
+sidecar; fork research CI has re-fetched it and verified its exact CSV diff.
+Observations: **2006-01-01 46,929,525**, **2014-01-01 45,426,249**,
+**2015-01-01 42,929,298**, **2022-01-01 41,167,335**.
+The marked change in January 2015 is substantially influenced by
+excluded occupied territory, **not** automatically deaths, emigration
+or a population count for unchanged borders.
+The canonical `demography.population` plate rebases Jan-1 present
+population to **2006=100** and splits at 2015, with no continuation
+for suppressed post-invasion years.
 
 The SSSU national population flow `SSSU:DF_POPULATION_STRUCTURE(8.0.1)` resolves to `SSSU:DSD_POPULATION_STR(3.0.0)`. The publisher's explorer uses `PNMI_01` as an **estimated present-population candidate on 1 January**; `PNMI_02` is a distinct observed indicator code, but its exact label still requires a codelist check before acceptance. The official availability catalog advertises annual and monthly observations spanning 1989–2026, with national region `UA00000000000000000`; this metadata is **not evidence that post-invasion population observations actually exist for the required definitions**.
 
-The SSSU explanatory metadata states that January 2015–2022 population excludes occupied Crimea/Sevastopol and certain Donetsk/Luhansk areas, and data described as January 2023 onward exclude occupied or hostilities-affected areas. These scopes cannot be joined into one uninterrupted all-Ukraine level, particularly for displacement-dependent rates. A bounded `fetch/probe_population.py` probe now stages source response/schema samples for review only. No demographic CSV has been accepted.
+The SSSU explanatory metadata states that January 2015–2022 population excludes occupied Crimea/Sevastopol and certain Donetsk/Luhansk areas, and data described as January 2023 onward exclude occupied or hostilities-affected areas. These scopes cannot be joined into one uninterrupted all-Ukraine level, particularly for displacement-dependent rates. The original `fetch/probe_population.py` remains a research probe; the exact bounded national total `PNMI_01` has now been source-validated, curated, and tested. No post-invasion national population count was fabricated.
 
 ## Confirmed official access routes
 
