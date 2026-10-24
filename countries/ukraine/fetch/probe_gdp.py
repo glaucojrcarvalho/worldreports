@@ -49,7 +49,9 @@ def candidate_urls() -> dict[str, str]:
     # Retain both variants: the second is a control to distinguish a
     # too-restrictive geographic/breakdown selection from API failure.
     control = f"{BASE}?{urllib.parse.urlencode({key: val for key, val in filters.items() if key not in {'c[REGION]', 'c[BREAKDOWN_CATEGORY]', 'c[BREAKDOWN]'}})}"
-    return {"exact": selected, "control": control}
+    nominal = dict(filters, **{"c[PRICE_TYPE]": "CURR_PRICES"})
+    return {"exact": selected, "control": control,
+            "nominal_gdp": f"{BASE}?{urllib.parse.urlencode(nominal)}"}
 
 
 def fetch(url: str) -> tuple[str, bytes, int]:
