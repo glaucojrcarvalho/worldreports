@@ -63,6 +63,9 @@ LATIN_BODY = ["Liberation Sans", "DejaVu Sans", "Noto Sans"]
 # collection and font_manager indexes only its first face — fontconfig
 # lists "Noto Sans CJK KR" on a machine where matplotlib sees only JP.
 SCRIPT_FONTS = {
+    # A single Cyrillic-capable face must also cover English source names,
+    # digits and the Unicode minus used on statistical charts.
+    "uk": ["DejaVu Sans", "Liberation Sans", "Noto Sans"],
     # DejaVu Sans covers Hebrew and the Latin/numeric fragments that appear
     # beside it in data labels. Noto Sans Hebrew is Hebrew-only, so using it
     # alone turns years, units and source acronyms into missing glyphs.
