@@ -28,6 +28,7 @@ DATASETS = (
     "markets/fx.csv",
     "spending/investment.csv",
     "macro/reserves.csv",
+    "social/population.csv",
 )
 
 
@@ -67,7 +68,7 @@ def isolated_country(tmp_path):
     return Country.from_dir(home)
 
 
-@pytest.mark.parametrize("topic", ["markets", "spending", "world"])
+@pytest.mark.parametrize("topic", ["markets", "spending", "world", "demography"])
 def test_accepted_source_panel_can_be_rendered_offline(isolated_country, topic, tmp_path):
     i18n.bind(isolated_country)
     i18n.set_lang("en")
