@@ -24,6 +24,35 @@ The `data/macro/gdp_growth.csv` file contains the 14 available annual rows from 
 
 The live endpoint returned no values for 2006–2010 or 2025. Although metadata lists a broader availability window, **no observation is fabricated or spliced**. The growth series is reviewable against its sidecar from `fetch/fetch_sssu_gdp.py`. The publisher's stated territorial coverage varies after the 2014 and 2022 occupation/invasion shocks, and the published chart must annotate those comparability breaks. The 2022 contraction cannot fit the existing shared −18 to +18 growth range; a global range change requires regenerating and reviewing all affected peer charts.
 
+### Accepted January-1 present-population estimates, with source suppression
+
+The population file `data/social/population.csv` records the SSSU's **estimated
+present population at the beginning of 1 January in each named year**,
+rather than a mid-year population, census, or December 31 population.
+It is source dataflow `DF_POPULATION_STRUCTURE(8.0.1)`, indicator
+`PNMI_01`, Ukraine national total (all genders, ages and urban/rural),
+`UNITS_OF_MEASURE=1760` (persons), `SCALE=0`. The source provides
+**17 actual counts, 2006–2022**. Key anchors include 2014=45,426,249,
+2015=42,929,298 and 2022=41,167,335 present persons on January 1.
+
+**2023–2025 are explicitly suppressed by the publisher**, flagged
+`OBS_FLAG=c`; there is no `OBS_VALUE` for those years. The SDMX
+note invokes statistical-confidentiality and martial-law publication
+restrictions. Our CSV retains the empty values and flags, and both
+the fetcher and the regression tests reject substitutions, false
+zeros or unreviewed released figures.
+
+**Geographic discontinuity**: January 2015–2022 estimates exclude Crimea
+and Sevastopol and specified occupied territories in Donetsk/Luhansk.
+Do not interpret the drop between January 2014 and January 2015 as
+pure net emigration, fertility, deaths or a population rate on stable
+boundaries. The panel indexes only the observed counts to 2006=100,
+separating the series at 2015, and stops in 2022. Because January 1,
+2022 pre-dates the full-scale invasion, no chart describes it as an
+end-of-2022 present-population count. Matched denominators for mortality,
+security and wartime migration are still unresolved. See exact
+source selection and response notes in `SOURCES.yaml`.
+
 ### Accepted nominal GDP level (2010–2024)
 
 `data/macro/gdp_nominal.csv` comes from the **same SSSU annual national-accounts dataflow version** as real GDP growth, but a different price-type key (`CURR_PRICES` instead of `IDX_VOL_PY`). The publisher's unit is `UNITS_OF_MEASURE=1090` with `SCALE=6`, so values are millions of UAH. For example, 2024 = **7,662,376 million UAH**. Never label these current-price levels as real growth, constant-price output, or an international US-dollar comparable. Nominal 2006–2009 and 2025 are absent from the exact extracted series, and no source merging was performed.
@@ -68,4 +97,4 @@ Ministry of Finance state-budget cash reporting, state/state-guaranteed debt, an
 
 The official publisher is preferred where it computes the measure. Keep harmonized/market providers separately labelled and `official: false` where required. A successful transport probe only confirms schema access—not the statistical meaning, revisions, coverage or fitness of a series. Network I/O belongs exclusively in `fetch/`, output in review-only sidecars or cache, and chart render remains offline.
 
-As of 2026-10-24, seven curated datasets have been verified: NBU USD/UAH annual averages (2006–2025); Ukrstat GDP growth (2011–2024), nominal GDP (2010–2024), CPI annual-average inflation (2006–2025), trade in goods and services as a share of GDP (2010–2024), and whole-economy GFCF as a share of GDP (2010–2024). These do not constitute a finished 12-chapter atlas; specific missing years, other chapters, and all full render/localization gates remain pending. See `DISCOVERY.md` and `SOURCES.yaml`.
+As of 2026-10-24, nine curated datasets have been verified: NBU USD/UAH annual averages (2006–2025); Ukrstat GDP growth (2011–2024), nominal GDP (2010–2024), CPI annual-average inflation (2006–2025), trade in goods and services as a share of GDP (2010–2024), whole-economy GFCF as a share of GDP (2010–2024), NBU year-end policy rates and reserves (2006–2025), and SSSU January-1 present-population estimates (2006–2022; 2023–2025 suppressed). These do not constitute a finished 12-chapter atlas; specific missing years, other chapters, and all full render/localization gates remain pending. See `DISCOVERY.md` and `SOURCES.yaml`.
