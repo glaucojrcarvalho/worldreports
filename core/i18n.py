@@ -200,6 +200,12 @@ def _on_ladder(style, currencies, per100k, pp, gap=""):
 # "/100,000" is written with an English comma on purpose: the separator
 # pass runs after these rules and turns it into the style's own 100.000.
 _UNITS.update({
+    # Ukrainian: CLDR-style decimal comma and group spacing; currency
+    # follows the amount, and /100k means per 100,000 residents.
+    "uk": _one_for_one(
+        [("₴", "грн"), (r"US\\$", "дол. США"), ("€", "євро")],
+        {"tn": "трлн", "bn": "млрд", "mn": "млн"},
+        "/100,000 осіб", f"{NBSP}в. п.", pct_space=True),
     # Duden / DIN 5008.
     "de": _one_for_one(
         [("€", "€"), (r"US\$", "US-$"), ("CHF", "CHF")],
@@ -335,7 +341,7 @@ def localize_numbers(text: str, lang: str | None = None) -> str:
 # currency marks, the digits and the magnitude suffixes; if no letter is
 # left, there is nothing to translate.
 _VALUE_PARTS = re.compile(
-    r"US\$|CN¥|NT\$|CHF|€|₩|R\$|\$US|Md€|M€|B€|Md\$US|B\$US"
+    r"US\$|CN¥|NT\$|CHF|€|₩|₴|R\$|\$US|Md€|M€|B€|Md\$US|B\$US"
     r"|[\d.,:%+\-–—/()\s ]"
     r"|(?<=\d)(?:tn|bn|mn|pp|M|k|bi|mi|tri)\b")
 
