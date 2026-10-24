@@ -93,7 +93,7 @@ class VitalSourceTests(unittest.TestCase):
 
     def test_unit_source_dimension_and_geographic_drift_rejected(self):
         cases = [
-            {"UNITS_OF_MEASURE": "1760"},
+            {"UNITS_OF_MEASURE": "2860"},
             {"SCALE": "6"}, {"INDICATOR": "PNMI_17"},
             {"REGION": "UA01000000000013043"}, {"GENDER": "FEMALE"},
             {"TERRAIN_TYPE": "RUR"}, {"CITIZENSHIP": "_T"},
