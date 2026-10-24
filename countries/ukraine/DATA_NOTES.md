@@ -45,11 +45,23 @@ about 1,006, i.e. 10.1× the 2006 price level. The plate says it is derived.
   years. The rows are blank, not zero, and the plate labels its last value
   as modelled.
 - **Gini** stops in 2020: the household survey behind it was suspended.
-- **Births, deaths, fertility, migration**: Ukrstat publishes them to 2022,
-  but the cached SDMX dataflow's dimension code list does not identify the
-  total series unambiguously. That is incomplete definition research, and
-  the panels stay pending rather than drawing a series that might be a
-  sub-slice (for example, births to one citizenship group).
+- **Registered births/deaths, crude rates and total fertility**: now
+  verified from official SSSU dataflows and the publisher's dimension and
+  unit codelists. There are 20 annual observed live-birth and death counts
+  for 2006–2025. Crude natality/mortality rates per 1,000 *present* people
+  and total fertility per woman are observed only through 2021; in the
+  2022–2025 SDMX rows the numeric field is BLANK and OBS_FLAG=c.
+  The published rates are used directly, without combining the count with
+  a World Bank/UN population denominator.
+- **Territorial change in 2014 and wartime**: the civil-status register's
+  geographic scope excludes some occupied areas from the 2014–2021
+  dataflow footnotes, with further hostilities-affected exclusions after
+  the full-scale invasion. Rate charts are split at 2014 and end in 2021.
+  Wartime count levels are recorded in the source CSV, not plotted as
+  rates, nor interpreted as a same-territory trend or war casualties.
+- **Resident migration**: remains pending. Border crossing transactions,
+  refugee stocks and internally displaced persons are not resident net
+  migration on the canonical definition.
 - **Poverty, minimum wage**: the survey has not published since 2021; the
   statutory minimum is set in hryvnia and no official monthly US$ series is
   staged.
@@ -67,6 +79,20 @@ dataflow payload (offline from the cache, since stat.gov.ua answers 403 to
 this network). Both write `*_from_*` review sidecars only — the curated
 CSVs are a separate reviewed step — and both are re-runnable: two offline
 runs produce byte-identical sidecars.
+
+The new `fetch/fetch_vital_sdmx.py` accesses the publisher's five exact
+annual vital indicators from its two SDMX dataflows. Its source selections
+pin `SSSU:CL_POPULATION_INDICATOR(6.0.1)`:
+`PNMI_17` (registered live births), `PNMI_19` (registered deaths),
+`PNMI_32` (crude birth rate), `PNMI_46` (crude death rate), and
+`PNMI_3341` (total fertility). Official measurement units are
+`1760`=persons, `2860`=per 1,000 present people, and `2840`=per
+woman. `CITIZENSHIP=_Z` is NOT APPLICABLE for the aggregate mortality
+series — substituting `_T` returns empty data. All other total/not
+applicable filters are pinned in the script. This fetcher never alters
+the committed `data/demography/vital_ukrstat.csv`; live CI checks its
+review sidecar against that CSV byte for byte. The source API may still
+block other build networks, so drawing always uses offline inputs.
 
 ## Not drawn, on purpose
 
