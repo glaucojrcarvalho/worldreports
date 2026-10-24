@@ -62,6 +62,7 @@ STYLES = {
     "en": "en", "fr": "fr", "pt": "pt", "pt-PT": "pt", "es": "es",
     "ko": "ko", "de": "de", "it": "it", "ja": "ja",
     "zh-Hans": "zh-Hans", "zh-Hant": "zh-Hant", "vi": "vi", "he": "he",
+    "uk": "uk",
 }
 
 # The decimal and thousands marks, for the styles that change them. A
@@ -69,6 +70,7 @@ STYLES = {
 # purpose: tests read "in SEPARATORS" as "this style swaps the marks".
 SEPARATORS = {
     "fr": {",": NBSP, ".": ","},
+    "uk": {",": NBSP, ".": ","},
     "pt": {",": ".", ".": ","},
     "pt-PT": {",": NBSP, ".": ","},
     "es": {",": ".", ".": ","},
