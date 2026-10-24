@@ -54,6 +54,10 @@ jobs:
         run: |
           python countries/ukraine/fetch/probe_sources.py --live
           python countries/ukraine/fetch/probe_gdp.py --live
+          python countries/ukraine/fetch/fetch_sssu_gdp.py
+          python countries/ukraine/fetch/fetch_sssu_gdp_nominal.py
+          diff -u countries/ukraine/data/macro/gdp_growth.csv countries/ukraine/data/macro/gdp_growth_from_sssu.csv
+          diff -u countries/ukraine/data/macro/gdp_nominal.csv countries/ukraine/data/macro/gdp_nominal_from_sssu.csv
       - name: Preserve raw discovery metadata for review
         if: always()
         uses: actions/upload-artifact@v4
