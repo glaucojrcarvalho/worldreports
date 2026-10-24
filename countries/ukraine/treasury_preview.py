@@ -28,6 +28,7 @@ TEXT = {
         "Defence", "All other functions", "Defence share of functional total (%)",
         "National Treasury classification; NOT IMF general-government accrual or COFOG",
         "Source: State Treasury via NBU budget API; MoF Budget of Ukraine 2024, §2.3",
+        "2025: NBU total exceeds Open Budget by UAH 6.92bn; reconciliation pending.",
     ),
     "uk": (
         "Україна — видатки зведеного бюджету",
@@ -36,6 +37,7 @@ TEXT = {
         "Оборона", "Інші функції", "Частка оборони у видатках (%)",
         "Національна класифікація Казначейства; НЕ облік за МВФ чи COFOG",
         "Джерело: Казначейство через API НБУ; Мінфін, Бюджет України 2024, §2.3",
+        "2025: сума НБУ перевищує Open Budget на 6,92 млрд грн; звірка триває.",
     ),
     "pt": (
         "Ucrânia — despesas do orçamento consolidado",
@@ -44,6 +46,7 @@ TEXT = {
         "Defesa", "Outras funções", "Participação da defesa no total (%)",
         "Classificação nacional do Tesouro; NÃO são contas de competência do FMI/COFOG",
         "Fonte: Tesouro via API do NBU; Min. das Finanças, Budget of Ukraine 2024, §2.3",
+        "2025: total do NBU supera o portal Open Budget em UAH 6,92 bi; conciliação pendente.",
     ),
 }
 
@@ -70,7 +73,7 @@ def read_series():
 
 
 def render(out: Path, locale: str):
-    title, sub, ylab, de, rest, share, caveat, source = TEXT[locale]
+    title, sub, ylab, de, rest, share, caveat, source, unresolved = TEXT[locale]
     years, defence, others, shares = read_series()
     fig, axes = plt.subplots(2, 1, figsize=(11.5, 8.5), sharex=True,
                              gridspec_kw={"height_ratios": [2, 1]})
@@ -94,9 +97,10 @@ def render(out: Path, locale: str):
         a.spines["right"].set_visible(False)
     fig.suptitle(title, fontsize=16, fontweight="bold")
     ax.set_title(sub, fontsize=10, loc="left")
-    fig.text(0.09, 0.035, caveat, fontsize=8.5)
-    fig.text(0.09, 0.017, source, fontsize=8)
-    fig.subplots_adjust(top=0.86, bottom=0.14, left=0.12, right=0.96, hspace=0.18)
+    fig.text(0.09, 0.065, caveat, fontsize=8.3)
+    fig.text(0.09, 0.043, source, fontsize=7.8)
+    fig.text(0.09, 0.021, unresolved, fontsize=8.2)
+    fig.subplots_adjust(top=0.86, bottom=0.18, left=0.12, right=0.96, hspace=0.18)
     out.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out, format="svg")
     plt.close(fig)
