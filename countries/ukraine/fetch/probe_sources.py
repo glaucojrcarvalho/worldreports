@@ -320,28 +320,43 @@ def run_live() -> dict:
     probes["sssu_priority_dsd"] = structures
     # Inspect official code values for national accounts only; still no
     # assumption about which combination is valid or comparable.
+    # These codes and publisher versions were inspected from SSSU's
+    # CS_ANNUAL_NATIONAL_ACCOUNTS/5.0.0 and
+    # CS_HISTORICAL_DATA_GLOBAL/3.2.0 concept schemes on 2026-10-24.
+    # The DSD itself references concepts, not enumerated codelists.
+    source_codelists = {
+        "INDICATOR": ("SSSU", "CL_ANNUAL_NATIONAL_ACCOUNTS_INDICATOR", "1.4.0"),
+        "PRICE_TYPE": ("SSSU", "CL_PRICE_TYPE", "1.3.0"),
+        "BREAKDOWN_CATEGORY": ("SSSU", "CL_ANNUAL_NATIONAL_ACCOUNTS_BREAKDOWN_CATEGORY", "1.0.0"),
+        "BREAKDOWN": ("SSSU", "CL_ANNUAL_NATIONAL_ACCOUNTS_BREAKDOWN", "1.0.0"),
+        "SECTOR_ECONOMY": ("SSSU", "CL_CIS_UA", "1.0.1"),
+        "REGION": ("SSSU", "CL_KATOTTG", "1.2.19"),
+        "FREQ": ("SDMX", "CL_FREQ", "2.0.2"),
+    }
     na_codes = {}
-    target = structures.get("national_accounts", {})
-    for dimension in target.get("dimensions", []):
-        if dimension["dimension"] not in {"INDICATOR", "PRICE_TYPE", "REGION", "FREQ"}:
-            continue
-        code_id = dimension.get("codelist_ref")
-        if not code_id:
-            na_codes[dimension["dimension"]] = {
-                "result": "unverified", "reason": "DSD lacks direct codelist reference"}
-            continue
-        catalog_url = make_sssu_codelist_url(code_id)
+    base = SSSU_DSD_ROOT.rsplit("/datastructure/", 1)[0]
+    for dimension, (agency, code_id, version) in source_codelists.items():
+        catalog_url = (
+            f"{base}/codelist/{agency}/{code_id}/{version}?references=none"
+        )
         try:
-            values = parse_sssu_codelist(download(catalog_url, accept="application/xml"))
-            na_codes[dimension["dimension"]] = {
+            raw_codes = download(catalog_url, accept="application/xml")
+            codes = parse_sssu_codelist(raw_codes)
+            cache = ROOT / "cache"
+            cache.mkdir(parents=True, exist_ok=True)
+            if dimension in {"INDICATOR", "PRICE_TYPE", "BREAKDOWN_CATEGORY", "BREAKDOWN", "SECTOR_ECONOMY"}:
+                (cache / f"sssu_codelist_{dimension.lower()}.xml").write_bytes(raw_codes)
+            na_codes[dimension] = {
                 "result": "parsed_codes_only",
                 "endpoint": catalog_url,
                 "codelist": code_id,
-                "count": len(values),
-                "values": values[:200],
+                "version": version,
+                "count": len(codes),
+                "values": codes[:300],
+                "caution": "Available codes alone do not prove an observed comparable series.",
             }
         except Exception as exc:
-            na_codes[dimension["dimension"]] = {
+            na_codes[dimension] = {
                 "result": "unverified",
                 "endpoint": catalog_url,
                 "error": f"{type(exc).__name__}: {exc}",
