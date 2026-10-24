@@ -1,0 +1,50 @@
+name: Ukraine Treasury refresh — review only
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Stage official NBU fiscal sidecar
+        run: python3 countries/ukraine/fetch/fetch_treasury.py
+      - name: Compare live NBU sidecar to reviewed fiscal history
+        run: |
+          python3 - <<'PY'
+          import difflib
+          import hashlib
+          from pathlib import Path
+          root = Path("countries/ukraine")
+          reviewed = root / "data/fiscal/treasury_functional.csv"
+          staged = root / "fetch/cache/treasury_functional_from_nbu.csv"
+          a = reviewed.read_bytes()
+          b = staged.read_bytes()
+          report = (
+              f"Reviewed SHA256: {hashlib.sha256(a).hexdigest()}\n"
+              f"Staged SHA256:   {hashlib.sha256(b).hexdigest()}\n"
+              f"Identical:      {a == b}\n\n"
+          )
+          report += "".join(difflib.unified_diff(
+              a.decode().splitlines(True), b.decode().splitlines(True),
+              fromfile=str(reviewed), tofile=str(staged)))
+          Path("/tmp/treasury-review-diff.txt").write_text(report, encoding="utf-8")
+          print(report[:20000])
+          print("A changed series requires explicit dataset review; nothing was promoted.")
+          PY
+      - name: Export source sidecar and diff for manual review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ukraine-treasury-live-fetch-review
+          path: |
+            countries/ukraine/fetch/cache/treasury_functional_from_nbu.csv
+            /tmp/treasury-review-diff.txt
+          retention-days: 14
