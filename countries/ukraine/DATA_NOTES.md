@@ -71,7 +71,62 @@ runs produce byte-identical sidecars.
 ## Not drawn, on purpose
 
 Fiscal, trade, markets, credit, security and mortality chapters are not
-published at all this pass rather than assembled from a different perimeter
-or a partner's mirror data. The blocked publishers and their exact failure
+published as plates yet. Verified Treasury functional expenditure is now curated
+for a separate cash-budget enhancement, but it does not establish canonical
+IMF fiscal or COFOG slots; no misleading plate has been added. The blocked publishers and their exact failure
 modes are in `SOURCES.yaml` `meta.pending`, and the page discloses the
 absence in each locale.
+
+## Treasury fiscal data — annual reference dates and scope (2026-10-24)
+
+The **NBU republishes State Treasury cash-budget execution**, not harmonised
+IMF general-government accrual statistics. The reviewed data in
+`fiscal/treasury_functional.csv` are **2011–2025 consolidated budget (CBU)**
+functional outturns, measured in **million nominal UAH**, split into the ten
+original top-level Ukrainian budget classification codes `0100`–`1000`.
+The reported `gf_budgtef_Total_1` is **expenditure excluding interbudget
+transfers**, not an additional category. National functional classes must
+not be treated as a checked mapping to the atlas's seven COFOG-like groups.
+
+**Critical date mapping:** in the NBU `budget` cube, an annual record
+`dt=20240101` reports the **2023** calendar-year execution.
+`dt=20250101` reports **2024**. The previous research probe mistakenly
+treated the NBU January date as the same calendar year. It was corrected
+rather than imported wholesale. The source date is kept as a separate
+column, so this rule can be audited without inferring it from a chart.
+
+The independent cross-check is the **Ministry of Finance** statistical book
+[Budget of Ukraine 2024](https://mof.gov.ua/storage/files/Badgef%20of%20Ukraine2024.pdf),
+especially section **2.3, pages 34–37**, with:
+- **2023:** defence 2,097,621.9 million UAH; consolidated spending
+  4,441,364.6 million UAH.
+- **2024:** defence 2,305,242.7 million UAH; consolidated spending
+  4,945,680.7 million UAH.
+
+All 15 annual ten-category sums reconcile with the same-year functional
+total within **0.3 million UAH** (source presentation rounding).
+The economic-classification total `gf_budgtee_Total` does not agree
+exactly (for example, the 2023 fiscal-year observation is 4,433,206.4
+million UAH); its variance is not discarded or blended into the
+functional time series. Revenue / balance / financing classifications
+must receive their own identity verification before use. The signed
+`gf_budgtfd_total` is financing with deficit-positive sign — **not** a
+general-government primary balance. We stage none of those as fiscal
+accounts yet.
+
+**Discontinuities and limits:** the wartime fiscal envelope and territory
+of execution may change around 2014 and 2022. This is not a constant-
+territory panel; nominal expenditures may change because of prices,
+administrative scope or budget priorities. Values are not inflation
+adjusted, expressed as GDP shares, reconstructed, interpolated or
+converted to USD. Do not infer constant-definition expenditure growth.
+The national functional categories remain supplementary **source material**
+until a defensible national-only plate is implemented and visually reviewed.
+
+`fetch/fetch_treasury.py` re-fetches the full JSON cube and writes
+`fetch/cache/treasury_functional_from_nbu.csv` **only** (a review sidecar).
+It validates JSON and field names, annual dates, unit, parent/category
+hierarchy, duplicated codes, annual gaps, numeric sanity, Ministry of
+Finance anchors and within-year reconciliation. It never overwrites
+the committed source-of-truth CSV. Compare the entire historical sidecar
+to the curated CSV before accepting revisions.
