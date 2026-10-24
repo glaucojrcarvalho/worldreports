@@ -2,7 +2,15 @@
 
 Research date: 2026-10-24. Related proposal: https://github.com/akitaonrails/worldreports/issues/1
 
-**Status: exploratory. No accepted chart-ready national dataset and no published country atlas yet.** This folder intentionally lacks `country.yaml` so it is not registered by `core.country.Country.all()` until the required datasets, plate implementation and localization are verified. Follow `SOURCING_A_COUNTRY.md`, `COUNTRIES.md`, `ADDING_A_COUNTRY.md`, `AGENTS.md`, `PLATE_SPINE.md`.
+**Status: Phase A. One verified national FX dataset is accepted (`data/markets/fx.csv`, 2006–2025); the remaining chapters are exploratory. There is no published country atlas yet.** This folder intentionally lacks `country.yaml` so it is not registered by `core.country.Country.all()` until the required datasets, plate implementation and localization are verified. Follow `SOURCING_A_COUNTRY.md`, `COUNTRIES.md`, `ADDING_A_COUNTRY.md`, `AGENTS.md`, `PLATE_SPINE.md`.
+
+## First accepted curated series: official NBU USD/UAH (2006–2025)
+
+On **2026-10-24**, the NBU `NBU_Exchange/exchange_site` API was successfully queried for **every year from 2006 through 2025**. All 7,305 daily observations passed date/year/currency/quote-unit validation (365 or 366 unique days each year), then were reduced to an **unweighted calendar-day mean of the official daily applicable rate** in UAH per one USD. This is a complete historical official FX series and is committed to `data/markets/fx.csv`, with its publisher, vintage and definitions in `SOURCES.yaml`.
+
+Important quotation pitfall: the NBU's older USD observations have `rate=505, units=100, rate_per_unit=5.05` (2006-01-01), not 505 UAH per dollar. On 2014-01-01 the API has 799.3 per 100 USD, normalized to 7.993. On 2022-01-04 the daily per-unit rate was 27.2782. The derived **annual average** is a different metric: 2022 = 32.36835123 UAH/USD. The shared 2006=100 hryvnia-strength index is defined as `100 * avg_2006 / avg_year`; increasing UAH/USD means a weaker hryvnia and a lower strength index. No partial 2026 year is accepted.
+
+The fetcher `fetch/fetch_nbu_fx.py` writes only the review sidecar `data/markets/fx_from_nbu.csv`. It does not automatically overwrite the accepted snapshot, and failure in any year does not write a partial dataset. Semantic tests pin calendar-day completeness and historical annual anchors.
 
 ## Confirmed official access routes
 
