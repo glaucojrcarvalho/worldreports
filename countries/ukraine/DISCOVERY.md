@@ -2,7 +2,7 @@
 
 Research date: 2026-10-24. Related proposal: https://github.com/akitaonrails/worldreports/issues/1
 
-**Status: Phase A. Six curated national datasets: official NBU FX (2006–2025), Ukrstat GDP growth (2011–2024), nominal GDP (2010–2024), annual-average CPI (2006–2025), goods-and-services national-accounts trade (2010–2024), and whole-economy GFCF (2010–2024). Other chapters are pending. Ukraine is not registered or published yet.** This folder intentionally lacks `country.yaml` so it is not registered by `core.country.Country.all()` until the required datasets, plate implementation and localization are verified. Follow `SOURCING_A_COUNTRY.md`, `COUNTRIES.md`, `ADDING_A_COUNTRY.md`, `AGENTS.md`, `PLATE_SPINE.md`.
+**Status: Phase A. Eight curated national datasets: official NBU FX (2006–2025), NBU policy rate effective at year-end (2006–2025), NBU official international reserves at year-end (2006–2025), Ukrstat real GDP growth (2011–2024), nominal GDP (2010–2024), annual-average CPI (2006–2025), goods-and-services national-accounts trade (2010–2024), and whole-economy GFCF (2010–2024). Other chapters are pending. Ukraine is not registered or published yet.** This folder intentionally lacks `country.yaml` so it is not registered by `core.country.Country.all()` until the required datasets, plate implementation and localization are verified. Follow `SOURCING_A_COUNTRY.md`, `COUNTRIES.md`, `ADDING_A_COUNTRY.md`, `AGENTS.md`, `PLATE_SPINE.md`.
 
 ## First accepted curated series: official NBU USD/UAH (2006–2025)
 
@@ -77,6 +77,19 @@ The national-accounts dataflow also exposes *exports of goods and services* (`EX
 The new fetcher `fetch/fetch_sssu_macro_ratios.py` validates all three official series and their denominator before staging separate review-only CSVs. CI re-extracts and byte-compares both with their accepted snapshots.
 
 **New cross-country chart issue:** the current `trade.balance` canonical range is −15% to +15%. Ukraine's accepted national-accounts balance falls below the lower bound in 2022 (−16.5063%), 2023 (−20.9087%) and 2024 (−20.3445%). As with the 2022 real GDP contraction, fix the **shared scale** for all countries together before rendering Ukraine; never clip or privately rescale Ukraine's chart.
+
+## Seventh and eighth accepted series: NBU policy and official reserve assets
+
+- **Policy rate**, `data/markets/policy_rate.csv`: official NBU effective-date change log converted to the rate **actually in effect on each 31 December**, 2006–2025. The archive lists no new decision in 2011, so **7.75% from 2010-08-10** is the correct standing rate on 2011-12-31. Do not mistake this for an annual-average rate. Our markets panel displays it next to **annual-average** consumer-price inflation with both time bases disclosed. Curated anchors: 2022 25.00%, 2024 13.50%, 2025 15.50%.
+- **Gross official international reserves**, `data/macro/reserves.csv`: NBU `res` monthly block, `id_api=RES_OffReserveAssets`, unit code `T071USD_7` (USD millions), converted to US$ billions for the canonical `world.reserves` log-scale panel. The **month label is the first day after the reference month**: `dt=20250101` is the 2024 year-end reserve stock **US$43.79535bn**, not a 2025 annual flow; `dt=20260101` gives **2025 year-end US$57.30241bn**. Both anchor totals agree with published NBU/IMF figures. All 20 distinct year-end dates 2006–2025 were checked. Fetchers stage sidecars only, and source CI verifies exact reproduction.
+
+The 2022 policy rate and reserves series are *not* national GDP, household borrowing costs, budget financing, or census records. Their publisher and definition remain separate from SSSU national accounts.
+
+## Population research: discovered metadata but no accepted observations
+
+The SSSU national <Entity> population flow `SSSU:DF_POPULATION_STRUCTURE(8.0.1)` resolves to `SSSU:DSD_POPULATION_STR(3.0.0)`. The publisher's `PNMI_01` is an **estimated present population on 1 January**, whereas `PNMI_02` is a **permanent population on 1 January**. The official availability catalog advertises annual and monthly observations spanning 1989–2026, with national region `UA00000000000000000`; this metadata is **not evidence that post-invasion population observations actually exist for the required definitions**.
+
+The SSSU explanatory metadata states that January 2015–2022 population excludes occupied Crimea/Sevastopol and certain Donetsk/Luhansk areas, and data described as January 2023 onward exclude occupied or hostilities-affected areas. These scopes cannot be joined into one uninterrupted all-Ukraine level, particularly for displacement-dependent rates. A bounded `fetch/probe_population.py` probe now stages source response/schema samples for review only. No demographic CSV has been accepted.
 
 ## Confirmed official access routes
 
