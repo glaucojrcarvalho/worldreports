@@ -74,6 +74,8 @@ jobs:
           python countries/ukraine/fetch/probe_cpi.py --live
           python countries/ukraine/fetch/probe_macro_components.py
           python countries/ukraine/fetch/probe_population.py --live
+          python countries/ukraine/fetch/fetch_sssu_population.py
+          diff -u countries/ukraine/data/social/population.csv countries/ukraine/data/social/population_from_sssu.csv
           python countries/ukraine/fetch/fetch_sssu_macro_ratios.py
           diff -u countries/ukraine/data/trade/trade_na.csv countries/ukraine/data/trade/trade_na_from_sssu.csv
           diff -u countries/ukraine/data/spending/investment.csv countries/ukraine/data/spending/investment_from_sssu.csv
