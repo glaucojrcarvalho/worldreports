@@ -422,5 +422,57 @@
   "Border crossings, migration flows, refugee stocks and internal displacement must not be conflated.": {
     "uk": "Перетини кордону, потоки міграції, чисельність біженців і внутрішнє переміщення не можна змішувати.",
     "pt": "Travessias de fronteira, fluxos migratórios, estoques de refugiados e deslocamento interno não devem ser confundidos."
+  },
+  "% of goods exports": {
+    "uk": "% експорту товарів",
+    "pt": "% das exportações de mercadorias"
+  },
+  "Four panels: real GDP growth and annual-average inflation from Ukrstat; GDP per person and unemployment pending verification.": {
+    "uk": "Чотири панелі: реальне зростання ВВП та середньорічна інфляція за даними Держстату; ВВП на особу й безробіття ще перевіряються.",
+    "pt": "Quatro painéis: crescimento real do PIB e inflação média anual do Ukrstat; PIB por pessoa e desemprego pendentes de verificação."
+  },
+  "Four research-stage panels for general-government revenue, balance, debt and interest; no invented annual data.": {
+    "uk": "Чотири дослідницькі панелі доходів, сальдо, боргу й відсотків сектору загального державного управління; річні дані не вигадуються.",
+    "pt": "Quatro painéis de pesquisa sobre receitas, saldos, dívida e juros do governo geral; sem dados anuais inventados."
+  },
+  "Four panels: verified whole-economy gross fixed capital formation, with government spending and investment panels pending.": {
+    "uk": "Чотири панелі: перевірене валове нагромадження основного капіталу всієї економіки; державні видатки й інвестиції ще перевіряються.",
+    "pt": "Quatro painéis: formação bruta de capital fixo da economia verificada; gastos e investimento públicos pendentes."
+  },
+  "Four panels: verified exports, imports and national-accounts trade balance, with partner destinations under review.": {
+    "uk": "Чотири панелі: перевірені експорт, імпорт і торговельне сальдо за національними рахунками; торговельні партнери ще перевіряються.",
+    "pt": "Quatro painéis: exportações, importações e saldo das contas nacionais verificados; destinos comerciais em análise."
+  },
+  "Four panels: official hryvnia value versus the dollar indexed to 2006; financial interest and equity series pending.": {
+    "uk": "Чотири панелі: офіційний курс гривні до долара з базою 2006 року; відсоткові ставки та фондові індекси ще перевіряються.",
+    "pt": "Quatro painéis: índice de câmbio oficial da hryvnia frente ao dólar com base em 2006; juros e ações pendentes."
+  },
+  "Research-stage canonical panels for household debt, borrowing costs and non-performing loans.": {
+    "uk": "Дослідницькі панелі боргу домогосподарств, вартості кредитів та непрацюючих кредитів.",
+    "pt": "Painéis de pesquisa para dívida das famílias, custo de empréstimos e créditos inadimplentes."
+  },
+  "Research-stage panels for income inequality, poverty and the minimum wage.": {
+    "uk": "Дослідницькі панелі нерівності доходів, бідності й мінімальної зарплати.",
+    "pt": "Painéis de pesquisa sobre desigualdade de renda, pobreza e salário mínimo."
+  },
+  "Research-stage panels for GDP in dollars, human development, corruption perceptions and reserves.": {
+    "uk": "Дослідницькі панелі ВВП у доларах США, людського розвитку, сприйняття корупції та резервів.",
+    "pt": "Painéis de pesquisa sobre PIB em dólares, desenvolvimento humano, percepção de corrupção e reservas."
+  },
+  "Research-stage panels for population, fertility, birth/death rates and migration.": {
+    "uk": "Дослідницькі панелі чисельності населення, народжуваності, смертності й міграції.",
+    "pt": "Painéis de pesquisa sobre população, fecundidade, natalidade, mortalidade e migração."
+  },
+  "Research-stage panels for homicide, suicide and road traffic deaths.": {
+    "uk": "Дослідницькі панелі умисних убивств, самогубств і смертей на дорогах.",
+    "pt": "Painéis de pesquisa sobre homicídios, suicídios e mortes no trânsito."
+  },
+  "Research-stage panels for mortality, excess deaths and underlying-cause COVID mortality.": {
+    "uk": "Дослідницькі панелі смертності, надлишкових смертей і смертей від COVID-19 як основної причини.",
+    "pt": "Painéis de pesquisa sobre mortalidade, óbitos excessivos e COVID-19 como causa básica."
+  },
+  "Research-stage panels for migration flows, net migration and the foreign-born population.": {
+    "uk": "Дослідницькі панелі міграційних потоків, сальдо міграції та частки народжених за кордоном.",
+    "pt": "Painéis de pesquisa sobre fluxos migratórios, migração líquida e residentes nascidos no exterior."
   }
 }
