@@ -14,7 +14,7 @@ from __future__ import annotations
 
 import argparse
 import csv
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from decimal import Decimal, InvalidOperation
 from io import StringIO
 from pathlib import Path
@@ -81,13 +81,7 @@ def read_daily_rates(raw: bytes, year: int) -> dict[date, Decimal]:
         if row.get("cc") != "USD" or int(row.get("r030", 840)) != 840:
             raise ValueError(f"{year}: wrong currency/ISO numeric code")
         try:
-            observed = date.strptime(row["exchangedate"], "%d.%m.%Y")
-        except AttributeError:
-            from datetime import datetime
-            try:
-                observed = datetime.strptime(row["exchangedate"], "%d.%m.%Y").date()
-            except (KeyError, TypeError, ValueError) as exc:
-                raise ValueError(f"{year}: invalid exchange date") from exc
+            observed = datetime.strptime(row["exchangedate"], "%d.%m.%Y").date()
         except (KeyError, TypeError, ValueError) as exc:
             raise ValueError(f"{year}: invalid exchange date") from exc
         if observed.year != year:
