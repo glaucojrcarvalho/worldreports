@@ -2,7 +2,7 @@
 # Accepted curated CSVs require exact publisher attribution; other entries
 # under meta.pending remain research candidates, not chart-ready data.
 meta:
-  status: phase_a_four_verified_national_series
+  status: phase_a_six_verified_national_series
   snapshot_date: '2026-10-24'
   upstream_issue: https://github.com/akitaonrails/worldreports/issues/1
   no_country_config_yet: true
@@ -24,10 +24,14 @@ meta:
       publisher: State Statistics Service of Ukraine
       url: https://sdg.stat.gov.ua/uk/10-1-1/
       notes: 'Gini 2021=0.244 on a 0–1 scale; 2022–2025 explicitly missing; confirm survey and territorial scope.'
-    - name: International goods and services trade
-      publisher: State Statistics Service of Ukraine and State Customs Service
-      url: https://stat.gov.ua/en/datasets/annual-national-accounts
-      notes: 'Separate national-accounts goods/services from customs goods; assess post-2022 coverage.'
+    - name: Customs partner/product breakdown and full 2006-2009 / 2025 national trade
+      publisher: State Customs Service and State Statistics Service of Ukraine
+      url: https://customs.gov.ua/statistika-ta-reiestri
+      notes: >-
+        The complete national-accounts goods-and-services exports/imports
+        2010-2024 have been accepted below. Merchandise trade by destination
+        and by product is a DIFFERENT customs basis and remains unverified;
+        the exact national-accounts publisher selection has no earlier or 2025 rows.
     - name: Migration, mortality and security continuity
       publisher: State Statistics Service of Ukraine; administrative publishers
       url: https://stat.gov.ua/en/datasets
@@ -137,3 +141,52 @@ macro:
       The fetcher writes review sidecar gdp_growth_from_sssu.csv
       and NEVER overwrites this curated dataset.
     compiled: exact SSSU SDMX-CSV extraction, 2026-10-24
+
+trade:
+  trade_na.csv:
+    source: State Statistics Service of Ukraine — national-accounts exports and imports of goods AND services
+    url: https://stat.gov.ua/sdmx/workspaces/default:integration/registry/sdmx/3.0/data/dataflow/SSSU/DF_ANNUAL_NATIONAL_ACCOUNTS/7.0.0/*
+    refreshed_by: fetch/fetch_sssu_macro_ratios.py
+    notes: >-
+      Two distinct components in SSSU:DF_ANNUAL_NATIONAL_ACCOUNTS(7.0.0),
+      INDICATOR=EXPORT_GOODS_SERV and IMPORT_GOODS_SERV; both
+      PRICE_TYPE=CURR_PRICES, REGION=UA00000000000000000,
+      BREAKDOWN_CATEGORY=_T, BREAKDOWN=_T, SECTOR_ECONOMY=S_1, FREQ=A.
+      Units=1090 and SCALE=6 mean millions of current UAH. The source
+      names imports as a subtraction in the expenditure identity but its
+      OBS_VALUE is a POSITIVE import magnitude, so balance=exports-imports.
+      Ratios are each current-price national-accounts value divided by
+      the same-vintage GDP from macro/gdp_nominal.csv times 100, stored
+      to 4 decimal places. Coverage 2010-2024 inclusive; 2025 is not in
+      the exact response. Reference 2024 nominal UAH million: exports
+      2273580, imports 3832450, GDP 7662376; hence balance -20.3445
+      percent of GDP. 2023 balance was -20.9087 percent; 2022 -16.5063.
+      All three are beyond the shared trade.balance scale lower limit
+      -15 percent in core/spine.py: a single atlas-wide scale decision
+      and peer redraw is necessary, never clip the Ukrainian figures.
+      The values are not merchandise-only customs statistics, nor the
+      balance of payments. Publisher footnotes record territorial
+      omissions during occupation and hostilities in 2014-2024.
+      Fetcher stages trade_na_from_sssu.csv without updating this
+      curated CSV automatically.
+    compiled: SSSU annual current-price source components and pinned GDP, 2026-10-24
+
+spending:
+  investment.csv:
+    source: State Statistics Service of Ukraine — whole-economy gross fixed capital formation
+    url: https://stat.gov.ua/sdmx/workspaces/default:integration/registry/sdmx/3.0/data/dataflow/SSSU/DF_ANNUAL_NATIONAL_ACCOUNTS/7.0.0/*
+    refreshed_by: fetch/fetch_sssu_macro_ratios.py
+    notes: >-
+      SSSU:DF_ANNUAL_NATIONAL_ACCOUNTS(7.0.0) with
+      INDICATOR=GRS_FIX_CAP_FOR, PRICE_TYPE=CURR_PRICES,
+      REGION=UA00000000000000000, BREAKDOWN_CATEGORY=_T,
+      BREAKDOWN=_T, SECTOR_ECONOMY=S_1, FREQ=A, Units=1090,
+      SCALE=6 (million UAH). The total-economy GFCF is NOT the
+      general government's investment: do not use it in that panel.
+      Coverage 2010-2024 inclusive, identical source vintage and
+      geography as nominal GDP denominator. 2024 whole-economy GFCF
+      1414286 million UAH / GDP 7662376 million = 18.4575% of GDP.
+      Missing years, including 2025, are not extrapolated or zero-filled.
+      Territorial data-collection changes are documented in DATA_NOTES.md.
+      Fetcher writes investment_from_sssu.csv for manual review only.
+    compiled: SSSU annual national accounts, 2026-10-24
