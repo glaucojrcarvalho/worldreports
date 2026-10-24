@@ -30,14 +30,22 @@ def _values(ctx, relative: str, column: str) -> tuple[list[int], list[float]]:
 def _segments(years: Iterable[int], values: Iterable[float],
               seams: tuple[int, ...] = (2014, 2022)):
     """Never connect different publisher territorial-coverage regimes."""
-    groups = {}
+    segments: list[tuple[list[int], list[float]]] = []
+    previous_year = None
+    previous_regime = None
     for year, value in zip(years, values):
         y = int(year)
-        group = sum(y >= seam for seam in seams)
-        ys, vals = groups.setdefault(group, ([], []))
-        ys.append(y)
-        vals.append(value)
-    return [groups[key] for key in sorted(groups)]
+        regime = sum(y >= seam for seam in seams)
+        # A missing year is a broken observation, never a continuous line.
+        if previous_year is not None and y <= previous_year:
+            raise ValueError("Annual series years must be increasing")
+        if previous_regime != regime or (previous_year is not None
+                                         and y != previous_year + 1):
+            segments.append(([], []))
+        segments[-1][0].append(y)
+        segments[-1][1].append(value)
+        previous_year, previous_regime = y, regime
+    return segments
 
 
 def _line(ctx, ax, years, values, color, label="", seams=()):
