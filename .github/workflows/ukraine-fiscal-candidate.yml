@@ -30,11 +30,19 @@ jobs:
           fc-cache -f
       - run: pip install -r requirements.txt
       - name: Treasury parser and curated data contracts
-        run: python3 -m pytest countries/ukraine/tests/test_treasury.py -q
+        run: python3 -m pytest countries/ukraine/tests/test_treasury.py countries/ukraine/tests/test_treasury_reconciliation.py -q
       - name: Existing Ukraine plate and atlas spine contracts
         run: python3 -m pytest countries/ukraine/tests/test_plates.py tests/test_spine.py -q
       - name: Existing JavaScript contracts
         run: node --test tests/js/*.test.js
+      - name: Audit independent official 2025 dashboard against NBU
+        run: python3 countries/ukraine/fetch/audit_open_budget.py
+      - name: Upload discrepancy audit CSV
+        uses: actions/upload-artifact@v4
+        with:
+          name: treasury-cross-publisher-audit
+          path: countries/ukraine/fetch/cache/treasury_reconciliation_check.csv
+          retention-days: 14
       - name: Generate review-only Treasury SVGs in three locales
         run: python3 countries/ukraine/treasury_preview.py --output /tmp/ukraine-treasury-preview
       - name: Upload review SVGs
