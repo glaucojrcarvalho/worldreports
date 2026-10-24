@@ -39,8 +39,12 @@ def _pick(candidates: list[str]) -> str | None:
     return None
 
 
+# Prefer fonts covering the Unicode minus/arrow glyphs used in labels.
+# Some Linux Noto Sans installations lack these glyphs and their different
+# text metrics can cause false positive ONDATA/CLIPPED layout regressions.
+# Keep the same choice generic for every Latin-script country.
 LATIN_TITLE = ["Liberation Sans", "Noto Sans", "DejaVu Sans"]
-LATIN_BODY = ["Noto Sans", "Liberation Sans", "DejaVu Sans"]
+LATIN_BODY = ["Liberation Sans", "DejaVu Sans", "Noto Sans"]
 
 # Korean labels render as tofu in the Latin faces, so a plate in `ko` needs a
 # CJK family. This is keyed by language rather than by country: it is the
