@@ -24,6 +24,15 @@ SSSU_DATAFLOWS = (
     "https://stat.gov.ua/sdmx/workspaces/default:integration/registry/"
     "sdmx/2.1/dataflow?detail=full"
 )
+SSSU_DSD_ROOT = (
+    "https://stat.gov.ua/sdmx/workspaces/default:integration/registry/"
+    "sdmx/2.1/datastructure/SSSU"
+)
+SSSU_PRIORITY_DSD = {
+    "national_accounts": "DSD_ANNUAL_NATIONAL_ACCOUNTS",
+    "consumer_prices": "DSD_PRICE_CHANGE_CONSUMER_GOODS_SERVICE",
+    "population": "DSD_POPULATION_STR",
+}
 NBU_FX = "https://bank.gov.ua/NBU_Exchange/exchange_site"
 GDP_2022_OFFICIAL = -28.8
 GDP_SHARED_SCALE = (-18.0, 18.0)
@@ -82,6 +91,46 @@ def parse_dataflows(payload: bytes) -> list[dict[str, str]]:
     if not flows:
         raise ValueError("No SDMX Dataflow records: endpoint or schema must be reviewed")
     return flows
+
+
+
+def make_sssu_dsd_url(dsd_id: str) -> str:
+    """Only query recognized SDMX structural identifiers, not arbitrary paths."""
+    if not re.fullmatch(r"[A-Z0-9_]+", dsd_id):
+        raise ValueError("Invalid SDMX DSD identifier")
+    return f"{SSSU_DSD_ROOT}/{dsd_id}/latest?references=none"
+
+
+def parse_dsd_dimensions(payload: bytes) -> list[dict]:
+    """Return the dimensions' exact code identifiers in declared order.
+
+    Dimensions by themselves are not evidence that an individual GDP series
+    is comparable or complete; the code lists must be inspected next.
+    """
+    try:
+        root = ET.fromstring(payload)
+    except ET.ParseError as exc:
+        raise ValueError("Invalid SSSU DSD XML") from exc
+    names = {"Dimension", "TimeDimension", "MeasureDimension"}
+    result = []
+    for item in root.iter():
+        short = item.tag.rsplit("}", 1)[-1]
+        if short not in names:
+            continue
+        code = item.attrib.get("id")
+        if not code:
+            continue
+        ref = next((el.attrib for el in item.iter()
+                    if el.tag.rsplit("}", 1)[-1] == "Ref"), {})
+        result.append({
+            "dimension": code,
+            "position": item.attrib.get("position", ""),
+            "concept_ref": ref.get("id", ""),
+            "local_name": short,
+        })
+    if not result:
+        raise ValueError("No SDMX dimensions were found in DSD response")
+    return result
 
 
 def make_fx_url(start: str = "20220104", end: str = "20220110", currency: str = "USD") -> str:
@@ -161,6 +210,7 @@ def run_live() -> dict:
             "endpoint": SSSU_DATAFLOWS,
             "dataflows_count": len(catalog),
             "candidate_dataflows": candidates[:60],
+            "all_dataflows": catalog,
             "caution": "A name is not proof of units, geography, coverage or actual time-series data.",
         }
     except Exception as exc:
@@ -169,6 +219,25 @@ def run_live() -> dict:
             "endpoint": SSSU_DATAFLOWS,
             "error": f"{type(exc).__name__}: {exc}",
         }
+    structures = {}
+    for topic, dsd_id in SSSU_PRIORITY_DSD.items():
+        dsd_url = make_sssu_dsd_url(dsd_id)
+        try:
+            dimensions = parse_dsd_dimensions(download(dsd_url, accept="application/xml"))
+            structures[topic] = {
+                "result": "parsed_structure_only",
+                "endpoint": dsd_url,
+                "dsd": dsd_id,
+                "dimensions": dimensions,
+                "caution": "Dimension codes require verified codelists and observation selection.",
+            }
+        except Exception as exc:
+            structures[topic] = {
+                "result": "unverified",
+                "endpoint": dsd_url,
+                "error": f"{type(exc).__name__}: {exc}",
+            }
+    probes["sssu_priority_dsd"] = structures
     url = make_fx_url()
     try:
         points = parse_fx(download(url, accept="application/json"),
