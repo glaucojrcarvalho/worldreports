@@ -6,6 +6,18 @@
 
 Ukraine is defined with its internationally recognized territory, including Crimea and other territories under Russian occupation. A statistical observation, however, covers **only the people or production actually measured by its publisher**. Record each source's effective geographic scope and survey coverage, and do not combine a reduced-area numerator with an all-Ukraine denominator to compute rates. Method breaks around 2014 and 2022 require evidence per indicator, not a blanket splice.
 
+### Live national-accounts statistical-scope metadata (verified 2026-10-24)
+
+The State Statistics Service's [SDMX annual national-accounts metadata](https://stat.gov.ua/sdmx/workspaces/default:integration/registry/sdmx/3.0/data/dataflow/SSSU/DF_ANNUAL_NATIONAL_ACCOUNTS/7.0.0/*?c%5BINDICATOR%5D=GDP_CUR_PRC&c%5BPRICE_TYPE%5D=IDX_VOL_PY&c%5BFREQ%5D=A&c%5BSECTOR_ECONOMY%5D=S_1&firstNObservations=5) gives these explicit, publisher-authored scope exclusions:
+
+- For **2010–2021**: excludes occupied Crimea and Sevastopol.
+- For **2014–2021**: also excludes parts of occupied Donetsk and Luhansk oblasts.
+- For **2022–2024**: excludes Russian-occupied territory and some locations with ongoing or prior hostilities.
+
+The same API's availability metadata identifies **2011–2025** as the currently accessible time span for one annual total-economy GDP volume-index selection. This is **not** evidence that earlier years had the same underlying statistical geography, or that all intermediate years are populated. The 2025 territorial footnote needs separate confirmation before finalizing a comparable 2011–2025 annual series. Do not extrapolate this flow backward to 2006 or infer comparable denominators.
+
+These are *statistical measurement boundaries*, not any change to Ukraine's internationally recognized borders. Such source metadata must travel with the CSV and appear in the atlas where series comparability is affected.
+
 ### Observed data and missing values
 
 2022–2025 Gini observations are **missing** in the SSSU SDG publication after suspension of the household survey, not equal to zero. The 2021 observation is reported as 0.244 on a 0–1 scale; a 0–100 display would be 24.4. Historical survey unemployment should not be joined to registered-unemployed counts or projections. Refugee registrations, border crossings, IDP survey estimates and national immigration flows must remain different populations and definitions.
