@@ -1,9 +1,8 @@
-# Ukraine source candidates / research-phase provenance.
-# This is intentionally meta-only: NO curated CSV file is claimed to exist yet.
-# Before accepting a CSV, move the verified publisher/series specification
-# into the appropriate chapter with its full path, notes and verified coverage.
+# Ukraine source manifest, Phase A research + reviewed historical sources.
+# Accepted curated CSVs require exact publisher attribution; other entries
+# under meta.pending remain research candidates, not chart-ready data.
 meta:
-  status: research_only
+  status: phase_a_partial_verified_fx
   snapshot_date: '2026-10-24'
   upstream_issue: https://github.com/akitaonrails/worldreports/issues/1
   no_country_config_yet: true
@@ -13,10 +12,6 @@ meta:
       url: https://stat.gov.ua/en/development-api
       known_publisher_anchor: 'Real GDP growth 2022 = -28.8%, release 2026-03-24'
       notes: 'Discover verified dataflow IDs and dimensions; do not assume a release is an accepted CSV.'
-    - name: Official USD/UAH history
-      publisher: National Bank of Ukraine
-      url: https://bank.gov.ua/admin_uploads/article/Instr_API_KURS_VAL_data_Full_eng.pdf
-      notes: 'Validate API schema and exchange-rate units; derive annual averages only after checking daily time coverage.'
     - name: Consolidated/general-government fiscal series
       publisher: Ministry of Finance and appropriate harmonizing institution
       url: https://openbudget.gov.ua/en/about-portal
@@ -33,3 +28,28 @@ meta:
       publisher: State Statistics Service of Ukraine; administrative publishers
       url: https://stat.gov.ua/en/datasets
       notes: 'Verify population denominators and coverage; keep wartime humanitarian estimates distinct.'
+
+markets:
+  fx.csv:
+    source: National Bank of Ukraine — official USD/UAH exchange rates (NBU_Exchange exchange_site)
+    url: https://bank.gov.ua/en/open-data/api-dev
+    refreshed_by: fetch/fetch_nbu_fx.py
+    notes: >-
+      Full annual calendar-year means of the official daily NBU exchange rate
+      (UAH per ONE USD) from 2006 to 2025, inclusive. On 2026-10-24 each
+      calendar year was fetched through the documented NBU_Exchange/exchange_site
+      API; all 7,305 dates across 20 years were checked for uniqueness, complete
+      year coverage, currency code USD/840, positive amounts, and consistency
+      between quoted rate, units and rate_per_unit. Historical rows often quote
+      USD in lots of 100 units: on 2006-01-01 the raw rate is 505 per 100 USD,
+      normalized to 5.05 UAH/USD. Spot checks: 2014-01-01 = 7.993 UAH/USD;
+      2022-01-04 = 27.2782 UAH/USD. Accepted 2006 mean = 5.05000000;
+      2014 mean = 11.90953827; 2022 mean = 32.36835123;
+      2025 mean = 41.69015205 UAH per USD. Annual means average every
+      calendar day's published applicable official rate, including weekends,
+      NOT the end-of-year close, a transaction-weighted rate or an interbank
+      market quote. For the shared currency comparison slot, 2006=100 and
+      a stronger hryvnia raises the index: 100*average_2006/average_year.
+      The fetcher ONLY stages fx_from_nbu.csv for review and NEVER overwrites
+      this curated snapshot. Publication and attribution: National Bank of Ukraine.
+    compiled: direct API daily extraction and complete-year validation, 2026-10-24
