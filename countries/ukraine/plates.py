@@ -122,6 +122,19 @@ def _plot(ctx, ig, key, ax):
                  lambda v: ctx.p.GREEN if v >= 0 else ctx.p.RED)
         return _small_note(ctx, ax, TERRITORY_NOTE)
 
+    if key == "demography.population":
+        years, values = _values(ctx, "social/population.csv", "population_persons")
+        if not years:
+            return _missing(ctx, ax)
+        # The January-2015 geography excludes occupied regions not excluded
+        # in January 2014: this step is a scope break, not just population
+        # loss from mortality or emigration.
+        index_years, index_values = ctx.index_2006((years, values))
+        _line(ctx, ax, index_years, index_values, ctx.p.BLUE,
+              label="Present population on 1 January", seams=(2015,))
+        _small_note(ctx, ax, "2015: territorial coverage changed; 2023–25 suppressed")
+        return
+
     if key == "world.reserves":
         years, values = _values(ctx, "macro/reserves.csv", "usd_bn")
         if not years:
@@ -243,8 +256,8 @@ PLATES = (
          source=UNDER_REVIEW),
     dict(slug="09_demographics", topic="demography", builder=fig_demography,
          title="Ukraine — Population and Demography, 2006–2026",
-         subtitle="Wartime displacement and statistical geography require denominator reconciliation.",
-         alt="Research-stage panels for population, fertility, birth/death rates and migration.",
+         subtitle="Estimated January 1 present population through 2022; data for 2023–2025 are suppressed, with a 2015 scope break.",
+         alt="Four panels: indexed official present-population estimates on January 1, 2006–2022, with a 2015 coverage seam and suppressed 2023–2025; fertility, birth/death and migration measurements pending.",
          source=UNDER_REVIEW),
     dict(slug="10_security", topic="security", builder=fig_security,
          title="Ukraine — Security and Safety, 2006–2026",
