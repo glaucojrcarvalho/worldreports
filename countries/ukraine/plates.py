@@ -122,6 +122,15 @@ def _plot(ctx, ig, key, ax):
                  lambda v: ctx.p.GREEN if v >= 0 else ctx.p.RED)
         return _small_note(ctx, ax, TERRITORY_NOTE)
 
+    if key == "world.reserves":
+        years, values = _values(ctx, "macro/reserves.csv", "usd_bn")
+        if not years:
+            return _missing(ctx, ax)
+        _line(ctx, ax, years, values, ctx.p.BLUE,
+              label="NBU gross official reserves, year-end")
+        _small_note(ctx, ax, "Gross reserve assets; US$ bn at year-end")
+        return
+
     if key == "markets.policy_rate":
         years, rates = _values(ctx, "markets/policy_rate.csv",
                                "policy_rate_eoy_pct")
@@ -229,8 +238,8 @@ PLATES = (
          source=UNDER_REVIEW),
     dict(slug="08_world", topic="world", builder=fig_world,
          title="Ukraine — International Comparisons, 2006–2026",
-         subtitle="Comparable USD GDP, development, integrity and reserves measures remain under review.",
-         alt="Research-stage panels for GDP in dollars, human development, corruption perceptions and reserves.",
+         subtitle="Official year-end international reserves are verified; comparable GDP, HDI and corruption measures remain under review.",
+         alt="Four panels: verified year-end gross official reserves in US$ billions; comparable GDP, development and corruption perceptions remain pending.",
          source=UNDER_REVIEW),
     dict(slug="09_demographics", topic="demography", builder=fig_demography,
          title="Ukraine — Population and Demography, 2006–2026",
