@@ -57,6 +57,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ukraine-live-discovery
-          path: countries/ukraine/cache/source_probe.json
+          path: countries/ukraine/cache/
           if-no-files-found: warn
           retention-days: 14
