@@ -2,7 +2,7 @@
 # Accepted curated CSVs require exact publisher attribution; other entries
 # under meta.pending remain research candidates, not chart-ready data.
 meta:
-  status: phase_a_six_verified_national_series
+  status: phase_a_seven_verified_national_series
   snapshot_date: '2026-10-24'
   upstream_issue: https://github.com/akitaonrails/worldreports/issues/1
   no_country_config_yet: true
@@ -38,6 +38,31 @@ meta:
       notes: 'Verify population denominators and coverage; keep wartime humanitarian estimates distinct.'
 
 markets:
+  policy_rate.csv:
+    source: National Bank of Ukraine — NBU key policy interest-rate archive, dated effective decisions
+    url: https://bank.gov.ua/en/monetary/archive-rish
+    refreshed_by: fetch/fetch_nbu_policy_rate.py
+    notes: >-
+      Official NBU monetary-policy decisions with each change's exact
+      effective date. The curated policy_rate_eoy_pct is the rate legally
+      in effect on each 31 December for 2006-2025, inclusive (20 calendar
+      years). Reconstructed as the last published change effective on or
+      before year-end, NOT the annual average, announcement-year rate,
+      monetary aggregate or sovereign 10-year government bond yield.
+      The 2011 archive lists no change, so its 31 December effective
+      rate of 7.75 percent comes explicitly from the 2010-08-10
+      decision; the source effective date is retained in the third
+      CSV column, not guessed. Other anchors: 2006=8.50, 2015=22.00,
+      2022=25.00, 2023=15.00, 2024=13.50, 2025=15.50 percent.
+      Separate from the SSSU CPI series: CPI is the full-year
+      average percentage inflation versus the prior year's average.
+      Comparing the two on a panel is a labeled juxtaposition of
+      DIFFERENT time aggregation, not a real-policy-rate calculation.
+      The fetcher parses all NBU effective-date changes from the
+      official history HTML, validates duplicates and reference years,
+      then writes only policy_rate_from_nbu.csv review sidecar;
+      never modifies the curated data automatically.
+    compiled: Official historical monetary-policy decisions checked, 2026-10-24
   fx.csv:
     source: National Bank of Ukraine — official USD/UAH exchange rates (NBU_Exchange exchange_site)
     url: https://bank.gov.ua/en/open-data/api-dev
