@@ -1,0 +1,37 @@
+# Disposable fork-only discovery harness.
+# Delete before any upstream PR; never included in generated site.
+name: Ukraine vital records research
+on:
+  push:
+    branches:
+      - feat/ukraine-demography-followup
+    paths:
+      - "countries/ukraine/fetch/probe_vital_sdmx.py"
+      - "countries/ukraine/tests/test_vital_source.py"
+      - ".github/workflows/ukraine-vital-research.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Syntax gate
+        run: python -m compileall -q countries/ukraine/fetch/probe_vital_sdmx.py
+      - name: Check official Ukrstat vital series (read only)
+        run: python countries/ukraine/fetch/probe_vital_sdmx.py --live
+      - name: Preserve official responses, audit and errors
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ukraine-vital-sdmx-review
+          path: countries/ukraine/cache/demography_vital/
+          if-no-files-found: warn
+          retention-days: 10
