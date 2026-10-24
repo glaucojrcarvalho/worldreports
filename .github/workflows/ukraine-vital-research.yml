@@ -24,6 +24,8 @@ permissions:
 
 jobs:
   render-review:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -45,6 +47,21 @@ jobs:
           python -m unittest discover -s countries/ukraine/tests -p test_vital_source.py -v
           python -m pytest -q tests/test_spine.py -k ukraine
           git diff --check
+      - name: Commit only regenerated Ukrainian demography and provenance to the fork
+        if: github.ref == 'refs/heads/feat/ukraine-demography-followup'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- countries/ukraine/output/03-demography.png countries/ukraine/output/03-demography.svg
+          git add -- countries/ukraine/output/03-demography.uk.png countries/ukraine/output/03-demography.uk.svg
+          git add -- countries/ukraine/output/03-demography.pt.png countries/ukraine/output/03-demography.pt.svg
+          git add -- countries/ukraine/output/thumbs/03-demography.png countries/ukraine/output/thumbs/03-demography.uk.png countries/ukraine/output/thumbs/03-demography.pt.png
+          git add -- countries/ukraine/provenance.json
+          if ! git diff --cached --quiet; then
+            git diff --cached --stat
+            git commit -m "build(ukraine): regenerate trilingual demography plates, thumbs and provenance"
+            git push origin HEAD:feat/ukraine-demography-followup
+          fi
       - name: Save render review artifacts
         if: always()
         uses: actions/upload-artifact@v4
