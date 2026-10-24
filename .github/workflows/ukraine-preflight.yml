@@ -40,3 +40,23 @@ jobs:
             cat /tmp/unexpected.txt
             exit 1
           fi
+
+  live-source-discovery:
+    if: ${{ github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[research]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Query official SSSU catalog and NBU historical FX (read only)
+        run: python countries/ukraine/fetch/probe_sources.py --live
+      - name: Preserve raw discovery metadata for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ukraine-live-discovery
+          path: countries/ukraine/cache/source_probe.json
+          if-no-files-found: warn
+          retention-days: 14
