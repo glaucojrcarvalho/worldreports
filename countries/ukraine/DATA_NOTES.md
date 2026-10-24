@@ -24,6 +24,12 @@ The `data/macro/gdp_growth.csv` file contains the 14 available annual rows from 
 
 The live endpoint returned no values for 2006–2010 or 2025. Although metadata lists a broader availability window, **no observation is fabricated or spliced**. The growth series is reviewable against its sidecar from `fetch/fetch_sssu_gdp.py`. The publisher's stated territorial coverage varies after the 2014 and 2022 occupation/invasion shocks, and the published chart must annotate those comparability breaks. The 2022 contraction cannot fit the existing shared −18 to +18 growth range; a global range change requires regenerating and reviewing all affected peer charts.
 
+### Accepted nominal GDP level (2010–2024)
+
+`data/macro/gdp_nominal.csv` comes from the **same SSSU annual national-accounts dataflow version** as real GDP growth, but a different price-type key (`CURR_PRICES` instead of `IDX_VOL_PY`). The publisher's unit is `UNITS_OF_MEASURE=1090` with `SCALE=6`, so values are millions of UAH. For example, 2024 = **7,662,376 million UAH**. Never label these current-price levels as real growth, constant-price output, or an international US-dollar comparable. Nominal 2006–2009 and 2025 are absent from the exact extracted series, and no source merging was performed.
+
+The regional aggregate code `UA00000000000000000` identifies Ukraine in the source, while the source notes document periods when portions of internationally recognized Ukrainian territory were omitted from actual measurements. The curated file and sidecar refresher `fetch/fetch_sssu_gdp_nominal.py` retain these semantics separately from the real GDP series.
+
 ### Observed data and missing values
 
 2022–2025 Gini observations are **missing** in the SSSU SDG publication after suspension of the household survey, not equal to zero. The 2021 observation is reported as 0.244 on a 0–1 scale; a 0–100 display would be 24.4. Historical survey unemployment should not be joined to registered-unemployed counts or projections. Refugee registrations, border crossings, IDP survey estimates and national immigration flows must remain different populations and definitions.
@@ -46,4 +52,4 @@ Ministry of Finance state-budget cash reporting, state/state-guaranteed debt, an
 
 The official publisher is preferred where it computes the measure. Keep harmonized/market providers separately labelled and `official: false` where required. A successful transport probe only confirms schema access—not the statistical meaning, revisions, coverage or fitness of a series. Network I/O belongs exclusively in `fetch/`, output in review-only sidecars or cache, and chart render remains offline.
 
-As of 2026-10-24, two curated datasets have been verified: NBU USD/UAH annual averages (2006–2025) and SSSU GDP real growth from one annual SDMX dataflow (2011–2024). GDP 2006–2010 and 2025, plus CPI, population, fiscal, migration and the other statistical series, remain pending. See `DISCOVERY.md` and `SOURCES.yaml`.
+As of 2026-10-24, three curated sources have been verified: NBU USD/UAH annual averages (2006–2025), SSSU real GDP growth indices (2011–2024), and SSSU nominal GDP at current prices in million UAH (2010–2024). Missing historical/2025 GDP years and all other chapters remain pending. See `DISCOVERY.md` and `SOURCES.yaml`.
