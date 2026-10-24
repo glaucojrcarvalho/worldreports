@@ -490,5 +490,21 @@
   "NBU key rate, year-end": {
     "uk": "Облікова ставка НБУ на кінець року",
     "pt": "Taxa básica do BNU no fim do ano"
+  },
+  "Official year-end international reserves are verified; comparable GDP, HDI and corruption measures remain under review.": {
+    "uk": "Офіційні резерви на кінець року перевірено; порівнювані дані ВВП, ІЛР і сприйняття корупції ще аналізуються.",
+    "pt": "Reservas oficiais no fim do ano verificadas; PIB comparável, IDH e percepção de corrupção continuam em análise."
+  },
+  "Four panels: verified year-end gross official reserves in US$ billions; comparable GDP, development and corruption perceptions remain pending.": {
+    "uk": "Чотири панелі: перевірені валові офіційні резерви на кінець року в мільярдах доларів США; зіставний ВВП, розвиток і сприйняття корупції ще перевіряються.",
+    "pt": "Quatro painéis: reservas oficiais brutas no fim do ano verificadas em US$ bilhões; PIB comparável, desenvolvimento e percepção de corrupção ainda pendentes."
+  },
+  "NBU gross official reserves, year-end": {
+    "uk": "Валові офіційні резерви НБУ на кінець року",
+    "pt": "Reservas oficiais brutas do BNU no fim do ano"
+  },
+  "Gross reserve assets; US$ bn at year-end": {
+    "uk": "Валові резервні активи; млрд дол. США на кінець року",
+    "pt": "Ativos de reserva brutos; US$ bilhões no fim do ano"
   }
 }
