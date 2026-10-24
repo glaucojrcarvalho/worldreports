@@ -506,5 +506,21 @@
   "Gross reserve assets; US$ bn at year-end": {
     "uk": "Валові резервні активи; млрд дол. США на кінець року",
     "pt": "Ativos de reserva brutos; US$ bilhões no fim do ano"
+  },
+  "Estimated January 1 present population through 2022; data for 2023–2025 are suppressed, with a 2015 scope break.": {
+    "uk": "Оцінки наявного населення на 1 січня доступні до 2022 року; дані за 2023–2025 роки приховано, а у 2015 році змінилося територіальне охоплення.",
+    "pt": "A população presente estimada em 1.º de janeiro está disponível até 2022; 2023–2025 estão suprimidos, com mudança territorial em 2015."
+  },
+  "Four panels: indexed official present-population estimates on January 1, 2006–2022, with a 2015 coverage seam and suppressed 2023–2025; fertility, birth/death and migration measurements pending.": {
+    "uk": "Чотири панелі: індекс офіційних оцінок наявного населення на 1 січня 2006–2022 років, з розривом територіального охоплення у 2015 році та прихованими даними 2023–2025; показники народжуваності, смертності й міграції ще перевіряються.",
+    "pt": "Quatro painéis: índice da população presente estimada em 1.º de janeiro, 2006–2022, com ruptura de cobertura em 2015 e dados suprimidos em 2023–2025; fecundidade, mortalidade e migração pendentes."
+  },
+  "Present population on 1 January": {
+    "uk": "Наявне населення на 1 січня",
+    "pt": "População presente em 1.º de janeiro"
+  },
+  "2015: territorial coverage changed; 2023–25 suppressed": {
+    "uk": "2015: змінено територіальне охоплення; 2023–2025: дані приховано",
+    "pt": "2015: mudança territorial; 2023–2025: dados suprimidos"
   }
 }
