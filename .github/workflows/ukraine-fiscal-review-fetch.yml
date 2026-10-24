@@ -1,6 +1,12 @@
 name: Ukraine Treasury refresh — review only
 
 on:
+  # Run one controlled live-source audit when this workflow definition changes.
+  # Other feature commits remain offline and cannot promote live data.
+  push:
+    branches: [feat/ukraine-fiscal]
+    paths:
+      - .github/workflows/ukraine-fiscal-review-fetch.yml
   workflow_dispatch:
 
 permissions:
