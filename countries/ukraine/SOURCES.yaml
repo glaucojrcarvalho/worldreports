@@ -126,6 +126,36 @@ demography:
       annotated on the plate. stat.gov.ua answers HTTP 403 to this
       network; the dataflow payload was retrieved once and the fetcher
       reads that cache offline (meta.pending records the block).
+fiscal:
+  treasury_functional.csv:
+    source: "State Treasury Service of Ukraine, consolidated cash-budget execution, functional classification; NBU statistical API republication"
+    url: "https://bank.gov.ua/NBUStatService/v1/statdirectory/budget?json"
+    official: true
+    refreshed_by: fetch/fetch_treasury.py
+    notes: >-
+      CURATED 2026-10-24 from 21,182 NBU records, using the unique annual
+      rows freq=Y, mcr200p=CBU, tzep=F_M_VC, indicator gf_budgtef_0100
+      through gf_budgtef_1000 and total gf_budgtef_Total_1.
+      2011-2025, 10 original Ukrainian functional groups and reported
+      total. Unit: nominal MILLION UAH, consolidated Treasury CASH-budget
+      execution, national administrative coverage, NOT IMF/SNA accrual
+      general-government expenditure, COFOG, primary balance or debt.
+      NBU dt=YYYY0101 references the PRECEDING calendar year, so
+      20240101 = expenditure in 2023; 20250101 = expenditure in 2024.
+      Independent source-year and value anchors: Ministry of Finance,
+      Budget of Ukraine 2024, table 2.3 pages 34-37: 2023 defence
+      2,097,621.9 and total 4,441,364.6; 2024 defence 2,305,242.7
+      and total 4,945,680.7, all million UAH. The ten functions
+      reconcile to their same-year functional total within 0.3 million
+      UAH rounding throughout. Economic-classification total
+      gf_budgtee_Total is DIFFERENT, excluded rather than spliced.
+      The 2011-2025 series is not mapped to the seven comparative
+      spending groups: national administrative classification,
+      territorial and wartime coverage are not asserted to be
+      perfectly comparable. Not yet drawn in canonical fiscal/spending
+      slots pending a defensible complementary national presentation.
+    independent_check: "https://mof.gov.ua/storage/files/Badgef%20of%20Ukraine2024.pdf"
+
 meta:
   pending:
     - name: Ukrstat SDMX REST API and all stat.gov.ua publications
