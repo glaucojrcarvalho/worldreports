@@ -1,0 +1,32 @@
+name: Ukraine fiscal candidate checks
+
+on:
+  push:
+    branches:
+      - feat/ukraine-fiscal
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: pip install -r requirements.txt
+      - name: Treasury parser and curated data contracts
+        run: python3 -m pytest countries/ukraine/tests/test_treasury.py -q
+      - name: Existing Ukraine plate and atlas spine contracts
+        run: python3 -m pytest countries/ukraine/tests/test_plates.py tests/test_spine.py -q
+      - name: Existing JavaScript contracts
+        run: node --test tests/js/*.test.js
+      - name: Repository test suite
+        run: python3 -m pytest -q
