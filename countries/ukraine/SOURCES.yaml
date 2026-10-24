@@ -2,19 +2,20 @@
 # Accepted curated CSVs require exact publisher attribution; other entries
 # under meta.pending remain research candidates, not chart-ready data.
 meta:
-  status: phase_a_verified_fx_and_gdp_2011_2024
+  status: phase_a_three_verified_national_series
   snapshot_date: '2026-10-24'
   upstream_issue: https://github.com/akitaonrails/worldreports/issues/1
   no_country_config_yet: true
   pending:
-    - name: National-account GDP 2006-2010 and 2025; CPI
+    - name: Real GDP growth 2006-2010/2025; nominal GDP 2006-2009/2025; CPI
       publisher: State Statistics Service of Ukraine
       url: https://stat.gov.ua/en/development-api
       notes: >-
-        GDP growth 2011-2024 has been reviewed and accepted below. The
-        current exact series did not return observations for 2006-2010
-        or 2025; do not splice other publishers or a press release into it.
-        Other national-account series and consumer prices remain pending.
+        GDP growth 2011-2024 and nominal GDP 2010-2024 have been verified
+        in separate dimension selections of one official SDMX dataflow.
+        The current exact queries returned no GDP data for earlier years
+        or 2025; do not splice other publishers or a press release.
+        Consumer prices and other national-account series remain pending.
     - name: Consolidated/general-government fiscal series
       publisher: Ministry of Finance and appropriate harmonizing institution
       url: https://openbudget.gov.ua/en/about-portal
@@ -58,6 +59,29 @@ markets:
     compiled: direct API daily extraction and complete-year validation, 2026-10-24
 
 macro:
+  gdp_nominal.csv:
+    source: State Statistics Service of Ukraine — Annual national accounts, GDP at current prices (UAH million)
+    url: https://stat.gov.ua/sdmx/workspaces/default:integration/registry/sdmx/3.0/data/dataflow/SSSU/DF_ANNUAL_NATIONAL_ACCOUNTS/7.0.0/*
+    refreshed_by: fetch/fetch_sssu_gdp_nominal.py
+    notes: >-
+      SSSU:DF_ANNUAL_NATIONAL_ACCOUNTS(7.0.0), index INDICATOR=GDP_CUR_PRC,
+      PRICE_TYPE=CURR_PRICES, REGION=UA00000000000000000,
+      BREAKDOWN_CATEGORY=_T, BREAKDOWN=_T, SECTOR_ECONOMY=S_1, FREQ=A.
+      The observed national-currency unit is UNITS_OF_MEASURE=1090,
+      SCALE=6; OBS_VALUE is a nominal UAH level in millions, NOT real GDP
+      growth and not billions. The exact SDMX-CSV v2 response contained
+      fifteen annual observations, 2010-2024; source anchors in UAH million:
+      2010=1079346, 2022=5239114, 2024=7662376. The 2024 value is also
+      printed in the publisher's public indicator bulletin. No 2006-2009
+      or 2025 figures were returned in this precise selection; do not
+      silently substitute another revision. Territorial coverage is not
+      stable; the publisher's attached notes exclude Crimea/Sevastopol
+      in 2010-2021, parts of Donetsk and Luhansk for 2014-2021,
+      and occupied or some hostilities-affected territories in 2022-2024.
+      The source's index and volume definitions remain separate CSVs.
+      A refresh writes gdp_nominal_from_sssu.csv as a review-only sidecar;
+      curated data may change only after inspecting differences.
+    compiled: direct source-filtered SSSU SDMX-CSV, 2026-10-24
   gdp_growth.csv:
     source: State Statistics Service of Ukraine — Annual national accounts, real GDP volume index versus previous year
     url: https://stat.gov.ua/sdmx/workspaces/default:integration/registry/sdmx/3.0/data/dataflow/SSSU/DF_ANNUAL_NATIONAL_ACCOUNTS/7.0.0/*
