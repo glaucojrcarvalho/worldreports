@@ -36,6 +36,10 @@ SSSU_PRIORITY_DSD = {
     "goods_trade": "DSD_EXTERNAL_TRADE_OF_GOODS",
     "deaths_by_cause": "DSD_POPULATION_DEATH_CAUSE",
 }
+SSSU_CONCEPT_SCHEMES = {
+    "national_accounts": ("CS_ANNUAL_NATIONAL_ACCOUNTS", "5.0.0"),
+    "global": ("CS_HISTORICAL_DATA_GLOBAL", "3.2.0"),
+}
 NBU_FX = "https://bank.gov.ua/NBU_Exchange/exchange_site"
 GDP_2022_OFFICIAL = -28.8
 GDP_SHARED_SCALE = (-18.0, 18.0)
@@ -289,6 +293,30 @@ def run_live() -> dict:
                 "endpoint": dsd_url,
                 "error": f"{type(exc).__name__}: {exc}",
             }
+    # DSD dimensions reference SSSU concept schemes; actual code lists are
+    # typically attached to the concept representations, not inline in the DSD.
+    conceptschemes = {}
+    for category, (scheme_id, version) in SSSU_CONCEPT_SCHEMES.items():
+        url = (
+            "https://stat.gov.ua/sdmx/workspaces/default:integration/registry/"
+            f"sdmx/2.1/conceptscheme/SSSU/{scheme_id}/{version}?references=none"
+        )
+        try:
+            source_xml = download(url, accept="application/xml")
+            cache = ROOT / "cache"
+            cache.mkdir(parents=True, exist_ok=True)
+            (cache / f"sssu_conceptscheme_{category}.xml").write_bytes(source_xml)
+            conceptschemes[category] = {
+                "result": "raw_official_structure_saved",
+                "endpoint": url,
+                "bytes": len(source_xml),
+            }
+        except Exception as exc:
+            conceptschemes[category] = {
+                "result": "unverified", "endpoint": url,
+                "error": f"{type(exc).__name__}: {exc}",
+            }
+    probes["sssu_conceptschemes"] = conceptschemes
     probes["sssu_priority_dsd"] = structures
     # Inspect official code values for national accounts only; still no
     # assumption about which combination is valid or comparable.
