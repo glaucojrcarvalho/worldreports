@@ -101,6 +101,44 @@ people:
       blanks from 2022 — both are recorded, neither is spliced.
 
 demography:
+  vital_ukrstat.csv:
+    source: "State Statistics Service of Ukraine (SSSU), annual registered live births, deaths, publisher-calculated crude rates and total fertility"
+    url: "https://stat.gov.ua/sdmx/workspaces/default:integration/registry/sdmx/3.0/data/dataflow/SSSU/DF_POPULATION_BIRTH/5.0.1/*"
+    official: true
+    refreshed_by: fetch/fetch_vital_sdmx.py
+    notes: >-
+      Reviewed directly from the official SDMX-CSV dataflow responses
+      SSSU:DF_POPULATION_BIRTH(5.0.1) and
+      SSSU:DF_POPULATION_MORTALITY(5.0.1);
+      exact codelist SSSU:CL_POPULATION_INDICATOR(6.0.1).
+      Indicators PNMI_17=number of live births, PNMI_19=number of
+      deaths (unit 1760, person); PNMI_32=crude birth rate,
+      PNMI_46=crude death rate (unit 2860, PER 1000 PRESENT
+      residents), PNMI_3341=total fertility rate (unit 2840,
+      births per woman). National REGION=UA00000000000000000,
+      FREQ=A, AGE/GENDER/TERRAIN=_T, plus all appropriate total
+      versus nonapplicable (_T vs _Z) age, father, mother,
+      marital-status, citizenship and registration-month dimensions.
+      There are 37 annual records from 1989–2025 per indicator; the
+      committed source window is 2006–2025. Births/deaths are 20
+      observed registration counts through 2025, including 2025
+      births=167801 and deaths=485290. The 2006 anchors are
+      460368 and 758092. The official crude rates and fertility
+      have 2006–2021 observations (2021 7.3 per thousand birth,
+      18.5 per thousand death, 1.16 births per woman); all
+      2022–2025 observations have blank OBS_VALUE and
+      OBS_FLAG=c under the publisher's confidentiality/martial-law
+      dissemination note. They remain missing, never zeros or
+      estimated rates from post-invasion denominators.
+      Counts are civil-registry administrative events, NOT a
+      census or excess/war-casualty series. Publisher geographic
+      scope changes with 2014 occupied-territory exclusions and
+      from 2022 with further occupied/hostilities-affected areas.
+      A count after 2021 is NOT an unchanged-territory comparison.
+      The rate/fertility chart lines split at the 2014 scope seam
+      and stop in 2021. Dataflow selection and units verified
+      from the official 2026-10-24 SDMX registry; refreshed
+      sidecar only and never automatic curated overwrite.
   population.csv:
     source: "World Bank WDI — SP.POP.TOTL (UN World Population Prospects)"
     url: "https://api.worldbank.org/v2/country/UKR/indicator/SP.POP.TOTL?format=json"
