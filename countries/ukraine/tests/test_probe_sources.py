@@ -67,6 +67,31 @@ class SourceDiscoveryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Invalid SSSU DSD"):
             probe.parse_dsd_dimensions(b"<xml")
 
+    def test_sssu_codelist_parser_reads_codes_and_labels(self):
+        target = probe.make_sssu_codelist_url("CL_INDICATOR_EXAMPLE")
+        self.assertIn("/codelist/SSSU/CL_INDICATOR_EXAMPLE/", target)
+        with self.assertRaises(ValueError):
+            probe.make_sssu_codelist_url("invalid-path")
+        sample = b"""<Message xmlns:str="urn:test:s" xmlns:c="urn:test:c">
+          <str:Codelist>
+            <str:Code id="GDP">
+              <c:Name xml:lang="en">Gross Domestic Product</c:Name>
+              <c:Name xml:lang="uk">GDP UK</c:Name>
+            </str:Code>
+            <str:Code id="GVA"><c:Name xml:lang="en">Gross Value Added</c:Name></str:Code>
+          </str:Codelist>
+        </Message>"""
+        codes = probe.parse_sssu_codelist(sample)
+        self.assertEqual([v["code"] for v in codes], ["GDP", "GVA"])
+        self.assertEqual(codes[0]["name_en"], "Gross Domestic Product")
+        self.assertEqual(codes[0]["name_uk"], "GDP UK")
+
+    def test_sssu_codelist_rejects_empty_and_corrupt(self):
+        with self.assertRaisesRegex(ValueError, "No SDMX codelist"):
+            probe.parse_sssu_codelist(b"<Message/>")
+        with self.assertRaisesRegex(ValueError, "Invalid SSSU codelist"):
+            probe.parse_sssu_codelist(b"<bad")
+
     def test_nbu_official_url_and_date_validation(self):
         url = probe.make_fx_url("20220104", "20220110", "USD")
         self.assertIn("start=20220104", url)
