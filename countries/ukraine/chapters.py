@@ -103,7 +103,6 @@ def _specs(ctx):
                 (("Trade balance, goods and services", "Баланс торгівлі товарами та послугами", "Saldo de bens e serviços"),
                  "trade/trade_na.csv", "balance_pct_gdp", "pct_gdp_s"),
             ]),
-        ),
         "markets": (
             "markets/fx.csv", "avg_uah_per_usd",
             [(("Official UAH per US dollar", "Офіційний курс гривні за долар США", "Taxa oficial UAH por dólar"),
@@ -142,9 +141,9 @@ def build(ctx) -> list[dict]:
             "spark": ctx.col(year_series, column) if year_series else [],
             "stats": [c for c in cards if c],
             "alt": ctx.text(**_lang((
-                f"Ukraine {topic} data: source-verified values are shown where available; other indicators remain under review.",
-                f"Дані України за темою {topic}: перевірені показники наведено за наявності; інші перевіряються.",
-                f"Dados da Ucrânia sobre {topic}: séries verificadas aparecem quando disponíveis; os demais indicadores seguem em análise.",
+                f"{title[0]}: source-verified values are shown where available; other indicators remain under review.",
+                f"{title[1]}: перевірені показники наведено за наявності; інші перевіряються.",
+                f"{title[2]}: séries verificadas aparecem quando disponíveis; os demais indicadores seguem em análise.",
             ))),
         })
     return chapters
