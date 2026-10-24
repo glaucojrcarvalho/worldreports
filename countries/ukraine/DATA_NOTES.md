@@ -18,6 +18,12 @@ The same API's availability metadata identifies **2011–2025** as the currently
 
 These are *statistical measurement boundaries*, not any change to Ukraine's internationally recognized borders. Such source metadata must travel with the CSV and appear in the atlas where series comparability is affected.
 
+### Accepted GDP volume-index series (2011–2024)
+
+The `data/macro/gdp_growth.csv` file contains the 14 available annual rows from SSSU:DF_ANNUAL_NATIONAL_ACCOUNTS(7.0.0), using `GDP_CUR_PRC`, `IDX_VOL_PY`, `REGION=UA00000000000000000`, total breakdowns, `S_1`, and annual frequency. The source's annual volume index is reduced by 100 to calculate real growth (2022: 71.2 − 100 = **−28.8%**). This preserves the official observation and the exact methodological meaning of the number.
+
+The live endpoint returned no values for 2006–2010 or 2025. Although metadata lists a broader availability window, **no observation is fabricated or spliced**. The growth series is reviewable against its sidecar from `fetch/fetch_sssu_gdp.py`. The publisher's stated territorial coverage varies after the 2014 and 2022 occupation/invasion shocks, and the published chart must annotate those comparability breaks. The 2022 contraction cannot fit the existing shared −18 to +18 growth range; a global range change requires regenerating and reviewing all affected peer charts.
+
 ### Observed data and missing values
 
 2022–2025 Gini observations are **missing** in the SSSU SDG publication after suspension of the household survey, not equal to zero. The 2021 observation is reported as 0.244 on a 0–1 scale; a 0–100 display would be 24.4. Historical survey unemployment should not be joined to registered-unemployed counts or projections. Refugee registrations, border crossings, IDP survey estimates and national immigration flows must remain different populations and definitions.
@@ -40,4 +46,4 @@ Ministry of Finance state-budget cash reporting, state/state-guaranteed debt, an
 
 The official publisher is preferred where it computes the measure. Keep harmonized/market providers separately labelled and `official: false` where required. A successful transport probe only confirms schema access—not the statistical meaning, revisions, coverage or fitness of a series. Network I/O belongs exclusively in `fetch/`, output in review-only sidecars or cache, and chart render remains offline.
 
-As of 2026-10-24, the official USD/UAH annual series is accepted and validated against complete NBU daily API responses; most other exact national dataset IDs and historical series are **pending live response validation**. See `DISCOVERY.md` and `SOURCES.yaml`.
+As of 2026-10-24, two curated datasets have been verified: NBU USD/UAH annual averages (2006–2025) and SSSU GDP real growth from one annual SDMX dataflow (2011–2024). GDP 2006–2010 and 2025, plus CPI, population, fiscal, migration and the other statistical series, remain pending. See `DISCOVERY.md` and `SOURCES.yaml`.
