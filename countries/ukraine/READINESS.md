@@ -23,6 +23,26 @@ in `SOURCES.yaml`. Live source preflight and Python 3.11/3.13 tests:
 Do not include temporary discovery workflow, raw probes or cache in the
 eventual upstream PR.
 
+## Implementation milestones added (not publication-ready)
+
+- Twelve declarative, canonical-spine chart builders in `plates.py`. Six
+  source-backed slots use reviewed GDP, CPI, trade, investment and FX data;
+  the other required slots are visibly research-pending.
+- Chart lines split at missing years and documented territorial measurement
+  seams rather than connecting data across a discontinuity.
+- Twelve localized chapter cards in `chapters.py` and accessible page
+  explanations in `ui.json` (Ukrainian, English and Portuguese).
+- `i18n.json` translates canonical spine panel labels, units, source
+  disclosures, chart subtitles and accessible plate descriptions into
+  Ukrainian and Portuguese.
+- `events.py` separates historically dated context from the changing
+  geographic scope of statistical measurements.
+- Shared Ukrainian `uk` number style, hryvnia affixes, native chart-unit
+  wording and Cyrillic-capable fonts added without hard-coding Ukraine in core.
+- Fork CI now covers offline source/translation tests and installs the
+  declared atlas dependencies for Ukrainian number-style integration tests.
+  The changes still need full suite rerun and real plate visual checks.
+
 ## The 12 spine chapters and remaining requirements
 
 Here **accepted** means verified dataset, **pending** means not yet
@@ -48,8 +68,8 @@ chart-ready. One accepted panel does not make a completed chapter.
 - **Two shared comparison-scale conflicts:** 2022 GDP growth **−28.8%** vs the global **−18…18%** `economy.growth` axis; trade balance **−20.9087% (2023)** and **−20.3445% (2024)** vs the **−15…15%** `trade.balance` axis. Widen shared scales and regenerate/review all peers; never clip Ukraine or add a country-only axis.
 - **Geographic coverage varies.** National accounts and CPI exclude different occupied/hostilities-affected territories across 2014/2022. Statistical scope is *not* Ukraine's internationally recognized territory.
 - **Observed, estimated, and missing remain distinct.** SDMX metadata availability is not guaranteed observed data. Actual GDP API selection lacks 2006–10 (growth), 2006–09 (nominal), and 2025 even though a separate 2025 publication exists. No blind splicing or filling.
-- **Ukrainian localization not started.** Add reusable `uk` number formatting, UAH currency affixes, Ukrainian shared UI and country-specific i18n, fonts and accessibility checks. No `slug == "ukraine"` code in shared core.
-- **Rendering/publishing not started.** The country has no `country.yaml`, `plates.py`, `chapters.py`, `ui.json`, `i18n.json`, `events.py`, output plates/thumbnails, or provenance yet. Leave country unregistered until consistently implemented.
+- **Ukrainian localization drafted, not render-approved.** The fork now has reusable `uk` number formatting, UAH currency affixes, Cyrillic fonts, `i18n.json`, trilingual chapter cards, page UI notes and accessible descriptions. Dedicated translation/locale tests exist, but completed rendered pages still need visual/font review. No `slug == "ukraine"` branch is permitted in shared core.
+- **Research-stage rendering code is drafted; actual rendering/publishing is not started.** The fork now has `plates.py` (twelve spine-based builders), `chapters.py` (trilingual cards), `ui.json`, `i18n.json` and `events.py`. It still has **no** `country.yaml`, generated SVG/PNG plates or thumbnails, or `provenance.json`. Incomplete panels remain explicitly pending. Leave the country unregistered until the missing source, rendering, localization and visual gates are met.
 
 ### Merge readiness (all unchecked until truly run)
 
