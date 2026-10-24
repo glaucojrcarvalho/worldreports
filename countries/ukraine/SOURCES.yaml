@@ -191,13 +191,23 @@ meta:
       url: https://openbudget.gov.ua/en/about-portal
       official: true
       notes: >-
-        Akamai "Access Denied" (errors.edgesuite.net reference) on
-        every route, 2026-10-24, browser UA included; the
-        open-budget.gov.ua variant does not resolve. The portal's
-        data licence is documented as CC BY 4.0 by the issue (from the
-        publisher's about page). Not blocking: the NBU budget cube
-        republishes Treasury execution (verified) and the IMF carries
-        the harmonised fiscal layer.
+        INITIAL discovery-network attempt on 2026-10-24 received
+        Akamai "Access Denied" (errors.edgesuite.net), including a
+        browser user agent; the open-budget.gov.ua variant did not
+        resolve. THIS ACCESS STATUS IS NETWORK-SPECIFIC, NOT A CLAIM
+        THAT THE OFFICIAL PORTAL IS CURRENTLY UNAVAILABLE.
+        The independent official December-2025 consolidated view at
+        https://openbudget.gov.ua/?budgetType=CONSOLIDATED&month=12&year=2025
+        was subsequently accessed and its ten functional categories
+        preserved in fetch/reference_openbudget_2025.csv. Its total
+        differs from the NBU cube's 2025 Total_1 by 6,920.18835381
+        million UAH (the code-0400 economic-affairs difference explains
+        most of it). Discrepancy may reflect a classification,
+        retrospective revision or data-vintage mismatch; precise cause
+        not verified. The portal licence was described as CC BY 4.0
+        by the initial contributor's discovery. The NBU cube still
+        provides independently reproducible Treasury cash records;
+        no IMF general-government accrual slot has been filled.
     - name: Ministry of Finance site (mof.gov.ua) debt releases
       publisher: Ministry of Finance of Ukraine
       url: https://mof.gov.ua/en/derzhavnij-borg-ta-garantovanij-derzhavju-borg
