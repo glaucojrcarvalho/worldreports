@@ -11,6 +11,7 @@ country-specific charts and localization pass the repository's gates.
 |---|---|---|---|
 | `data/markets/fx.csv` | NBU official daily USD/UAH, calendar-day annual average | 2006–2025 | Full daily coverage, quotation lots/units, spot anchors, offline tests |
 | `data/markets/policy_rate.csv` | NBU key monetary-policy rate **effective on 31 December**, dated decisions | 2006–2025 | Publisher event chronology, year-end step-function carry, 2011 no-change check, source anchors and offline tests |
+| `data/macro/reserves.csv` | NBU gross official international reserves, **year-end stock in US$ bn** | 2006–2025 | 20 total-asset January 1 snapshots mapped to previous 31 December; official NBU/IMF anchors, tests and live diff |
 | `data/macro/gdp_growth.csv` | SSSU prior-year **real volume index** −100 | 2011–2024 | Pinned SDMX dimensions, official anchors, live diff, missing years preserved |
 | `data/macro/gdp_nominal.csv` | SSSU **current-price nominal GDP**, million UAH | 2010–2024 | Pinned SDMX dimensions and units, source anchors, live diff |
 | `data/macro/cpi.csv` | SSSU headline CPI, **annual average versus preceding year** | 2006–2025 | Exact CPI base/frequency/commodity total, source anchors, live diff |
@@ -26,6 +27,11 @@ eventual upstream PR.
 
 ## Implementation milestones added (not publication-ready)
 
+- Accepted eighth curated national series: NBU gross official reserve assets
+  at every 31 December 2006–2025, valued in US$ billions. API snapshots
+  labeled January 1 belong to the preceding year-end; verified against NBU
+  and IMF published values. Plotted in `world.reserves`, with chart and
+  chapter headline, maintaining the canonical US$ unit and log scale.
 - Added a seventh accepted source dataset: official NBU policy rate at
   each calendar-year end, reconstructed from dated effective changes (2006–2025).
   The 2011 value legitimately retains the last 2010 decision; the chart
@@ -63,7 +69,7 @@ chart-ready. One accepted panel does not make a completed chapter.
 | 05 Markets | Official USD/UAH annual-average FX (2006–25), canonical 2006=100 inverted chart, and NBU **year-end policy rate** (2006–25) alongside annual-average CPI | Comparable 10-year sovereign bond yield and main equity index in USD; year-end rate is not annual average or a bond yield; label unofficial market datasets |
 | 06 Credit | — | Household debt/GDP, household lending rate, NPL/delinquency with explicit sector; check wartime method and data gaps |
 | 07 People | Gini 2021=0.244 *anchor only*, not a curated series | Full historical national inequality and poverty, documented household survey suspension after 2021, statutory wage series in comparable USD |
-| 08 World | — | Comparable GDP US$ (not nominal UAH), UNDP HDI one vintage, CPI corruption score, official reserves US$ |
+| 08 World | Verified NBU official international reserves (US$ bn, **year-end stock**, 2006–25); chart and chapter headline wired | Comparable GDP US$ (not nominal UAH), UNDP HDI one vintage, Corruption Perceptions Index score; additional source reconciliation |
 | 09 Demography | — | Territorial-scope-correct population, TFR, natality/mortality, net migration; 2022 displacement is not a census |
 | 10 Security | — | National homicide vs WHO/UNODC, suicide and traffic-death rates, non-interchangeable police/vital sources |
 | 11 Mortality | — | Crude rate, valid 2015–19 excess mortality denominator, underlying-cause COVID deaths, optional national lens; wartime suppression |
