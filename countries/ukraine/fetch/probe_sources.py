@@ -270,7 +270,12 @@ def run_live() -> dict:
     for topic, dsd_id in SSSU_PRIORITY_DSD.items():
         dsd_url = make_sssu_dsd_url(dsd_id)
         try:
-            dimensions = parse_dsd_dimensions(download(dsd_url, accept="application/xml"))
+            raw_structure = download(dsd_url, accept="application/xml")
+            if topic in {"national_accounts", "consumer_prices", "population"}:
+                cache = ROOT / "cache"
+                cache.mkdir(parents=True, exist_ok=True)
+                (cache / f"sssu_dsd_{topic}.xml").write_bytes(raw_structure)
+            dimensions = parse_dsd_dimensions(raw_structure)
             structures[topic] = {
                 "result": "parsed_structure_only",
                 "endpoint": dsd_url,
