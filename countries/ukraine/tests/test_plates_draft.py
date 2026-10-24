@@ -87,9 +87,21 @@ class UkrainePlateDraftTests(unittest.TestCase):
     def test_currency_uses_canonical_inverted_2006_index(self):
         import inspect
         src = inspect.getsource(plates._plot)
-        self.assertIn('ctx.fx_index((years, values))', src)
-        self.assertIn('"avg_uah_per_usd"', src)
-        self.assertNotIn('ctx.index_2006((years, values))', src)
+        currency = src.split('if key == "markets.currency":', 1)[1]
+        currency = currency.split("return _small_note(ctx, ax, FX_NOTE)", 1)[0]
+        self.assertIn('ctx.fx_index((years, values))', currency)
+        self.assertIn('"avg_uah_per_usd"', currency)
+        self.assertNotIn('ctx.index_2006((years, values))', currency)
+
+    def test_population_uses_noninverted_2006_index_with_geographic_seam(self):
+        import inspect
+        src = inspect.getsource(plates._plot)
+        population = src.split('if key == "demography.population":', 1)[1]
+        population = population.split('if key == "world.reserves":', 1)[0]
+        self.assertIn('ctx.index_2006((years, values))', population)
+        self.assertIn('seams=(2015,)', population)
+        self.assertIn('"social/population.csv"', population)
+        self.assertNotIn('ctx.fx_index', population)
 
     def test_no_country_configuration_until_draft_is_source_complete(self):
         self.assertFalse((ROOT / "country.yaml").exists())
