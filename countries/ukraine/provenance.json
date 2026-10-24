@@ -11,7 +11,8 @@
  ],
  "03-demography": [
   "demography/population.csv",
-  "demography/population_ukrstat.csv"
+  "demography/population_ukrstat.csv",
+  "demography/vital_ukrstat.csv"
  ],
  "04-people": [
   "macro/economy.csv",
