@@ -2,7 +2,7 @@
 # Accepted curated CSVs require exact publisher attribution; other entries
 # under meta.pending remain research candidates, not chart-ready data.
 meta:
-  status: phase_a_seven_verified_national_series
+  status: phase_a_eight_verified_national_series
   snapshot_date: '2026-10-24'
   upstream_issue: https://github.com/akitaonrails/worldreports/issues/1
   no_country_config_yet: true
@@ -88,6 +88,32 @@ markets:
     compiled: direct API daily extraction and complete-year validation, 2026-10-24
 
 macro:
+  reserves.csv:
+    source: National Bank of Ukraine — official international reserve assets, total (gross) year-end USD stock
+    url: https://bank.gov.ua/NBUStatService/v1/statdirectory/res
+    refreshed_by: fetch/fetch_nbu_reserves.py
+    notes: >-
+      Official NBU OpenData dataset apikod=res (monthly); exact TOTAL code
+      id_api=RES_OffReserveAssets, leveli=1, freq=M, denomination field
+      tzep=T071USD_7 (US dollars in millions). The API reports a stock
+      dated on the FIRST DAY of the FOLLOWING MONTH: the 2024 year-end
+      value is returned with dt=20250101, NOT dt=20241201. The latter
+      is the prior month-end. For historical calendar year Y, fetch
+      date=(Y+1)0101 then divide raw USD millions by 1000 to obtain
+      canonical US$ billions. Curated 2006-2025 inclusive (20 unique
+      dates), all manually checked at the NBU source. Relevant verified
+      year-end USD-million anchors: 2006=22358.10, 2014=7533.33,
+      2022=28494.46, 2024=43795.35, 2025=57302.41.
+      The year-end 2024 (US$43.8bn) and 2025 (US$57.3bn) values are
+      independently corroborated by NBU publications and IMF reports.
+      Gross official reserve assets are not an annual average, a flow,
+      the monetary base, the market value of gold alone, or general
+      government cash. The 2026 January monthly snapshot is intentionally
+      mapped to year 2025, not added to the 2026 annual sequence.
+      The fetcher writes reserves_from_nbu.csv ONLY for review and
+      fails closed on changed dates, unit codes, duplicate totals,
+      missing years or revised reference anchors.
+    compiled: all 20 year-end snapshots validated against official NBU res JSON, 2026-10-24
   cpi.csv:
     source: State Statistics Service of Ukraine — national headline consumer price index, annual average versus previous year
     url: https://stat.gov.ua/sdmx/workspaces/default:integration/registry/sdmx/3.0/data/dataflow/SSSU/DF_PRICE_CHANGE_CONSUMER_GOODS_SERVICE/27.2.0/*
