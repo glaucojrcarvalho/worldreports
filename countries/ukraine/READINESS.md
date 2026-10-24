@@ -12,6 +12,7 @@ country-specific charts and localization pass the repository's gates.
 | `data/markets/fx.csv` | NBU official daily USD/UAH, calendar-day annual average | 2006–2025 | Full daily coverage, quotation lots/units, spot anchors, offline tests |
 | `data/markets/policy_rate.csv` | NBU key monetary-policy rate **effective on 31 December**, dated decisions | 2006–2025 | Publisher event chronology, year-end step-function carry, 2011 no-change check, source anchors and offline tests |
 | `data/macro/reserves.csv` | NBU gross official international reserves, **year-end stock in US$ bn** | 2006–2025 | 20 total-asset January 1 snapshots mapped to previous 31 December; official NBU/IMF anchors, tests and live diff |
+| `data/social/population.csv` | SSSU estimated present population **on 1 January**; NOT a census or year-end stock | 2006–2022 observed; 2023–2025 suppressed | Exact PNMI_01 national/age/gender/terrain key, January 2015 territorial seam, published `c` flags for 2023–25, live API CSV diff |
 | `data/macro/gdp_growth.csv` | SSSU prior-year **real volume index** −100 | 2011–2024 | Pinned SDMX dimensions, official anchors, live diff, missing years preserved |
 | `data/macro/gdp_nominal.csv` | SSSU **current-price nominal GDP**, million UAH | 2010–2024 | Pinned SDMX dimensions and units, source anchors, live diff |
 | `data/macro/cpi.csv` | SSSU headline CPI, **annual average versus preceding year** | 2006–2025 | Exact CPI base/frequency/commodity total, source anchors, live diff |
@@ -27,6 +28,13 @@ eventual upstream PR.
 
 ## Implementation milestones added (not publication-ready)
 
+- Accepted ninth source snapshot: Ukrstat Jan-1 **present population**
+  2006–2022 (17 observed integers), with publisher's suppressed c flags
+  and empty values for 2023–2025. The 2015 occupied-territory scope break
+  is explicitly drawn as separate index segments; no post-2022 census,
+  rates from mismatched denominators, interpolation or refugee proxy.
+- Demography panel 1 uses `index_2006` (2006=100, not FX inversion),
+  and the chapter has Ukrainian/English/Portuguese January-date copy.
 - Accepted eighth curated national series: NBU gross official reserve assets
   at every 31 December 2006–2025, valued in US$ billions. API snapshots
   labeled January 1 belong to the preceding year-end; verified against NBU
@@ -70,7 +78,7 @@ chart-ready. One accepted panel does not make a completed chapter.
 | 06 Credit | — | Household debt/GDP, household lending rate, NPL/delinquency with explicit sector; check wartime method and data gaps |
 | 07 People | Gini 2021=0.244 *anchor only*, not a curated series | Full historical national inequality and poverty, documented household survey suspension after 2021, statutory wage series in comparable USD |
 | 08 World | Verified NBU official international reserves (US$ bn, **year-end stock**, 2006–25); chart and chapter headline wired | Comparable GDP US$ (not nominal UAH), UNDP HDI one vintage, Corruption Perceptions Index score; additional source reconciliation |
-| 09 Demography | — | Territorial-scope-correct population, TFR, natality/mortality, net migration; 2022 displacement is not a census |
+| 09 Demography | SSSU national **present population Jan-1** estimates (2006–22) and suppressed 2023–25 rows; 2006-base chart split at 2015 territorial seam | Total fertility, crude birth/death, natural increase and migration with matched population denominator; no verified 2023–25 headcounts |
 | 10 Security | — | National homicide vs WHO/UNODC, suicide and traffic-death rates, non-interchangeable police/vital sources |
 | 11 Mortality | — | Crude rate, valid 2015–19 excess mortality denominator, underlying-cause COVID deaths, optional national lens; wartime suppression |
 | 12 Migration | — | Comparable arrivals/departures, stock by citizenship/birthplace; IDP/refugee administrative/survey estimates separate |
