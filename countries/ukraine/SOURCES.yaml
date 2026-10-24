@@ -1,0 +1,35 @@
+# Ukraine source candidates / research-phase provenance.
+# This is intentionally meta-only: NO curated CSV file is claimed to exist yet.
+# Before accepting a CSV, move the verified publisher/series specification
+# into the appropriate chapter with its full path, notes and verified coverage.
+meta:
+  status: research_only
+  snapshot_date: '2026-10-24'
+  upstream_issue: https://github.com/akitaonrails/worldreports/issues/1
+  no_country_config_yet: true
+  pending:
+    - name: SSSU annual real GDP and CPI series
+      publisher: State Statistics Service of Ukraine
+      url: https://stat.gov.ua/en/development-api
+      known_publisher_anchor: 'Real GDP growth 2022 = -28.8%, release 2026-03-24'
+      notes: 'Discover verified dataflow IDs and dimensions; do not assume a release is an accepted CSV.'
+    - name: Official USD/UAH history
+      publisher: National Bank of Ukraine
+      url: https://bank.gov.ua/admin_uploads/article/Instr_API_KURS_VAL_data_Full_eng.pdf
+      notes: 'Validate API schema and exchange-rate units; derive annual averages only after checking daily time coverage.'
+    - name: Consolidated/general-government fiscal series
+      publisher: Ministry of Finance and appropriate harmonizing institution
+      url: https://openbudget.gov.ua/en/about-portal
+      notes: 'Cash budget and state-guaranteed debt are NOT canonical general-government accrual measurements.'
+    - name: National household Gini and labour statistics
+      publisher: State Statistics Service of Ukraine
+      url: https://sdg.stat.gov.ua/uk/10-1-1/
+      notes: 'Gini 2021=0.244 on a 0–1 scale; 2022–2025 explicitly missing; confirm survey and territorial scope.'
+    - name: International goods and services trade
+      publisher: State Statistics Service of Ukraine and State Customs Service
+      url: https://stat.gov.ua/en/datasets/annual-national-accounts
+      notes: 'Separate national-accounts goods/services from customs goods; assess post-2022 coverage.'
+    - name: Migration, mortality and security continuity
+      publisher: State Statistics Service of Ukraine; administrative publishers
+      url: https://stat.gov.ua/en/datasets
+      notes: 'Verify population denominators and coverage; keep wartime humanitarian estimates distinct.'
