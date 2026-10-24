@@ -81,6 +81,8 @@ jobs:
           python countries/ukraine/fetch/fetch_sssu_gdp.py
           python countries/ukraine/fetch/fetch_sssu_gdp_nominal.py
           python countries/ukraine/fetch/fetch_nbu_policy_rate.py
+          python countries/ukraine/fetch/fetch_nbu_reserves.py
+          diff -u countries/ukraine/data/macro/reserves.csv countries/ukraine/data/macro/reserves_from_nbu.csv
           diff -u countries/ukraine/data/markets/policy_rate.csv countries/ukraine/data/markets/policy_rate_from_nbu.csv
           diff -u countries/ukraine/data/macro/gdp_growth.csv countries/ukraine/data/macro/gdp_growth_from_sssu.csv
           diff -u countries/ukraine/data/macro/gdp_nominal.csv countries/ukraine/data/macro/gdp_nominal_from_sssu.csv
