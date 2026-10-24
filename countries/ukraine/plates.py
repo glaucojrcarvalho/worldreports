@@ -180,21 +180,53 @@ def plate_demography(ctx, ig) -> None:
           f"2021, {_at(wy, wv, 2021) / 1e6:.1f}m on the UN estimate")
     _foot(p, ax, "Two perimeters, two lines. Never spliced")
 
+    V = "demography/vital_ukrstat.csv"
+
     ax = ig.slot("demography.fertility", "Total fertility rate "
                  "(children per woman)")
-    ctx.pending(ax)
-    _pending(ig, ax, "Ukrstat's fertility dataflow is cached but its\n"
-             "dimension code list does not identify the total-births\n"
-             "series unambiguously — not yet definition-checked.")
-    _foot(p, ax, "SOURCES.yaml meta.pending")
+    fy, fv = _yr(ctx, V, "total_fertility")
+    # 2014 changes the publisher's observed geographical perimeter.
+    # The 2022–2025 suppressed rates are CSV blanks, never interpolated.
+    earlier = [(y, v) for y, v in zip(fy, fv) if y < 2014]
+    later = [(y, v) for y, v in zip(fy, fv) if y >= 2014]
+    for i, segment in enumerate((earlier, later)):
+        if segment:
+            ctx.line(ax, [y for y, _ in segment],
+                     [v for _, v in segment], p.GOLD, lw=2.2,
+                     label="Ukrstat total fertility, national"
+                           if i == 0 else "_nolegend_")
+    ig.add_recessions(ax, label=False)
+    ax.axvline(2014, color=p.FAINT, lw=0.9, ls=":", zorder=2)
+    _note(p, ax, 0.02, 0.96,
+          f"{fv[-1]:.2f} children per woman in {fy[-1]};\n"
+          "2022–2025 withheld by Ukrstat", size=7.8)
+    _foot(p, ax, "SSSU PNMI_3341, children per woman; 2014 scope break")
 
     ax = ig.slot("demography.birth_death", "Crude birth and death rates "
                  "(per 1,000 people)")
-    ctx.pending(ax)
-    _pending(ig, ax, "Births and deaths are published by Ukrstat to 2022;\n"
-             "the routing is pending with the same code-list check.\n"
-             "Holes are not filled.")
-    _foot(p, ax, "SOURCES.yaml meta.pending")
+    by, bv = _yr(ctx, V, "birth_rate_per_1000")
+    dy, dv = _yr(ctx, V, "death_rate_per_1000")
+    for years, values, color, label in (
+        (by, bv, p.BLUE, "Live births / 1,000 residents"),
+        (dy, dv, p.ALERT, "Deaths / 1,000 residents"),
+    ):
+        for i, segment in enumerate((
+            [(y, v) for y, v in zip(years, values) if y < 2014],
+            [(y, v) for y, v in zip(years, values) if y >= 2014],
+        )):
+            if segment:
+                ctx.line(ax, [y for y, _ in segment],
+                         [v for _, v in segment], color, lw=2.0,
+                         label=label if i == 0 else "_nolegend_")
+    ig.add_recessions(ax, label=False)
+    ax.axvline(2014, color=p.FAINT, lw=0.9, ls=":", zorder=2)
+    ax.legend(loc="upper right", fontsize=7.6)
+    _note(p, ax, 0.02, 0.96,
+          f"{_at(by, bv, 2021):.1f} births and "
+          f"{_at(dy, dv, 2021):.1f} deaths per 1,000 in 2021;\n"
+          "2022–2025 rates withheld, not zero", size=7.6)
+    _foot(p, ax, "SSSU PNMI_32 / PNMI_46; published same-scope "
+          "rates, no modelled denominators")
 
     ax = ig.slot("demography.natural_migration",
                  "Natural increase and net migration (per 1,000 people)")
