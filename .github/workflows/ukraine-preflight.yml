@@ -1,0 +1,40 @@
+# Fork-only Phase A preflight. Keep this workflow scoped to the development
+# branch; remove or consolidate it before submitting an upstream PR.
+name: Ukraine source preflight
+
+on:
+  push:
+    branches:
+      - feat/ukraine-atlas
+    paths:
+      - "countries/ukraine/**"
+      - ".github/workflows/ukraine-preflight.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-source-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Compile Ukraine research utilities
+        run: python -m compileall -q countries/ukraine/fetch countries/ukraine/tests
+      - name: Validate source parsing and safety guards (offline)
+        run: python -m unittest discover -s countries/ukraine/tests -p 'test_*.py' -v
+      - name: Verify only Ukraine files changed compared with fork main
+        run: |
+          git fetch origin main --no-tags --depth=1
+          git diff --name-only origin/main...HEAD |
+            grep -vE '^countries/ukraine/|^\.github/workflows/ukraine-preflight\.yml$' |
+            tee /tmp/unexpected.txt
+          test ! -s /tmp/unexpected.txt
