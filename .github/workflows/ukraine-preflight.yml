@@ -80,6 +80,8 @@ jobs:
           diff -u countries/ukraine/data/macro/cpi.csv countries/ukraine/data/macro/cpi_from_sssu.csv
           python countries/ukraine/fetch/fetch_sssu_gdp.py
           python countries/ukraine/fetch/fetch_sssu_gdp_nominal.py
+          python countries/ukraine/fetch/fetch_nbu_policy_rate.py
+          diff -u countries/ukraine/data/markets/policy_rate.csv countries/ukraine/data/markets/policy_rate_from_nbu.csv
           diff -u countries/ukraine/data/macro/gdp_growth.csv countries/ukraine/data/macro/gdp_growth_from_sssu.csv
           diff -u countries/ukraine/data/macro/gdp_nominal.csv countries/ukraine/data/macro/gdp_nominal_from_sssu.csv
       - name: Preserve raw discovery metadata for review
