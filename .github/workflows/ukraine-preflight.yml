@@ -51,7 +51,9 @@ jobs:
         with:
           python-version: "3.13"
       - name: Query official SSSU catalog and NBU historical FX (read only)
-        run: python countries/ukraine/fetch/probe_sources.py --live
+        run: |
+          python countries/ukraine/fetch/probe_sources.py --live
+          python countries/ukraine/fetch/probe_gdp.py --live
       - name: Preserve raw discovery metadata for review
         if: always()
         uses: actions/upload-artifact@v4
