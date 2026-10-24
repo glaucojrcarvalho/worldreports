@@ -21,6 +21,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      # Match the upstream pages workflow's font environment; without CJK
+      # coverage unrelated Japan/China/Korea/Taiwan layout gates fail.
+      - name: Install upstream CJK fonts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends fonts-noto-cjk
+          fc-cache -f
       - run: pip install -r requirements.txt
       - name: Treasury parser and curated data contracts
         run: python3 -m pytest countries/ukraine/tests/test_treasury.py -q
