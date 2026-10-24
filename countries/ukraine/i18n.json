@@ -1,0 +1,426 @@
+{
+  "Real GDP growth": {
+    "uk": "Реальне зростання ВВП",
+    "pt": "Crescimento real do PIB"
+  },
+  "GDP per person": {
+    "uk": "ВВП на одну особу",
+    "pt": "PIB por pessoa"
+  },
+  "Consumer price inflation": {
+    "uk": "Інфляція споживчих цін",
+    "pt": "Inflação dos preços ao consumidor"
+  },
+  "Unemployment rate": {
+    "uk": "Рівень безробіття",
+    "pt": "Taxa de desemprego"
+  },
+  "Revenue and expenditure": {
+    "uk": "Доходи та видатки",
+    "pt": "Receitas e despesas"
+  },
+  "Overall and primary balance": {
+    "uk": "Загальне та первинне сальдо",
+    "pt": "Saldo total e primário"
+  },
+  "Gross debt": {
+    "uk": "Валовий борг",
+    "pt": "Dívida bruta"
+  },
+  "Interest paid": {
+    "uk": "Сплачені відсотки",
+    "pt": "Juros pagos"
+  },
+  "Spending by function, stacked": {
+    "uk": "Видатки за функціями, накопичені",
+    "pt": "Despesas por função, empilhadas"
+  },
+  "Social protection vs everything else": {
+    "uk": "Соціальний захист та інші видатки",
+    "pt": "Proteção social versus demais despesas"
+  },
+  "Investment rate, whole economy": {
+    "uk": "Норма інвестицій усієї економіки",
+    "pt": "Taxa de investimento da economia"
+  },
+  "Public investment": {
+    "uk": "Державні інвестиції",
+    "pt": "Investimento público"
+  },
+  "Exports and imports": {
+    "uk": "Експорт та імпорт",
+    "pt": "Exportações e importações"
+  },
+  "Trade balance": {
+    "uk": "Торговельне сальдо",
+    "pt": "Saldo comercial"
+  },
+  "Top export destinations": {
+    "uk": "Основні напрямки експорту",
+    "pt": "Principais destinos das exportações"
+  },
+  "Policy rate vs inflation": {
+    "uk": "Облікова ставка та інфляція",
+    "pt": "Taxa básica versus inflação"
+  },
+  "10-year government bond yield": {
+    "uk": "Дохідність 10-річних державних облігацій",
+    "pt": "Rendimento de títulos públicos de dez anos"
+  },
+  "Currency against the US$": {
+    "uk": "Валюта відносно долара США",
+    "pt": "Moeda frente ao dólar dos EUA"
+  },
+  "Main equity index in US$": {
+    "uk": "Основний фондовий індекс у доларах США",
+    "pt": "Principal índice de ações em dólares"
+  },
+  "Household debt": {
+    "uk": "Борг домогосподарств",
+    "pt": "Dívida das famílias"
+  },
+  "Household lending rate vs policy rate": {
+    "uk": "Ставка кредитування домогосподарств та облікова ставка",
+    "pt": "Juros para famílias versus taxa básica"
+  },
+  "Non-performing loans": {
+    "uk": "Непрацюючі кредити",
+    "pt": "Créditos inadimplentes"
+  },
+  "Income inequality, Gini": {
+    "uk": "Нерівність доходів, коефіцієнт Джині",
+    "pt": "Desigualdade de renda, Gini"
+  },
+  "Poverty rate": {
+    "uk": "Рівень бідності",
+    "pt": "Taxa de pobreza"
+  },
+  "Minimum wage": {
+    "uk": "Мінімальна заробітна плата",
+    "pt": "Salário mínimo"
+  },
+  "GDP at current prices": {
+    "uk": "ВВП у поточних цінах",
+    "pt": "PIB a preços correntes"
+  },
+  "Human Development Index": {
+    "uk": "Індекс людського розвитку",
+    "pt": "Índice de Desenvolvimento Humano"
+  },
+  "Corruption Perceptions Index": {
+    "uk": "Індекс сприйняття корупції",
+    "pt": "Índice de Percepção da Corrupção"
+  },
+  "Official reserves": {
+    "uk": "Офіційні резерви",
+    "pt": "Reservas oficiais"
+  },
+  "Population": {
+    "uk": "Населення",
+    "pt": "População"
+  },
+  "Total fertility rate": {
+    "uk": "Сумарний коефіцієнт народжуваності",
+    "pt": "Taxa de fecundidade total"
+  },
+  "Crude birth and death rates": {
+    "uk": "Загальні коефіцієнти народжуваності й смертності",
+    "pt": "Taxas brutas de natalidade e mortalidade"
+  },
+  "Natural increase and net migration": {
+    "uk": "Природний приріст і сальдо міграції",
+    "pt": "Crescimento natural e migração líquida"
+  },
+  "Homicide rate": {
+    "uk": "Рівень умисних убивств",
+    "pt": "Taxa de homicídios"
+  },
+  "Suicide rate": {
+    "uk": "Рівень самогубств",
+    "pt": "Taxa de suicídios"
+  },
+  "Road traffic deaths": {
+    "uk": "Загиблі в дорожньо-транспортних пригодах",
+    "pt": "Mortes no trânsito"
+  },
+  "Crude death rate": {
+    "uk": "Загальний коефіцієнт смертності",
+    "pt": "Taxa bruta de mortalidade"
+  },
+  "Excess deaths": {
+    "uk": "Надлишкова смертність",
+    "pt": "Mortalidade excessiva"
+  },
+  "COVID-19 deaths, underlying cause": {
+    "uk": "Смерті від COVID-19 як основної причини",
+    "pt": "Óbitos por COVID-19 como causa básica"
+  },
+  "Immigration and emigration": {
+    "uk": "Імміграція та еміграція",
+    "pt": "Imigração e emigração"
+  },
+  "Net migration": {
+    "uk": "Сальдо міграції",
+    "pt": "Migração líquida"
+  },
+  "Foreign-born share of the population": {
+    "uk": "Частка народжених за кордоном",
+    "pt": "Participação de residentes nascidos no exterior"
+  },
+  "% per year": {
+    "uk": "% на рік",
+    "pt": "% ao ano"
+  },
+  "US$, current": {
+    "uk": "долари США, поточні",
+    "pt": "US$, correntes"
+  },
+  "% of labour force": {
+    "uk": "% робочої сили",
+    "pt": "% da força de trabalho"
+  },
+  "% of GDP": {
+    "uk": "% ВВП",
+    "pt": "% do PIB"
+  },
+  "%": {
+    "uk": "%",
+    "pt": "%"
+  },
+  "%, annual average": {
+    "uk": "%, середньорічне",
+    "pt": "%, média anual"
+  },
+  "index 2006 = 100, up = stronger": {
+    "uk": "індекс 2006 = 100, вище = сильніша валюта",
+    "pt": "índice 2006 = 100, maior = moeda mais forte"
+  },
+  "index 2006 = 100, in US$": {
+    "uk": "індекс 2006 = 100, у доларах США",
+    "pt": "índice 2006 = 100, em dólares"
+  },
+  "% of loans": {
+    "uk": "% кредитів",
+    "pt": "% dos empréstimos"
+  },
+  "Gini, 0–100": {
+    "uk": "Джині, 0–100",
+    "pt": "Gini, 0–100"
+  },
+  "% of people": {
+    "uk": "% населення",
+    "pt": "% das pessoas"
+  },
+  "US$ per month": {
+    "uk": "доларів США на місяць",
+    "pt": "US$ por mês"
+  },
+  "US$ bn": {
+    "uk": "млрд доларів США",
+    "pt": "US$ bilhões"
+  },
+  "HDI, 0–1": {
+    "uk": "ІЛР, 0–1",
+    "pt": "IDH, 0–1"
+  },
+  "score, 0–100": {
+    "uk": "оцінка, 0–100",
+    "pt": "pontuação, 0–100"
+  },
+  "index 2006 = 100": {
+    "uk": "індекс 2006 = 100",
+    "pt": "índice 2006 = 100"
+  },
+  "children per woman": {
+    "uk": "дітей на жінку",
+    "pt": "filhos por mulher"
+  },
+  "per 1,000 people": {
+    "uk": "на 1 000 осіб",
+    "pt": "por 1.000 pessoas"
+  },
+  "per 100,000": {
+    "uk": "на 100 000 осіб",
+    "pt": "por 100 mil pessoas"
+  },
+  "% above 2015–2019 average": {
+    "uk": "% понад середнє за 2015–2019",
+    "pt": "% acima da média de 2015–2019"
+  },
+  "% of population": {
+    "uk": "% населення",
+    "pt": "% da população"
+  },
+  "Research pending: definition or coverage not verified": {
+    "uk": "Дослідження триває: визначення або охоплення не перевірено",
+    "pt": "Pesquisa pendente: definição ou cobertura ainda não verificada"
+  },
+  "data pending — run fetchers / add CSV": {
+    "uk": "дані очікуються — запустіть завантаження / додайте CSV",
+    "pt": "dados pendentes — executar extratores / adicionar CSV"
+  },
+  "2014 and 2022: territorial scope changes": {
+    "uk": "2014 і 2022: зміни територіального охоплення",
+    "pt": "2014 e 2022: mudanças de cobertura territorial"
+  },
+  "Whole-economy investment, not government investment": {
+    "uk": "Інвестиції всієї економіки, не державні інвестиції",
+    "pt": "Investimento de toda a economia, não investimento público"
+  },
+  "Goods and services, not customs merchandise trade": {
+    "uk": "Товари та послуги, не лише митна торгівля товарами",
+    "pt": "Bens e serviços, não apenas comércio aduaneiro de mercadorias"
+  },
+  "2006 = 100; higher = stronger hryvnia": {
+    "uk": "2006 = 100; вище = сильніша гривня",
+    "pt": "2006 = 100; maior = hryvnia mais forte"
+  },
+  "Annual-average headline CPI": {
+    "uk": "Загальний середньорічний ІСЦ",
+    "pt": "IPC geral médio anual"
+  },
+  "Gross fixed capital formation": {
+    "uk": "Валове нагромадження основного капіталу",
+    "pt": "Formação bruta de capital fixo"
+  },
+  "Exports: goods and services": {
+    "uk": "Експорт: товари та послуги",
+    "pt": "Exportações: bens e serviços"
+  },
+  "Imports: goods and services": {
+    "uk": "Імпорт: товари та послуги",
+    "pt": "Importações: bens e serviços"
+  },
+  "NBU annual mean USD/UAH, inverted": {
+    "uk": "НБУ, середній річний курс USD/UAH, обернений",
+    "pt": "BNU, média anual USD/UAH, invertida"
+  },
+  "Sources: State Statistics Service of Ukraine": {
+    "uk": "Джерело: Державна служба статистики України",
+    "pt": "Fonte: Serviço Estatal de Estatísticas da Ucrânia"
+  },
+  "Sources: National Bank of Ukraine": {
+    "uk": "Джерело: Національний банк України",
+    "pt": "Fonte: Banco Nacional da Ucrânia"
+  },
+  "Sources: verification in progress": {
+    "uk": "Джерела: триває перевірка",
+    "pt": "Fontes: verificação em andamento"
+  },
+  "Global financial crisis": {
+    "uk": "Світова фінансова криза",
+    "pt": "Crise financeira global"
+  },
+  "Crimea occupied; conflict in Donbas": {
+    "uk": "Окупація Криму; конфлікт на Донбасі",
+    "pt": "Ocupação da Crimeia; conflito no Donbas"
+  },
+  "COVID-19 pandemic": {
+    "uk": "Пандемія COVID-19",
+    "pt": "Pandemia de COVID-19"
+  },
+  "Russia's full-scale invasion": {
+    "uk": "Повномасштабне вторгнення Росії",
+    "pt": "Invasão em larga escala pela Rússia"
+  },
+  "scale extended": {
+    "uk": "шкалу розширено",
+    "pt": "escala ampliada"
+  },
+  "Ukraine — Economic Growth and Prices, 2006–2026": {
+    "uk": "Україна — економічне зростання та ціни, 2006–2026",
+    "pt": "Ucrânia — crescimento econômico e preços, 2006–2026"
+  },
+  "Ukraine — Public Finances, 2006–2026": {
+    "uk": "Україна — державні фінанси, 2006–2026",
+    "pt": "Ucrânia — finanças públicas, 2006–2026"
+  },
+  "Ukraine — Government Spending and Investment, 2006–2026": {
+    "uk": "Україна — державні видатки та інвестиції, 2006–2026",
+    "pt": "Ucrânia — gastos públicos e investimento, 2006–2026"
+  },
+  "Ukraine — Foreign Trade, 2006–2026": {
+    "uk": "Україна — зовнішня торгівля, 2006–2026",
+    "pt": "Ucrânia — comércio exterior, 2006–2026"
+  },
+  "Ukraine — Currency and Financial Markets, 2006–2026": {
+    "uk": "Україна — валюта та фінансові ринки, 2006–2026",
+    "pt": "Ucrânia — câmbio e mercados financeiros, 2006–2026"
+  },
+  "Ukraine — Credit and Household Debt, 2006–2026": {
+    "uk": "Україна — кредитування та борги домогосподарств, 2006–2026",
+    "pt": "Ucrânia — crédito e dívida das famílias, 2006–2026"
+  },
+  "Ukraine — Inequality, Poverty and Wages, 2006–2026": {
+    "uk": "Україна — нерівність, бідність і зарплати, 2006–2026",
+    "pt": "Ucrânia — desigualdade, pobreza e salários, 2006–2026"
+  },
+  "Ukraine — International Comparisons, 2006–2026": {
+    "uk": "Україна — міжнародні порівняння, 2006–2026",
+    "pt": "Ucrânia — comparações internacionais, 2006–2026"
+  },
+  "Ukraine — Population and Demography, 2006–2026": {
+    "uk": "Україна — населення та демографія, 2006–2026",
+    "pt": "Ucrânia — população e demografia, 2006–2026"
+  },
+  "Ukraine — Security and Safety, 2006–2026": {
+    "uk": "Україна — безпека, 2006–2026",
+    "pt": "Ucrânia — segurança, 2006–2026"
+  },
+  "Ukraine — Mortality and Causes of Death, 2006–2026": {
+    "uk": "Україна — смертність та причини смерті, 2006–2026",
+    "pt": "Ucrânia — mortalidade e causas de morte, 2006–2026"
+  },
+  "Ukraine — Migration and Displacement, 2006–2026": {
+    "uk": "Україна — міграція та переміщення, 2006–2026",
+    "pt": "Ucrânia — migração e deslocamento, 2006–2026"
+  },
+  "Real output and annual-average consumer inflation; employment remains under source review.": {
+    "uk": "Реальний випуск і середньорічна інфляція; дані про зайнятість ще перевіряються.",
+    "pt": "Produção real e inflação média anual; dados de emprego ainda estão sob revisão."
+  },
+  "General-government revenue, balance, debt and interest require comparable fiscal definitions.": {
+    "uk": "Доходи, сальдо, борг та відсотки сектору загального державного управління потребують порівнюваних визначень.",
+    "pt": "Receita, saldo, dívida e juros do governo geral exigem definições fiscais comparáveis."
+  },
+  "Whole-economy fixed investment is verified; government accounts remain under review.": {
+    "uk": "Валові інвестиції всієї економіки перевірено; державні рахунки ще аналізуються.",
+    "pt": "O investimento de toda a economia foi verificado; contas públicas permanecem em análise."
+  },
+  "Goods-and-services national accounts, separate from customs merchandise trade.": {
+    "uk": "Товари й послуги в національних рахунках окремо від митної торгівлі товарами.",
+    "pt": "Bens e serviços nas contas nacionais, distintos do comércio aduaneiro de mercadorias."
+  },
+  "The official hryvnia exchange-rate index; policy rates, bonds and equities remain under review.": {
+    "uk": "Індекс офіційного курсу гривні; облікова ставка, облігації та акції ще перевіряються.",
+    "pt": "Índice oficial de câmbio da hryvnia; juros básicos, títulos e ações seguem em análise."
+  },
+  "Household credit measures require bank-sector and coverage checks.": {
+    "uk": "Показники кредитування домогосподарств потребують перевірки банківського сектору та охоплення.",
+    "pt": "Indicadores de crédito familiar exigem verificação do setor bancário e da abrangência."
+  },
+  "Household surveys were interrupted during the full-scale invasion; gaps are not zero.": {
+    "uk": "Обстеження домогосподарств переривалися під час повномасштабного вторгнення; пропуски не означають нуль.",
+    "pt": "Pesquisas domiciliares foram interrompidas durante a invasão em larga escala; lacunas não significam zero."
+  },
+  "Comparable USD GDP, development, integrity and reserves measures remain under review.": {
+    "uk": "Зіставні показники ВВП у доларах США, розвитку, корупції та резервів ще перевіряються.",
+    "pt": "PIB comparável em dólares, desenvolvimento, corrupção e reservas permanecem em análise."
+  },
+  "Wartime displacement and statistical geography require denominator reconciliation.": {
+    "uk": "Переміщення населення під час війни та географія збору даних потребують узгодження знаменників.",
+    "pt": "Deslocamentos na guerra e geografia estatística exigem compatibilização dos denominadores."
+  },
+  "Police reports and certified causes of death are distinct statistical systems.": {
+    "uk": "Поліцейські повідомлення і засвідчені причини смерті належать до різних статистичних систем.",
+    "pt": "Registros policiais e causas certificadas de morte pertencem a sistemas estatísticos diferentes."
+  },
+  "Civil registration, wartime completeness and pandemic definitions require review.": {
+    "uk": "Реєстрація актів цивільного стану, повнота даних під час війни та визначення пандемії потребують перевірки.",
+    "pt": "Registro civil, completude durante a guerra e definições da pandemia exigem revisão."
+  },
+  "Border crossings, migration flows, refugee stocks and internal displacement must not be conflated.": {
+    "uk": "Перетини кордону, потоки міграції, чисельність біженців і внутрішнє переміщення не можна змішувати.",
+    "pt": "Travessias de fronteira, fluxos migratórios, estoques de refugiados e deslocamento interno não devem ser confundidos."
+  }
+}
