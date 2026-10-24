@@ -7,6 +7,10 @@ on:
       - feat/ukraine-atlas
     paths:
       - "countries/ukraine/**"
+      - "core/i18n.py"
+      - "core/numstyle.py"
+      - "core/sitebuild.py"
+      - "core/style.py"
       - ".github/workflows/ukraine-preflight.yml"
   workflow_dispatch:
 
@@ -35,11 +39,24 @@ jobs:
       - name: Check change scope against fork main
         run: |
           git diff --name-only origin/main...HEAD > /tmp/changed.txt
-          grep -vE '^countries/ukraine/|^[.]github/workflows/ukraine-preflight[.]yml$|^core/style[.]py$' /tmp/changed.txt > /tmp/unexpected.txt || true
+          grep -vE '^countries/ukraine/|^[.]github/workflows/ukraine-preflight[.]yml$|^core/(style|i18n|numstyle|sitebuild)[.]py$' /tmp/changed.txt > /tmp/unexpected.txt || true
           if test -s /tmp/unexpected.txt; then
             cat /tmp/unexpected.txt
             exit 1
           fi
+
+  locale-integration-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install pinned atlas rendering and test dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Regress all published number styles and Ukrainian locale
+        run: python -m pytest -q tests/test_numbers.py countries/ukraine/integration/test_uk_locale.py
 
   live-source-discovery:
     if: ${{ github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[research]') }}
