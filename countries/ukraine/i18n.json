@@ -474,5 +474,21 @@
   "Research-stage panels for migration flows, net migration and the foreign-born population.": {
     "uk": "Дослідницькі панелі міграційних потоків, сальдо міграції та частки народжених за кордоном.",
     "pt": "Painéis de pesquisa sobre fluxos migratórios, migração líquida e residentes nascidos no exterior."
+  },
+  "Official year-end policy rate and exchange-rate index; government bonds and equities still under review.": {
+    "uk": "Офіційну облікову ставку на кінець року й індекс валютного курсу перевірено; державні облігації та акції ще аналізуються.",
+    "pt": "Taxa básica oficial no fim do ano e índice cambial verificados; títulos públicos e ações continuam em análise."
+  },
+  "Four panels: official year-end NBU policy rate against annual-average CPI, plus the hryvnia index; bonds and equities pending.": {
+    "uk": "Чотири панелі: офіційна облікова ставка НБУ на кінець року поруч із середньорічним ІСЦ та індекс гривні; облігації й акції очікують перевірки.",
+    "pt": "Quatro painéis: taxa básica do BNU no fim do ano comparada ao IPC médio anual e índice da hryvnia; títulos e ações pendentes."
+  },
+  "Policy rate at year-end; inflation is an annual average": {
+    "uk": "Ставка на кінець року; інфляція — середнє за рік",
+    "pt": "Juros no fim do ano; inflação é média anual"
+  },
+  "NBU key rate, year-end": {
+    "uk": "Облікова ставка НБУ на кінець року",
+    "pt": "Taxa básica do BNU no fim do ano"
   }
 }
