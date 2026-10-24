@@ -17,6 +17,7 @@ TERRITORY_NOTE = "2014 and 2022: territorial scope changes"
 NOT_GOVERNMENT = "Whole-economy investment, not government investment"
 IMPORT_NOTE = "Goods and services, not customs merchandise trade"
 FX_NOTE = "2006 = 100; higher = stronger hryvnia"
+POLICY_NOTE = "Policy rate at year-end; inflation is an annual average"
 
 
 def _values(ctx, relative: str, column: str) -> tuple[list[int], list[float]]:
@@ -121,6 +122,21 @@ def _plot(ctx, ig, key, ax):
                  lambda v: ctx.p.GREEN if v >= 0 else ctx.p.RED)
         return _small_note(ctx, ax, TERRITORY_NOTE)
 
+    if key == "markets.policy_rate":
+        years, rates = _values(ctx, "markets/policy_rate.csv",
+                               "policy_rate_eoy_pct")
+        cyears, inflation = _values(ctx, "macro/cpi.csv",
+                                   "annual_inflation_pct")
+        if not years or not cyears:
+            return _missing(ctx, ax)
+        _line(ctx, ax, years, rates, ctx.p.BLUE,
+              label="NBU key rate, year-end")
+        _line(ctx, ax, cyears, inflation, ctx.p.RED,
+              label="Annual-average headline CPI", seams=(2014, 2022))
+        _small_note(ctx, ax, POLICY_NOTE)
+        ax.legend(loc="upper right", fontsize=7.6)
+        return
+
     if key == "markets.currency":
         years, values = _values(ctx, "markets/fx.csv",
                                 "avg_uah_per_usd")
@@ -198,8 +214,8 @@ PLATES = (
          source=SSSU),
     dict(slug="05_markets", topic="markets", builder=fig_markets,
          title="Ukraine — Currency and Financial Markets, 2006–2026",
-         subtitle="The official hryvnia exchange-rate index; policy rates, bonds and equities remain under review.",
-         alt="Four panels: official hryvnia value versus the dollar indexed to 2006; financial interest and equity series pending.",
+         subtitle="Official year-end policy rate and exchange-rate index; government bonds and equities still under review.",
+         alt="Four panels: official year-end NBU policy rate against annual-average CPI, plus the hryvnia index; bonds and equities pending.",
          source=NBU),
     dict(slug="06_credit", topic="credit", builder=fig_credit,
          title="Ukraine — Credit and Household Debt, 2006–2026",
