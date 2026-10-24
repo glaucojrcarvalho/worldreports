@@ -2,7 +2,7 @@
 
 Research date: 2026-10-24. Related proposal: https://github.com/akitaonrails/worldreports/issues/1
 
-**Status: Phase A. Three curated national series: NBU USD/UAH annual averages (2006–2025), SSSU real GDP growth (2011–2024), and SSSU nominal GDP (2010–2024). CPI and other chapters remain unverified. Ukraine is not registered or published yet.** This folder intentionally lacks `country.yaml` so it is not registered by `core.country.Country.all()` until the required datasets, plate implementation and localization are verified. Follow `SOURCING_A_COUNTRY.md`, `COUNTRIES.md`, `ADDING_A_COUNTRY.md`, `AGENTS.md`, `PLATE_SPINE.md`.
+**Status: Phase A. Six curated national datasets: official NBU FX (2006–2025), Ukrstat GDP growth (2011–2024), nominal GDP (2010–2024), annual-average CPI (2006–2025), goods-and-services national-accounts trade (2010–2024), and whole-economy GFCF (2010–2024). Other chapters are pending. Ukraine is not registered or published yet.** This folder intentionally lacks `country.yaml` so it is not registered by `core.country.Country.all()` until the required datasets, plate implementation and localization are verified. Follow `SOURCING_A_COUNTRY.md`, `COUNTRIES.md`, `ADDING_A_COUNTRY.md`, `AGENTS.md`, `PLATE_SPINE.md`.
 
 ## First accepted curated series: official NBU USD/UAH (2006–2025)
 
@@ -60,6 +60,23 @@ Source: [official SSSU SDMX documentation](https://stat.gov.ua/en/development-ap
 From the same official `SSSU:DF_ANNUAL_NATIONAL_ACCOUNTS(7.0.0)` release, a distinct query with `INDICATOR=GDP_CUR_PRC`, `PRICE_TYPE=CURR_PRICES`, and the same total-economy/Ukraine/annual dimensions returned **15 observations for 2010–2024**. Its unit fields differ from the real growth index: `UNITS_OF_MEASURE=1090` and `SCALE=6`, meaning nominal GDP is reported in **millions of hryvnias**. Source anchors: 2010 = 1,079,346; 2022 = 5,239,114; 2024 = **7,662,376 million UAH**. These were checked against the actual SDMX-CSV and the public 2024 indicator release. No nominal 2006–2009 or 2025 row was returned by this exact selection.
 
 The accepted `data/macro/gdp_nominal.csv` and corresponding `fetch/fetch_sssu_gdp_nominal.py` preserve the source vintage and territorial scope. The fetcher writes only a review sidecar. This nominal local-currency level may support appropriately denominated national indicators, but it must **not** be passed to an international GDP-in-US$ comparison slot as though it had that unit. A comparable USD measure requires separate source verification and a documented conversion.
+
+## Fourth accepted series: official annual-average consumer price inflation (2006–2025)
+
+The exact SSSU SDMX source `DF_PRICE_CHANGE_CONSUMER_GOODS_SERVICE(27.2.0)` was fetched for `INDICATOR=INDEX_CONSUMPRICE`, `BASE_PERIOD=PREV_YEAR`, `REGION=UA00000000000000000`, `GOODS_SERVICES_TYPE=0`, and `FREQ=A`. This is **yearly average consumer-price change compared with the previous year's average**, *not* December-to-December or month-to-month inflation.
+
+The source returned all 20 calendar years 2006–2025 on `UNITS_OF_MEASURE=1010`, `SCALE=0`. The accepted `data/macro/cpi.csv` preserves the underlying index as well as `annual_inflation_pct = cpi_index_prev_year - 100`. Anchors: 2008=25.2%, 2015=48.7%, 2022=20.2%, 2024=6.5%, 2025=12.7%. The source publisher notes territorial collection limitations around 2014 and 2022. The sidecar fetcher is `fetch/fetch_sssu_cpi.py`; CI re-fetches and byte-compares it with the curated snapshot.
+
+## Fifth and sixth accepted series: trade and investment (2010–2024)
+
+The national-accounts dataflow also exposes *exports of goods and services* (`EXPORT_GOODS_SERV`), *imports of goods and services* (`IMPORT_GOODS_SERV`) and whole-economy gross fixed capital formation (`GRS_FIX_CAP_FOR`). We verified **15 observations each**, 2010–2024, with `PRICE_TYPE=CURR_PRICES`, the Ukraine total, `UNITS_OF_MEASURE=1090`, and `SCALE=6` (million UAH). All share the same publication vintage and territory as the curated nominal GDP denominator.
+
+- `data/trade/trade_na.csv` carries exports, imports and their balance **as % of GDP**, plus the publisher's raw million-UAH amounts. Import observations are positive magnitudes even though the national-accounts label includes “(−)”; therefore `balance = exports - imports`. This is *not* customs goods-only trade or a balance-of-payments basis. For 2024, exports=2,273,580 million UAH, imports=3,832,450 million, nominal GDP=7,662,376 million, giving balance **−20.3445% of GDP**.
+- `data/spending/investment.csv` contains whole-economy GFCF as a share of same-vintage GDP, with its raw amount. For 2024, GFCF=1,414,286 million UAH or **18.4575% of GDP**. This is **not** general-government GFCF, so the government-investment canonical slot remains unfilled.
+
+The new fetcher `fetch/fetch_sssu_macro_ratios.py` validates all three official series and their denominator before staging separate review-only CSVs. CI re-extracts and byte-compares both with their accepted snapshots.
+
+**New cross-country chart issue:** the current `trade.balance` canonical range is −15% to +15%. Ukraine's accepted national-accounts balance falls below the lower bound in 2022 (−16.5063%), 2023 (−20.9087%) and 2024 (−20.3445%). As with the 2022 real GDP contraction, fix the **shared scale** for all countries together before rendering Ukraine; never clip or privately rescale Ukraine's chart.
 
 ## Confirmed official access routes
 
