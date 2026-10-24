@@ -200,7 +200,8 @@ def main() -> None:
     parser.add_argument("--live", action="store_true", help="Explicit opt-in to read-only API calls")
     options = parser.parse_args()
     if not options.live:
-        parser.error("Pass --live to query official APIs; no network calls occur by default")
+        print("Ukraine SDMX/NBU discovery: skipped (run with --live to query official APIs)")
+        return
     result = run_live()
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     REPORT.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
