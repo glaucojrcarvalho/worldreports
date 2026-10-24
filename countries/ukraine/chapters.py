@@ -47,9 +47,9 @@ CARDS = (
       "A invasão em larga escala interrompeu pesquisas domiciliares; ausência de dados não significa zero.")),
     ("08_world", "world", WORLD,
      ("Ukraine in the World", "Україна у світі", "Ucrânia no mundo"),
-     ("Internationally comparable GDP, development, integrity and reserves sources are being reconciled.",
-      "Джерела зіставних показників ВВП, розвитку, сприйняття корупції та резервів перевіряються.",
-      "Fontes comparáveis de PIB, desenvolvimento, percepção de corrupção e reservas estão em verificação.")),
+     ("Official reserves are verified; comparable GDP, human development and corruption sources remain under review.",
+      "Офіційні резерви перевірено; зіставні показники ВВП, людського розвитку й корупції ще аналізуються.",
+      "Reservas oficiais verificadas; PIB comparável, desenvolvimento humano e corrupção seguem em análise.")),
     ("09_demographics", "demography", PEOPLE,
      ("Population and Demography", "Населення й демографія", "População e demografia"),
      ("Population denominators and wartime territorial coverage require careful reconciliation.",
@@ -103,6 +103,11 @@ def _specs(ctx):
                 (("Trade balance, goods and services", "Баланс торгівлі товарами та послугами", "Saldo de bens e serviços"),
                  "trade/trade_na.csv", "balance_pct_gdp", "pct_gdp_s"),
             ]),
+        "world": (
+            "macro/reserves.csv", "usd_bn",
+            [(("Official reserves, year-end", "Офіційні резерви на кінець року", "Reservas oficiais no fim do ano"),
+              "macro/reserves.csv", "usd_bn", "usd_bn")],
+        ),
         "markets": (
             "markets/policy_rate.csv", "policy_rate_eoy_pct",
             [
@@ -123,6 +128,8 @@ def headline(ctx) -> list[dict]:
                  ctx.col("macro/cpi.csv", "annual_inflation_pct"), "pct"),
         ctx.stat(_lang(("Trade balance, goods and services", "Баланс торгівлі товарами та послугами", "Saldo de bens e serviços")),
                  ctx.col("trade/trade_na.csv", "balance_pct_gdp"), "pct_gdp_s"),
+        ctx.stat(_lang(("Official reserves, year-end", "Офіційні резерви на кінець року", "Reservas oficiais no fim do ano")),
+                 ctx.col("macro/reserves.csv", "usd_bn"), "usd_bn"),
     ]
 
 
