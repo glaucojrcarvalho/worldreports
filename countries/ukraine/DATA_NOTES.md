@@ -105,6 +105,17 @@ especially section **2.3, pages 34–37**, with:
 
 All 15 annual ten-category sums reconcile with the same-year functional
 total within **0.3 million UAH** (source presentation rounding).
+An additional independent source check: the official
+[Open Budget consolidated portal](https://openbudget.gov.ua/?budgetType=CONSOLIDATED&month=12&year=2025)
+lists **2025 defence = 3,069,857,418,255.98 UAH**, matching the NBU
+defence series to 0.1 million. But its displayed **total =
+5,999,467.1 million UAH**, versus the NBU functional reported total
+**6,006,387.3 million UAH**. The **6,920.2 million UAH difference
+is unresolved** (possibly a different extraction/classification or
+revision vintage). Do not describe the 2025 overall total as
+independently reconciled with the portal. Keep the NBU series intact
+and investigate the discrepancy before upstream publication.
+
 The economic-classification total `gf_budgtee_Total` does not agree
 exactly (for example, the 2023 fiscal-year observation is 4,433,206.4
 million UAH); its variance is not discarded or blended into the
