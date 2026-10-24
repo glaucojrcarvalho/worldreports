@@ -27,7 +27,7 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -47,6 +47,8 @@ jobs:
           python -m unittest discover -s countries/ukraine/tests -p test_vital_source.py -v
           python -m pytest -q tests/test_spine.py -k ukraine
           git diff --check
+      - name: Run fast repository-wide Python and JavaScript gates
+        run: make test-fast
       - name: Commit only regenerated Ukrainian demography and provenance to the fork
         if: github.ref == 'refs/heads/feat/ukraine-demography-followup'
         run: |
