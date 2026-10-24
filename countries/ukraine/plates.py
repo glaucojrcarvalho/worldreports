@@ -197,10 +197,11 @@ def plate_demography(ctx, ig) -> None:
                            if i == 0 else "_nolegend_")
     ig.add_recessions(ax, label=False)
     ax.axvline(2014, color=p.FAINT, lw=0.9, ls=":", zorder=2)
+    ctx.endlabel(ax, fy, fv, p.GOLD, lambda v: f"{v:.2f}", dy=8)
     _note(p, ax, 0.02, 0.96,
-          f"{fv[-1]:.2f} children per woman in {fy[-1]};\n"
-          "2022–2025 withheld by Ukrstat", size=7.8)
-    _foot(p, ax, "SSSU PNMI_3341, children per woman; 2014 scope break")
+          "The source fertility rate stops in 2021;\n"
+          "2022–2025 were suppressed", size=7.8)
+    _foot(p, ax, "Ukrstat fertility; 2014 geographical scope break")
 
     ax = ig.slot("demography.birth_death", "Crude birth and death rates "
                  "(per 1,000 people)")
@@ -221,12 +222,12 @@ def plate_demography(ctx, ig) -> None:
     ig.add_recessions(ax, label=False)
     ax.axvline(2014, color=p.FAINT, lw=0.9, ls=":", zorder=2)
     ax.legend(loc="upper right", fontsize=7.6)
+    ctx.endlabel(ax, by, bv, p.BLUE, lambda v: f"{v:.1f}", dy=-8)
+    ctx.endlabel(ax, dy, dv, p.ALERT, lambda v: f"{v:.1f}", dy=8)
     _note(p, ax, 0.02, 0.96,
-          f"{_at(by, bv, 2021):.1f} births and "
-          f"{_at(dy, dv, 2021):.1f} deaths per 1,000 in 2021;\n"
-          "2022–2025 rates withheld, not zero", size=7.6)
-    _foot(p, ax, "SSSU PNMI_32 / PNMI_46; published same-scope "
-          "rates, no modelled denominators")
+          "Publisher's crude rates stop in 2021;\n"
+          "2022–2025 suppressed, not zero", size=7.6)
+    _foot(p, ax, "Ukrstat national rates per 1,000 present residents")
 
     ax = ig.slot("demography.natural_migration",
                  "Natural increase and net migration (per 1,000 people)")
