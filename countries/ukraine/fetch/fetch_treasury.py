@@ -38,12 +38,19 @@ REQUIRED = frozenset(("dt", "txt", "txten", "id_api", "leveli",
                       "parent", "freq", "mcr200p", "tzep", "value"))
 # Ministry of Finance, Budget of Ukraine 2024, §2.3 pp. 34–37:
 # https://mof.gov.ua/storage/files/Badgef%20of%20Ukraine2024.pdf
+# The 2025 annual published edition independently checks the NBU vintage:
+# https://www.mof.gov.ua/storage/files/4_%D0%97%D0%91_%D1%80%D1%96%D0%BA_%D1%81%D0%B0%D0%B9%D1%82_25.xlsx
 # Independent anchors also prove the NBU's year-end timestamp convention.
 ANCHORS = {
     (2023, "gf_budgtef_0200"): Decimal("2097621.9"),
     (2023, TOTAL): Decimal("4441364.6"),
     (2024, "gf_budgtef_0200"): Decimal("2305242.7"),
     (2024, TOTAL): Decimal("4945680.7"),
+    # MoF annual consolidated outturn workbook for 2025, sheet "2025 рік".
+    # This is the REVISED ANNUAL edition, not its earlier December release.
+    (2025, "gf_budgtef_0200"): Decimal("3069857.4"),
+    (2025, "gf_budgtef_0400"): Decimal("264998.3"),
+    (2025, TOTAL): Decimal("6006387.3"),
 }
 
 
