@@ -9,8 +9,9 @@ This is a NATIONAL PUBLIC BUDGET cash-basis series, NOT IMF harmonised
 general-government accrual fiscal statistics; its stated geographic coverage
 excludes the left-bank Nistru districts and Bender.
 
-Only a review sidecar is written: data/fiscal/public_budget_from_bns.csv.
-No curated dataset or plate is automatically modified. Metadata is
+Only review sidecars are written: data/fiscal/public_budget_from_bns.csv
+and data/fiscal/budget_summary_from_bns.csv. No curated dataset or plate is
+automatically modified. Metadata is
 re-checked against the publisher at every run, and anchor changes fail closed.
 """
 from __future__ import annotations
@@ -25,6 +26,7 @@ API = ("https://statbank.statistica.md/PxWeb/api/v1/en/"
        "40%20Statistica%20economica/25%20FIN/FIN010100.px")
 METADATA_SNAPSHOT = Path(__file__).with_name("fin010100_metadata.json")
 OUTPUT = ROOT / "data" / "fiscal" / "public_budget_from_bns.csv"
+SUMMARY = ROOT / "data" / "fiscal" / "budget_summary_from_bns.csv"
 YEAR_FROM, YEAR_TO = 2016, 2025
 
 # BNS integer category codes, not positional label guesses. DO NOT include
@@ -205,6 +207,29 @@ def render(rows: dict[int, dict[str, float]]) -> str:
     return "\n".join(lines) + "\n"
 
 
+def render_summary(rows: dict[int, dict[str, float]]) -> str:
+    """Fiscal sidecar matching the curated BNS snapshot's schema.
+
+    Editions before 2024 have NOT been checked against the BNS's release
+    register, so their edition stays 'unverified', not an invented 'final'.
+    """
+    lines = [
+        "# BNS FIN010100 Jan-Dec, million MDL, national public budget cash perimeter.",
+        "# Geography excludes left-bank Nistru districts and Bender.",
+        "# This is not IMF general-government accrual data.",
+        "# 2024 final, 2025 preliminary according to BNS published overview.",
+        "year,revenue_mdl_mn,expenditure_mdl_mn,balance_mdl_mn,edition",
+    ]
+    status = {2024: "final", 2025: "preliminary"}
+    for year in sorted(rows):
+        row = rows[year]
+        amount = [f"{row[key]:.1f}" for key in (
+            "revenue_mdl_mn", "expenditure_mdl_mn", "balance_mdl_mn")]
+        lines.append(f"{year}," + ",".join(amount) + "," +
+                     status.get(year, "unverified"))
+    return "\n".join(lines) + "\n"
+
+
 def main() -> None:
     saved = json.loads(METADATA_SNAPSHOT.read_text(encoding="utf-8"))
     saved_mapping = validate_metadata(saved)
@@ -218,7 +243,9 @@ def main() -> None:
     verify_budget(rows)
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(render(rows), encoding="utf-8")
+    SUMMARY.write_text(render_summary(rows), encoding="utf-8")
     print(f"{OUTPUT.relative_to(ROOT)}: {len(rows)} annual rows; REVIEW ONLY")
+    print(f"{SUMMARY.relative_to(ROOT)}: {len(rows)} annual rows; REVIEW ONLY")
     print("No curated fiscal series was modified.")
 
 
