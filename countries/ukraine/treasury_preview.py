@@ -28,7 +28,7 @@ TEXT = {
         "Defence", "All other functions", "Defence share of functional total (%)",
         "National Treasury classification; NOT IMF general-government accrual or COFOG",
         "Source: State Treasury via NBU budget API; MoF Budget of Ukraine 2024, §2.3",
-        "2025: NBU total exceeds Open Budget by UAH 6.92bn; reconciliation pending.",
+        "2025: MoF annual matches NBU; earlier December edition was UAH 6.92bn lower.",
     ),
     "uk": (
         "Україна — видатки зведеного бюджету",
@@ -37,7 +37,7 @@ TEXT = {
         "Оборона", "Інші функції", "Частка оборони у видатках (%)",
         "Національна класифікація Казначейства; НЕ облік за МВФ чи COFOG",
         "Джерело: Казначейство через API НБУ; Мінфін, Бюджет України 2024, §2.3",
-        "2025: сума НБУ перевищує Open Budget на 6,92 млрд грн; звірка триває.",
+        "2025: річний звіт Мінфіну підтверджує НБУ; груднева редакція менша на 6,92 млрд грн.",
     ),
     "pt": (
         "Ucrânia — despesas do orçamento consolidado",
@@ -46,7 +46,7 @@ TEXT = {
         "Defesa", "Outras funções", "Participação da defesa no total (%)",
         "Classificação nacional do Tesouro; NÃO são contas de competência do FMI/COFOG",
         "Fonte: Tesouro via API do NBU; Min. das Finanças, Budget of Ukraine 2024, §2.3",
-        "2025: total do NBU supera o portal Open Budget em UAH 6,92 bi; conciliação pendente.",
+        "2025: relatório anual do Ministério confirma o NBU; dezembro anterior era UAH 6,92 bi menor.",
     ),
 }
 
