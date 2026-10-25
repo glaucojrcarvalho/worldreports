@@ -1,0 +1,140 @@
+{
+  "_source": "https://statbank.statistica.md/PxWeb/api/v1/en/40%20Statistica%20economica/25%20FIN/FIN010100.px",
+  "_verified_at": "2026-10-26",
+  "_purpose": "Recorded publisher's metadata; current endpoints must still be checked on every refetch.",
+  "title": "Execution of national public budget, 2016-2026",
+  "variables": [
+    {
+      "code": "Indicatori",
+      "text": "Indicator",
+      "values": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "valueTexts": [
+        "Revenues",
+        "..Fees and taxes",
+        "... income tax",
+        "... taxes on property",
+        "...fees and taxes on goods and services",
+        ".value added tax",
+        ".excises",
+        ".fees for specific services",
+        ".fees and payments for the use of the goods and for practicingof certain types of activity",
+        ".other fees on goods and services",
+        "...fees on external trade and external operations",
+        "..Compulsory insurance contributions and premiums",
+        ".. Grants received",
+        "..Other incomes",
+        "...property income",
+        "...income from the sale of goods and services",
+        "...fines and penalities",
+        "... voluntary donations",
+        "...other incomes",
+        "Expenditures and non-financial assets",
+        "..General state services",
+        "..National defense",
+        "..Public order and national security",
+        "..Services in the field of economy economics",
+        "..Environment protection",
+        "..Housing and communal services",
+        ".. Health care",
+        "..Culture, sports, youth, cults and rest",
+        "..Education",
+        "..Social protection",
+        "Surplus (+), deficit (-)"
+      ],
+      "elimination": true
+    },
+    {
+      "code": "Ani",
+      "text": "Annual",
+      "values": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "valueTexts": [
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "time": true
+    },
+    {
+      "code": "Perioade",
+      "text": "quarterly",
+      "values": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "valueTexts": [
+        "January-March",
+        "January-June",
+        "January-September",
+        "January-December"
+      ]
+    },
+    {
+      "code": "Unitatea de masura",
+      "text": "Unit of measurement",
+      "values": [
+        "0",
+        "1",
+        "2"
+      ],
+      "valueTexts": [
+        "Million lei",
+        "In percentage compared to the total",
+        "In percentages the corresponding period of the previous year = 100"
+      ]
+    }
+  ]
+}
