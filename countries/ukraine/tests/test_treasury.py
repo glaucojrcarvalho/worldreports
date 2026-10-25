@@ -1,7 +1,7 @@
 """Offline regression contracts for Ukraine Treasury cash functional expenditure.
 
-No fixture data is represented as publisher history other than the four
-2023/2024 Ministry of Finance anchors; synthetic rows test parser safeguards.
+Synthetic fixture rows exercise parser safeguards; only the 2023–2025
+Ministry of Finance anchors represent actual independently published values.
 """
 from __future__ import annotations
 
@@ -29,11 +29,15 @@ def sample(change=None, omit=None, duplicate=None):
                 continue
             amount = anchors.get(key, Decimal("1000") if code == treasury.TOTAL
                                  else Decimal("100"))
-            # For anchor years, synthesize the OTHER categories to reconcile
-            # independently checked totals without pretending they were observed.
-            if year in (2023, 2024) and key not in anchors:
+            # Fill all OTHER synthetic categories so the independent
+            # publisher anchors reconcile without fabricating observations.
+            if year in (2023, 2024, 2025) and key not in anchors:
+                anchored_categories = [(year, c) for c, _ in treasury.CATEGORIES
+                                       if (year, c) in anchors]
+                remainder_count = len(treasury.CATEGORIES) - len(anchored_categories)
                 amount = ((anchors[(year, treasury.TOTAL)] -
-                           anchors[(year, "gf_budgtef_0200")]) / Decimal("9"))
+                           sum((anchors[k] for k in anchored_categories), Decimal(0)))
+                          / Decimal(remainder_count))
             row = {"dt": f"{year + 1}0101", "txt": "Функція",
                    "txten": "Treasury expenditure",
                    "id_api": code, "leveli": 1 if code == treasury.TOTAL else 2,
@@ -81,11 +85,16 @@ class TreasuryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Incomplete"):
             treasury.parse(sample(omit=key))
 
-    def test_independent_official_anchors_must_match_both_years(self):
-        for year in (2023, 2024):
+    def test_independent_official_anchors_must_match_all_years(self):
+        for year in (2023, 2024, 2025):
             key = (year, "gf_budgtef_0200")
             with self.assertRaisesRegex(ValueError, "Ministry of Finance anchor"):
                 treasury.parse(sample(change=(key, {"value": "1"})))
+
+    def test_2025_annual_economic_affairs_anchor(self):
+        key = (2025, "gf_budgtef_0400")
+        with self.assertRaisesRegex(ValueError, "Ministry of Finance anchor"):
+            treasury.parse(sample(change=(key, {"value": "258106.1"})))
 
     def test_totals_do_not_permit_accounting_scope_substitution(self):
         key = (2019, "gf_budgtef_0200")
