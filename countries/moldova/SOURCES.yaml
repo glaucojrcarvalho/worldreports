@@ -1,0 +1,121 @@
+# Moldova — reviewed international comparable series, research Phase A.
+# Cross-country layer is NOT a substitute for data from Moldova's own agencies.
+# API source: World Bank World Development Indicators, sourceid=2;
+# live payloads inspected 2026-10-26, lastupdated=2026-10-08.
+#
+# Each CSV below is the reviewed 2006–2025 API snapshot, with blank cells
+# for unavailable years. fetch/fetch_wdi.py regenerates only *_from_wb.csv
+# sidecars, never overwriting these committed CSVs.
+#
+# No country.yaml/plates.py exists yet: Moldova is not a published atlas.
+# Every displayed series must be checked against its relevant NATIONAL
+# publisher and precise territorial definition before rendering.
+macro:
+  economy.csv:
+    source: "World Bank WDI (source 2), NY.GDP.MKTP.KD.ZG, FP.CPI.TOTL.ZG, SL.UEM.TOTL.ZS, NE.GDI.FTOT.ZS"
+    url: "https://api.worldbank.org/v2/country/MDA/indicator/NY.GDP.MKTP.KD.ZG?format=json"
+    official: false
+    refreshed_by: fetch/fetch_wdi.py
+    notes: >-
+      World Bank comparable: GDP growth, CPI inflation, ILO-modelled
+      unemployment and gross fixed capital formation as share of GDP.
+      Not the same perimeter/vintage as Moldova's BNS national indicators.
+      BNS's 2025 real-growth release rounds 2.416497% to 2.4%.
+world:
+  world.csv:
+    source: "World Bank WDI, NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, FI.RES.TOTL.CD"
+    url: "https://api.worldbank.org/v2/country/MDA/indicator/NY.GDP.MKTP.CD?format=json"
+    official: false
+    refreshed_by: fetch/fetch_wdi.py
+    notes: >-
+      Current US$ GDP, GDP per person, total reserves including gold, current US$.
+      WB GDP in dollars is not BNS current-price GDP in MDL.
+people:
+  gini.csv:
+    source: "World Bank WDI, SI.POV.GINI (harmonised household-survey Gini)"
+    url: "https://api.worldbank.org/v2/country/MDA/indicator/SI.POV.GINI?format=json"
+    official: false
+    refreshed_by: fetch/fetch_wdi.py
+    notes: >-
+      World Bank survey-based inequality series. 2025 unavailable in
+      the 2026-10-08 WDI release and must stay blank.
+trade:
+  trade.csv:
+    source: "World Bank WDI, NE.EXP.GNFS.ZS and NE.IMP.GNFS.ZS"
+    url: "https://api.worldbank.org/v2/country/MDA/indicator/NE.EXP.GNFS.ZS?format=json"
+    official: false
+    refreshed_by: fetch/fetch_wdi.py
+    notes: >-
+      National-accounts exports/imports of GOODS AND SERVICES as % of GDP.
+      Not comparable to BNS merchandise-only customs trade by partner.
+demography:
+  demography.csv:
+    source: "World Bank WDI/UN population, SP.POP.TOTL, SP.DYN.TFRT.IN, SP.DYN.CBRT.IN, SP.DYN.CDRT.IN"
+    url: "https://api.worldbank.org/v2/country/MDA/indicator/SP.POP.TOTL?format=json"
+    official: false
+    refreshed_by: fetch/fetch_wdi.py
+    notes: >-
+      WB mid-year population and harmonised births/deaths/fertility.
+      Scope reconciliation is MANDATORY: the BNS 2024 census counts
+      2,409,207 usual residents on 2024-04-08 but omits 157 localities
+      not under de facto constitutional control. WB 2024 mid-year
+      population is 2,402,306, and it is not a census count.
+      Do not splice those populations or derive migration from the difference.
+mortality:
+  mortality.csv:
+    source: "World Bank WDI/UN population, SP.DYN.CDRT.IN and SP.DYN.LE00.IN"
+    url: "https://api.worldbank.org/v2/country/MDA/indicator/SP.DYN.CDRT.IN?format=json"
+    official: false
+    refreshed_by: fetch/fetch_wdi.py
+    notes: >-
+      Crude death rate per 1,000 people and life expectancy at birth.
+      As of WDI lastupdated 2026-10-08, both stop in 2024.
+      BNS national registered deaths are a separate perimeter/source.
+security:
+  security.csv:
+    source: "World Bank WDI via UNODC and WHO, VC.IHR.PSRC.P5, SH.STA.SUIC.P5, SH.STA.TRAF.P5"
+    url: "https://api.worldbank.org/v2/country/MDA/indicator/VC.IHR.PSRC.P5?format=json"
+    official: false
+    refreshed_by: fetch/fetch_wdi.py
+    notes: >-
+      Rates per 100,000: homicides stop in 2023, suicide in 2021,
+      road deaths in 2019. Missing annual records stay blank.
+      Verify each numerator/denominator against national and WHO/UNODC
+      territorial and definition metadata before any official plate.
+migration:
+  migration.csv:
+    source: "World Bank WDI/UN, SM.POP.NETM (annual modeled net migration), SM.POP.TOTL (international migrant stock)"
+    url: "https://api.worldbank.org/v2/country/MDA/indicator/SM.POP.NETM?format=json"
+    official: false
+    refreshed_by: fetch/fetch_wdi.py
+    notes: >-
+      Annual UN-modelled net migration is not a measured BNS registry
+      immigration minus emigration flow. International migrant stock
+      is only published for 2010, 2015, 2020 and 2024: snapshots, not
+      intervening annual values. Do not extrapolate/interpolate.
+meta:
+  phase: A
+  status: research_only_not_an_atlas_edition
+  last_checked: "2026-10-26"
+  wdi_vintage: "2026-10-08"
+  pending:
+    - name: "BNS Statbank FIN010100 official national public budget 2016–2026"
+      publisher: "National Bureau of Statistics / Ministry of Finance"
+      url: "https://statbank.statistica.md/PxWeb/pxweb/en/40%20Statistica%20economica/40%20Statistica%20economica__25%20FIN/FIN010100.px/"
+      notes: >-
+        Site confirms table and distinct unit (million MDL and percent GDP)
+        and explicit exclusion of left-bank Nistru and Bender districts.
+        Need API metadata/coded categories before POSTing narrow queries;
+        public HTML numbers for 2024/25 separately verified in DISCOVERY.md.
+    - name: "National bank exchange rates, monetary and credit series"
+      publisher: "National Bank of Moldova"
+      url: "https://www.bnm.md/bdi/pages/reports/dovre/DOVRE8.xhtml?lang=en"
+      notes: "Generator confirmed, exported time-series request parameters pending."
+    - name: "IMF general-government fiscal comparable"
+      publisher: "IMF World Economic Outlook, October 2026 vintage"
+      url: "https://data.imf.org/datasets/WEO"
+      notes: "Do not substitute national public budget cash balance for general-government IMF balance."
+    - name: "BNS resident population and territorial concordance"
+      publisher: "National Bureau of Statistics"
+      url: "https://statistica.gov.md/en/final-results-of-the-2024-population-and-housing-census-geographical-distributio-10121_61877.html"
+      notes: "Census on 2024-04-08 excludes 157 localities; check each national statistical-series perimeter."
