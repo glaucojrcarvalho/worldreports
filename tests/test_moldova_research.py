@@ -118,7 +118,7 @@ def test_bns_2024_2025_fiscal_outturns_are_explicitly_editioned() -> None:
         assert get(rows, year, "balance_mdl_mn") == balance
         assert abs(revenue - expenditure - balance) < 0.1
     text = (MOLDOVA / "data" / "fiscal" / "budget_summary.csv").read_text("utf-8")
-    assert "not IMF" in text.lower()
+    assert "not imf" in text.lower()
     assert "left-bank Nistru" in text
     assert "PRELIMINARY" in text
 
