@@ -50,7 +50,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: treasury-cross-publisher-audit
-          path: countries/ukraine/fetch/cache/treasury_reconciliation_check.csv
+          path: |
+            countries/ukraine/fetch/cache/treasury_reconciliation_check.csv
+            countries/ukraine/fetch/cache/treasury_annual_confirmation_check.csv
           retention-days: 14
       - name: Generate review-only Treasury SVGs in three locales
         run: python3 countries/ukraine/treasury_preview.py --output /tmp/ukraine-treasury-preview
