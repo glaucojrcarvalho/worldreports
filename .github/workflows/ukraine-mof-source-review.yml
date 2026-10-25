@@ -41,7 +41,7 @@ jobs:
                   data = response.read(25_000_001)
                   if response.status != 200:
                       raise ValueError(f"{name}: HTTP {response.status}")
-              if not 5000 < len(data) <= 25_000_000 or not data.startswith(b"PK\\x03\\x04"):
+              if not 5000 < len(data) <= 25_000_000 or not data.startswith(b"PK\x03\x04"):
                   raise ValueError(f"{name}: missing or invalid XLSX bytes")
               out = dest / f"{name}.xlsx"
               out.write_bytes(data)
