@@ -17,8 +17,6 @@ from __future__ import annotations
 
 import json
 import math
-import sys
-from itertools import product
 from pathlib import Path
 from urllib.request import Request, urlopen
 
