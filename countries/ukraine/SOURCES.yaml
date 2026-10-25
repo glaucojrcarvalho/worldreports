@@ -149,19 +149,30 @@ fiscal:
       reconcile to their same-year functional total within 0.3 million
       UAH rounding throughout. Economic-classification total
       gf_budgtee_Total is DIFFERENT, excluded rather than spliced.
-      An additional 2025 defence cross-check on the official Open Budget
-      consolidated-budget portal (December 2025) is
-      3,069,857,418,255.98 UAH, agreeing with the NBU to 0.1 million.
-      Its visible overall total is 5,999,467.1 million UAH, however,
-      versus 6,006,387.3 million in NBU functional Total_1; this
-      publisher/vintage/category discrepancy remains UNRESOLVED,
-      and the public portal total is not substituted into the series.
+      IMPORTANT PUBLISHER-VINTAGE CHECK (2025): the Ministry of Finance's
+      final ANNUAL consolidated budget workbook, sheet "2025 рік",
+      lists functional total 6,006,387.27484437 million UAH, defence
+      3,069,857.41825598 and economic affairs 264,998.32655720.
+      Every one of its ten functional groups agrees with this NBU
+      series within 0.05 million UAH, the published one-decimal
+      precision. The public Open Budget DECEMBER edition, archived
+      separately under fetch/reference_openbudget_2025.csv, instead
+      lists 5,999,467.11164619 million UAH total and
+      258,106.094607 million for economic affairs. Its difference
+      of 6,920.18835381 million UAH from the final annual edition is
+      a cross-publication REVISION, not an unresolved disagreement
+      between two same-vintage sources. The detailed administrative
+      reasons for that revision have not been verified. Annual reference
+      evidence is under fetch/reference_mof_2025_annual.csv and
+      its exact source spreadsheet is listed as annual_confirmation
+      below. Neither prior edition is silently merged into the NBU.
       The 2011-2025 series is not mapped to the seven comparative
       spending groups: national administrative classification,
       territorial and wartime coverage are not asserted to be
       perfectly comparable. Not yet drawn in canonical fiscal/spending
       slots pending a defensible complementary national presentation.
     independent_check: "https://mof.gov.ua/storage/files/Badgef%20of%20Ukraine2024.pdf"
+    annual_confirmation: "https://www.mof.gov.ua/storage/files/4_%D0%97%D0%91_%D1%80%D1%96%D0%BA_%D1%81%D0%B0%D0%B9%D1%82_25.xlsx"
 
 meta:
   pending:
@@ -200,11 +211,13 @@ meta:
         https://openbudget.gov.ua/?budgetType=CONSOLIDATED&month=12&year=2025
         was subsequently accessed and its ten functional categories
         preserved in fetch/reference_openbudget_2025.csv. Its total
-        differs from the NBU cube's 2025 Total_1 by 6,920.18835381
-        million UAH (the code-0400 economic-affairs difference explains
-        most of it). Discrepancy may reflect a classification,
-        retrospective revision or data-vintage mismatch; precise cause
-        not verified. The portal licence was described as CC BY 4.0
+        differs from the later MoF ANNUAL publication and NBU's
+        2025 Total_1 by 6,920.18835381 million UAH, mainly in code
+        0400 economic affairs. The Ministry's later annual workbook
+        confirms the NBU total and all ten categories to the NBU's
+        rounding precision: this is a documented edition/vintage
+        difference, not a wrong-period or perimetre mix.
+        Its detailed administrative revision reasons are not verified. The portal licence was described as CC BY 4.0
         by the initial contributor's discovery. The NBU cube still
         provides independently reproducible Treasury cash records;
         no IMF general-government accrual slot has been filled.
