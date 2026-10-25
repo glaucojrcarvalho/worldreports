@@ -117,12 +117,13 @@ python3 countries/ukraine/fetch/fetch_treasury.py
 python3 countries/ukraine/fetch/audit_open_budget.py
 ```
 
-The GitHub Actions workflow `ukraine-fiscal-review-fetch.yml` retrieves
-the live source, runs the strict parser, computes a **full-history
-byte-level diff and SHA-256s**, and uploads the staged CSV and diff. On
-2026-10-24 the live result was **byte-identical** to curated history.
-Its execution:
-https://github.com/glaucojrcarvalho/worldreports/actions/runs/40143540040
+The read-only live fetch comparison was executed from the contributor's
+**research branch** `feat/ukraine-fiscal`. It re-fetched the complete NBU
+budget cube, validated every historical year and found the staged
+sidecar **byte-identical** to the committed 2011–2025 CSV (matching
+SHA-256). [Verified run](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40143540040).
+This source-first PR deliberately **does not introduce research-only
+GitHub Actions workflows** into the maintainer's repository.
 
 Offline checks and trilingual review artifacts:
 
@@ -135,11 +136,15 @@ python3 -m pytest -q
 node --test tests/js/*.test.js
 ```
 
-`.github/workflows/ukraine-fiscal-candidate.yml` performs all offline
-checks with the same CJK fonts as the upstream pages workflow. The
-review-only generated SVGs and the cross-publisher diff are uploaded as
-Actions artifacts; they are not copied into published `output/` or
-`provenance.json` until an approved country plate actually consumes them.
+The contributor's temporary GitHub Actions suite, likewise retained
+only on the research branch, runs the offline tests, builds the
+multilingual site with upstream's CJK fonts, and uploads the three
+review-only SVGs and both historical-December and confirmed-annual
+CSV audits. The [baseline full suite](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40144541681)
+passed **2,211 tests and 8 subtests**; newer source-annual
+regressions are tested by the same focused commands above. This
+PR does not change the site's four published plates or its provenance
+because no canonical fiscal plate is claimed.
 
 ## Publication gate / what is still missing
 
