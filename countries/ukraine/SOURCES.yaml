@@ -126,6 +126,54 @@ demography:
       annotated on the plate. stat.gov.ua answers HTTP 403 to this
       network; the dataflow payload was retrieved once and the fetcher
       reads that cache offline (meta.pending records the block).
+fiscal:
+  treasury_functional.csv:
+    source: "State Treasury Service of Ukraine, consolidated cash-budget execution, functional classification; NBU statistical API republication"
+    url: "https://bank.gov.ua/NBUStatService/v1/statdirectory/budget?json"
+    official: true
+    refreshed_by: fetch/fetch_treasury.py
+    notes: >-
+      CURATED 2026-10-24 from 21,182 NBU records, using the unique annual
+      rows freq=Y, mcr200p=CBU, tzep=F_M_VC, indicator gf_budgtef_0100
+      through gf_budgtef_1000 and total gf_budgtef_Total_1.
+      2011-2025, 10 original Ukrainian functional groups and reported
+      total. Unit: nominal MILLION UAH, consolidated Treasury CASH-budget
+      execution, national administrative coverage, NOT IMF/SNA accrual
+      general-government expenditure, COFOG, primary balance or debt.
+      NBU dt=YYYY0101 references the PRECEDING calendar year, so
+      20240101 = expenditure in 2023; 20250101 = expenditure in 2024.
+      Independent source-year and value anchors: Ministry of Finance,
+      Budget of Ukraine 2024, table 2.3 pages 34-37: 2023 defence
+      2,097,621.9 and total 4,441,364.6; 2024 defence 2,305,242.7
+      and total 4,945,680.7, all million UAH. The ten functions
+      reconcile to their same-year functional total within 0.3 million
+      UAH rounding throughout. Economic-classification total
+      gf_budgtee_Total is DIFFERENT, excluded rather than spliced.
+      IMPORTANT PUBLISHER-VINTAGE CHECK (2025): the Ministry of Finance's
+      final ANNUAL consolidated budget workbook, sheet "2025 рік",
+      lists functional total 6,006,387.27484437 million UAH, defence
+      3,069,857.41825598 and economic affairs 264,998.32655720.
+      Every one of its ten functional groups agrees with this NBU
+      series within 0.05 million UAH, the published one-decimal
+      precision. The public Open Budget DECEMBER edition, archived
+      separately under fetch/reference_openbudget_2025.csv, instead
+      lists 5,999,467.11164619 million UAH total and
+      258,106.094607 million for economic affairs. Its difference
+      of 6,920.18835381 million UAH from the final annual edition is
+      a cross-publication REVISION, not an unresolved disagreement
+      between two same-vintage sources. The detailed administrative
+      reasons for that revision have not been verified. Annual reference
+      evidence is under fetch/reference_mof_2025_annual.csv and
+      its exact source spreadsheet is listed as annual_confirmation
+      below. Neither prior edition is silently merged into the NBU.
+      The 2011-2025 series is not mapped to the seven comparative
+      spending groups: national administrative classification,
+      territorial and wartime coverage are not asserted to be
+      perfectly comparable. Not yet drawn in canonical fiscal/spending
+      slots pending a defensible complementary national presentation.
+    independent_check: "https://mof.gov.ua/storage/files/Badgef%20of%20Ukraine2024.pdf"
+    annual_confirmation: "https://www.mof.gov.ua/storage/files/4_%D0%97%D0%91_%D1%80%D1%96%D0%BA_%D1%81%D0%B0%D0%B9%D1%82_25.xlsx"
+
 meta:
   pending:
     - name: Ukrstat SDMX REST API and all stat.gov.ua publications
@@ -154,13 +202,25 @@ meta:
       url: https://openbudget.gov.ua/en/about-portal
       official: true
       notes: >-
-        Akamai "Access Denied" (errors.edgesuite.net reference) on
-        every route, 2026-10-24, browser UA included; the
-        open-budget.gov.ua variant does not resolve. The portal's
-        data licence is documented as CC BY 4.0 by the issue (from the
-        publisher's about page). Not blocking: the NBU budget cube
-        republishes Treasury execution (verified) and the IMF carries
-        the harmonised fiscal layer.
+        INITIAL discovery-network attempt on 2026-10-24 received
+        Akamai "Access Denied" (errors.edgesuite.net), including a
+        browser user agent; the open-budget.gov.ua variant did not
+        resolve. THIS ACCESS STATUS IS NETWORK-SPECIFIC, NOT A CLAIM
+        THAT THE OFFICIAL PORTAL IS CURRENTLY UNAVAILABLE.
+        The independent official December-2025 consolidated view at
+        https://openbudget.gov.ua/?budgetType=CONSOLIDATED&month=12&year=2025
+        was subsequently accessed and its ten functional categories
+        preserved in fetch/reference_openbudget_2025.csv. Its total
+        differs from the later MoF ANNUAL publication and NBU's
+        2025 Total_1 by 6,920.18835381 million UAH, mainly in code
+        0400 economic affairs. The Ministry's later annual workbook
+        confirms the NBU total and all ten categories to the NBU's
+        rounding precision: this is a documented edition/vintage
+        difference, not a wrong-period or perimetre mix.
+        Its detailed administrative revision reasons are not verified. The portal licence was described as CC BY 4.0
+        by the initial contributor's discovery. The NBU cube still
+        provides independently reproducible Treasury cash records;
+        no IMF general-government accrual slot has been filled.
     - name: Ministry of Finance site (mof.gov.ua) debt releases
       publisher: Ministry of Finance of Ukraine
       url: https://mof.gov.ua/en/derzhavnij-borg-ta-garantovanij-derzhavju-borg
