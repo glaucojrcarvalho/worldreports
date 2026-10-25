@@ -114,6 +114,21 @@ def test_budget_math_fails_on_broken_totals() -> None:
         bns.verify_budget(annual)
 
 
+def test_summary_sidecar_matches_curated_fiscal_schema() -> None:
+    rendered = bns.render_summary(bns.decode_jsonstat(*fake_cube()))
+    rows = list(csv.DictReader(line for line in rendered.splitlines()
+                               if not line.startswith("#")))
+    assert len(rows) == 10
+    assert list(rows[0]) == [
+        "year", "revenue_mdl_mn", "expenditure_mdl_mn",
+        "balance_mdl_mn", "edition"
+    ]
+    assert next(x for x in rows if x["year"] == "2024")["edition"] == "final"
+    assert next(x for x in rows if x["year"] == "2025")["edition"] == "preliminary"
+    assert next(x for x in rows if x["year"] == "2023")["edition"] == "unverified"
+    assert "not IMF general-government accrual" in rendered
+
+
 def test_fiscal_national_scope_is_not_imf_series() -> None:
     rendered = bns.render(bns.decode_jsonstat(*fake_cube()))
     assert "National public budget cash perimeter" in rendered
