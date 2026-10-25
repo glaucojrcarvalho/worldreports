@@ -10,12 +10,12 @@
       "The unemployment line is an ILO-modelled estimate and stops in 2021: no labour-force survey was run in the war years. Its last value is labelled as modelled, not measured.",
       "Prices are shown twice: the annual inflation rate on the economy plate, and the chained price level since 2006 on the people plate. The index is derived from the annual rates in one vintage and says so.",
       "The plates are drawn in the three languages this country publishes — Ukrainian, English and Portuguese — and so is this page.",
-      "Treasury consolidated-budget functional expenditure is available as an official 2011–2025 CSV (million nominal UAH), with a separate three-language research visualization under source control. This is cash execution, not the atlas's IMF general-government fiscal definition; the 2025 publisher-total discrepancy remains under investigation and the fiscal comparison plate is not published."
+      "Treasury cash-budget functional expenditure for 2011–2025 is independently confirmed by the Ministry of Finance's 2025 annual workbook. Its earlier December edition was UAH 6.92bn lower, principally in economic affairs; the national chart remains separate from the IMF-style fiscal spine."
     ],
     "unavailable": [
       {
         "term": "Public finances",
-        "detail": "Consolidated State Treasury cash-budget functional spending for 2011–2025 has been verified and is listed in the underlying datasets, via the National Bank of Ukraine's budget API. It is not an IMF general-government accrual fiscal series, and no comparable fiscal chapter is drawn: the 2025 total differs by 6.92 billion UAH from Open Budget's year-end portal, with 6.89 billion in economic affairs; the unresolved difference is documented, not hidden."
+        "detail": "Official consolidated State Treasury cash-budget functional spending for 2011–2025 is available from the NBU budget API. The Ministry of Finance's 2025 ANNUAL edition independently confirms the NBU's ten groups and total. Its earlier DECEMBER publication is UAH 6.92bn lower; the two source vintages are distinguished, although the precise administrative revision reasons are not established. These are not IMF general-government accrual accounts, so the comparable fiscal chapter remains unpublished."
       },
       {
         "term": "Trade",
@@ -57,7 +57,7 @@
       },
       {
         "term": "Consolidated Treasury cash-budget expenditure",
-        "detail": "State Treasury Service, republished by the National Bank of Ukraine (NBU budget API), calendar-year 2011–2025; ten national functional groups, not harmonised COFOG. 2025 Open Budget comparison unresolved."
+        "detail": "State Treasury via NBU budget API, 2011–2025 cash execution, independently checked against the Ministry of Finance 2025 annual workbook. Ten national functions, not harmonised COFOG; the earlier December edition was UAH 6.92bn lower."
       }
     ]
   },
@@ -72,12 +72,12 @@
       "Лінія безробіття — це модельована оцінка МОП, і вона обривається у 2021 році: у воєнні роки обстеження робочої сили не проводилося. Останнє значення підписане як модельоване, не виміряне.",
       "Ціни показано двічі: річна інфляція на планці економіки і нанизаний рівень цін від 2006 року на планці людей. Індекс похідний від річних темпів однієї редакції, і це сказано.",
       "Планки намальовані трьома мовами, якими ця країна публікується — українською, англійською та португальською — як і ця сторінка.",
-      "Офіційний ряд касових видатків зведеного бюджету за 2011–2025 роки наявний у CSV (млн грн, поточні ціни); оглядову візуалізацію трьома мовами збережено в коді. Це не гармонізовані фіскальні рахунки МВФ; різниця в підсумках за 2025 рік ще досліджується, а порівняльна фіскальна планка не опублікована."
+      "Офіційні касові видатки Казначейства за 2011–2025 роки підтверджено річним звітом Мінфіну за 2025 рік. Раніша груднева публікація мала на 6,92 млрд грн менше, переважно у сфері економічної діяльності; національна діаграма залишається окремою від порівняльної фіскальної шкали."
     ],
     "unavailable": [
       {
         "term": "Державні фінанси",
-        "detail": "Касові видатки зведеного бюджету за функціональною класифікацією за 2011–2025 роки підтверджені й наведені в таблиці вихідних даних через API бюджету НБУ. Це не фіскальна статистика сектору загального державного управління за методом нарахування МВФ. Порівняльної фіскальної планки немає: сума НБУ за 2025 рік на 6,92 млрд грн перевищує дані Open Budget, зокрема на 6,89 млрд грн за економічною діяльністю; різницю задокументовано, а не приховано."
+        "detail": "Офіційні касові видатки зведеного бюджету за 2011–2025 роки доступні через бюджетний API НБУ. РІЧНИЙ звіт Мінфіну за 2025 рік незалежно підтверджує всі десять категорій та підсумок НБУ. Раніша публікація за ГРУДЕНЬ менша на 6,92 млрд грн; причини окремих адміністративних коригувань поки не встановлено. Це не фіскальні рахунки за методом нарахування МВФ, тому порівняльну фіскальну планку не опубліковано."
       },
       {
         "term": "Торгівля",
@@ -119,7 +119,7 @@
       },
       {
         "term": "Касові видатки зведеного бюджету",
-        "detail": "Державна казначейська служба, дані перепубліковані НБУ (бюджетний API), 2011–2025 роки; десять національних функціональних груп, не гармонізовані COFOG. Різницю з Open Budget за 2025 рік не усунуто."
+        "detail": "Державне казначейство через API НБУ, касове виконання зведеного бюджету за 2011–2025 роки, перевірене за річним звітом Мінфіну 2025 року. Десять національних функціональних груп, не COFOG; груднева редакція була на 6,92 млрд грн меншою."
       }
     ]
   },
@@ -134,12 +134,12 @@
       "A linha do desemprego é uma estimativa modelada pela OIT e termina em 2021: não houve inquérito de força de trabalho nos anos de guerra. O último valor é rotulado como modelado, não medido.",
       "Os preços aparecem duas vezes: a inflação anual na prancha da economia e o nível de preços encadeado desde 2006 na prancha das pessoas. O índice é derivado das taxas anuais de uma única edição, e isso está dito.",
       "As pranchas são desenhadas nas três línguas em que este país publica — ucraniano, inglês e português — como esta página.",
-      "Há um CSV oficial de execução de caixa do orçamento consolidado de 2011 a 2025 (milhões de UAH nominais), com visualização de pesquisa em três idiomas versionada separadamente. Não corresponde às contas fiscais harmonizadas do FMI; a divergência dos totais de 2025 segue em revisão e nenhuma prancha fiscal comparativa foi publicada."
+      "A execução de caixa do Tesouro de 2011 a 2025 foi confirmada pela edição anual de 2025 do Ministério das Finanças. A edição anterior de dezembro era UAH 6,92 bilhões inferior, sobretudo em atividades econômicas; o gráfico nacional permanece separado do eixo comparativo do FMI."
     ],
     "unavailable": [
       {
         "term": "Contas públicas",
-        "detail": "A execução de caixa do orçamento consolidado por função, de 2011 a 2025, foi verificada e está disponível na lista de conjuntos de dados, por meio da API orçamentária do NBU. Não representa as contas de governo geral por competência do FMI, portanto não há prancha fiscal comparável: o total de 2025 do NBU excede o do Open Budget em UAH 6,92 bilhões, dos quais UAH 6,89 bilhões em atividades econômicas. A divergência está documentada e permanece em revisão."
+        "detail": "A execução de caixa do orçamento consolidado por função, de 2011 a 2025, está disponível na API do NBU. A edição ANUAL de 2025 do Ministério das Finanças confirma independentemente as dez categorias e o total do NBU. A publicação anterior de DEZEMBRO é UAH 6,92 bilhões inferior; os ajustes administrativos específicos ainda não foram esclarecidos. Não corresponde às contas do governo geral por competência do FMI, então a prancha fiscal comparável continua inédita."
       },
       {
         "term": "Comércio",
@@ -181,7 +181,7 @@
       },
       {
         "term": "Despesas do Tesouro — orçamento consolidado",
-        "detail": "Serviço Estatal do Tesouro, republicado pelo Banco Nacional da Ucrânia (API budget), anos civis 2011–2025; dez categorias funcionais nacionais, não COFOG harmonizado. Divergência com Open Budget em 2025 ainda não reconciliada."
+        "detail": "Tesouro por meio da API do NBU, execução de caixa consolidada de 2011 a 2025, verificada com o relatório anual do Ministério das Finanças de 2025. Dez funções nacionais, não COFOG harmonizado; dezembro anterior tinha UAH 6,92 bilhões a menos."
       }
     ]
   }
