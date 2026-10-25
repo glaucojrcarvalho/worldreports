@@ -86,3 +86,35 @@ The 2014/2024 census comparison should only be charted from the BNS's *own compa
 ### Acceptance boundary
 
 Research here is **verified at the level of publisher pages and the arithmetic above**, *not* at API-row completeness or a working published plate. A proper country PR must carry independently reviewable source CSVs and figures, provenance, international/national series labels, translation, and all passing quality gates. Leave missing topics documented rather than inventing a plausible proxy.
+
+---
+
+## Phase A implementation increment — 2026-10-26
+
+### International comparable data now staged
+
+- Added **8 reviewed CSVs** under `data/`, covering **20 distinct World Bank WDI indicators** on the atlas-wide 2006–2025 historical window: economy, world, inequality, trade, population and demographic rates, mortality, security and migration.
+- All twenty API payloads were **fetched live**, checked for `countryiso3code=MDA`, indicator codes, pagination (`pages=1`), WDI `sourceid=2`, finite numeric values, unique years, and a single release date: **`lastupdated=2026-10-08`**.
+- They include `20 × 8 = 160` annual CSV rows and **386 numeric observations** (blank cells preserved rather than zero-filled). Re-running `fetch/fetch_wdi.py` writes `*_from_wb.csv` *review sidecars only*, never overwriting the accepted files.
+- Pinned live checks: WDI real GDP growth **2024 = 0.2706704555%**, **2025 = 2.4164973458%**; WDI mid-year population **2024 = 2,402,306**, **2025 = 2,360,527**. These are not BNS census population measures.
+- Genuine gaps: WDI survey Gini ends **2024**, fertility/birth/death rates and life expectancy end **2024**, homicide **2023**, suicide **2021**, road deaths **2019**; migrant-stock snapshots exist only for **2010, 2015, 2020, 2024**. These remain blank outside coverage.
+- A `SOURCES.yaml` manifest declares each committed dataset, its accountable (redistributing/harmonizing) source, the relevant WDI code(s), caveats and the refresh script. Each is labelled **`official: false`** to distinguish international redistribution from Moldova's national administrative releases; this flag does **not** mean the underlying international publisher lacks statistical authority.
+
+### National fiscal source — exact machine-readable codebook
+
+- Resolved **official** BNS PxWeb v1 metadata at
+  `https://statbank.statistica.md/PxWeb/api/v1/en/40%20Statistica%20economica/25%20FIN/FIN010100.px`,
+  title **Execution of national public budget, 2016–2026**.
+- Saved the publisher's **31 indicator codes** and four dimensions unchanged to `fetch/fin010100_metadata.json`: `Indicatori` (31), `Ani` (11), `Perioade` (4), and `Unitatea de masura` (3).
+- Codes **`0` revenue, `19` expenditure + non-financial assets, `30` deficit/surplus** are top-level totals, while **`20`–`29`** are the ten functional spending classes. Codes **`1`–`18`** are revenue subcomponents: **never sum them with revenue 0**.
+- The source has **`Perioade=3` January–December** and **`Unitatea de masura=0` million Moldovan lei**. Select years 2016–2025 only, not partial 2026.
+- Added `fetch/fetch_bns_budget.py` to POST a narrow `json-stat2` query, decode the dimension indices instead of assuming a static order, verify annual fiscal accounting identity and class sums, and write only `data/fiscal/public_budget_from_bns.csv` as a **review sidecar**.
+- **Boundary:** exact BNS API *metadata* GET succeeded. The **budget data POST has not been executed** from this environment, so this code is a tested-by-fixture parser proposal rather than a confirmed end-to-end extractor. It must not be used to claim that 2016–2025 national fiscal CSVs were ingested.
+- Offline unit-test source files were added at `tests/test_moldova_research.py` and `tests/test_moldova_bns_budget.py`. **No pytest run has been completed yet**, and this source-research branch is intentionally **not ready for upstream review**.
+
+### Publication gates still outstanding
+
+1. Run the BNS fiscal POST and compare 2024/2025 anchors, then review and curate its 2016–2025 functional series.
+2. Reconcile BNS/World Bank population geography and survey definitions with official methodology; keep parallel lines where definitions differ.
+3. Acquire direct national CPI/labour/poverty/credit/FX/migration statistics, and the WEO general-government fiscal comparables.
+4. Only then register `country.yaml` and implement Romanian + English + Portuguese catalogs, cards and canonical plates; run the full atlas render, provenance, layout and unit-test gates.
