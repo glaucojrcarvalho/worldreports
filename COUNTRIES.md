@@ -55,12 +55,13 @@ republication DOES provide an official 2011–2025 functional cash-budget
 series, now reviewed and curated under `ukraine/data/fiscal/`. It is
 source material, not yet a fifth plate: the comparable general-government
 fiscal and seven-group spending slots must not be filled with this
-different accounting perimeter. The 2025 Treasury/Open Budget publisher
-total difference is disclosed in Ukraine's notes. Trade, markets, credit,
+different accounting perimeter. The Ministry's final ANNUAL 2025
+edition independently confirms the NBU figures; its earlier DECEMBER
+2025 edition is lower by 6.92bn UAH, a documented publication revision. Trade, markets, credit,
 security and mortality remain without published chapters. The table
 above now includes this reviewed **source-only** fiscal CSV, although
-it is not yet read by any published comparison plate. Ukraine introduced the atlas's first Ukrainian
-number style, site chrome and comparison names.
+it is not yet read by any published comparison plate. Ukraine introduced
+the atlas's first Ukrainian number style, site chrome and comparison names.
 
 ## Known problems, written down before they are hit
 
