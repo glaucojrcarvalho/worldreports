@@ -1,0 +1,11 @@
+# BNS national public budget EXECUTION, million nominal MDL.
+# Publisher: Ministry of Finance, republished by National Bureau of Statistics.
+# Source: https://statistica.gov.md/en/statistic_indicator_details/21
+# Release updated 2026-08-28. 2024 FINAL; 2025 PRELIMINARY.
+# Territorial perimeter excludes left-bank Nistru districts and Bender.
+# CASH national-public-budget perimeter; NOT IMF WEO general government.
+# These are the ONLY directly checked years from this 2026-08 BNS snapshot.
+# Do not populate 2016-2023 from assumptions or extrapolations.
+year,revenue_mdl_mn,expenditure_mdl_mn,balance_mdl_mn,edition
+2024,110338.5,122962.6,-12624.1,final
+2025,125602.0,139856.4,-14254.4,preliminary
