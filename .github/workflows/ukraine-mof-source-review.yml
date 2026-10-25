@@ -1,0 +1,56 @@
+name: Ukraine MoF annual workbook — review only
+
+on:
+  push:
+    branches: [feat/ukraine-fiscal]
+    paths:
+      - .github/workflows/ukraine-mof-source-review.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download primary MoF annual and December 2025 spreadsheets
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import pathlib
+          import urllib.parse
+          import urllib.request
+          files = {
+              "2025-annual": "4_ЗБ_рік_сайт_25.xlsx",
+              "2025-december": "4_ЗБ_грудень_12_сайт_25.xlsx",
+          }
+          dest = pathlib.Path("/tmp/ukraine-mof")
+          dest.mkdir(parents=True, exist_ok=True)
+          for name, filename in files.items():
+              url = "https://www.mof.gov.ua/storage/files/" + urllib.parse.quote(filename)
+              req = urllib.request.Request(url, headers={
+                  "User-Agent": "WorldReports-Ukraine-fiscal-source-audit/1.0",
+                  "Accept": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/octet-stream",
+              })
+              with urllib.request.urlopen(req, timeout=50) as response:
+                  data = response.read(25_000_001)
+                  if response.status != 200:
+                      raise ValueError(f"{name}: HTTP {response.status}")
+              if not 5000 < len(data) <= 25_000_000 or not data.startswith(b"PK\\x03\\x04"):
+                  raise ValueError(f"{name}: missing or invalid XLSX bytes")
+              out = dest / f"{name}.xlsx"
+              out.write_bytes(data)
+              print(f"{name}: {len(data)} bytes SHA256={hashlib.sha256(data).hexdigest()}")
+              print(f"Publisher URL: {url}")
+          PY
+      - name: Upload read-only official publisher evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: ukraine-mof-2025-annual-vs-december-primary-workbooks
+          path: /tmp/ukraine-mof/*.xlsx
+          retention-days: 7
