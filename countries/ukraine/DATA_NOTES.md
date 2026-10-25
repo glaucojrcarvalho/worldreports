@@ -105,27 +105,37 @@ especially section **2.3, pages 34–37**, with:
 
 All 15 annual ten-category sums reconcile with the same-year functional
 total within **0.3 million UAH** (source presentation rounding).
-An additional independent source check: the official
-[Open Budget consolidated portal](https://openbudget.gov.ua/?budgetType=CONSOLIDATED&month=12&year=2025)
-lists **2025 defence = 3,069,857,418,255.98 UAH**, matching the NBU
-defence series to 0.1 million. But its displayed **total =
-5,999,467.1 million UAH**, versus the NBU functional reported total
-**6,006,387.3 million UAH**. The **6,920.2 million UAH difference
-is unresolved** (potentially a revision or extraction-vintage issue).
-A second, **non-official** public presentation of Treasury totals,
-[index.minfin.com.ua](https://index.minfin.com.ua/ua/finance/budget/cons/expense/2025/),
-also lists the 5,999,467.1 million total. The 2025 mismatch is
-**predominantly in code 0400 (economic affairs)**: NBU
-264,998.3 million vs the other presentation's 258,106.1 million
-(a 6,892.2 million difference). Remaining differences are
-minor: general public services +11.7, culture/recreation +0.3,
-and education +16.1 million UAH on the NBU side.
-Older years also show deviations in totals, e.g. 2023 +424.4
-and 2024 +1,654.6 million UAH (NBU less the non-official index).
-The publisher's revision/vintage and inclusion rules must be
-confirmed with the Treasury before presenting this series as an
-officially *reconciled* outturn. Neither source is silently swapped,
-and these gaps are NOT rounding.
+A **stronger independent cross-check** is now available: the
+[Ministry of Finance's 2025 ANNUAL consolidated-budget workbook](https://www.mof.gov.ua/storage/files/4_%D0%97%D0%91_%D1%80%D1%96%D0%BA_%D1%81%D0%B0%D0%B9%D1%82_25.xlsx),
+sheet **`2025 рік`**, publishes **6,006,387.27484437 million UAH**
+for 2025 functional spending, **3,069,857.41825598 million UAH**
+for defence and **264,998.32655720 million UAH** for economic affairs.
+All ten functional categories match the NBU's 2025 annual observations
+within **0.05 million UAH**, the NBU's one-decimal reporting precision.
+The Ministry's category `0100` is split into *general public services
+excluding debt servicing* (**149,697.44444124 million**) and *debt
+servicing/derivative payments* (**362,494.81121092 million**). Adding only
+those two subcomponents recovers the NBU's `0100` rounded amount
+(**512,192.3 million UAH**). This is a within-classification
+reconciliation, not an unverified COFOG conversion.
+
+The [Open Budget consolidated portal's DECEMBER 2025 edition](https://openbudget.gov.ua/?budgetType=CONSOLIDATED&month=12&year=2025)
+instead lists **5,999,467.11164619 million UAH** for spending and
+**258,106.094607 million** for economic affairs. The later annual
+publication is **6,920.18835381 million UAH higher** overall, of which
+**6,892.23195020 million UAH** relates to economic affairs. The earlier
+edition is preserved in `fetch/reference_openbudget_2025.csv`; the annual
+edition is preserved in `fetch/reference_mof_2025_annual.csv`.
+**The apparent NBU-versus-Open-Budget disagreement was a comparison
+between two publisher editions**: the annual MoF figures independently
+confirm the NBU values. This does NOT establish which administrative
+bookings or revisions caused the change from December to annual.
+
+The non-governmental index.minfin.com.ua site carries the earlier
+December edition for 2025 and has some differences in earlier years.
+Those differences are not used to revise the curator's independently
+verified annual series. Neither cash-budget vintage is mixed with the
+IMF's general-government accrual accounts.
 
 The economic-classification total `gf_budgtee_Total` does not agree
 exactly (for example, the 2023 fiscal-year observation is 4,433,206.4
