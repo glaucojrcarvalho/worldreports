@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import csv
 import importlib.util
+import math
 from pathlib import Path
 
 import pytest
@@ -67,7 +68,7 @@ def test_staged_csv_complete_year_grid_with_no_invalid_values(file, columns) -> 
     for row in rows:
         for name, _ in columns:
             if row[name]:
-                assert __import__("math").isfinite(float(row[name]))
+                assert math.isfinite(float(row[name]))
 
 
 def test_source_snapshot_anchors() -> None:
@@ -106,7 +107,7 @@ def example_payload() -> list:
              "total": len(rows), "lastupdated": "2026-10-08"}, rows]
 
 
-def test_schema_guard_accepts_an_complete_wdi_page() -> None:
+def test_schema_guard_accepts_a_complete_wdi_page() -> None:
     values, vintage = wdi.validate_wdi_payload(example_payload(), "SP.POP.TOTL")
     assert vintage == "2026-10-08"
     assert len(values) == 4
