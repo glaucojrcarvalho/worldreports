@@ -122,7 +122,8 @@ def test_treasury_dataset_is_not_misrepresented_as_comparable_gg():
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     assert {entry["topic"] for entry in module.PLATES} == {
-        "economy", "world", "demography", "people"
+        "economy", "fiscal", "trade", "markets", "people",
+        "world", "demography", "security", "mortality"
     }
     # A Treasury cash outturn must not appear on a general-government axis.
     assert "fiscal/treasury_functional.csv" not in module_path.read_text(encoding="utf-8")
