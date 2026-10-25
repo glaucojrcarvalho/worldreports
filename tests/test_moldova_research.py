@@ -45,18 +45,24 @@ def test_manifest_covers_exact_staged_wdi_files() -> None:
     files = {
         str(f.relative_to(MOLDOVA / "data"))
         for f in (MOLDOVA / "data").rglob("*.csv")
-        if not f.stem.endswith("_from_wb")
+        if not f.stem.endswith(("_from_wb", "_from_bns"))
     }
-    expected = set(wdi.GROUPS)
+    expected = set(wdi.GROUPS) | {"fiscal/budget_summary.csv"}
     assert declared == files == expected
     assert manifest["meta"]["status"] == "research_only_not_an_atlas_edition"
     for group, entries in manifest.items():
         if group == "meta":
             continue
-        for details in entries.values():
-            assert details["source"].startswith("World Bank WDI")
-            assert details["official"] is False
-            assert details["refreshed_by"] == "fetch/fetch_wdi.py"
+        for name, details in entries.items():
+            if group == "fiscal":
+                assert name == "budget_summary.csv"
+                assert details["source"].startswith("National Bureau of Statistics")
+                assert details["official"] is True
+                assert details["refreshed_by"] == "fetch/fetch_bns_budget.py"
+            else:
+                assert details["source"].startswith("World Bank WDI")
+                assert details["official"] is False
+                assert details["refreshed_by"] == "fetch/fetch_wdi.py"
 
 
 @pytest.mark.parametrize("file,columns", wdi.GROUPS.items())
@@ -95,6 +101,26 @@ def test_source_gaps_are_not_zero_filled_or_interpolated() -> None:
     migration = load_csv("migration/migration.csv")
     snapshot_years = {int(row["year"]) for row in migration if row["migrant_stock"]}
     assert snapshot_years == {2010, 2015, 2020, 2024}
+
+
+
+
+def test_bns_2024_2025_fiscal_outturns_are_explicitly_editioned() -> None:
+    rows = load_csv("fiscal/budget_summary.csv")
+    assert [int(r["year"]) for r in rows] == [2024, 2025]
+    assert [r["edition"] for r in rows] == ["final", "preliminary"]
+    for year, revenue, expenditure, balance in [
+        (2024, 110338.5, 122962.6, -12624.1),
+        (2025, 125602.0, 139856.4, -14254.4),
+    ]:
+        assert get(rows, year, "revenue_mdl_mn") == revenue
+        assert get(rows, year, "expenditure_mdl_mn") == expenditure
+        assert get(rows, year, "balance_mdl_mn") == balance
+        assert abs(revenue - expenditure - balance) < 0.1
+    text = (MOLDOVA / "data" / "fiscal" / "budget_summary.csv").read_text("utf-8")
+    assert "not IMF" in text.lower()
+    assert "left-bank Nistru" in text
+    assert "PRELIMINARY" in text
 
 
 def example_payload() -> list:
