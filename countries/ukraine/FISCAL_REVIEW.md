@@ -64,6 +64,19 @@ The Ministry of Finance's official **2025 annual consolidated-budget**
 workbook (sheet `2025 рік`) is at:
 https://www.mof.gov.ua/storage/files/4_%D0%97%D0%91_%D1%80%D1%96%D0%BA_%D1%81%D0%B0%D0%B9%D1%82_25.xlsx
 
+Primary-workbook byte provenance (retrieved directly from the Ministry
+in [this read-only GitHub Actions run](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40145936696)):
+
+- Annual 2025 XLSX: **144,827 bytes**, SHA-256
+  `0cf48ddcf1b042c548ff735d6bf6105da3cfdec1c86d8e2e40fde70b99b6cc1c`.
+- December 2025 XLSX: **144,721 bytes**, SHA-256
+  `989de22f0a61ef5bee36def79b8db79aa59b88e00dddea67d7f7cbfd58d122f6`.
+
+The full binaries are review artifacts, not chart inputs or committed
+repository data. The review-only normalized values and source URLs
+are in `fetch/reference_mof_2025_annual.csv` and
+`fetch/reference_openbudget_2025.csv`.
+
 | Official edition | Total, million UAH | Economic affairs, million UAH |
 |---|---:|---:|
 | MoF December 2025 | 5,999,467.11164619 | 258,106.09460700 |
