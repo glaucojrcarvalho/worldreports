@@ -36,7 +36,7 @@ Portuguese**, and every plate is drawn in each of them.
 | `south-korea` | ko · en · pt | 11 | 43 |
 | `switzerland` | de · en · pt | 12 | 46 |
 | `taiwan` | zh-Hant · en · pt | 10 | 18 |
-| `ukraine` | uk · en · pt | 4 | 10 |
+| `ukraine` | uk · en · pt | 4 | 11 |
 | `united-kingdom` | en · pt | 12 | 45 |
 | `usa` | en · pt | 11 | 43 |
 | `vietnam` | vi · en · pt | 12 | 36 |
@@ -58,8 +58,8 @@ fiscal and seven-group spending slots must not be filled with this
 different accounting perimeter. The 2025 Treasury/Open Budget publisher
 total difference is disclosed in Ukraine's notes. Trade, markets, credit,
 security and mortality remain without published chapters. The table
-above counts only CSVs read by published plates, not this reviewed
-source-only fiscal CSV. Ukraine introduced the atlas's first Ukrainian
+above now includes this reviewed **source-only** fiscal CSV, although
+it is not yet read by any published comparison plate. Ukraine introduced the atlas's first Ukrainian
 number style, site chrome and comparison names.
 
 ## Known problems, written down before they are hit
