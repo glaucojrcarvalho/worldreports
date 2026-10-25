@@ -86,23 +86,25 @@ def test_2025_calendar_mapping_is_nonnegotiable():
         audit.reconcile(nbu, portal)
 
 
-def test_trilingual_fiscal_disclosure_tracks_source_and_pending_spine():
-    """Every published locale must distinguish staged Treasury data from IMF fiscal."""
+def test_trilingual_fiscal_disclosure_keeps_existing_imf_plate():
+    """Nine published topics survive and the Treasury source has its own notes."""
     import json
     ui = json.loads((ROOT / "ui.json").read_text(encoding="utf-8"))
-    for language, search_term in (
-        ("en", "Public finances"),
-        ("uk", "Державні фінанси"),
-        ("pt", "Contas públicas"),
+    for language, term in (
+        ("en", "National Treasury cash execution"),
+        ("uk", "Касове виконання Казначейства"),
+        ("pt", "Execução de caixa do Tesouro"),
     ):
-        records = ui[language]["unavailable"]
-        matches = [item for item in records if item["term"] == search_term]
-        assert len(matches) == 1, f"{language}: stale/missing fiscal disclosure"
+        matches = [x for x in ui[language]["colophon"] if x["term"] == term]
+        assert len(matches) == 1, f"{language}: cash-budget source missing"
         claim = matches[0]["detail"]
         assert "2011" in claim and "2025" in claim
         assert "6.92" in claim or "6,92" in claim
         assert ("IMF" in claim or "МВФ" in claim or "FMI" in claim)
-        assert ui[language]["notes"] and ui[language]["colophon"]
+        assert not any(x["term"] in ("Public finances", "Державні фінанси",
+                                     "Contas públicas")
+                       for x in ui[language]["unavailable"])
+
 
 
 def test_treasury_dataset_is_not_misrepresented_as_comparable_gg():
