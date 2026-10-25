@@ -1,0 +1,68 @@
+name: Temporary Ukraine Treasury source PR validation
+
+on:
+  push:
+    branches:
+      - feat/ukraine-fiscal-source
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Keep one latest-branch validation; the full multilingual suite is expensive.
+concurrency:
+  group: ukraine-fiscal-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  offline-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Validate patch whitespace against fork main
+        run: git diff --check origin/main...HEAD
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      # Match the upstream pages workflow's font environment; without CJK
+      # coverage unrelated Japan/China/Korea/Taiwan layout gates fail.
+      - name: Install upstream CJK fonts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends fonts-noto-cjk
+          fc-cache -f
+      - run: pip install -r requirements.txt
+      - name: Treasury parser and curated data contracts
+        run: python3 -m pytest countries/ukraine/tests/test_treasury.py countries/ukraine/tests/test_treasury_reconciliation.py -q
+      - name: Existing Ukraine plate and atlas spine contracts
+        run: python3 -m pytest countries/ukraine/tests/test_plates.py tests/test_spine.py -q
+      - name: Existing JavaScript contracts
+        run: node --test tests/js/*.test.js
+      - name: Audit independent official 2025 dashboard against NBU
+        run: python3 countries/ukraine/fetch/audit_open_budget.py
+      - name: Upload discrepancy audit CSV
+        uses: actions/upload-artifact@v4
+        with:
+          name: treasury-cross-publisher-audit
+          path: |
+            countries/ukraine/fetch/cache/treasury_reconciliation_check.csv
+            countries/ukraine/fetch/cache/treasury_annual_confirmation_check.csv
+          retention-days: 14
+      - name: Generate review-only Treasury SVGs in three locales
+        run: python3 countries/ukraine/treasury_preview.py --output /tmp/ukraine-treasury-preview
+      - name: Upload review SVGs
+        uses: actions/upload-artifact@v4
+        with:
+          name: ukraine-treasury-national-review
+          path: /tmp/ukraine-treasury-preview/*.svg
+          retention-days: 14
+      - name: Build multilingual site offline from committed CSVs
+        run: python3 -m core.page --out _site
+      - name: Repository test suite
+        run: python3 -m pytest -q
