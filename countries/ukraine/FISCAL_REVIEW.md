@@ -1,8 +1,9 @@
 # Ukraine Treasury fiscal contribution — reviewer handoff
 
-Status: **verified source contribution and national chart candidate; not a
-published canonical fiscal chapter**. This review is scoped to the four-chapter
-Ukraine implementation Akita already shipped. Do not merge the older
+Status: **verified complementary national Treasury cash-budget source**, not a
+replacement for the existing canonical fiscal chapter. The current upstream
+Ukraine edition publishes **nine plates, including IMF WEO general-government
+fiscal statistics**; this adds a separate publisher-defined national dataset. Do not merge the older
 `feat/ukraine-atlas` branch or alter shared comparison scales.
 
 ## Why this source and what it measures
@@ -143,16 +144,16 @@ review-only SVGs and both historical-December and confirmed-annual
 CSV audits. The [baseline full suite](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40144541681)
 passed **2,211 tests and 8 subtests**; newer source-annual
 regressions are tested by the same focused commands above. This
-PR does not change the site's four published plates or its provenance
+PR does not change the site's nine published plates or its provenance
 because no canonical fiscal plate is claimed.
 
 ## Publication gate / what is still missing
 
-1. **Fiscal slot definition:** Ukraine's four canonical fiscal panels need
-   their own harmonized, source-verified, same-unit general-government
-   datasets and atlas-wide scale review before an IMF-style fiscal plate
-   can be published. Treasury cash-budget figures must remain a separate
-   national annex/lens, not a canonical substitute.
+1. **Existing fiscal plate:** Upstream now publishes an IMF WEO
+   general-government fiscal plate. This Treasury cash-budget series
+   remains a separate national dataset, not a substitute for IMF general
+   government or COFOG. A future cash-budget lens is an optional
+   follow-up and must not occupy a canonical fiscal slot.
 2. **December-to-annual explanation:** the exact official annual
    and December editions are now identified, and the later annual
    confirms NBU to one-decimal precision. A detailed administrative
@@ -164,6 +165,6 @@ because no canonical fiscal plate is claimed.
    exact branch tip, then attach the GitHub Actions gate result. Do not
    regenerate unrelated plates or modify the maintainer's repository.
 
-The intended eventual PR is a **focused Treasury fiscal source
-enhancement**, not a replacement 12-chapter Ukraine atlas. A site-ready
-fifth canonical plate is explicitly **not** claimed yet.
+The intended PR is a **focused Treasury fiscal source
+enhancement**, not a replacement Ukraine atlas. No additional canonical
+fiscal plate is claimed. Upstream's nine published chapters remain intact.
