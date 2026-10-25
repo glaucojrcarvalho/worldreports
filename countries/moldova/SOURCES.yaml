@@ -10,6 +10,24 @@
 # No country.yaml/plates.py exists yet: Moldova is not a published atlas.
 # Every displayed series must be checked against its relevant NATIONAL
 # publisher and precise territorial definition before rendering.
+fiscal:
+  budget_summary.csv:
+    source: "National Bureau of Statistics of Moldova (BNS), Ministry of Finance national public budget execution"
+    url: "https://statistica.gov.md/en/statistic_indicator_details/21"
+    official: true
+    refreshed_by: fetch/fetch_bns_budget.py
+    notes: >-
+      PUBLISHER-CHECKED SNAPSHOT, BNS website updated 2026-08-28:
+      2024 FINAL and 2025 PRELIMINARY only, amounts in million nominal MDL.
+      Revenue 110338.5/125602.0, expenditure and non-financial assets
+      122962.6/139856.4, deficits -12624.1/-14254.4 respectively.
+      National public budget, cash execution. Excludes left-bank Nistru
+      districts and Bender (official FIN010100 table note).
+      NOT a harmonised IMF general-government fiscal balance.
+      The refresh script fetches 2016-2025 full-year categories into
+      fiscal/budget_summary_from_bns.csv and a separate full
+      functional report sidecar; it NEVER silently replaces these
+      released outturns or the 2025 preliminary marker.
 macro:
   economy.csv:
     source: "World Bank WDI (source 2), NY.GDP.MKTP.KD.ZG, FP.CPI.TOTL.ZG, SL.UEM.TOTL.ZS, NE.GDI.FTOT.ZS"
