@@ -1,4 +1,4 @@
-"""Cross-publisher Treasury audit: preserve, and never conceal, disagreement."""
+"""Treasury vintage audit: annual data agree, December snapshot differs."""
 from __future__ import annotations
 
 from decimal import Decimal
@@ -28,17 +28,17 @@ def test_official_dashboard_matches_its_own_functional_total():
                    Decimal("5999467.11164619"))
 
 
-def test_NBU_and_open_budget_are_not_falsely_marked_reconciled():
+def test_NBU_and_earlier_december_edition_are_not_falsely_equated():
     rows = {r["classification"]: r for r in audit.reconcile(*evidence())}
     assert rows["gf_budgtef_0200"]["reconciliation_status"] == "within_nbu_rounding"
     assert rows["gf_budgtef_0400"]["reconciliation_status"] == (
-        "publisher_discrepancy_review_required")
+        "earlier_december_edition_differs")
     assert Decimal(rows["gf_budgtef_0400"]["nbu_minus_open_budget_million_uah"]) == (
         Decimal("6892.20539300"))
     assert Decimal(rows["gf_budgtef_Total_1"]["nbu_minus_open_budget_million_uah"]) == (
         Decimal("6920.18835381"))
-    unresolved = [r for r in rows.values() if "review_required" in r["reconciliation_status"]]
-    assert len(unresolved) == 5, "Publisher-diff baseline changed: investigate"
+    different = [r for r in rows.values() if "edition_differs" in r["reconciliation_status"]]
+    assert len(different) == 5, "December-to-annual revision baseline changed"
 
 
 def test_schema_and_source_perimeter_mismatches_fail():
@@ -126,3 +126,51 @@ def test_treasury_dataset_is_not_misrepresented_as_comparable_gg():
     }
     # A Treasury cash outturn must not appear on a general-government axis.
     assert "fiscal/treasury_functional.csv" not in module_path.read_text(encoding="utf-8")
+
+
+
+def test_mof_annual_outturn_reconciles_nbu_at_published_precision():
+    nbu, _ = evidence()
+    annual = audit._read(audit.MOF_ANNUAL_CSV)
+    rows = audit.reconcile_annual(nbu, annual)
+    assert len(rows) == 11
+    assert {r["reconciliation_status"] for r in rows} == {
+        "independent_annual_confirmation"}
+    by_code = {r["classification"]: r for r in rows}
+    assert Decimal(by_code["gf_budgtef_Total_1"]["mof_annual_million_uah"]) == (
+        Decimal("6006387.27484437"))
+    assert Decimal(by_code["gf_budgtef_0400"]["mof_annual_million_uah"]) == (
+        Decimal("264998.32655720"))
+    assert Decimal(by_code["gf_budgtef_0200"]["mof_annual_million_uah"]) == (
+        Decimal("3069857.41825598"))
+    assert all(abs(Decimal(r["nbu_minus_mof_annual_million_uah"]))
+               <= audit.HALF_ROUND_UNIT for r in rows)
+
+
+def test_mof_annual_version_change_or_schema_break_fails():
+    nbu, _ = evidence()
+    valid = audit._read(audit.MOF_ANNUAL_CSV)
+    for key, value, pattern in [
+        ("source_edition", "December edition", "identity"),
+        ("workbook_sheet", "грудень", "identity"),
+        ("year", "2024", "period/perimeter"),
+        ("perimeter", "SBU", "period/perimeter"),
+        ("value_million_uah", "-1", "Negative"),
+    ]:
+        altered = [dict(r) for r in valid]
+        altered[0][key] = value
+        with pytest.raises(ValueError, match=pattern):
+            audit.reconcile_annual(nbu, altered)
+    with pytest.raises(ValueError, match="incomplete"):
+        audit.reconcile_annual(nbu, valid[:-1])
+    altered = [dict(r) for r in valid]
+    altered[0]["value_million_uah"] = "600000.00"
+    with pytest.raises(ValueError, match="does not reconcile"):
+        audit.reconcile_annual(nbu, altered)
+    altered = [dict(r) for r in valid]
+    altered[0]["value_million_uah"] = str(
+        Decimal(altered[0]["value_million_uah"]) + Decimal("0.10"))
+    altered[-1]["value_million_uah"] = str(
+        Decimal(altered[-1]["value_million_uah"]) + Decimal("0.10"))
+    with pytest.raises(ValueError, match="source-vintage mismatch"):
+        audit.reconcile_annual(nbu, altered)
