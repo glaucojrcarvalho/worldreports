@@ -68,13 +68,14 @@ this network). Both write `*_from_*` review sidecars only — the curated
 CSVs are a separate reviewed step — and both are re-runnable: two offline
 runs produce byte-identical sidecars.
 
-## Not drawn, on purpose
+## Historical first-pass omissions (superseded by nine-plate edition)
 
-Fiscal, trade, markets, credit, security and mortality chapters are not
-published at all this pass rather than assembled from a different perimeter
-or a partner's mirror data. The blocked publishers and their exact failure
-modes are in `SOURCES.yaml` `meta.pending`, and the page discloses the
-absence in each locale.
+The initial four-chapter release had no fiscal, trade, markets, credit,
+security or mortality plates. The later upstream update filled fiscal,
+trade, markets, security and mortality from compatible verified sources,
+as described below. **Only credit remains an unpublished chapter.**
+The Treasury cash series introduced here complements — it does not
+replace — the current IMF general-government fiscal plate.
 
 ## Fiscal, trade, markets, security and mortality
 
