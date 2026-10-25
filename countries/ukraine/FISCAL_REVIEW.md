@@ -58,28 +58,36 @@ https://mof.gov.ua/storage/files/Badgef%20of%20Ukraine2024.pdf
 The last two years are pinned in `fetch/fetch_treasury.py` as exact
 publisher-revision anchors. **Do not move those anchors forward one year.**
 
-### Unresolved secondary-publisher difference
+### Annual 2025 independently confirmed; earlier December edition revised
 
-Independent official portal:
-https://openbudget.gov.ua/?budgetType=CONSOLIDATED&month=12&year=2025
+The Ministry of Finance's official **2025 annual consolidated-budget**
+workbook (sheet `2025 рік`) is at:
+https://www.mof.gov.ua/storage/files/4_%D0%97%D0%91_%D1%80%D1%96%D0%BA_%D1%81%D0%B0%D0%B9%D1%82_25.xlsx
 
-The 2025 Open Budget page shows total executed consolidated spending
-**5,999,467,111,646.19 UAH** (5,999,467.11164619 million); NBU functional
-`Total_1` gives **6,006,387.3 million**, a difference of
-**6,920.18835381 million UAH**. Within that difference, national
-code `0400` (economic affairs) accounts for **6,892.205393 million**.
-Defence is effectively identical at NBU's rounding precision. The portal's
-ten groups reconcile to its *own* total exactly.
+| Official edition | Total, million UAH | Economic affairs, million UAH |
+|---|---:|---:|
+| MoF December 2025 | 5,999,467.11164619 | 258,106.09460700 |
+| MoF annual 2025 | 6,006,387.27484437 | 264,998.32655720 |
+| NBU annual 2025 (rounded) | 6,006,387.3 | 264,998.3 |
 
-This discrepancy is **not rounding**. Exact official explanation for the
-portal/NBU version or accounting-base difference remains **unverified**.
-The repository preserves both observations without replacing the
-officially reviewed NBU vintage. The portal observations are stored as
-`fetch/reference_openbudget_2025.csv`, and
-`fetch/audit_open_budget.py` produces a deterministic diff sidecar. The
-discrepancy is visible in Ukrainian, English and Portuguese descriptions
-and on every review graph. The historical time series must not be described
-as independently reconciled to the portal for 2025.
+**All 10 functional groups and the total in the MoF annual edition
+agree with NBU within 0.05 million UAH**, the NBU's reporting
+precision. MoF publishes group `0100` as two lines (general public
+services excluding debt payments + debt service). The two parts sum to
+512,192.25565216 million UAH and reconcile to the NBU's 512,192.3.
+
+The portal's [earlier December edition](https://openbudget.gov.ua/?budgetType=CONSOLIDATED&month=12&year=2025)
+is **6,920.16319818 million UAH below the later annual edition**.
+Most of that change (**6,892.23195020 million UAH**) is in
+`0400` economic affairs. It is not a rounding problem, but a
+**cross-publication revision**. The precise administrative
+transactions responsible for the revision are not verified; we make
+no claim about their cause. The December snapshot is preserved as
+`fetch/reference_openbudget_2025.csv`; the later MoF source is
+`fetch/reference_mof_2025_annual.csv`. The reference CSVs and
+`fetch/audit_open_budget.py` compare both editions without replacing
+any curated data. The three-language national preview discloses this
+difference, not a supposed unresolved same-vintage discrepancy.
 
 ## Reproduction and fail-closed gates
 
@@ -127,10 +135,12 @@ Actions artifacts; they are not copied into published `output/` or
    datasets and atlas-wide scale review before an IMF-style fiscal plate
    can be published. Treasury cash-budget figures must remain a separate
    national annex/lens, not a canonical substitute.
-2. **2025 portal versus NBU:** obtain a publisher-level explanation or
-   define a precise edition/vintage boundary. For source-only publication
-   it may suffice to disclose the unresolved difference prominently;
-   for a fully reconciled national panel it remains a caveat.
+2. **December-to-annual explanation:** the exact official annual
+   and December editions are now identified, and the later annual
+   confirms NBU to one-decimal precision. A detailed administrative
+   explanation of individual revised bookings is not proven and must
+   not be invented. This is a documented publisher-edition seam, not a
+   same-vintage cross-source blocker for a source-only PR.
 3. **Final visual/editorial review:** confirm the generated Ukrainian,
    English and Portuguese charts and site/manifest statements against the
    exact branch tip, then attach the GitHub Actions gate result. Do not
