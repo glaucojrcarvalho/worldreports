@@ -218,3 +218,57 @@ own definitions and audit before producing the canonical `credit`
 or `markets` 2×2 plates. We have **not yet registered Moldova as
 a published country** with Romanian/English/Portuguese strings or rendered
 the full atlas.
+
+
+## Market source comparison preview — 2026-10-26
+
+The three-language visualization in `research/render_markets_preview.py`
+is **research only**, not an official published `markets` plate. Its
+supporting `research/markets_catalog.json` covers Romanian, English and
+Brazilian Portuguese. Input checks require complete 2006–2025 observations
+from each separately labelled source and prevent accidental country mixing.
+
+- **Panel 1, observed:** National Bank of Moldova (`markets/policy.csv`)
+  **calendar-day-weighted effective base rate** next to World Bank WDI
+  (`macro/economy.csv`, `FP.CPI.TOTL.ZG`) **annual CPI inflation**.
+  Both are percentage rates; sources differ, and their arithmetic
+  difference is **not** represented as a forward-looking real interest rate.
+  In 2025 the respective rates are **6.134247%** and **7.759041%**.
+- **Panel 2, pending:** no source-verified, methodologically compatible
+  **10-year government bond yield** series staged.
+- **Panel 3, observed:** official NBM **annual-average MDL per USD** is
+  inverted and indexed as `100 × (MDL_per_USD_2006 / MDL_per_USD_year)`,
+  so **higher = stronger leu**, with 2006 = 100. The 2006 quote
+  **13.1319 MDL/USD** and 2025 **17.3705 MDL/USD** imply depreciation
+  relative to the index base; the indexed series is a **derived measure**.
+  The chart does **not** present MDL/USD nominal amounts as a strength index
+  without this inversion.
+- **Panel 4, pending:** no independently validated **main equity index
+  converted to USD and compared with S&P 500** is staged. This missing
+  slot is explicit; no proxy or synthetic market index was invented.
+
+The visualization uses research-specific vertical scales so the observed
+lines remain readable; this is explicitly disclosed and it is **not**
+claimed to satisfy `PLATE_SPINE.md`'s atlas-wide canonical axis limits.
+The expected deliverable in this phase is a faithful preview of the
+verified data and the gaps. Partial 2026 observations are excluded.
+
+### Candidate country identity, deliberately unregistered
+
+`research/country_candidate.yaml` stages Moldova's flag-colour palette,
+MDL currency, 2006–2026 comparison window, `ro/en/pt` locales,
+trilingual SEO/source names and all presently used country-switcher
+languages, **without** creating `countries/moldova/country.yaml`.
+The project discovers published countries by that exact root filename,
+so registering now would introduce unsupported Romanian number formatting
+and MDL money-affix rules into the global renderer and fail missing
+chapters and provenance requirements.
+
+To promote the candidate, first add **Romanian `ro` number-style support**
+to shared `core/numstyle.py`, equivalent `core/i18n.py` unit rules,
+shared `core/sitebuild.py` affixes (including MDL), site language chrome,
+full Romanian-English-Portuguese figure translations, canonical
+`plates.py`/`chapters.py`, source provenance, rendered assets,
+and successful complete global and country-specific tests. Only then
+move/copy the draft into the country root as `country.yaml`.
+The research translations are **not** substitutes for final `i18n.json`.
