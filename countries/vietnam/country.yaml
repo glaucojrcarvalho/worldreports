@@ -17,6 +17,7 @@ flag_emoji: "🇻🇳"
 # (ệ), so the wordmark is set at the two-word size.
 wordmark: Việt Nam
 name:
+  ro: "Vietnam"
   de: "Vietnam"
   en: "Vietnam"
   fr: "Viêt Nam"

@@ -24,6 +24,7 @@ flag_emoji: "🇨🇭"
 # candidate; it reads as a brand rather than a place to most readers.
 wordmark: Schweiz
 name:
+  ro: "Elveția"
   en: "Switzerland"
   fr: "Suisse"
   pt: "Suíça"
