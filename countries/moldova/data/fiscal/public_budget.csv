@@ -1,0 +1,22 @@
+# BNS Statbank FIN010100, official Ministry of Finance national-public-budget execution.
+# Extracted 2026-10-26 via GitHub Actions run 40267150660 using PxWeb JSON-stat2 POST.
+# https://statbank.statistica.md/PxWeb/api/v1/en/40%20Statistica%20economica/25%20FIN/FIN010100.px
+# Selection: Perioade=3 (January–December), Unitatea de masura=0 (million MDL), Ani 2016-2025.
+# Indicator codes: 0 revenue, 19 expenditure/nonfinancial assets, 30 balance, 20-29 functions.
+# NATIONAL PUBLIC BUDGET CASH basis; excludes left-bank Nistru districts and Bender.
+# FUNCTION SUM = expenditure for all 10 years within published 0.1 MDL mn precision.
+# Source-published 2024 total 122962.7 / balance -12624.2 DIFFERS by 0.1
+# from the BNS Finance overview snapshot 122962.6 / -12624.1.
+# Both publication snapshots are preserved separately; do not silently overwrite or splice.
+# 2025 remains PRELIMINARY. Earlier vintage/finality labels are not asserted.
+year,revenue_mdl_mn,expenditure_mdl_mn,balance_mdl_mn,general_services_mdl_mn,defense_mdl_mn,public_order_mdl_mn,economic_affairs_mdl_mn,environment_mdl_mn,housing_mdl_mn,health_mdl_mn,culture_mdl_mn,education_mdl_mn,social_protection_mdl_mn
+2016,45953.9,48462.6,-2508.7,5151.1,547.3,3338.4,4600.3,172.6,1144.9,6505.5,1177.1,8557.7,17267.7
+2017,53377.6,54522.4,-1144.8,5679.1,568.3,4041.5,5424.9,146.7,1315.3,7268.7,1333.4,9681.3,19063.2
+2018,57995.9,59608.9,-1613.0,5551.7,643.3,4376.2,6615.7,115.4,1523.4,7799.0,1519.1,10462.1,21003.0
+2019,62949.2,65975.6,-3026.4,6183.9,611.2,4322.2,7206.5,165.0,1552.5,8635.0,1839.6,12121.2,23338.5
+2020,62650.0,73269.8,-10619.8,6590.8,650.2,4770.4,8885.5,253.7,1780.4,9990.2,1733.2,12583.1,26032.3
+2021,77373.0,82013.5,-4640.5,6828.2,783.6,5112.3,8495.2,309.4,2174.4,13527.8,1959.1,13398.2,29425.3
+2022,91505.4,100374.2,-8868.8,8233.3,895.3,6274.1,10882.5,370.8,2889.1,13654.4,2328.4,15857.9,38988.4
+2023,102299.2,117871.1,-15571.9,11501.5,1530.4,6711.1,11264.8,413.5,3757.0,15944.1,2974.0,18784.4,44990.3
+2024,110338.5,122962.7,-12624.2,11114.0,1778.2,7135.1,11300.9,508.6,3168.6,18075.9,3242.9,19630.7,47007.8
+2025,125602.0,139856.4,-14254.4,11466.0,1843.8,8413.7,13886.9,568.2,4261.2,19391.1,3698.4,22271.1,54056.0
