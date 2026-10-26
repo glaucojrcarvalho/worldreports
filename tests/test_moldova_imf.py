@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import csv
 import importlib.util
+import importlib.util
 import math
 from pathlib import Path
 
@@ -140,3 +141,20 @@ def test_weo_validator_rejects_unflagged_forecast() -> None:
     sample["indicators"]["GGXCNL_NGDP"]["projection-year"] = 2027
     with pytest.raises(ValueError, match="projection boundary"):
         imf.validate(sample, "GGXCNL_NGDP")
+
+
+def test_imf_preview_preserves_source_separation_and_renders(tmp_path: Path) -> None:
+    script = DIR / "research" / "render_imf_preview.py"
+    loader = importlib.util.spec_from_file_location("moldova_imf_preview", script)
+    assert loader and loader.loader
+    module = importlib.util.module_from_spec(loader)
+    loader.loader.exec_module(module)
+    fpp, weo = module.validated()
+    assert max(fpp) == 2024 and max(weo) == 2026
+    assert weo[2026]["debt_pct_gdp"] is None
+    assert weo[2026]["debt_pct_gdp_proj"] == 41.8
+    before = [module.FPP_FILE.read_bytes(), module.WEO_FILE.read_bytes()]
+    out = module.render(tmp_path / "imf_preview.png")
+    assert out.read_bytes().startswith(b"\x89PNG\r\n\x1a\n")
+    assert out.stat().st_size > 20_000
+    assert before == [module.FPP_FILE.read_bytes(), module.WEO_FILE.read_bytes()]
