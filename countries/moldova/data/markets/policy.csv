@@ -1,0 +1,27 @@
+# National Bank of Moldova official base rate; 2006-2025, completed calendar years.
+# Data were sourced from https://www.bnm.md/en/export-base-rates?limit=1000
+# Live source pull: https://github.com/glaucojrcarvalho/worldreports/actions/runs/40273821580
+# Annual arithmetic mean of rates is WRONG: annual value here is calendar-DAY-weighted effective base rate.
+# Year-end rate is base rate effective on 31 December, not average.
+# Official 2024 year-end 3.60%, 2025 year-end 5.00%, 2026 partial excluded.
+year,policy_mean_pct,policy_dec31_pct
+2006,12.756164,14.50
+2007,14.463014,16.00
+2008,17.133880,14.00
+2009,8.639726,5.00
+2010,6.671233,7.00
+2011,8.671233,9.50
+2012,5.027322,4.50
+2013,3.823288,3.50
+2014,3.565753,6.50
+2015,15.319178,19.50
+2016,13.307377,9.00
+2017,8.184932,6.50
+2018,6.500000,6.50
+2019,6.864384,5.50
+2020,3.497678,2.65
+2021,3.679589,6.50
+2022,16.627397,20.00
+2023,10.044521,4.75
+2024,3.810519,3.60
+2025,6.134247,5.00
