@@ -173,3 +173,48 @@ population denominator in place, period, and definition.
 
 No invented rates, interpolated years, provisional-to-final upgrades
 or inferred geography are accepted into published plates.
+
+
+## National Bank of Moldova — official interest-rate and FX histories
+
+**Verified 2026-10-26**, live exporter run
+[40273821580](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40273821580).
+The NBM's official [base-rate CSV](https://www.bnm.md/en/export-base-rates?limit=1000)
+returned **106 rate-setting events** with effective dates between **2001-02-01**
+and **2026-09-17**. The export uses semicolons and comma decimals and ends
+with the literal publisher footer `Data source:;BNM`. The
+`fetch/fetch_nbm.py` importer rejects unexpected schema, units, duplicates,
+missing historical coverage, and implausible values.
+
+`data/markets/policy.csv` contains **2006–2025** *completed years* in two
+separate measures: the **calendar-day-weighted mean of the base rate in force
+throughout the year**, and the **base rate on 31 December**. A mean of the
+rate-change events would be wrong because decisions take effect on different
+days. Example: 2024 mean **3.810519%**, year-end **3.60%**; 2025 mean
+**6.134247%**, year-end **5.00%**. The base-rate series is a
+**derived statistic from the official decision dates** and is identified
+as derived; it is not described as a directly published annual average.
+
+The official
+[NBM average FX export](https://www.bnm.md/en/export-average-rates?date_from=01.01.2025&date_to=31.12.2025)
+was queried independently for each completed calendar year 2006–2025.
+`data/markets/usd_mdl.csv` stores **MDL per one USD**, derived from the
+exported `Rates / Rate` nominal-unit pair where necessary, rather than a
+reciprocal USD-per-MDL or an independently sampled spot quote. 2024 annual
+average **17.7918 MDL/USD**, 2025 **17.3705 MDL/USD**. In contrast to the
+policy mean, this is an average *published by NBM*, not an atlas-calculated
+mean of daily observations.
+
+The two files and the corresponding `*_from_nbm.csv` refresh sidecars
+are never mixed with each other or with international redistributed
+exchange-rate series. No 2026 partial year is presented as a full-year rate.
+Their source and conversion semantics are pinned in
+`tests/test_moldova_nbm.py` and `SOURCES.yaml`.
+
+**Still absent:** household-specific loan stocks, nonperforming-loan
+ratios, lending rates on a consistent borrower/currency perimeter,
+10-year government bond yields and equity-index series. Those need their
+own definitions and audit before producing the canonical `credit`
+or `markets` 2×2 plates. We have **not yet registered Moldova as
+a published country** with Romanian/English/Portuguese strings or rendered
+the full atlas.
