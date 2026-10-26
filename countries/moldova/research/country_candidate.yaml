@@ -1,7 +1,8 @@
 # CANDIDATE country configuration for Phase B/C; NOT ACTIVE IN ATLAS.
 # Intentionally under research/, not countries/moldova/country.yaml.
-# WARNING: Romanian number style ("ro") and MDL affixes are NOT supported by
-# shared core yet, and the country has no plates/chapters/i18n/site assets.
+# Romanian number style ("ro") and MDL affixes now exist in shared core.
+# The country still lacks plates/chapters/full i18n/site assets; it is NOT
+# a published atlas edition and must not be registered prematurely.
 # Do not move this file into the country root until full integration gates pass.
 slug: moldova
 flag_emoji: "🇲🇩"
