@@ -74,8 +74,7 @@ jobs:
           print(f"Candidate card QA passed: {len(cards)} chapters / {len(strip)} headlines")
           PY
           python -m core.render moldova --langs en --out /tmp/moldova-phase-b
-      - name: Inventory full Romanian and Portuguese plate translation gaps (diagnostic, not publication)
-        continue-on-error: true
+      - name: Require complete Romanian and Portuguese render translations (no fallback)
         run: |
           python -m core.render moldova --langs ro,pt --out /tmp/moldova-phase-b-translations
       - name: Preserve draft PNGs for offline visual review (not a deployment)
