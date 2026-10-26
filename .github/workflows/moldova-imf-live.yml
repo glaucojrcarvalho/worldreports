@@ -1,0 +1,32 @@
+# Bounded read-only importer audit, isolated from atlas pages and releases.
+name: Moldova IMF live fiscal audit
+on:
+  push:
+    branches: [research/moldova-source-audit]
+    paths: [.github/workflows/moldova-imf-live.yml]
+permissions:
+  contents: read
+jobs:
+  imf-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Pull official IMF dataset slices, validate versions and accounting
+        run: python3 -u countries/moldova/fetch/fetch_imf.py
+      - name: Inspect source-specific review CSVs
+        run: |
+          echo '=== OCTOBER 2026 WEO — Moldova general government ==='
+          cat countries/moldova/data/fiscal/weo_bal_debt_from_imf.csv
+          echo '=== DECEMBER 2025 FPP — separate fiscal historical database ==='
+          cat countries/moldova/data/fiscal/fpp_finances_from_imf.csv
+      - uses: actions/upload-artifact@v4
+        with:
+          name: moldova-imf-two-vintages-raw-snapshots
+          path: |
+            countries/moldova/data/fiscal/weo_bal_debt_from_imf.csv
+            countries/moldova/data/fiscal/fpp_finances_from_imf.csv
+          retention-days: 14
