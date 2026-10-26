@@ -1,0 +1,28 @@
+# One-shot official NBM source ingestion, no branch mutations, no deploy.
+name: Moldova NBM live rate audit
+on:
+  push:
+    branches: [research/moldova-source-audit]
+    paths: [.github/workflows/moldova-nbm-live.yml]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch NBM's official policy and USD/MDL rates for 2006-2025
+        run: python -u countries/moldova/fetch/fetch_nbm.py
+      - name: Print verified sidecars for manual audit
+        run: |
+          cat countries/moldova/data/markets/policy_from_nbm.csv
+          cat countries/moldova/data/markets/usd_mdl_from_nbm.csv
+      - uses: actions/upload-artifact@v4
+        with:
+          name: moldova-nbm-official-rate-sidecars
+          path: countries/moldova/data/markets/*_from_nbm.csv
+          retention-days: 14
