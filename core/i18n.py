@@ -203,9 +203,9 @@ _UNITS.update({
     # Romanian ro-MD/CLDR: dot thousands, comma decimal, trailing currency
     # unit and NBSP before percent sign. "miliard" = 10^9, "bilion" = 10^12.
     # The source mark MDL is retained as an explicit currency ISO token;
-    # the local plain amount uses the BNM's L abbreviation.
+    # the local plain amount writes "lei" in full for clarity.
     "ro": _one_for_one(
-        [("MDL", "L"), (r"US\$", "USD"), ("€", "EUR")],
+        [("MDL", "lei"), (r"US\$", "USD"), ("€", "EUR")],
         {"tn": "bln.", "bn": "mld.", "mn": "mil."},
         "/100.000 loc.", f"{NBSP}p.p.", pct_space=True),
     # Duden / DIN 5008.
