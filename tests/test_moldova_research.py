@@ -47,7 +47,10 @@ def test_manifest_covers_exact_staged_wdi_files() -> None:
         for f in (MOLDOVA / "data").rglob("*.csv")
         if not f.stem.endswith(("_from_wb", "_from_bns"))
     }
-    expected = set(wdi.GROUPS) | {"fiscal/budget_summary.csv", "fiscal/public_budget.csv"}
+    expected = set(wdi.GROUPS) | {
+        "fiscal/budget_summary.csv", "fiscal/public_budget.csv",
+        "fiscal/weo_bal_debt.csv", "fiscal/fpp_finances.csv",
+    }
     assert declared == files == expected
     assert manifest["meta"]["status"] == "research_only_not_an_atlas_edition"
     for group, entries in manifest.items():
@@ -55,10 +58,17 @@ def test_manifest_covers_exact_staged_wdi_files() -> None:
             continue
         for name, details in entries.items():
             if group == "fiscal":
-                assert name in {"budget_summary.csv", "public_budget.csv"}
-                assert details["source"].startswith("National Bureau of Statistics")
+                assert name in {
+                    "budget_summary.csv", "public_budget.csv",
+                    "weo_bal_debt.csv", "fpp_finances.csv",
+                }
                 assert details["official"] is True
-                assert details["refreshed_by"] == "fetch/fetch_bns_budget.py"
+                if name in {"budget_summary.csv", "public_budget.csv"}:
+                    assert details["source"].startswith("National Bureau of Statistics")
+                    assert details["refreshed_by"] == "fetch/fetch_bns_budget.py"
+                else:
+                    assert details["source"].startswith("International Monetary Fund")
+                    assert details["refreshed_by"] == "fetch/fetch_imf.py"
             else:
                 assert details["source"].startswith("World Bank WDI")
                 assert details["official"] is False
