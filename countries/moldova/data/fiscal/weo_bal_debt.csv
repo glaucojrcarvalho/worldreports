@@ -1,0 +1,28 @@
+# IMF World Economic Outlook, OCTOBER 2026, Moldova MDA, annual % GDP.
+# DataMapper v2 metadata: WEO, projection-year=2026.
+# 2026 WEO estimates are PROJECTIONS, not historical realised totals.
+# 2025 is in the pre-projection range but is NOT claimed final/audited.
+# National BNS cash budget is different scope; NEVER splice.
+# Reconciled from live GitHub Actions evidence: https://github.com/glaucojrcarvalho/worldreports/actions/runs/40269456831
+year,balance_pct_gdp,balance_pct_gdp_proj,debt_pct_gdp,debt_pct_gdp_proj
+2006,-0.400000,,35.000000,
+2007,0.100000,,28.300000,
+2008,-0.900000,,22.200000,
+2009,-6.400000,,32.600000,
+2010,-2.200000,,25.500000,
+2011,-2.000000,,24.200000,
+2012,-1.900000,,31.300000,
+2013,-1.600000,,30.000000,
+2014,-1.600000,,35.400000,
+2015,-1.900000,,42.100000,
+2016,-1.600000,,39.700000,
+2017,-0.700000,,34.900000,
+2018,-0.900000,,31.800000,
+2019,-1.500000,,28.800000,
+2020,-5.300000,,36.600000,
+2021,-2.600000,,33.600000,
+2022,-3.200000,,35.000000,
+2023,-5.100000,,34.900000,
+2024,-4.000000,,38.800000,
+2025,-3.900000,,39.200000,
+2026,,-5.000000,,41.800000
