@@ -1,0 +1,35 @@
+# Bounded, read-only live BNS PxWeb API probe on the Moldova research branch.
+# Runs once when this workflow file is introduced or edited; no site deployment.
+name: Moldova BNS live extraction audit
+
+on:
+  push:
+    branches: [research/moldova-source-audit]
+    paths: [.github/workflows/moldova-bns-live.yml]
+
+permissions:
+  contents: read
+
+jobs:
+  bns-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probe BNS FIN010100 and cross-check fiscal arithmetic
+        run: |
+          python -u countries/moldova/fetch/fetch_bns_budget.py
+      - name: Output verified years for curator review
+        run: |
+          echo '--- BNS national budget 2016-2025 (million MDL; NOT harmonised IMF general government) ---'
+          cat countries/moldova/data/fiscal/public_budget_from_bns.csv
+      - uses: actions/upload-artifact@v4
+        with:
+          name: moldova-bns-raw-reviewed-sidecars
+          path: |
+            countries/moldova/data/fiscal/public_budget_from_bns.csv
+            countries/moldova/data/fiscal/budget_summary_from_bns.csv
+          retention-days: 7
