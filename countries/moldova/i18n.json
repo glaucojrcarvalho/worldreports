@@ -718,5 +718,29 @@
   "World Bank's comparable macroeconomic measures": {
     "ro": "Indicatori macroeconomici comparabili ai Băncii Mondiale",
     "pt": "Indicadores macroeconômicos comparáveis do Banco Mundial"
+  },
+  "BNS survey, 2014–2018": {
+    "ro": "Ancheta BNS, 2014–2018",
+    "pt": "Pesquisa BNS, 2014–2018"
+  },
+  "BNS revised survey, 2019–2025": {
+    "ro": "Ancheta BNS revizuită, 2019–2025",
+    "pt": "Pesquisa BNS revisada, 2019–2025"
+  },
+  "BNS consumption poverty; methodology break in 2019": {
+    "ro": "BNS: sărăcie după consum; ruptură metodologică în 2019",
+    "pt": "BNS: pobreza por consumo; ruptura metodológica em 2019"
+  },
+  "WDI Gini and BNS consumption poverty; 2019 survey break preserved": {
+    "ro": "Gini WDI și sărăcia BNS după consum; ruptura din 2019 rămâne vizibilă",
+    "pt": "Gini WDI e pobreza BNS por consumo; ruptura de 2019 preservada"
+  },
+  "World Bank WDI; BNS national poverty; statutory wage pending": {
+    "ro": "Banca Mondială WDI; sărăcia națională BNS; salariul minim în așteptare",
+    "pt": "Banco Mundial WDI; pobreza nacional BNS; salário mínimo pendente"
+  },
+  "WDI Gini and national absolute consumption poverty in disconnected survey regimes; minimum wage pending.": {
+    "ro": "Gini WDI și sărăcia absolută națională după consum în perioade de anchetă neconectate; salariul minim rămâne în așteptare.",
+    "pt": "Gini WDI e pobreza absoluta nacional por consumo em períodos metodológicos separados; salário mínimo pendente."
   }
 }

@@ -7,7 +7,7 @@
 # for unavailable years. fetch/fetch_wdi.py regenerates only *_from_wb.csv
 # sidecars, never overwriting these committed CSVs.
 #
-# No country.yaml/plates.py exists yet: Moldova is not a published atlas.
+# Draft plates are present; country.yaml remains unregistered pending full QA.
 # Every displayed series must be checked against its relevant NATIONAL
 # publisher and precise territorial definition before rendering.
 fiscal:
@@ -132,6 +132,24 @@ world:
       Current US$ GDP, GDP per person, total reserves including gold, current US$.
       WB GDP in dollars is not BNS current-price GDP in MDL.
 people:
+  absolute_poverty.csv:
+    source: "National Bureau of Statistics of Moldova (BNS), absolute consumption poverty from Household Budget Survey"
+    url: "https://statistica.gov.md/files/files/SDG/docs/Raport_ODD_%202024.pdf"
+    official: true
+    refreshed_by: "Manual primary publisher report transcription and edition audit, 2026-10-27"
+    notes: >-
+      National absolute CONSUMPTION poverty rate (% of people), not the
+      World Bank international dollar poverty line, WDI Gini or experimental
+      relative at-risk-of-poverty measure. BNS's 2024 national SDG progress
+      report indicator 1.2.1 p.17 supplies annual 2014-2023 observations;
+      its 2024 poverty report gives 33.6% and current 2025 BNS poverty
+      indicator gives 31.1%. The 2019 Household Budget Survey methodology
+      revision is preserved using distinct, unconnected pre_2019_pct
+      (2014-2018) and post_2019_pct (2019-2025) series; 2006-2013 remain
+      absent. Percentages use primary source 0.1 point precision; no
+      interpolation or 2018-2019 comparable growth claim. National
+      household survey coverage must not be assumed identical to
+      internationally harmonised population or Gini series.
   gini.csv:
     source: "World Bank WDI, SI.POV.GINI (harmonised household-survey Gini)"
     url: "https://api.worldbank.org/v2/country/MDA/indicator/SI.POV.GINI?format=json"
@@ -195,7 +213,7 @@ migration:
       is only published for 2010, 2015, 2020 and 2024: snapshots, not
       intervening annual values. Do not extrapolate/interpolate.
 meta:
-  phase: A
+  phase: C
   status: research_only_not_an_atlas_edition
   last_checked: "2026-10-26"
   wdi_vintage: "2026-10-08"

@@ -10,7 +10,8 @@
       "Recensământul BNS a numărat 2.409.207 rezidenți obișnuiți la 8 aprilie 2024, cu 157 localități neenumerate. Estimarea WDI/ONU pentru mijlocul anului 2024 este 2.402.306; nu sunt interschimbabile.",
       "Rata de bază BNM este media anuală ponderată cu zilele de aplicabilitate ale fiecărei decizii, nu media simplă a deciziilor sau rata de la 31 decembrie.",
       "Cursul BNM este media oficială anuală a leilor pentru un dolar SUA. Indicele afișat inversează acea cotare și are valoarea 100 în 2006: mai sus înseamnă leu mai puternic.",
-      "Seria ONU de migrație netă este o estimare modelată, nu un registru. Stocul de migranți are doar patru observații (2010, 2015, 2020, 2024); între ele nu se trasează o linie."
+      "Seria ONU de migrație netă este o estimare modelată, nu un registru. Stocul de migranți are doar patru observații (2010, 2015, 2020, 2024); între ele nu se trasează o linie.",
+      "Sărăcia absolută BNS folosește consumul gospodăriilor, nu praguri internaționale în dolari sau sărăcia relativă experimentală. Ancheta BNS a fost revizuită în 2019, deci 2014–2018 și 2019–2025 sunt linii neconectate. BNS indică 33,6% în 2024 și 31,1% în 2025."
     ],
     "unavailable": [
       {
@@ -38,8 +39,8 @@
         "detail": "Formarea brută de capital fix a administrației publice nu este verificată. Investiția întregii economii nu o substituie."
       },
       {
-        "term": "Sărăcia națională și salariul minim",
-        "detail": "Definițiile naționale pentru incidența sărăciei și calendarul salariului minim în MDL convertit prin cursul mediu anual trebuie auditate."
+        "term": "Salariul minim și comparabilitatea sărăciei",
+        "detail": "Sărăcia absolută BNS după consum este observată în 2014–2025, cu ruptură metodologică în 2019. Nu este comparabilă automat cu sărăcia relativă sau internațională. Salariul minim în MDL și conversia în USD rămân nevalidate."
       },
       {
         "term": "Indicele dezvoltării umane și indicele corupției",
@@ -88,7 +89,8 @@
       "The BNS census counted 2,409,207 usual residents on 8 April 2024 with 157 localities not enumerated. WDI/UN's mid-year 2024 population is 2,402,306. They are not interchangeable.",
       "The NBM base rate is averaged using each decision's days in force during a year, not as the simple mean of rate decisions nor the 31 December setting.",
       "The NBM exchange rate is the official calendar-year average in MDL per USD. The plotted strength index inverts the quote and equals 100 in 2006; higher means a stronger leu.",
-      "UN net migration is modelled, not a register. Migrant stock has only four observations (2010, 2015, 2020 and 2024); no connecting line is interpolated."
+      "UN net migration is modelled, not a register. Migrant stock has only four observations (2010, 2015, 2020 and 2024); no connecting line is interpolated.",
+      "BNS absolute poverty uses household consumption, not international dollar thresholds or experimental relative poverty. Its Household Budget Survey revision in 2019 separates unconnected 2014–2018 and 2019–2025 lines. BNS reports 33.6% for 2024 and 31.1% for 2025."
     ],
     "unavailable": [
       {
@@ -116,8 +118,8 @@
         "detail": "General-government gross fixed capital formation has not been independently validated. Economy-wide investment is not substituted."
       },
       {
-        "term": "National poverty and minimum wage",
-        "detail": "National poverty incidence and the legal MDL wage schedule converted with matching annual-average FX require original-source checks."
+        "term": "Minimum wage and poverty comparability",
+        "detail": "BNS national consumption-based absolute poverty is now source-checked for 2014–2025 with a 2019 method break. This is not interchangeable with relative or international poverty. The statutory MDL wage and matching annual USD conversion remain unverified."
       },
       {
         "term": "Human development and corruption indices",
@@ -166,7 +168,8 @@
       "O censo BNS contou 2.409.207 residentes habituais em 8 de abril de 2024, com 157 localidades não recenseadas. A população WDI/ONU para meados de 2024 é 2.402.306; não são estatísticas intercambiáveis.",
       "A taxa básica BNM é uma média anual ponderada pelos dias de vigência de cada decisão, não a média simples das decisões nem a taxa de 31 de dezembro.",
       "O câmbio BNM é a média oficial do ano em MDL por dólar. O índice de força do leu inverte essa cotação e vale 100 em 2006; valores maiores indicam leu mais forte.",
-      "A migração líquida ONU é modelada, não um registro. O estoque de migrantes tem apenas quatro observações (2010, 2015, 2020 e 2024), sem interpolação por linhas."
+      "A migração líquida ONU é modelada, não um registro. O estoque de migrantes tem apenas quatro observações (2010, 2015, 2020 e 2024), sem interpolação por linhas.",
+      "A pobreza absoluta BNS usa consumo das famílias, não limites internacionais em dólares ou pobreza relativa experimental. A pesquisa domiciliar mudou de método em 2019, deixando 2014–2018 e 2019–2025 em linhas não conectadas. O BNS informa 33,6% em 2024 e 31,1% em 2025."
     ],
     "unavailable": [
       {
@@ -194,8 +197,8 @@
         "detail": "A formação bruta de capital fixo do governo geral ainda não foi validada. O investimento da economia inteira não substitui."
       },
       {
-        "term": "Pobreza nacional e salário mínimo",
-        "detail": "A incidência nacional da pobreza e o salário mínimo legal em MDL convertido por câmbio médio anual exigem checagem das fontes originais."
+        "term": "Salário mínimo e comparabilidade da pobreza",
+        "detail": "A pobreza absoluta BNS por consumo foi verificada para 2014–2025, com ruptura metodológica em 2019. Não substitui pobreza relativa ou internacional. Salário mínimo legal em MDL e conversão anual para dólares seguem pendentes."
       },
       {
         "term": "Índices de desenvolvimento humano e corrupção",

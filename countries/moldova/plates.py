@@ -194,8 +194,15 @@ def plate_people(ctx, ig):
     _foot(ctx, ax, "World Bank WDI household-survey Gini; ends 2024")
 
     ax = ig.slot("people.poverty", "National poverty rate (% of people)")
-    _pending(ctx, ig, ax, "National poverty and WDI poverty thresholds\n"
-             "have not been definition-checked side by side.")
+    # Two source-defined regimes, not a connected series: the HBS was
+    # revised in 2019, so a 2018-to-2019 segment would be misleading.
+    ctx.line(ax, *_series(ctx, "people/absolute_poverty.csv", "pre_2019_pct"),
+             ctx.p.GOLD, label="BNS survey, 2014–2018")
+    ctx.line(ax, *_series(ctx, "people/absolute_poverty.csv", "post_2019_pct"),
+             ctx.p.BLUE, label="BNS revised survey, 2019–2025")
+    ax.legend(fontsize=7.5, frameon=False)
+    _foot(ctx, ax, "BNS consumption poverty; methodology break in 2019")
+
     ax = ig.slot("people.minimum_wage", "Minimum wage (US$ monthly)")
     _pending(ctx, ig, ax, "The legal MDL monthly wage schedule and\n"
              "matching annual USD conversion are not staged.")
@@ -353,9 +360,9 @@ PLATES = (
          alt="Household debt, household lending rate and non-performing loans pending."),
     dict(id="07", slug="people", topic="people", builder=plate_people,
          title="Moldova — Household Inequality",
-         subtitle="WDI survey Gini is available; poverty and minimum pay remain unverified",
-         source="World Bank WDI; BNS and legal-wage sources pending",
-         alt="Survey Gini, with national poverty and legal minimum wage pending."),
+         subtitle="WDI Gini and BNS consumption poverty; 2019 survey break preserved",
+         source="World Bank WDI; BNS national poverty; statutory wage pending",
+         alt="WDI Gini and national absolute consumption poverty in disconnected survey regimes; minimum wage pending."),
     dict(id="08", slug="world", topic="world", builder=plate_world,
          title="Moldova in the World — Output and Reserves",
          subtitle="Nominal US-dollar measures; other international indices need validation",
