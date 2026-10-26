@@ -77,11 +77,53 @@ jobs:
       - name: Require complete Romanian and Portuguese render translations (no fallback)
         run: |
           python -m core.render moldova --langs ro,pt --out /tmp/moldova-phase-b-translations
-      - name: Preserve draft PNGs for offline visual review (not a deployment)
+      - name: Build isolated trilingual candidate, thumbs and observed provenance (not deployed)
+        run: |
+          python -m core.render moldova
+          python -m core.thumbs moldova
+          python -m core.provenance moldova
+          python -m core.page --out /tmp/moldova-candidate-site moldova
+          python - <<'PY'
+          import json
+          from collections import Counter
+          from pathlib import Path
+          from tests.test_layout import faults
+          root = Path("countries/moldova")
+          output = root / "output"
+          actual = sorted(output.glob("*.png"))
+          thumbs = sorted((output / "thumbs").glob("*.png"))
+          assert len(actual) == 36, (len(actual), actual)
+          assert len(thumbs) == 36, (len(thumbs), thumbs)
+          provenance = json.loads((root / "provenance.json").read_text())
+          assert len(provenance) == 12, provenance
+          assert len(set(v for files in provenance.values() for v in files)) >= 8
+          for locale in ("ro", "en", "pt"):
+              page = Path("/tmp/moldova-candidate-site/moldova") / locale / "index.html"
+              assert page.exists(), page
+              assert "Moldova" in page.read_text(encoding="utf-8") or "Moldávia" in page.read_text(encoding="utf-8")
+              issues = faults("moldova", locale)
+              count = dict(Counter(item.split()[1] for item in issues))
+              print(f"Layout audit {locale}: {count}")
+              outside = [f for f in issues if "OUTSIDE" in f]
+              if outside:
+                  print("\\n".join(outside[:15]))
+              assert not outside, f"{locale}: {len(outside)} labels outside canvas"
+          print(f"Draft site QA: {len(actual)} plates, {len(thumbs)} thumbs, {len(provenance)} traced plate sources")
+          PY
+          python -m pytest -q tests/test_sources.py
+          echo '=== MOLDOVA GENERATED PROVENANCE START ==='
+          cat countries/moldova/provenance.json
+          echo '=== MOLDOVA GENERATED PROVENANCE END ==='
+
+      - name: Preserve draft PNGs and candidate site for visual QA (not deployment)
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: moldova-phase-b-english-draft
+          name: moldova-phase-c-localized-draft
           path: |
             /tmp/moldova-phase-b/
             /tmp/moldova-phase-b-translations/
+            countries/moldova/output/
+            countries/moldova/provenance.json
+            /tmp/moldova-candidate-site/moldova/
           retention-days: 5
