@@ -50,6 +50,7 @@ def test_manifest_covers_exact_staged_wdi_files() -> None:
     expected = set(wdi.GROUPS) | {
         "fiscal/budget_summary.csv", "fiscal/public_budget.csv",
         "fiscal/weo_bal_debt.csv", "fiscal/fpp_finances.csv",
+        "markets/policy.csv", "markets/usd_mdl.csv",
     }
     assert declared == files == expected
     assert manifest["meta"]["status"] == "research_only_not_an_atlas_edition"
@@ -69,6 +70,11 @@ def test_manifest_covers_exact_staged_wdi_files() -> None:
                 else:
                     assert details["source"].startswith("International Monetary Fund")
                     assert details["refreshed_by"] == "fetch/fetch_imf.py"
+            elif group == "markets":
+                assert name in {"policy.csv", "usd_mdl.csv"}
+                assert details["source"].startswith("National Bank of Moldova")
+                assert details["official"] is True
+                assert details["refreshed_by"] == "fetch/fetch_nbm.py"
             else:
                 assert details["source"].startswith("World Bank WDI")
                 assert details["official"] is False
