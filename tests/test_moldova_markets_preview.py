@@ -48,7 +48,7 @@ def test_research_catalog_three_complete_locales_with_missing_panels() -> None:
         assert "{" not in t["pending_bond"] and "{" not in t["pending_equity"]
         assert "{rate}" in t["fx_latest"]
         assert t["pending"] != t["p1"]
-    assert "piațe" in translated["ro"]["title"]
+    assert "piețe" in translated["ro"]["title"]
     assert "policy" in translated["en"]["title"]
     assert "mercados" in translated["pt"]["title"]
 
