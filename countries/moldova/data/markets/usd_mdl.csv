@@ -1,0 +1,27 @@
+# National Bank of Moldova official period average USD rate; 2006-2025 FULL calendar years.
+# https://www.bnm.md/en/export-average-rates?date_from=01.01.YYYY&date_to=31.12.YYYY
+# Live source pull: https://github.com/glaucojrcarvalho/worldreports/actions/runs/40273821580
+# Unit MDL for 1 USD; NBM published quote (Rates / Rate nominal quantity).
+# This is a BNM official period-mean quote, not spot, not a reseller-derived rate.
+# 2024 BNM average 17.7918, 2025 BNM average 17.3705; no 2026 partial.
+year,mdl_per_usd_annual_avg
+2006,13.131900
+2007,12.136200
+2008,10.389500
+2009,11.113400
+2010,12.366300
+2011,11.737000
+2012,12.112200
+2013,12.590700
+2014,14.038800
+2015,18.816100
+2016,19.923800
+2017,18.490200
+2018,16.803100
+2019,17.575100
+2020,17.320100
+2021,17.681600
+2022,18.903200
+2023,18.160700
+2024,17.791800
+2025,17.370500
