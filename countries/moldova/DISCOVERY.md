@@ -85,7 +85,7 @@ The 2014/2024 census comparison should only be charted from the BNS's *own compa
 
 ### Acceptance boundary
 
-Research here is **verified at the level of publisher pages and the arithmetic above**, *not* at API-row completeness or a working published plate. A proper country PR must carry independently reviewable source CSVs and figures, provenance, international/national series labels, translation, and all passing quality gates. Leave missing topics documented rather than inventing a plausible proxy.
+At the beginning of this research pass, publisher-page arithmetic was the only independent evidence. The subsequent 2026-10-26 updates below **supersede that limitation for the WDI and BNS fiscal series**: the 20 WDI codes and 2016–2025 BNS full-year fiscal API have now been retrieved and checked. The **complete country atlas is still absent**, so a proper country PR must carry reviewable source CSVs, rendered plates, provenance, national/international series labels, translations and all passing full-atlas gates.
 
 ---
 
@@ -109,12 +109,12 @@ Research here is **verified at the level of publisher pages and the arithmetic a
 - Codes **`0` revenue, `19` expenditure + non-financial assets, `30` deficit/surplus** are top-level totals, while **`20`–`29`** are the ten functional spending classes. Codes **`1`–`18`** are revenue subcomponents: **never sum them with revenue 0**.
 - The source has **`Perioade=3` January–December** and **`Unitatea de masura=0` million Moldovan lei**. Select years 2016–2025 only, not partial 2026.
 - Added `fetch/fetch_bns_budget.py` to POST a narrow `json-stat2` query, decode the dimension indices instead of assuming a static order, verify annual fiscal accounting identity and class sums, and write only `data/fiscal/public_budget_from_bns.csv` as a **review sidecar**.
-- **Boundary:** exact BNS API *metadata* GET succeeded. The **budget data POST has not been executed** from this environment, so this code is a tested-by-fixture parser proposal rather than a confirmed end-to-end extractor. It must not be used to claim that 2016–2025 national fiscal CSVs were ingested.
-- Offline unit-test source files were added at `tests/test_moldova_research.py` and `tests/test_moldova_bns_budget.py`. **No pytest run has been completed yet**, and this source-research branch is intentionally **not ready for upstream review**.
+- **Superseded by verified live run:** the official JSON-stat2 POST **succeeded on 2026-10-26** ([GitHub Actions run 40267150660](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40267150660)). All 10 full-year records (2016–2025), each with revenue, expenditure, balance and ten functional spending classes, were parsed by the real collector and reconciled. The separate reviewed `data/fiscal/public_budget.csv` now stages the actual source rows; 2024 0.1-million edition differences remain separate from `budget_summary.csv`.
+- Offline source tests now include `tests/test_moldova_research.py`, `tests/test_moldova_bns_budget.py`, `tests/test_moldova_fiscal_data.py` and `tests/test_moldova_fiscal_preview.py`. **46 tests passed** in [GitHub Actions run 40267621960](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40267621960). A four-panel `research/render_fiscal_preview.py` chart was generated as a **noncanonical, untranslated research preview**, not a published atlas plate. The branch is **not ready for upstream review**.
 
 ### Publication gates still outstanding
 
-1. Run the BNS fiscal POST and compare 2024/2025 anchors, then review and curate its 2016–2025 functional series.
+1. **Completed:** BNS fiscal API POST and 2016–2025 cash-budget functional staging. **Pending:** explain/check the 2024 0.1-million BNS API vs overview difference, and 2025 0.8-million Ministry SDDS vs BNS difference against their respective source vintages; never silently choose one.
 2. Reconcile BNS/World Bank population geography and survey definitions with official methodology; keep parallel lines where definitions differ.
 3. Acquire direct national CPI/labour/poverty/credit/FX/migration statistics, and the WEO general-government fiscal comparables.
 4. Only then register `country.yaml` and implement Romanian + English + Portuguese catalogs, cards and canonical plates; run the full atlas render, provenance, layout and unit-test gates.
