@@ -188,10 +188,10 @@ def draw(locale: str, destination: Path | None = None) -> Path:
     ax.scatter([2025], [strength[-1]], color="#287565", s=42, zorder=3)
     ax.set_title(texts["p3"], loc="left", fontsize=13, weight="bold", pad=10)
     ax.set_ylabel(texts["units_index"], fontsize=10)
-    ax.text(.015, .08, texts["fx"], transform=ax.transAxes,
+    ax.text(.015, .92, texts["fx"], transform=ax.transAxes,
             ha="left", va="bottom", fontsize=9, color="#475467")
     rate = obs["fx"][2025]["mdl_per_usd_annual_avg"]
-    ax.text(.985, .08, texts["fx_latest"].format(rate=fmt_rate(rate, locale)),
+    ax.text(.985, .92, texts["fx_latest"].format(rate=fmt_rate(rate, locale)),
             transform=ax.transAxes, ha="right", va="bottom",
             fontsize=8.5, color="#475467")
 
