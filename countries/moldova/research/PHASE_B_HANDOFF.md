@@ -87,3 +87,26 @@ strings. This is intentionally not the publication gate; the real gate must
 be strict and green before registration. Its PNGs are stored as review-only
 artifacts. `i18n.json` is a starter catalog and needs to be filled from
 the diagnostic log without English fallback.
+
+## Phase C source addition — 2026-10-27: BNS absolute poverty
+
+National absolute-consumption poverty is now observed in `people.poverty`:
+2014–2023 from BNS's 2024 SDG report; 2024 **33.6%** and 2025 **31.1%**
+from BNS poverty releases. A documented **2019 Household Budget Survey
+methodology revision** is preserved as two disconnected series, never a
+spliced 2018–2019 trend. `SOURCES.yaml` names the official BNS publisher,
+`DATA_NOTES.md` records the complete anchor list, the three-language
+catalog/site/cards explain the break and explicitly distinguish consumption
+poverty from experimental relative poverty and international dollar lines.
+`tests/test_moldova_bns_poverty.py` pins all observations, blanks,
+methodology and locale metadata. Minimum wage remains pending.
+
+**Next gate:** inspect the latest CI: offline source tests, strict ro/en/pt
+plate render, 36 full plates + 36 thumbs, 12 provenance records including
+the new `people/absolute_poverty.csv` on `07-people`, localized pages,
+layout fault audit and the full atlas/browser-JS regression. Human visual
+QA and global regeneration of changed shared-spine peer images remain
+necessary before registering `country.yaml`. The archival workflow now
+tolerates stale concurrent non-fast-forward *without force-pushing* older
+binary figures; a newer source commit must generate its own images.
+Do not merge/deploy the fork or modify upstream automatically.

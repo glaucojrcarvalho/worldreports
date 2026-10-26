@@ -1,6 +1,6 @@
 # Moldova — data notes and publication boundaries
 
-**Research status: Phase A (not a published atlas).** Updated 2026-10-26.
+**Research status: Phase C draft (not a published atlas).** Updated 2026-10-27.
 
 This file records the meanings behind the staged observations in
 [SOURCES.yaml](SOURCES.yaml) and the source probes in
@@ -290,3 +290,31 @@ canonical plates and chapters, source provenance, committed rendered assets,
 and the complete atlas regression suite. Only then move/copy the draft
 into the country root as `country.yaml`. The existing three-language
 research preview strings are **not** substitutes for final `i18n.json`.
+
+## BNS absolute-consumption-poverty audit — 2026-10-27
+
+The primary BNS national SDG progress report (2024 edition), indicator
+**1.2.1**, printed page 17, reports national *absolute consumption*
+poverty as percent of persons for **2014–2023**, respectively:
+**29.5, 25.4, 26.4, 27.7, 23.0, 25.2, 26.8, 24.5, 31.1, 31.6**.
+Publisher PDF: https://statistica.gov.md/files/files/SDG/docs/Raport_ODD_%202024.pdf
+
+The BNS 2024 poverty publication independently confirms **33.6%** in
+2024: https://statistica.gov.md/en/statbank-10101_61801.html .
+The current 2025 BNS poverty indicator reports **31.1%** in 2025:
+https://statistica.gov.md/ro/statistic_indicator_details/58
+(source checked 2026-10-27). All numbers retain publisher precision:
+**0.1 percentage point**, never artificial extra decimals.
+
+The source's denominator is the **national household consumption-poverty
+survey**, **not** an income-relative at-risk-of-poverty series, a World
+Bank PPP dollar-line poverty rate, or WDI Gini. BNS explicitly says the
+Household Budget Survey methodology was **revised in 2019**:
+https://statistica.gov.md/index.php/en/statistic_indicator_details/3 .
+The atlas consequently stores 2014–2018 and 2019–2025 in TWO distinct
+CSV columns and plots **unconnected** lines: one must not infer a
+comparable 2018-to-2019 percentage-point change across the method seam.
+2006–2013 remain missing. Territorial and sampling concordance with
+other international population/Gini sources remains unresolved.
+This fills only the **national absolute poverty** slot; legal minimum
+wage is still pending.
