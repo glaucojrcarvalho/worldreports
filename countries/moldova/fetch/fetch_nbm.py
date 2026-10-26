@@ -83,6 +83,13 @@ def parse_policy(body: str) -> list[tuple[date, float]]:
     for fields in rows[1:]:
         if not fields or not any(f.strip() for f in fields):
             continue
+        # BNM appends a two-field footer after its published rate decisions.
+        # Accept that publisher signature only *after* the data, not a
+        # generic malformed row which might hide a truncated export.
+        if len(fields) == 2 and fields[0].strip() == "Data source:":
+            if fields[1].strip() != "BNM" or len(events) < 40:
+                raise ValueError("NBM footer misplaced or unexpected")
+            break
         if len(fields) != 5:
             raise ValueError(f"Malformed policy-rate row {fields}")
         day, month, year = (int(n) for n in fields[0].strip().split("."))
