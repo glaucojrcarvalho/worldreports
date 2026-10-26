@@ -28,7 +28,7 @@ have been drawn or reviewed.
    | 2025 | 125,602.0 | 139,856.4 | -14,254.4 | preliminary |
 
    Each balance equals revenue minus expenditure to the published precision.
-   The earlier years **are not** populated in the curated table.
+   The earlier years **are not** populated in this two-year overview snapshot; a separate, same-publisher historical API series is now curated below.
 
 3. The BNS [FIN010100 PxWeb API metadata](https://statbank.statistica.md/PxWeb/api/v1/en/40%20Statistica%20economica/25%20FIN/FIN010100.px)
    was fetched successfully. The 31 indicator values include revenue code
@@ -44,13 +44,36 @@ have been drawn or reviewed.
    `fiscal/public_budget_from_bns.csv` and
    `fiscal/budget_summary_from_bns.csv`.
 
-   **Not yet end-to-end verified:** the PxWeb browser table successfully
-   displayed the variable selectors (including the correct Jan–Dec period,
-   years, and units), but the exploratory interactive run did *not* return
-   the cell data/export. Therefore the **full 2016–2025** fiscal history
-   has **not** been collected, and the fiscal fetcher has only passed
-   fixture-based offline decoder tests. No ten-function actual series has
-   been curated.
+   **Verified end-to-end** from a GitHub Actions Ubuntu runner on
+   **2026-10-26** ([live source execution, run 40267150660](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40267150660)).
+   The official JSON-stat2 POST returned **10 complete annual rows, 2016–2025**,
+   with all 13 selected indicators, in million nominal MDL. The guarded
+   collector decoded the real response, checked `revenue − expenditure =
+   balance` and summed all ten function categories for **every year**.
+   The ten category sums equal headline spending to published precision.
+   `fiscal/public_budget.csv` contains this carefully reviewed historical
+   API edition, separate from `budget_summary.csv` and its separately
+   released 2024/25 year-end overview.
+
+   **2024 vintage difference is real and remains unmerged:** the API
+   returns **122,962.7 million MDL spending / −12,624.2 balance**,
+   while the BNS Finance overview labels **122,962.6 / −12,624.1**
+   as 2024 FINAL. Difference **0.1 million MDL** on each measure;
+   revenue is 110,338.5 in both. No administrative explanation is
+   assumed. The 2024 CSV retains the live API values; the summary CSV
+   retains the separately published final overview.
+
+   **Another publication route differs in 2025:** the Ministry of Finance's
+   [2025 SDDS workbook](https://mf.gov.md/ro/download/file/fid/38761?language=en)
+   and BNS's [SDDS national summary](https://statistica.gov.md/SDDS/NSDP/)
+   report **139,857.2** expenditure and **−14,255.2** balance (million MDL),
+   versus BNS Finance/PxWeb **139,856.4 / −14,254.4**.
+   The difference is **0.8 million MDL** on both measures, with
+   revenue 125,602.0 unchanged. These editions are not substituted,
+   reconciled by fiat, or called accounting errors without source notes.
+   The 2025 national budget is still marked PRELIMINARY in the BNS
+   overview; this historical API does not supply a year-by-year finality
+   flag for the earlier rows.
 
 ## Never conflate these series
 
@@ -98,12 +121,16 @@ population denominator in place, period, and definition.
   national fiscal identity/status tests execute via the fork-only
   `.github/workflows/moldova-research.yml`.
 - The CI is **offline**, does not contact source APIs, and **does not
-  deploy**. Most recently, 30 source-specific tests passed.
-- Pending: a live BNS data POST with validated 2016–2025 cells,
-  reconciliation against the Ministry's final yearbooks, national
+  deploy**. Dedicated source-specific tests are tracked in GitHub Actions and include the complete 2016–2025 fiscal identity, source-vintage distinction, and the separate research-preview renderer.
+- The live BNS fiscal POST **passed**, 2016–2025 functional cash data is
+  committed with exact scope and per-source edition metadata; the 2024/25
+  release differences remain documented instead of hidden.
+- Pending: resolution of **why** the BNS/API and SDDS release editions differ,
+  comparison with the Ministry's final yearbooks, national
   economics/trade/population/credit publishers, fully translated
-  Romanian/English/Portuguese atlas, provenance, plate rendering, and
-  complete atlas regression.
+  Romanian/English/Portuguese atlas, provenance, canonical plate rendering,
+  and complete atlas regression. The research-only cash-budget preview
+  is *not* a canonical published fiscal plate.
 
 No invented rates, interpolated years, provisional-to-final upgrades
 or inferred geography are accepted into published plates.
