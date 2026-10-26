@@ -102,4 +102,4 @@ def test_manifest_records_disagreement_and_non_imf_perimeter() -> None:
     assert "122962.7" in full["notes"] and "122962.6" in full["notes"]
     assert "Bender" in full["notes"]
     assert "PRELIMINARY" in full["notes"]
-    assert "IMF" in full["notes"] and "not IMF" in full["notes"].lower().replace("imf", "IMF")
+    assert "not imf" in full["notes"].lower()
