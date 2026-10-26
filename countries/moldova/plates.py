@@ -135,21 +135,15 @@ def plate_trade(ctx, ig):
     _foot(ctx, ax, "World Bank WDI, goods AND services")
 
     ax = ig.slot("trade.balance", "Trade balance (% of GDP)")
-    # Historical deficits reach -52.8%, outside the existing atlas-wide
-    # [-30, 40] scale. Never clip, silently extend or truncate the years.
-    _pending(ctx, ig, ax, "2006–2008 deficits cross the shared axis limit.\n"
-             "Full verified history is shown in the lens below.")
-    _foot(ctx, ax, "Shared spine must be revised for a comparable overlay")
+    # -52.8% of GDP in 2008 is verified; the SHARED spine, not just
+    # Moldova's own axis, has been widened to show every observation.
+    ctx.bars(ax, years, balance, lambda x: p.RED if x < 0 else p.GREEN)
+    _foot(ctx, ax, "WDI exports minus imports; all 2006–2025 years")
 
     ax = ig.slot("trade.destinations", "Top merchandise-export destinations")
     _pending(ctx, ig, ax, "Customs partner shares are not yet staged.\n"
              "Goods and services cannot stand in for goods only.")
     _foot(ctx, ax, "BNS customs or UN Comtrade route not yet verified")
-
-    ax = ig.slot("trade.lens", "Full trade balance, untruncated (% of GDP)")
-    ctx.bars(ax, years, balance, lambda x: p.RED if x < 0 else p.GREEN)
-    ax.axhline(0, color=p.FAINT, linewidth=0.6)
-    _foot(ctx, ax, "WDI exports minus imports; own scale; all years")
     _finish(ig)
 
 

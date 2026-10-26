@@ -90,8 +90,8 @@ _LADDER_GDP_PC = (500, 1_000, 2_000, 5_000, 10_000, 20_000, 50_000, 100_000,
                   200_000)
 _LADDER_FX = (0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100, 200)
 _LADDER_EQUITY = (10, 20, 50, 100, 200, 500, 1_000)
-_LADDER_GDP = (10, 100, 1_000, 10_000, 50_000)
-_LADDER_RESERVES = (1, 10, 100, 1_000, 5_000)
+_LADDER_GDP = (1, 10, 100, 1_000, 10_000, 50_000)
+_LADDER_RESERVES = (0.1, 1, 10, 100, 1_000, 5_000)
 _LADDER_HOMICIDE = (0.05, 0.1, 0.3, 1, 3, 10, 30, 100)
 
 #: topic → its slots, in reading order (1 top-left … 4 bottom-right).
@@ -127,7 +127,7 @@ SPINE: dict[str, tuple[Slot, ...]] = {
     "trade": (
         _c("trade.exports_imports", "Exports and imports", "% of GDP",
            (0, 100), UP),
-        _c("trade.balance", "Trade balance", "% of GDP", (-30, 40), BOTH,
+        _c("trade.balance", "Trade balance", "% of GDP", (-60, 40), BOTH,
            zero=True),
         _c("trade.destinations", "Top export destinations",
            "% of goods exports", (0, 90), UP),
@@ -162,12 +162,12 @@ SPINE: dict[str, tuple[Slot, ...]] = {
         _lens("people.lens"),
     ),
     "world": (
-        _c("world.gdp", "GDP at current prices", "US$ bn", (10, 50_000),
+        _c("world.gdp", "GDP at current prices", "US$ bn", (1, 50_000),
            NONE, LOG, _LADDER_GDP),
         _c("world.hdi", "Human Development Index", "HDI, 0–1", (0.5, 1.0)),
         _c("world.cpi", "Corruption Perceptions Index", "score, 0–100",
            (0, 100)),
-        _c("world.reserves", "Official reserves", "US$ bn", (1, 5_000),
+        _c("world.reserves", "Official reserves", "US$ bn", (0.1, 5_000),
            NONE, LOG, _LADDER_RESERVES),
     ),
     "demography": (

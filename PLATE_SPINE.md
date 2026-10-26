@@ -113,7 +113,7 @@ those seven where the mapping is clean, and the note says so.
 | slot | indicator | unit | ref | source |
 |---|---|---|---|---|
 | 1 | Exports and imports | % of GDP, two lines | 0 … 100 ↑ | national accounts / WB NE.EXP/IMP.GNFS.ZS |
-| 2 | Trade balance | % of GDP, bars | −15 … +15 ↕ | same |
+| 2 | Trade balance | % of GDP, bars | −60 … +40 ↕ | same |
 | 3 | Top export destinations | % of goods exports | 0 … 90 | customs / Comtrade |
 | 4 | lens (products, energy share, two official deficits, …) | | | |
 US$ or local-currency levels go in the annotations.
@@ -148,10 +148,10 @@ not a gap.
 ### world — the country among the others
 | slot | indicator | unit | ref | source |
 |---|---|---|---|---|
-| 1 | GDP at current prices | US$ bn | log 10 … 50,000 | World Bank NY.GDP.MKTP.CD |
+| 1 | GDP at current prices | US$ bn | log 1 … 50,000 | World Bank NY.GDP.MKTP.CD |
 | 2 | Human Development Index | 0 … 1 | 0.5 … 1.0 | UNDP |
 | 3 | Corruption Perceptions Index | 0 … 100 score | 0 … 100 | Transparency International (2012+ method; earlier ×10 shown as a seam) |
-| 4 | Official reserves | US$ bn | log 1 … 5,000 | WB FI.RES.TOTL.CD / central bank |
+| 4 | Official reserves | US$ bn | log 0.1 … 5,000 | WB FI.RES.TOTL.CD / central bank |
 The WEF competitiveness rank was discontinued after 2019 and leaves the spine.
 
 ### demography
@@ -207,3 +207,16 @@ slot 4, so it meets every other country.
 - **Canada:** chapters blocked on StatCan get built from harmonised
   sources where the spine allows (WB/IMF/BIS/OECD), with StatCan as the
   national line when it returns.
+
+### Comparison-scale expansion for Moldova (2026-10-27)
+
+Moldova's reviewed World Bank 2006 values establish three requirements
+that are smaller/larger than the previous common ranges: the country's
+goods-and-services trade balance is −52.78% of GDP in 2008, its nominal
+2006 GDP is US$3.408bn and its official reserves (including gold) were
+US$0.775bn. These are **verified observations**, not anomalies to crop.
+The executable `core/spine.py` therefore uses trade balance −60…+40,
+GDP US$1…50,000bn (log), and reserves US$0.1…5,000bn (log), with
+common ticks for every country. No Moldova-local scale is permitted.
+All peer countries' plates and thumbnails must be regenerated and visually
+reviewed in the same release before these comparison changes are published.

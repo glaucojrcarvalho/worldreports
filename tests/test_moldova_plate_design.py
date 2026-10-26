@@ -44,20 +44,31 @@ def test_twelve_declarative_spine_topics_without_duplicate_ids():
     assert all(p.alt and p.subtitle and p.source for p in plates)
 
 
-def test_spine_range_conflict_preserved_not_clipped_or_discarded():
+def test_shared_spine_scales_cover_moldova_without_country_local_override():
     rows = _rows("trade/trade.csv")
     balance = {int(r["year"]): r["exports_pct_gdp"] - r["imports_pct_gdp"]
                for r in rows}
     lo, hi = spine.SLOTS["trade.balance"].ref
-    assert min(balance.values()) < lo, "Re-evaluate the exception if shared spine changes"
     assert balance[2008] == pytest.approx(-52.777445, abs=0.03)
     assert balance[2025] == pytest.approx(-29.162309, abs=0.03)
-    # The draft draws every year in a separate lens instead of altering
-    # the comparison scale or cropping only the difficult first years.
+    assert lo <= min(balance.values()) and max(balance.values()) <= hi
+    assert lo == -60 and hi == 40
     text = (ROOT / "plates.py").read_text(encoding="utf-8")
     assert 'ig.slot("trade.balance"' in text
-    assert 'ig.slot("trade.lens"' in text
-    assert "Full trade balance, untruncated" in text
+    assert "ctx.bars(ax, years, balance" in text
+    assert 'ig.slot("trade.lens"' not in text
+
+    world = _rows("world/world.csv")
+    gdp = [r["gdp_usd"] / 1e9 for r in world]
+    reserves = [r["reserves_usd"] / 1e9 for r in world]
+    gdp_ref = spine.SLOTS["world.gdp"].ref
+    reserves_ref = spine.SLOTS["world.reserves"].ref
+    assert gdp_ref == (1, 50_000)
+    assert reserves_ref == (0.1, 5_000)
+    assert min(gdp) >= gdp_ref[0] and max(gdp) <= gdp_ref[1]
+    assert min(reserves) >= reserves_ref[0] and max(reserves) <= reserves_ref[1]
+    assert spine._LADDER_GDP[0] == gdp_ref[0]
+    assert spine._LADDER_RESERVES[0] == reserves_ref[0]
 
 
 def test_wdi_net_migration_is_joined_to_wdi_population_only():

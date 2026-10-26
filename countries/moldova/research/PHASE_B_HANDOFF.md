@@ -14,12 +14,19 @@ explicit `ctx.pending` slots for definitions/sources not yet verified.
   as historical annual observations, and FPP's 2025 gap stays empty.
 - WDI full-economy investment; every national functional BNS budget share
   remains pending until same-scope GDP in MDL and accounting mappings pass.
-- Goods-and-services exports and imports. **Critical scale exception:**
-  WDI trade balance reached about **−52.8% GDP in 2008**, outside the
-  canonical trade balance range `[-30,40]`. The canonical slot is pending
-  and all years appear untruncated in the trade lens. Full integration must
-  *intentionally* extend the **shared** comparison scale and regenerate
-  all peer countries; neither clipping nor suppressing 2006–2008 is allowed.
+- Goods-and-services exports, imports, and the **complete canonical
+  trade deficit series**. A verified **−52.8% GDP in 2008** required the
+  **shared** trade.balance range to change from [-30,40] to [-60,40],
+  not a Moldova-only override.
+- The draft English CI uncovered two other globally incompatible low
+  levels: **US$3.408bn GDP** and **US$0.775bn reserves** in 2006.
+  The same shared spine now starts world.gdp at **US$1bn**, and reserves
+  at **US$0.1bn**, updating both log tick ladders.
+  **GLOBAL REGEN GATE:** All existing countries' world and trade plates,
+  thumbs, site and provenance must be regenerated together and visually
+  checked before registration/merge. These changes have been committed
+  only in the research fork branch; existing generated peer assets may
+  still use the old axes until that gate is complete.
 - Official NBM day-weighted effective policy averages and WDI CPI,
   official annual-average MDL/USD **inverted** to 2006=100 strength,
   pending 10-year yields/equities.
@@ -30,7 +37,7 @@ explicit `ctx.pending` slots for definitions/sources not yet verified.
   (2010, 2015, 2020, 2024), not a line or an asserted foreign-born series.
 - `tests/test_moldova_plate_design.py` checks 12 topics, cross-source
   boundaries, cash-vs-GDP integrity, projections, FX inversion, snapshots
-  and the trade-scale conflict.
+  and shared spine range correctness.
 
 ## Publication status and next steps
 
@@ -41,8 +48,9 @@ output. The quality-gate workflow is intended to temporarily install the
 candidate configuration within CI to render English only and inspect
 render errors without deploying or claiming the site has been published.
 
-Next iteration should (a) inspect the draft CI result and fix any
-render errors; (b) generate complete Romanian and Portuguese translation
+Next iteration should (a) inspect the latest English draft CI result and fix
+any remaining render errors; (b) regenerate peer plates after the intentional
+shared-range correction; (c) generate complete Romanian and Portuguese translation
 catalogs including all shared spine units, all caption/legend/source
 strings and page chrome; (c) implement chapters, trilingual UI,
 provenance and full output; (d) validate the site against the full suite;
