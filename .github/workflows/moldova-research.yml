@@ -49,6 +49,30 @@ jobs:
       - name: Test draft English plates in an isolated CI-only country registration
         run: |
           cp countries/moldova/research/country_candidate.yaml countries/moldova/country.yaml
+          python - <<'PY'
+          import json
+          from core.country import Country
+          from core import sitebuild
+          country = Country.load("moldova")
+          cards = sitebuild.chapters_for(country)
+          strip = sitebuild.headline_for(country)
+          assert len(cards) == 12, len(cards)
+          assert len(strip) >= 6, len(strip)
+          assert [c["topic"] for c in cards] == [
+              "economy", "fiscal", "spending", "trade", "markets", "credit",
+              "people", "world", "demography", "security", "mortality", "migration"]
+          assert [s["label"]["en"] for s in strip[:3]][0].startswith("GDP")
+          assert strip[1]["label"]["en"].startswith("GDP per person")
+          assert strip[2]["label"]["en"].startswith("Population")
+          with open("countries/moldova/ui.json", encoding="utf-8") as f:
+              u = json.load(f)
+          with open("site/ui.json", encoding="utf-8") as f:
+              shared = json.load(f)
+          assert set(u) == {"ro","en","pt"}
+          assert len(u["ro"]["unavailable"]) == len(u["en"]["unavailable"]) == len(u["pt"]["unavailable"]) == 10
+          assert set(shared["ro"]) == set(shared["en"])
+          print(f"Candidate card QA passed: {len(cards)} chapters / {len(strip)} headlines")
+          PY
           python -m core.render moldova --langs en --out /tmp/moldova-phase-b
       - name: Preserve draft PNGs for offline visual review (not a deployment)
         uses: actions/upload-artifact@v4

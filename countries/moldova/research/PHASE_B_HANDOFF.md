@@ -64,3 +64,19 @@ other published official routes: BNS national labour/CPI/nominal GDP,
 Ministry finance national accounts/SDDS edition seams, COFOG, customs,
 NBM credit/10-year yields and securities, UNDP HDI and TI CPI. Any
 fillable slot must be fetched rather than permanently marked pending.
+
+## Next Phase C groundwork — 2026-10-27
+
+`countries/moldova/chapters.py` now supplies 12 source-derived cards and
+seven headline readings in Romanian/English/Portuguese, with every numeric
+value resolved from the same curated CSVs as the draft plates, not hardcoded
+in descriptions. `countries/moldova/ui.json` has locale-equivalent
+masthead, source limitations, editorial notes, ten explicit gap disclosures
+and five publisher colophon entries for each locale. Shared `site/ui.json`
+now has Romanian chrome for every English key. The branch-only runner
+temporarily copies `country_candidate.yaml` into place, verifies the card
+and locale contracts, renders English plates and uploads them as private
+review artifacts. Country remains **unregistered in the branch** until full
+trilingual graphic catalog, chart/thumb/provenance/site/global-regeneration
+gate. `events.py` includes only two evidence-based publication markers;
+recession dates are not fabricated from annual data.
