@@ -135,19 +135,22 @@ meta:
   status: research_only_not_an_atlas_edition
   last_checked: "2026-10-26"
   wdi_vintage: "2026-10-08"
-  pending:
-    - name: "BNS Statbank FIN010100 official national public budget 2016–2026"
-      publisher: "National Bureau of Statistics / Ministry of Finance"
+  verified:
+    - name: "BNS Statbank FIN010100 cash budget 2016–2025"
+      publisher: "National Bureau of Statistics of Moldova / Ministry of Finance"
       url: "https://statbank.statistica.md/PxWeb/api/v1/en/40%20Statistica%20economica/25%20FIN/FIN010100.px"
+      official: true
+      reviewed_utc: "2026-10-26"
+      evidence: "https://github.com/glaucojrcarvalho/worldreports/actions/runs/40267150660"
       notes: >-
-        Verified live GET of official PxWeb API metadata 2026-10-26; saved exact
-        31 category codes and four dimensions in fetch/fin010100_metadata.json.
-        Period code 3 is January-December, unit code 0 is million MDL;
-        the table excludes left-bank Nistru and Bender districts.
-        fetch/fetch_bns_budget.py implements a JSON-stat2 POST to a
-        review-only sidecar, but an actual POST/2016-2025 observation
-        download has NOT yet been verified from this environment.
-        Published 2024/25 totals verified separately against BNS HTML.
+        Verified real POST JSON-stat2 response using national budget full-year
+        January-December, million MDL 2016-2025: 10 rows, 13 indicator
+        values per year, all accounting identities and ten-category spending
+        sums reconciled to source precision. See fiscal/public_budget.csv and
+        DATA_NOTES.md for both the 2024 API-vs-BNS-overview 0.1 million
+        difference and the independent 2025 SDDS 0.8 million difference.
+        Source year 2025 remains preliminary; no model interpolation.
+  pending:
     - name: "National bank exchange rates, monetary and credit series"
       publisher: "National Bank of Moldova"
       url: "https://www.bnm.md/bdi/pages/reports/dovre/DOVRE8.xhtml?lang=en"
