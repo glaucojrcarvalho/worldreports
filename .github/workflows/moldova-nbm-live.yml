@@ -3,7 +3,7 @@ name: Moldova NBM live rate audit
 on:
   push:
     branches: [research/moldova-source-audit]
-    paths: [.github/workflows/moldova-nbm-live.yml]
+    paths: [.github/workflows/moldova-nbm-live.yml, countries/moldova/fetch/fetch_nbm.py]
 permissions:
   contents: read
 jobs:
