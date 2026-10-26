@@ -52,20 +52,20 @@
     "pt": "Ainda não foi auditado um denominador de PIB compatível."
   },
   "A consistent NBM NPL numerator, denominator": {
-    "ro": "Numărătorul și numitorul seriei de credite neperformante BNM",
-    "pt": "Numerador e denominador da série de inadimplência do BNM"
+    "ro": "Pentru seria BNM de credite neperformante lipsesc numărătorul, numitorul",
+    "pt": "Na série BNM de crédito inadimplente faltam numerador, denominador"
   },
   "a crude rate cannot be treated as a death count.": {
     "ro": "o rată brută nu poate fi considerată număr de decese.",
     "pt": "uma taxa bruta não pode ser tratada como contagem de mortes."
   },
   "and break history are not staged.": {
-    "ro": "și istoricul rupturilor nu sunt documentate.",
-    "pt": "e histórico de rupturas não foram documentados."
+    "ro": "și istoricul schimbărilor metodologice.",
+    "pt": "e histórico de mudanças metodológicas."
   },
   "and currency perimeter validation.": {
-    "ro": "și perimetrul monedei de denominare.",
-    "pt": "e o perímetro da moeda de denominação."
+    "ro": "și a monedei de denominare.",
+    "pt": "e o perímetro por moeda."
   },
   "and their method seam have not been verified.": {
     "ro": "și schimbările de metodologie nu au fost verificate.",
@@ -167,6 +167,10 @@
     "ro": "Nu înlocuiți datele cu un indice bursier sintetic",
     "pt": "Não substituir os dados por índice acionário sintético"
   },
+  "emigration registration series is staged.": {
+    "ro": "emigrare din registre.",
+    "pt": "emigração registrada."
+  },
   "Equity index in US$ (2006 = 100)": {
     "ro": "Indice bursier în USD (2006 = 100)",
     "pt": "Índice de ações em US$ (2006 = 100)"
@@ -207,6 +211,10 @@
     "ro": "PIB pe locuitor (USD, curent)",
     "pt": "PIB por pessoa (US$, corrente)"
   },
+  "generated from committed CSVs": {
+    "ro": "generate din fișierele CSV din repository",
+    "pt": "gerados a partir dos CSVs versionados"
+  },
   "Gini, 0–100": {
     "ro": "Gini, 0–100",
     "pt": "Gini, 0–100"
@@ -234,6 +242,10 @@
   "Gross general-government debt (% of GDP)": {
     "ro": "Datoria brută a guvernului general (% din PIB)",
     "pt": "Dívida bruta do governo geral (% do PIB)"
+  },
+  "have not been definition-checked side by side.": {
+    "ro": "nu au fost verificate definiție cu definiție.",
+    "pt": "não foram verificadas definição por definição."
   },
   "HDI, 0–1": {
     "ro": "IDU, 0–1",
@@ -303,9 +315,21 @@
     "ro": "Ratele internaționale au ani finali diferiți; lipsurile rămân vizibile",
     "pt": "Séries internacionais terminam em anos distintos; lacunas ficam visíveis"
   },
+  "is not verified; aggregate private credit differs.": {
+    "ro": "nu este verificat; creditele private totale sunt diferite.",
+    "pt": "não foi verificado; crédito privado agregado é diferente."
+  },
   "Life expectancy at birth (years)": {
     "ro": "Speranța de viață la naștere (ani)",
     "pt": "Expectativa de vida ao nascer (anos)"
+  },
+  "market yield has been staged.": {
+    "ro": "piața secundară în datele pregătite.",
+    "pt": "mercado secundário nos dados preparados."
+  },
+  "matching annual USD conversion are not staged.": {
+    "ro": "conversia în USD la media anuală nu sunt pregătite.",
+    "pt": "a conversão anual correspondente para US$ ainda não estão documentados."
   },
   "Minimum wage (US$ monthly)": {
     "ro": "Salariu minim (USD pe lună)",
@@ -379,6 +403,10 @@
     "ro": "Rata sărăciei naționale (% din persoane)",
     "pt": "Taxa nacional de pobreza (% da população)"
   },
+  "national-budget capital spending is not the same.": {
+    "ro": "cheltuielile de capital din bugetul național nu sunt echivalente.",
+    "pt": "as despesas de capital do orçamento nacional não são equivalentes."
+  },
   "National-budget social protection is in MDL;": {
     "ro": "Protecția socială din bugetul național este în MDL;",
     "pt": "Proteção social do orçamento nacional está em MDL;"
@@ -404,8 +432,8 @@
     "pt": "BNM por datas de vigência vs. IPC WDI; fontes distintas"
   },
   "NBM lending rate needs new-loan, household": {
-    "ro": "Rata de creditare BNM necesită verificarea noilor credite pentru gospodării",
-    "pt": "Taxa de crédito BNM exige validação de novos empréstimos às famílias"
+    "ro": "Rata BNM a creditelor necesită validarea creditelor noi, a gospodăriilor",
+    "pt": "A taxa de empréstimos BNM exige validar créditos novos, a clientela familiar"
   },
   "NBM route pending; see SOURCES.yaml": {
     "ro": "Sursele BNM în așteptare; vedeți SOURCES.yaml",
@@ -416,7 +444,7 @@
     "pt": "Migração líquida (por 1.000)"
   },
   "No nationally comparable immigration and": {
-    "ro": "Nu există o serie pregătită de imigrare și",
+    "ro": "Nu este disponibilă o serie comparabilă la nivel național de imigrare și",
     "pt": "Não foi preparada uma série nacionalmente comparável de imigração e"
   },
   "No substitute for uncollected excess-death and cause-of-death series": {
@@ -424,8 +452,8 @@
     "pt": "Não há substituto para séries ausentes de excesso e causas de morte"
   },
   "No verified annual-average 10-year secondary": {
-    "ro": "Nu a fost pregătit un randament verificat, mediu anual, pe piața secundară",
-    "pt": "Não foi preparada uma taxa anual média verificada no mercado secundário"
+    "ro": "Nu există randamente medii anuale verificate la 10 ani pe",
+    "pt": "Não há taxas médias anuais de dez anos verificadas no"
   },
   "No verified tradable equity benchmark or": {
     "ro": "Nu există un indice bursier tranzacționabil verificat și nici",
@@ -467,6 +495,10 @@
     "ro": "Creșterea reală a PIB (% pe an)",
     "pt": "Crescimento real do PIB (% ao ano)"
   },
+  "reported cases are not death certificates.": {
+    "ro": "cazurile raportate nu sunt certificate de deces.",
+    "pt": "casos notificados não são atestados de óbito."
+  },
   "Revenue and spending (% of GDP)": {
     "ro": "Venituri și cheltuieli (% din PIB)",
     "pt": "Receitas e despesas (% do PIB)"
@@ -498,6 +530,10 @@
   "Suicides (/100,000)": {
     "ro": "Sinucideri (la 100.000)",
     "pt": "Suicídios (por 100 mil)"
+  },
+  "the general-government GDP share is not verified.": {
+    "ro": "ponderea corespunzătoare în PIB a guvernului general nu este verificată.",
+    "pt": "a participação correspondente do governo geral no PIB não foi verificada."
   },
   "The legal MDL monthly wage schedule and": {
     "ro": "Calendarul legal al salariului lunar minim în MDL și",
