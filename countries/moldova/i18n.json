@@ -1,19 +1,383 @@
 {
+  "%": {
+    "ro": "%",
+    "pt": "%"
+  },
+  "% above 2015–2019 average": {
+    "ro": "% peste media 2015–2019",
+    "pt": "% acima da média de 2015–2019"
+  },
   "% of GDP": {
     "ro": "% din PIB",
     "pt": "% do PIB"
   },
-  "% per year": {
-    "ro": "% pe an",
-    "pt": "% ao ano"
+  "% of goods exports": {
+    "ro": "% din exporturile de mărfuri",
+    "pt": "% das exportações de mercadorias"
   },
   "% of labour force": {
     "ro": "% din forța de muncă",
     "pt": "% da força de trabalho"
   },
-  "US$, current": {
-    "ro": "USD, prețuri curente",
-    "pt": "US$, preços correntes"
+  "% of loans": {
+    "ro": "% din credite",
+    "pt": "% dos empréstimos"
+  },
+  "% of people": {
+    "ro": "% din populație",
+    "pt": "% da população"
+  },
+  "% of population": {
+    "ro": "% din populație",
+    "pt": "% da população"
+  },
+  "% per year": {
+    "ro": "% pe an",
+    "pt": "% ao ano"
+  },
+  "%, annual average": {
+    "ro": "%, medie anuală",
+    "pt": "%, média anual"
+  },
+  "10-year government bond yield (%)": {
+    "ro": "Randamentul obligațiunilor de stat la 10 ani (%)",
+    "pt": "Rendimento de títulos públicos de dez anos (%)"
+  },
+  "2010, 2015, 2020, 2024 only; points, never interpolation": {
+    "ro": "Numai 2010, 2015, 2020 și 2024; puncte, fără interpolare",
+    "pt": "Somente 2010, 2015, 2020 e 2024; pontos, sem interpolação"
+  },
+  "A compatible GDP denominator is not yet audited.": {
+    "ro": "Un numitor PIB compatibil nu a fost încă auditat.",
+    "pt": "Ainda não foi auditado um denominador de PIB compatível."
+  },
+  "A consistent NBM NPL numerator, denominator": {
+    "ro": "Numărătorul și numitorul seriei de credite neperformante BNM",
+    "pt": "Numerador e denominador da série de inadimplência do BNM"
+  },
+  "Arrivals and departures (/1,000)": {
+    "ro": "Sosiri și plecări (la 1.000)",
+    "pt": "Entradas e saídas (por 1.000)"
+  },
+  "Births minus deaths (WDI)": {
+    "ro": "Nașteri minus decese (WDI)",
+    "pt": "Nascimentos menos mortes (WDI)"
+  },
+  "BNS customs or UN Comtrade route not yet verified": {
+    "ro": "Sursele vamale BNS sau UN Comtrade nu sunt încă verificate",
+    "pt": "Fontes aduaneiras BNS ou UN Comtrade ainda não verificadas"
+  },
+  "BNS FIN010100, separate from IMF FPP": {
+    "ro": "BNS FIN010100, separat de FMI FPP",
+    "pt": "BNS FIN010100, separado do FMI FPP"
+  },
+  "BNS FIN010100; no incompatible cash/GDP conversion": {
+    "ro": "BNS FIN010100; fără conversie incompatibilă din valori de casă în % din PIB",
+    "pt": "BNS FIN010100; sem conversão incompatível de caixa para % do PIB"
+  },
+  "BNS FIN010100; World Bank WDI; IMF FPP": {
+    "ro": "BNS FIN010100; Banca Mondială WDI; FMI FPP",
+    "pt": "BNS FIN010100; Banco Mundial WDI; FMI FPP"
+  },
+  "BNS functional cash spending is staged in MDL.": {
+    "ro": "Cheltuielile de casă pe funcții BNS sunt pregătite în MDL.",
+    "pt": "As despesas de caixa por função do BNS estão disponíveis em MDL."
+  },
+  "Borrower and loan-definition checks remain necessary": {
+    "ro": "Mai sunt necesare verificări ale definițiilor debitorului și creditului",
+    "pt": "Ainda são necessárias verificações das definições de tomador e empréstimo"
+  },
+  "Borrower-defined household credit stock": {
+    "ro": "Stocul creditelor gospodăriilor definit după debitor",
+    "pt": "Estoque de crédito familiar definido por tipo de tomador"
+  },
+  "Cause-of-death COVID series is not staged;": {
+    "ro": "Seria deceselor COVID după cauza decesului nu este pregătită;",
+    "pt": "A série de mortes por COVID segundo a causa básica não foi preparada;"
+  },
+  "children per woman": {
+    "ro": "copii per femeie",
+    "pt": "filhos por mulher"
+  },
+  "Children per woman (total fertility)": {
+    "ro": "Copii per femeie (fertilitate totală)",
+    "pt": "Filhos por mulher (fecundidade total)"
+  },
+  "Consumer price inflation (% per year)": {
+    "ro": "Inflația prețurilor de consum (% pe an)",
+    "pt": "Inflação dos preços ao consumidor (% ao ano)"
+  },
+  "Corruption Perceptions Index (0–100)": {
+    "ro": "Indicele percepției corupției (0–100)",
+    "pt": "Índice de Percepção da Corrupção (0–100)"
+  },
+  "COVID deaths, underlying cause (/100,000)": {
+    "ro": "Decese COVID, cauză de bază (la 100.000)",
+    "pt": "Óbitos por COVID como causa básica (por 100 mil)"
+  },
+  "Crude birth rate": {
+    "ro": "Rata brută a natalității",
+    "pt": "Taxa bruta de natalidade"
+  },
+  "Crude births and deaths (per 1,000)": {
+    "ro": "Natalitate și mortalitate brute (la 1.000)",
+    "pt": "Taxas brutas de natalidade e mortalidade (por 1.000)"
+  },
+  "Crude death rate": {
+    "ro": "Rata brută a mortalității",
+    "pt": "Taxa bruta de mortalidade"
+  },
+  "Crude death rate (per 1,000)": {
+    "ro": "Rata brută a mortalității (la 1.000)",
+    "pt": "Taxa bruta de mortalidade (por 1.000)"
+  },
+  "Customs partner shares are not yet staged.": {
+    "ro": "Cotele pe parteneri vamali nu sunt încă pregătite.",
+    "pt": "Participações por parceiro aduaneiro ainda não foram preparadas."
+  },
+  "Do not substitute a synthetic market index": {
+    "ro": "Nu înlocuiți datele cu un indice bursier sintetic",
+    "pt": "Não substituir os dados por índice acionário sintético"
+  },
+  "Equity index in US$ (2006 = 100)": {
+    "ro": "Indice bursier în USD (2006 = 100)",
+    "pt": "Índice de ações em US$ (2006 = 100)"
+  },
+  "Excess deaths (% vs 2015–2019)": {
+    "ro": "Decese excedentare (% față de 2015–2019)",
+    "pt": "Excesso de mortes (% ante 2015–2019)"
+  },
+  "Exports, national accounts": {
+    "ro": "Exporturi, conturi naționale",
+    "pt": "Exportações, contas nacionais"
+  },
+  "Foreign-born share (%)": {
+    "ro": "Ponderea persoanelor născute în străinătate (%)",
+    "pt": "Participação de pessoas nascidas no exterior (%)"
+  },
+  "FPP 2025-12 and WEO 2026-10: never mistaken for one release": {
+    "ro": "FPP 2025-12 și WEO 2026-10: două ediții distincte",
+    "pt": "FPP 2025-12 e WEO 2026-10: duas edições distintas"
+  },
+  "FPP expenditure": {
+    "ro": "Cheltuieli FPP",
+    "pt": "Despesas FPP"
+  },
+  "FPP primary balance (different vintage)": {
+    "ro": "Sold primar FPP (altă ediție)",
+    "pt": "Saldo primário FPP (outra edição)"
+  },
+  "FPP revenue": {
+    "ro": "Venituri FPP",
+    "pt": "Receitas FPP"
+  },
+  "GDP at current prices (US$ bn)": {
+    "ro": "PIB la prețuri curente (mld. USD)",
+    "pt": "PIB a preços correntes (US$ bi)"
+  },
+  "GDP per person (US$, current)": {
+    "ro": "PIB pe locuitor (USD, curent)",
+    "pt": "PIB por pessoa (US$, corrente)"
+  },
+  "Gini, 0–100": {
+    "ro": "Gini, 0–100",
+    "pt": "Gini, 0–100"
+  },
+  "Goods and services (% of GDP)": {
+    "ro": "Bunuri și servicii (% din PIB)",
+    "pt": "Bens e serviços (% do PIB)"
+  },
+  "Goods and services cannot stand in for goods only.": {
+    "ro": "Bunurile și serviciile nu pot substitui doar mărfurile.",
+    "pt": "Bens e serviços não substituem dados somente de mercadorias."
+  },
+  "Goods and services in national accounts; full deficit in its own lens": {
+    "ro": "Bunuri și servicii în conturile naționale; întregul deficit în panoul propriu",
+    "pt": "Bens e serviços nas contas nacionais; déficit integral em painel próprio"
+  },
+  "Government GFCF is not independently staged;": {
+    "ro": "Formarea brută de capital fix a guvernului nu este pregătită separat;",
+    "pt": "A formação bruta de capital fix do governo não foi preparada separadamente;"
+  },
+  "Government investment (% of GDP)": {
+    "ro": "Investițiile guvernului (% din PIB)",
+    "pt": "Investimento do governo (% do PIB)"
+  },
+  "Gross general-government debt (% of GDP)": {
+    "ro": "Datoria brută a guvernului general (% din PIB)",
+    "pt": "Dívida bruta do governo geral (% do PIB)"
+  },
+  "HDI, 0–1": {
+    "ro": "IDU, 0–1",
+    "pt": "IDH, 0–1"
+  },
+  "Household credit (% of GDP)": {
+    "ro": "Creditele gospodăriilor (% din PIB)",
+    "pt": "Crédito às famílias (% do PIB)"
+  },
+  "Household lending rate vs policy (%)": {
+    "ro": "Rata creditelor gospodăriilor față de rata de politică (%)",
+    "pt": "Taxa de empréstimos às famílias vs. taxa básica (%)"
+  },
+  "Human Development Index (0–1)": {
+    "ro": "Indicele dezvoltării umane (0–1)",
+    "pt": "Índice de Desenvolvimento Humano (0–1)"
+  },
+  "IMF FPP (December 2025); IMF WEO (October 2026)": {
+    "ro": "FMI FPP (decembrie 2025); FMI WEO (octombrie 2026)",
+    "pt": "FMI FPP (dezembro de 2025); FMI WEO (outubro de 2026)"
+  },
+  "IMF FPP, December 2025 vintage; through 2024": {
+    "ro": "FMI FPP, ediția decembrie 2025; până în 2024",
+    "pt": "FMI FPP, edição de dezembro de 2025; até 2024"
+  },
+  "IMF GFS/COFOG route still needs checking": {
+    "ro": "Sursele FMI GFS/COFOG mai trebuie verificate",
+    "pt": "Fontes FMI GFS/COFOG ainda precisam de verificação"
+  },
+  "IMF WEO, October 2026 vintage; 2026 forecast excluded": {
+    "ro": "FMI WEO, ediția octombrie 2026; prognoza 2026 exclusă",
+    "pt": "FMI WEO, edição de outubro de 2026; projeção de 2026 excluída"
+  },
+  "Imports, national accounts": {
+    "ro": "Importuri, conturi naționale",
+    "pt": "Importações, contas nacionais"
+  },
+  "Income inequality, Gini (0–100)": {
+    "ro": "Inegalitatea veniturilor, Gini (0–100)",
+    "pt": "Desigualdade de renda, Gini (0–100)"
+  },
+  "index 2006 = 100": {
+    "ro": "indice 2006 = 100",
+    "pt": "índice 2006 = 100"
+  },
+  "index 2006 = 100, in US$": {
+    "ro": "indice 2006 = 100, în USD",
+    "pt": "índice 2006 = 100, em US$"
+  },
+  "index 2006 = 100, up = stronger": {
+    "ro": "indice 2006 = 100, creștere = întărire",
+    "pt": "índice 2006 = 100, maior = mais forte"
+  },
+  "Intentional homicides (/100,000)": {
+    "ro": "Omucideri intenționate (la 100.000)",
+    "pt": "Homicídios intencionais (por 100 mil)"
+  },
+  "Interest paid (% of GDP)": {
+    "ro": "Dobânzi plătite (% din PIB)",
+    "pt": "Juros pagos (% do PIB)"
+  },
+  "International migrant stock, UN snapshots (%)": {
+    "ro": "Stoc de migranți internaționali, instantanee ONU (%)",
+    "pt": "Estoque de migrantes internacionais, retratos da ONU (%)"
+  },
+  "International rates stop in different years; the gaps stay visible": {
+    "ro": "Ratele internaționale au ani finali diferiți; lipsurile rămân vizibile",
+    "pt": "Séries internacionais terminam em anos distintos; lacunas ficam visíveis"
+  },
+  "Life expectancy at birth (years)": {
+    "ro": "Speranța de viață la naștere (ani)",
+    "pt": "Expectativa de vida ao nascer (anos)"
+  },
+  "Minimum wage (US$ monthly)": {
+    "ro": "Salariu minim (USD pe lună)",
+    "pt": "Salário mínimo (US$ por mês)"
+  },
+  "Moldova — A Smaller Population": {
+    "ro": "Moldova — O populație în scădere",
+    "pt": "Moldávia — População em Queda"
+  },
+  "Moldova — Death Rates and Life Expectancy": {
+    "ro": "Moldova — Mortalitate și speranță de viață",
+    "pt": "Moldávia — Mortalidade e Expectativa de Vida"
+  },
+  "Moldova — Growth, Prices and Employment": {
+    "ro": "Moldova — Creștere, prețuri și ocupare",
+    "pt": "Moldávia — Crescimento, Preços e Emprego"
+  },
+  "Moldova — Homicides, Suicide and Road Safety": {
+    "ro": "Moldova — Omucideri, sinucideri și siguranță rutieră",
+    "pt": "Moldávia — Homicídios, Suicídios e Segurança Viária"
+  },
+  "Moldova — Household Credit": {
+    "ro": "Moldova — Creditele gospodăriilor",
+    "pt": "Moldávia — Crédito às Famílias"
+  },
+  "Moldova — Household Inequality": {
+    "ro": "Moldova — Inegalitatea veniturilor",
+    "pt": "Moldávia — Desigualdade de Renda"
+  },
+  "Moldova — Imports, Exports and the Gap": {
+    "ro": "Moldova — Importuri, exporturi și diferența",
+    "pt": "Moldávia — Importações, Exportações e Diferença"
+  },
+  "Moldova — Interest Rates and the Leu": {
+    "ro": "Moldova — Dobânzi și leul",
+    "pt": "Moldávia — Juros e o Leu"
+  },
+  "Moldova — Migration and Its Definitions": {
+    "ro": "Moldova — Migrația și definițiile ei",
+    "pt": "Moldávia — Migração e suas Definições"
+  },
+  "Moldova — Public Spending and Investment": {
+    "ro": "Moldova — Cheltuieli publice și investiții",
+    "pt": "Moldávia — Despesa Pública e Investimento"
+  },
+  "Moldova — Two IMF Fiscal Vintages": {
+    "ro": "Moldova — Două ediții fiscale FMI",
+    "pt": "Moldávia — Duas Edições Fiscais do FMI"
+  },
+  "Moldova in the World — Output and Reserves": {
+    "ro": "Moldova în lume — PIB și rezerve",
+    "pt": "Moldávia no Mundo — PIB e Reservas"
+  },
+  "Moldovan leu vs US$ (2006 = 100)": {
+    "ro": "Leul moldovenesc față de USD (2006 = 100)",
+    "pt": "Leu moldavo frente ao dólar (2006 = 100)"
+  },
+  "National Bank of Moldova; World Bank WDI": {
+    "ro": "Banca Națională a Moldovei; Banca Mondială WDI",
+    "pt": "Banco Nacional da Moldávia; Banco Mundial WDI"
+  },
+  "National cash budget is not a general-government GDP share": {
+    "ro": "Bugetul național de casă nu este ponderea în PIB a guvernului general",
+    "pt": "Orçamento nacional de caixa não representa % do PIB do governo geral"
+  },
+  "National poverty and WDI poverty thresholds": {
+    "ro": "Pragurile sărăciei naționale și WDI",
+    "pt": "Limiares de pobreza nacionais e do WDI"
+  },
+  "National poverty rate (% of people)": {
+    "ro": "Rata sărăciei naționale (% din persoane)",
+    "pt": "Taxa nacional de pobreza (% da população)"
+  },
+  "National-budget social protection is in MDL;": {
+    "ro": "Protecția socială din bugetul național este în MDL;",
+    "pt": "Proteção social do orçamento nacional está em MDL;"
+  },
+  "NBM and Ministry of Finance route unresolved": {
+    "ro": "Sursele BNM și Ministerului Finanțelor sunt încă nerezolvate",
+    "pt": "Fontes BNM e Ministério das Finanças ainda não foram validadas"
+  },
+  "NBM annual-average MDL per USD, inverted; higher = stronger": {
+    "ro": "Cursul mediu anual BNM, MDL per USD, inversat; creștere = leu mai puternic",
+    "pt": "Câmbio médio anual BNM, MDL por USD, invertido; maior = leu mais forte"
+  },
+  "NBM day-weighted base rate": {
+    "ro": "Rata de bază BNM, medie ponderată cu zilele",
+    "pt": "Taxa básica BNM ponderada pelos dias de vigência"
+  },
+  "NBM effective-date derivative vs WDI CPI; different sources": {
+    "ro": "BNM după datele efective vs. IPC WDI; surse diferite",
+    "pt": "BNM por datas de vigência vs. IPC WDI; fontes distintas"
+  },
+  "NBM lending rate needs new-loan, household": {
+    "ro": "Rata de creditare BNM necesită verificarea noilor credite pentru gospodării",
+    "pt": "Taxa de crédito BNM exige validação de novos empréstimos às famílias"
+  },
+  "NBM route pending; see SOURCES.yaml": {
+    "ro": "Sursele BNM în așteptare; vedeți SOURCES.yaml",
+    "pt": "Fontes BNM pendentes; ver SOURCES.yaml"
   },
   "per 1,000 people": {
     "ro": "la 1.000 de locuitori",
@@ -23,64 +387,20 @@
     "ro": "la 100.000 de locuitori",
     "pt": "por 100 mil habitantes"
   },
-  "index 2006 = 100": {
-    "ro": "indice 2006 = 100",
-    "pt": "índice 2006 = 100"
-  },
-  "index 2006 = 100, up = stronger": {
-    "ro": "indice 2006 = 100, creștere = întărire",
-    "pt": "índice 2006 = 100, maior = mais forte"
+  "score, 0–100": {
+    "ro": "scor, 0–100",
+    "pt": "pontuação, 0–100"
   },
   "US$ bn": {
     "ro": "mld. USD",
     "pt": "US$ bi"
   },
-  "%, annual average": {
-    "ro": "%, medie anuală",
-    "pt": "%, média anual"
-  },
-  "score, 0–100": {
-    "ro": "scor, 0–100",
-    "pt": "pontuação, 0–100"
-  },
-  "HDI, 0–1": {
-    "ro": "IDU, 0–1",
-    "pt": "IDH, 0–1"
-  },
-  "children per woman": {
-    "ro": "copii per femeie",
-    "pt": "filhos por mulher"
-  },
-  "% of population": {
-    "ro": "% din populație",
-    "pt": "% da população"
-  },
   "US$ per month": {
     "ro": "USD pe lună",
     "pt": "US$ por mês"
   },
-  "Gini, 0–100": {
-    "ro": "Gini, 0–100",
-    "pt": "Gini, 0–100"
-  },
-  "% of people": {
-    "ro": "% din populație",
-    "pt": "% da população"
-  },
-  "% of loans": {
-    "ro": "% din credite",
-    "pt": "% dos empréstimos"
-  },
-  "% above 2015–2019 average": {
-    "ro": "% peste media 2015–2019",
-    "pt": "% acima da média de 2015–2019"
-  },
-  "index 2006 = 100, in US$": {
-    "ro": "indice 2006 = 100, în USD",
-    "pt": "índice 2006 = 100, em US$"
-  },
-  "%": {
-    "ro": "%",
-    "pt": "%"
+  "US$, current": {
+    "ro": "USD, prețuri curente",
+    "pt": "US$, preços correntes"
   }
 }
