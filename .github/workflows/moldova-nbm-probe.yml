@@ -1,0 +1,20 @@
+# One-shot public official NBM source probe, read-only: no deploy or commits.
+name: Moldova NBM export schema probe
+
+on:
+  push:
+    branches: [research/moldova-source-audit]
+    paths: [.github/workflows/moldova-nbm-probe.yml]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Read official bank export schemas
+        run: python -u countries/moldova/fetch/probe_nbm_exports.py
