@@ -305,7 +305,7 @@ for _style, _forms in _STYLE_AFFIX.items():
 # amount, an ISO code (CHF) before it with a space.
 _STYLE_CURRENCY = {
     # Moldovan leu: ISO MDL on international pages; Romanian ro-MD uses
-    # local "L" for individual amounts, and "mld. lei" for billions.
+    # local "lei" in amount labels (rather than the shorter CLDR "L").
     # All locale forms are explicit; the candidate country remains
     # unregistered until chapter, sources and site gates pass.
     "MDL": {
@@ -313,9 +313,9 @@ _STYLE_CURRENCY = {
                      "en": ("MDL ", "bn"), "pt": ("MDL ", " bi")},
         "money_tn": {"ro": ("", f"{_N}bln.{_N}lei"),
                      "en": ("MDL ", "tn"), "pt": ("MDL ", " tri")},
-        "money":    {"ro": ("", f"{_N}L"),
+        "money":    {"ro": ("", f"{_N}lei"),
                      "en": ("MDL ", ""), "pt": ("MDL ", "")},
-        "money2":   {"ro": ("", f"{_N}L"),
+        "money2":   {"ro": ("", f"{_N}lei"),
                      "en": ("MDL ", ""), "pt": ("MDL ", "")},
     },
     "EUR": {
