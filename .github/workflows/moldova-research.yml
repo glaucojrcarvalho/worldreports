@@ -43,3 +43,16 @@ jobs:
             countries/moldova/research/output/moldova_imf_fiscal_preview.png
             countries/moldova/research/output/moldova_markets_preview.*.png
           retention-days: 14
+
+      - name: Assert source-to-plate semantics and spine decisions
+        run: python -m pytest -q tests/test_moldova_plate_design.py
+      - name: Test draft English plates in an isolated CI-only country registration
+        run: |
+          cp countries/moldova/research/country_candidate.yaml countries/moldova/country.yaml
+          python -m core.render moldova --langs en --out /tmp/moldova-phase-b
+      - name: Preserve draft PNGs for offline visual review (not a deployment)
+        uses: actions/upload-artifact@v4
+        with:
+          name: moldova-phase-b-english-draft
+          path: /tmp/moldova-phase-b/
+          retention-days: 5

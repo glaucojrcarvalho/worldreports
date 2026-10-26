@@ -1,0 +1,390 @@
+"""Moldova's twelve *draft* canonical plates: checked source lanes, not a release.
+
+This module is deliberately not discoverable by the published country registry:
+research/country_candidate.yaml has NOT been promoted to country.yaml yet.
+The branch-only action temporarily registers the candidate inside its runner
+and renders these plates in English; it never deploys or publishes them.
+
+Each line reads a committed Moldova CSV. National BNS cash-budget execution
+and the IMF's FPP / WEO *different vintages* are never silently fused.
+No annual 2026 value is drawn as a complete calendar-year observation.
+"""
+from __future__ import annotations
+
+
+def _series(ctx, file: str, column: str):
+    table = ctx.table(file)
+    if table is None or column not in table:
+        raise KeyError(f"Moldova curated source missing {file}:{column}")
+    return ctx.series(table, column)
+
+
+def _aligned(ctx, file: str, first: str, second: str):
+    """Two percentages in one CSV release, joined by YEAR, never by row."""
+    aa = dict(zip(*_series(ctx, file, first)))
+    bb = dict(zip(*_series(ctx, file, second)))
+    years = sorted(aa.keys() & bb.keys())
+    return years, [aa[y] for y in years], [bb[y] for y in years]
+
+
+def _pending(ctx, ig, ax, reason: str):
+    ctx.pending(ax)
+    ax.text(0.50, 0.30, reason, transform=ax.transAxes,
+            ha="center", va="top", fontsize=8.0, color=ctx.p.MUTED,
+            style="italic")
+
+
+def _foot(ctx, ax, label: str):
+    ax.text(0.5, -0.06, label, transform=ax.transAxes, ha="center",
+            va="top", color=ctx.p.FAINT, style="italic", fontsize=7.1)
+
+
+def _finish(ig):
+    for ax in ig.axes_flat:
+        if ax.get_visible():
+            ig.style_axis(ax)
+
+
+# Economy: WB WDI, modelled unemployment (not the national LFS).
+def plate_economy(ctx, ig):
+    p = ctx.p
+    ax = ig.slot("economy.growth", "Real GDP growth (% per year)")
+    y, v = _series(ctx, "macro/economy.csv", "gdp_growth_pct")
+    ctx.bars(ax, y, v, lambda x: p.GREEN if x >= 0 else p.RED)
+    _foot(ctx, ax, "World Bank WDI, real national-accounts growth")
+
+    ax = ig.slot("economy.gdp_per_person", "GDP per person (US$, current)")
+    ctx.line(ax, *_series(ctx, "world/world.csv", "gdp_per_person_usd"), p.BLUE)
+    _foot(ctx, ax, "World Bank WDI, current US dollars")
+
+    ax = ig.slot("economy.inflation", "Consumer price inflation (% per year)")
+    ctx.line(ax, *_series(ctx, "macro/economy.csv", "cpi_inflation_pct"), p.RED)
+    _foot(ctx, ax, "World Bank WDI, annual CPI")
+
+    ax = ig.slot("economy.unemployment", "Unemployment (% of labour force)")
+    ctx.line(ax, *_series(ctx, "macro/economy.csv", "unemployment_pct"), p.NAVY)
+    _foot(ctx, ax, "World Bank WDI, ILO-modelled unemployment")
+    _finish(ig)
+
+
+# Fiscal: FPP 2025-12 ends 2024; WEO 2026-10 ends 2025.
+# Their general-government concepts are similar, but the vintages DIFFER.
+def plate_fiscal(ctx, ig):
+    p = ctx.p
+    ax = ig.slot("fiscal.revenue_expenditure", "Revenue and spending (% of GDP)")
+    y, a, b = _aligned(ctx, "fiscal/fpp_finances.csv",
+                        "revenue_pct_gdp", "expenditure_pct_gdp")
+    ctx.line(ax, y, a, p.TEAL, label="FPP revenue")
+    ctx.line(ax, y, b, p.RED, label="FPP expenditure")
+    ax.legend(fontsize=8, frameon=False)
+    _foot(ctx, ax, "IMF FPP, December 2025 vintage; through 2024")
+
+    ax = ig.slot("fiscal.balance", "Overall and primary balance (% of GDP)")
+    y, v = _series(ctx, "fiscal/weo_bal_debt.csv", "balance_pct_gdp")
+    ctx.bars(ax, y, v, lambda x: p.RED if x < 0 else p.GREEN)
+    py, pv = _series(ctx, "fiscal/fpp_finances.csv", "primary_balance_pct_gdp")
+    ctx.line(ax, py, pv, p.NAVY, label="FPP primary balance (different vintage)")
+    ax.legend(fontsize=8, frameon=False)
+    _foot(ctx, ax, "WEO October 2026 overall; FPP December 2025 primary")
+
+    ax = ig.slot("fiscal.debt", "Gross general-government debt (% of GDP)")
+    ctx.line(ax, *_series(ctx, "fiscal/weo_bal_debt.csv", "debt_pct_gdp"), p.BLUE)
+    _foot(ctx, ax, "IMF WEO, October 2026 vintage; 2026 forecast excluded")
+
+    ax = ig.slot("fiscal.interest", "Interest paid (% of GDP)")
+    ctx.line(ax, *_series(ctx, "fiscal/fpp_finances.csv", "interest_pct_gdp"), p.GOLD)
+    _foot(ctx, ax, "IMF FPP, December 2025 vintage; through 2024")
+    _finish(ig)
+
+
+# National FIN010100 functions are MDL cash execution; without same-scope
+# annual nominal GDP in MDL they MUST NOT be converted to "% of GDP".
+def plate_spending(ctx, ig):
+    p = ctx.p
+    ax = ig.slot("spending.by_function", "Spending by function (% of GDP)")
+    _pending(ctx, ig, ax, "BNS functional cash spending is staged in MDL.\n"
+             "A compatible GDP denominator is not yet audited.")
+    _foot(ctx, ax, "BNS FIN010100; no incompatible cash/GDP conversion")
+
+    ax = ig.slot("spending.social_protection", "Social protection (% of GDP)")
+    _pending(ctx, ig, ax, "National-budget social protection is in MDL;\n"
+             "the general-government GDP share is not verified.")
+    _foot(ctx, ax, "BNS FIN010100, separate from IMF FPP")
+
+    ax = ig.slot("spending.investment", "Whole-economy investment (% of GDP)")
+    ctx.line(ax, *_series(ctx, "macro/economy.csv", "gfcf_pct_gdp"), p.TEAL)
+    _foot(ctx, ax, "World Bank WDI gross fixed capital formation")
+
+    ax = ig.slot("spending.public_investment", "Government investment (% of GDP)")
+    _pending(ctx, ig, ax, "Government GFCF is not independently staged;\n"
+             "national-budget capital spending is not the same.")
+    _foot(ctx, ax, "IMF GFS/COFOG route still needs checking")
+    _finish(ig)
+
+
+def plate_trade(ctx, ig):
+    p = ctx.p
+    years, exports, imports = _aligned(
+        ctx, "trade/trade.csv", "exports_pct_gdp", "imports_pct_gdp")
+    balance = [a - b for a, b in zip(exports, imports)]
+
+    ax = ig.slot("trade.exports_imports", "Goods and services (% of GDP)")
+    ctx.line(ax, years, exports, p.BLUE, label="Exports, national accounts")
+    ctx.line(ax, years, imports, p.RED, label="Imports, national accounts")
+    ax.legend(fontsize=8, frameon=False)
+    _foot(ctx, ax, "World Bank WDI, goods AND services")
+
+    ax = ig.slot("trade.balance", "Trade balance (% of GDP)")
+    # Historical deficits reach -52.8%, outside the existing atlas-wide
+    # [-30, 40] scale. Never clip, silently extend or truncate the years.
+    _pending(ctx, ig, ax, "2006–2008 deficits cross the shared axis limit.\n"
+             "Full verified history is shown in the lens below.")
+    _foot(ctx, ax, "Shared spine must be revised for a comparable overlay")
+
+    ax = ig.slot("trade.destinations", "Top merchandise-export destinations")
+    _pending(ctx, ig, ax, "Customs partner shares are not yet staged.\n"
+             "Goods and services cannot stand in for goods only.")
+    _foot(ctx, ax, "BNS customs or UN Comtrade route not yet verified")
+
+    ax = ig.slot("trade.lens", "Full trade balance, untruncated (% of GDP)")
+    ctx.bars(ax, years, balance, lambda x: p.RED if x < 0 else p.GREEN)
+    ax.axhline(0, color=p.FAINT, linewidth=0.6)
+    _foot(ctx, ax, "WDI exports minus imports; own scale; all years")
+    _finish(ig)
+
+
+def plate_markets(ctx, ig):
+    p = ctx.p
+    ax = ig.slot("markets.policy_rate", "Policy base rate and CPI inflation (%)")
+    ctx.line(ax, *_series(ctx, "markets/policy.csv", "policy_mean_pct"),
+             p.BLUE, label="NBM day-weighted base rate")
+    ctx.line(ax, *_series(ctx, "macro/economy.csv", "cpi_inflation_pct"),
+             p.RED, label="WDI annual CPI inflation")
+    ax.legend(fontsize=8, frameon=False)
+    _foot(ctx, ax, "NBM effective-date derivative vs WDI CPI; different sources")
+
+    ax = ig.slot("markets.bond_10y", "10-year government bond yield (%)")
+    _pending(ctx, ig, ax, "No verified annual-average 10-year secondary\n"
+             "market yield has been staged.")
+    _foot(ctx, ax, "NBM and Ministry of Finance route unresolved")
+
+    ax = ig.slot("markets.currency", "Moldovan leu vs US$ (2006 = 100)")
+    exchange = _series(ctx, "markets/usd_mdl.csv", "mdl_per_usd_annual_avg")
+    y, v = ctx.fx_index(exchange)
+    ctx.line(ax, y, v, p.TEAL)
+    _foot(ctx, ax, "NBM annual-average MDL per USD, inverted; higher = stronger")
+
+    ax = ig.slot("markets.equities", "Equity index in US$ (2006 = 100)")
+    _pending(ctx, ig, ax, "No verified tradable equity benchmark or\n"
+             "USD-adjusted S&P 500 comparison is staged.")
+    _foot(ctx, ax, "Do not substitute a synthetic market index")
+    _finish(ig)
+
+
+def plate_credit(ctx, ig):
+    ax = ig.slot("credit.household_debt", "Household credit (% of GDP)")
+    _pending(ctx, ig, ax, "Borrower-defined household credit stock\n"
+             "is not verified; aggregate private credit differs.")
+    ax = ig.slot("credit.lending_rate", "Household lending rate vs policy (%)")
+    _pending(ctx, ig, ax, "NBM lending rate needs new-loan, household\n"
+             "and currency perimeter validation.")
+    ax = ig.slot("credit.npl", "Non-performing loans (% of loans)")
+    _pending(ctx, ig, ax, "A consistent NBM NPL numerator, denominator\n"
+             "and break history are not staged.")
+    _finish(ig)
+
+
+def plate_people(ctx, ig):
+    ax = ig.slot("people.gini", "Income inequality, Gini (0–100)")
+    ctx.line(ax, *_series(ctx, "people/gini.csv", "gini"), ctx.p.BLUE)
+    _foot(ctx, ax, "World Bank WDI household-survey Gini; ends 2024")
+
+    ax = ig.slot("people.poverty", "National poverty rate (% of people)")
+    _pending(ctx, ig, ax, "National poverty and WDI poverty thresholds\n"
+             "have not been definition-checked side by side.")
+    ax = ig.slot("people.minimum_wage", "Minimum wage (US$ monthly)")
+    _pending(ctx, ig, ax, "The legal MDL monthly wage schedule and\n"
+             "matching annual USD conversion are not staged.")
+    _finish(ig)
+
+
+def plate_world(ctx, ig):
+    p = ctx.p
+    ax = ig.slot("world.gdp", "GDP at current prices (US$ bn)")
+    y, v = _series(ctx, "world/world.csv", "gdp_usd")
+    ctx.line(ax, y, [x / 1e9 for x in v], p.BLUE)
+    _foot(ctx, ax, "World Bank WDI; nominal current US dollars")
+
+    ax = ig.slot("world.hdi", "Human Development Index (0–1)")
+    _pending(ctx, ig, ax, "UNDP HDR Moldova time series has not yet\n"
+             "been fetched with a pinned report vintage.")
+    ax = ig.slot("world.cpi", "Corruption Perceptions Index (0–100)")
+    _pending(ctx, ig, ax, "Transparency International annual scores\n"
+             "and their method seam have not been verified.")
+
+    ax = ig.slot("world.reserves", "Total reserves including gold (US$ bn)")
+    y, v = _series(ctx, "world/world.csv", "reserves_usd")
+    ctx.line(ax, y, [x / 1e9 for x in v], p.GOLD)
+    _foot(ctx, ax, "World Bank WDI; includes gold; not identical to NBM FX-only")
+    _finish(ig)
+
+
+def plate_demography(ctx, ig):
+    p = ctx.p
+    ax = ig.slot("demography.population", "Population (index 2006 = 100)")
+    pop = _series(ctx, "demography/demography.csv", "population")
+    ctx.line(ax, *ctx.index_2006(pop), p.BLUE)
+    _foot(ctx, ax, "WDI mid-year population, NOT BNS census residents")
+
+    ax = ig.slot("demography.fertility", "Children per woman (total fertility)")
+    ctx.line(ax, *_series(ctx, "demography/demography.csv", "fertility"), p.TEAL)
+    ax.axhline(2.1, color=p.FAINT, linestyle=":", linewidth=1)
+    _foot(ctx, ax, "WDI harmonised fertility; reference 2.1, ends 2024")
+
+    ax = ig.slot("demography.birth_death", "Crude births and deaths (per 1,000)")
+    ctx.line(ax, *_series(ctx, "demography/demography.csv",
+                         "birth_rate_per_1000"), p.GREEN, label="Crude birth rate")
+    ctx.line(ax, *_series(ctx, "demography/demography.csv",
+                         "death_rate_per_1000"), p.RED, label="Crude death rate")
+    ax.legend(fontsize=8, frameon=False)
+    _foot(ctx, ax, "World Bank WDI population rates; through 2024")
+
+    ax = ig.slot("demography.natural_migration",
+                 "Natural change and modelled net migration (/1,000)")
+    y, births, deaths = _aligned(ctx, "demography/demography.csv",
+                                "birth_rate_per_1000", "death_rate_per_1000")
+    ctx.line(ax, y, [a - b for a, b in zip(births, deaths)], p.RED,
+             label="Births minus deaths (WDI)")
+    net = _series(ctx, "migration/migration.csv", "net_migration")
+    yy, vv = ctx.per_1000(net, pop)
+    ctx.line(ax, yy, vv, p.BLUE, label="UN-modelled net migration")
+    ax.legend(fontsize=7.5, frameon=False)
+    _foot(ctx, ax, "Same WDI population denominator; not a registry flow")
+    _finish(ig)
+
+
+def plate_security(ctx, ig):
+    p = ctx.p
+    ax = ig.slot("security.homicide", "Intentional homicides (/100,000)")
+    ctx.line(ax, *_series(ctx, "security/security.csv", "homicide_per_100k"),
+             p.RED)
+    _foot(ctx, ax, "World Bank WDI / UNODC; through 2023")
+
+    ax = ig.slot("security.suicide", "Suicides (/100,000)")
+    ctx.line(ax, *_series(ctx, "security/security.csv", "suicide_per_100k"),
+             p.NAVY)
+    _foot(ctx, ax, "World Bank WDI / WHO; through 2021")
+
+    ax = ig.slot("security.road_deaths", "Road traffic deaths (/100,000)")
+    ctx.line(ax, *_series(ctx, "security/security.csv",
+                         "road_deaths_per_100k"), p.GOLD)
+    _foot(ctx, ax, "World Bank WDI / WHO; through 2019")
+    _finish(ig)
+
+
+def plate_mortality(ctx, ig):
+    p = ctx.p
+    ax = ig.slot("mortality.death_rate", "Crude death rate (per 1,000)")
+    ctx.line(ax, *_series(ctx, "mortality/mortality.csv",
+                         "death_rate_per_1000"), p.RED)
+    _foot(ctx, ax, "World Bank WDI; ends 2024, no fabricated 2025")
+    ax = ig.slot("mortality.excess_deaths", "Excess deaths (% vs 2015–2019)")
+    _pending(ctx, ig, ax, "Same-territory yearly death counts are needed;\n"
+             "a crude rate cannot be treated as a death count.")
+    ax = ig.slot("mortality.covid", "COVID deaths, underlying cause (/100,000)")
+    _pending(ctx, ig, ax, "Cause-of-death COVID series is not staged;\n"
+             "reported cases are not death certificates.")
+    ax = ig.slot("mortality.lens", "Life expectancy at birth (years)")
+    ctx.line(ax, *_series(ctx, "mortality/mortality.csv",
+                         "life_expectancy"), p.TEAL)
+    _foot(ctx, ax, "World Bank WDI, birth-cohort estimate; own scale")
+    _finish(ig)
+
+
+def plate_migration(ctx, ig):
+    p = ctx.p
+    pop = _series(ctx, "demography/demography.csv", "population")
+    ax = ig.slot("migration.flows", "Arrivals and departures (/1,000)")
+    _pending(ctx, ig, ax, "No nationally comparable immigration and\n"
+             "emigration registration series is staged.")
+    ax = ig.slot("migration.net", "Net migration (/1,000)")
+    net = _series(ctx, "migration/migration.csv", "net_migration")
+    ctx.line(ax, *ctx.per_1000(net, pop), p.BLUE)
+    _foot(ctx, ax, "UN model / WDI population; not BNS registered moves")
+
+    ax = ig.slot("migration.foreign_born", "Foreign-born share (%)")
+    _pending(ctx, ig, ax, "UN international migrant stock may use\n"
+             "citizenship where birthplace is unavailable.")
+
+    ax = ig.slot("migration.lens", "International migrant stock, UN snapshots (%)")
+    stock = dict(zip(*_series(ctx, "migration/migration.csv", "migrant_stock")))
+    denom = dict(zip(*pop))
+    years = sorted(stock.keys() & denom.keys())
+    share = [stock[y] / denom[y] * 100 for y in years]
+    ax.scatter(years, share, color=p.TEAL, s=42, zorder=4)
+    _foot(ctx, ax, "2010, 2015, 2020, 2024 only; points, never interpolation")
+    _finish(ig)
+
+
+PLATES = (
+    dict(id="01", slug="economy", topic="economy", builder=plate_economy,
+         title="Moldova — Growth, Prices and Employment",
+         subtitle="World Bank's comparable macroeconomic measures",
+         source="World Bank WDI; source notes in SOURCES.yaml",
+         alt="GDP growth, GDP per person, annual inflation and modelled unemployment."),
+    dict(id="02", slug="fiscal", topic="fiscal", builder=plate_fiscal,
+         title="Moldova — Two IMF Fiscal Vintages",
+         subtitle="FPP 2025-12 and WEO 2026-10: never mistaken for one release",
+         source="IMF FPP (December 2025); IMF WEO (October 2026)",
+         alt="General-government revenue, spending, balances, gross debt and interest."),
+    dict(id="03", slug="spending", topic="spending", builder=plate_spending,
+         title="Moldova — Public Spending and Investment",
+         subtitle="National cash budget is not a general-government GDP share",
+         source="BNS FIN010100; World Bank WDI; IMF FPP",
+         alt="The investment rate, with national cash-spending definitions pending."),
+    dict(id="04", slug="trade", topic="trade", builder=plate_trade,
+         title="Moldova — Imports, Exports and the Gap",
+         subtitle="Goods and services in national accounts; full deficit in its own lens",
+         source="World Bank WDI, NE.EXP.GNFS.ZS and NE.IMP.GNFS.ZS",
+         alt="Exports, imports and complete merchandise-and-services deficit history."),
+    dict(id="05", slug="markets", topic="markets", builder=plate_markets,
+         title="Moldova — Interest Rates and the Leu",
+         subtitle="Official NBM annual rates; WDI inflation; no invented securities",
+         source="National Bank of Moldova; World Bank WDI",
+         alt="The day-weighted policy rate, inflation and indexed MDL against US dollars."),
+    dict(id="06", slug="credit", topic="credit", builder=plate_credit,
+         title="Moldova — Household Credit",
+         subtitle="Borrower and loan-definition checks remain necessary",
+         source="NBM route pending; see SOURCES.yaml",
+         alt="Household debt, household lending rate and non-performing loans pending."),
+    dict(id="07", slug="people", topic="people", builder=plate_people,
+         title="Moldova — Household Inequality",
+         subtitle="WDI survey Gini is available; poverty and minimum pay remain unverified",
+         source="World Bank WDI; BNS and legal-wage sources pending",
+         alt="Survey Gini, with national poverty and legal minimum wage pending."),
+    dict(id="08", slug="world", topic="world", builder=plate_world,
+         title="Moldova in the World — Output and Reserves",
+         subtitle="Nominal US-dollar measures; other international indices need validation",
+         source="World Bank WDI; UNDP and Transparency International pending",
+         alt="GDP in current US dollars and reserves, with HDI and CPI pending."),
+    dict(id="09", slug="demography", topic="demography", builder=plate_demography,
+         title="Moldova — A Smaller Population",
+         subtitle="WDI mid-year model, not the 2024 BNS usual-resident census",
+         source="World Bank WDI / UN Population Division",
+         alt="Population index, fertility, crude births, deaths and modelled migration."),
+    dict(id="10", slug="security", topic="security", builder=plate_security,
+         title="Moldova — Homicides, Suicide and Road Safety",
+         subtitle="International rates stop in different years; the gaps stay visible",
+         source="World Bank WDI, UNODC, WHO",
+         alt="Homicides, suicides and road deaths with source-specific end dates."),
+    dict(id="11", slug="mortality", topic="mortality", builder=plate_mortality,
+         title="Moldova — Death Rates and Life Expectancy",
+         subtitle="No substitute for uncollected excess-death and cause-of-death series",
+         source="World Bank WDI; national vital data pending",
+         alt="Crude mortality and life expectancy; excess and COVID deaths pending."),
+    dict(id="12", slug="migration", topic="migration", builder=plate_migration,
+         title="Moldova — Migration and Its Definitions",
+         subtitle="UN modelled flow and discrete migrant-stock estimates are not registers",
+         source="World Bank WDI / UN Population Division",
+         alt="Modelled net migration and four stock snapshots, with flow registers pending."),
+)
