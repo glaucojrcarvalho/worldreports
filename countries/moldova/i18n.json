@@ -55,9 +55,29 @@
     "ro": "Numărătorul și numitorul seriei de credite neperformante BNM",
     "pt": "Numerador e denominador da série de inadimplência do BNM"
   },
+  "a crude rate cannot be treated as a death count.": {
+    "ro": "o rată brută nu poate fi considerată număr de decese.",
+    "pt": "uma taxa bruta não pode ser tratada como contagem de mortes."
+  },
+  "and break history are not staged.": {
+    "ro": "și istoricul rupturilor nu sunt documentate.",
+    "pt": "e histórico de rupturas não foram documentados."
+  },
+  "and currency perimeter validation.": {
+    "ro": "și perimetrul monedei de denominare.",
+    "pt": "e o perímetro da moeda de denominação."
+  },
+  "and their method seam have not been verified.": {
+    "ro": "și schimbările de metodologie nu au fost verificate.",
+    "pt": "e suas mudanças metodológicas ainda não foram verificadas."
+  },
   "Arrivals and departures (/1,000)": {
     "ro": "Sosiri și plecări (la 1.000)",
     "pt": "Entradas e saídas (por 1.000)"
+  },
+  "been fetched with a pinned report vintage.": {
+    "ro": "preluată într-o ediție de raport fixată.",
+    "pt": "obtida de uma edição de relatório identificada."
   },
   "Births minus deaths (WDI)": {
     "ro": "Nașteri minus decese (WDI)",
@@ -103,6 +123,10 @@
     "ro": "Copii per femeie (fertilitate totală)",
     "pt": "Filhos por mulher (fecundidade total)"
   },
+  "citizenship where birthplace is unavailable.": {
+    "ro": "cetățenia când locul nașterii lipsește.",
+    "pt": "cidadania quando o local de nascimento não está disponível."
+  },
   "Consumer price inflation (% per year)": {
     "ro": "Inflația prețurilor de consum (% pe an)",
     "pt": "Inflação dos preços ao consumidor (% ao ano)"
@@ -134,6 +158,10 @@
   "Customs partner shares are not yet staged.": {
     "ro": "Cotele pe parteneri vamali nu sunt încă pregătite.",
     "pt": "Participações por parceiro aduaneiro ainda não foram preparadas."
+  },
+  "data pending — run fetchers / add CSV": {
+    "ro": "date în așteptare — rulați colectoarele / adăugați CSV",
+    "pt": "dados pendentes — executar coletores / adicionar CSV"
   },
   "Do not substitute a synthetic market index": {
     "ro": "Nu înlocuiți datele cu un indice bursier sintetic",
@@ -355,6 +383,10 @@
     "ro": "Protecția socială din bugetul național este în MDL;",
     "pt": "Proteção social do orçamento nacional está em MDL;"
   },
+  "Natural change and modelled net migration (/1,000)": {
+    "ro": "Spor natural și migrație netă modelată (la 1.000)",
+    "pt": "Crescimento natural e migração líquida modelada (por 1.000)"
+  },
   "NBM and Ministry of Finance route unresolved": {
     "ro": "Sursele BNM și Ministerului Finanțelor sunt încă nerezolvate",
     "pt": "Fontes BNM e Ministério das Finanças ainda não foram validadas"
@@ -379,6 +411,42 @@
     "ro": "Sursele BNM în așteptare; vedeți SOURCES.yaml",
     "pt": "Fontes BNM pendentes; ver SOURCES.yaml"
   },
+  "Net migration (/1,000)": {
+    "ro": "Migrație netă (la 1.000)",
+    "pt": "Migração líquida (por 1.000)"
+  },
+  "No nationally comparable immigration and": {
+    "ro": "Nu există o serie pregătită de imigrare și",
+    "pt": "Não foi preparada uma série nacionalmente comparável de imigração e"
+  },
+  "No substitute for uncollected excess-death and cause-of-death series": {
+    "ro": "Nu există substitut pentru seriile necolectate de decese excedentare și cauze ale decesului",
+    "pt": "Não há substituto para séries ausentes de excesso e causas de morte"
+  },
+  "No verified annual-average 10-year secondary": {
+    "ro": "Nu a fost pregătit un randament verificat, mediu anual, pe piața secundară",
+    "pt": "Não foi preparada uma taxa anual média verificada no mercado secundário"
+  },
+  "No verified tradable equity benchmark or": {
+    "ro": "Nu există un indice bursier tranzacționabil verificat și nici",
+    "pt": "Não há benchmark acionário negociável verificado nem"
+  },
+  "Nominal US-dollar measures; other international indices need validation": {
+    "ro": "Valori nominale în USD; alți indici internaționali necesită validare",
+    "pt": "Valores nominais em US$; outros indicadores internacionais exigem validação"
+  },
+  "Non-performing loans (% of loans)": {
+    "ro": "Credite neperformante (% din credite)",
+    "pt": "Créditos inadimplentes (% dos empréstimos)"
+  },
+  "Official NBM annual rates; WDI inflation; no invented securities": {
+    "ro": "Rate anuale oficiale BNM; inflație WDI; fără titluri inventate",
+    "pt": "Taxas anuais oficiais BNM; inflação WDI; sem títulos inventados"
+  },
+  "Overall and primary balance (% of GDP)": {
+    "ro": "Sold global și primar (% din PIB)",
+    "pt": "Saldo global e primário (% do PIB)"
+  },
   "per 1,000 people": {
     "ro": "la 1.000 de locuitori",
     "pt": "por 1.000 habitantes"
@@ -387,9 +455,93 @@
     "ro": "la 100.000 de locuitori",
     "pt": "por 100 mil habitantes"
   },
+  "Policy base rate and CPI inflation (%)": {
+    "ro": "Rata de bază și inflația IPC (%)",
+    "pt": "Taxa básica e inflação IPC (%)"
+  },
+  "Population (index 2006 = 100)": {
+    "ro": "Populație (indice 2006 = 100)",
+    "pt": "População (índice 2006 = 100)"
+  },
+  "Real GDP growth (% per year)": {
+    "ro": "Creșterea reală a PIB (% pe an)",
+    "pt": "Crescimento real do PIB (% ao ano)"
+  },
+  "Revenue and spending (% of GDP)": {
+    "ro": "Venituri și cheltuieli (% din PIB)",
+    "pt": "Receitas e despesas (% do PIB)"
+  },
+  "Road traffic deaths (/100,000)": {
+    "ro": "Decese rutiere (la 100.000)",
+    "pt": "Mortes no trânsito (por 100 mil)"
+  },
+  "Same WDI population denominator; not a registry flow": {
+    "ro": "Același numitor de populație WDI; nu sunt fluxuri din registre",
+    "pt": "Mesmo denominador populacional WDI; não são fluxos registrados"
+  },
+  "Same-territory yearly death counts are needed;": {
+    "ro": "Sunt necesare numărări anuale ale deceselor pentru același teritoriu;",
+    "pt": "São necessárias contagens anuais de mortes para o mesmo território;"
+  },
   "score, 0–100": {
     "ro": "scor, 0–100",
     "pt": "pontuação, 0–100"
+  },
+  "Social protection (% of GDP)": {
+    "ro": "Protecție socială (% din PIB)",
+    "pt": "Proteção social (% do PIB)"
+  },
+  "Spending by function (% of GDP)": {
+    "ro": "Cheltuieli pe funcții (% din PIB)",
+    "pt": "Despesas por função (% do PIB)"
+  },
+  "Suicides (/100,000)": {
+    "ro": "Sinucideri (la 100.000)",
+    "pt": "Suicídios (por 100 mil)"
+  },
+  "The legal MDL monthly wage schedule and": {
+    "ro": "Calendarul legal al salariului lunar minim în MDL și",
+    "pt": "O calendário legal do salário mínimo mensal em MDL e"
+  },
+  "Top merchandise-export destinations": {
+    "ro": "Principalele destinații ale exporturilor de mărfuri",
+    "pt": "Principais destinos das exportações de mercadorias"
+  },
+  "Total reserves including gold (US$ bn)": {
+    "ro": "Rezerve totale, inclusiv aur (mld. USD)",
+    "pt": "Reservas totais, inclusive ouro (US$ bi)"
+  },
+  "Trade balance (% of GDP)": {
+    "ro": "Sold comercial (% din PIB)",
+    "pt": "Saldo comercial (% do PIB)"
+  },
+  "Transparency International annual scores": {
+    "ro": "Scorurile anuale Transparency International",
+    "pt": "Pontuações anuais da Transparência Internacional"
+  },
+  "UN international migrant stock may use": {
+    "ro": "Stocul ONU de migranți internaționali poate folosi",
+    "pt": "Estoque de migrantes internacionais da ONU pode usar"
+  },
+  "UN model / WDI population; not BNS registered moves": {
+    "ro": "Model ONU / populație WDI; nu deplasări înregistrate de BNS",
+    "pt": "Modelo ONU / população WDI; não movimentos registrados pelo BNS"
+  },
+  "UN modelled flow and discrete migrant-stock estimates are not registers": {
+    "ro": "Fluxul modelat ONU și estimările discrete ale stocului de migranți nu sunt registre",
+    "pt": "Fluxos modelados ONU e estimativas pontuais de estoque não são registros"
+  },
+  "UN-modelled net migration": {
+    "ro": "Migrație netă modelată de ONU",
+    "pt": "Migração líquida modelada pela ONU"
+  },
+  "UNDP HDR Moldova time series has not yet": {
+    "ro": "Seria IDU Moldova din UNDP HDR încă nu a fost",
+    "pt": "A série IDH da Moldávia no UNDP HDR ainda não foi"
+  },
+  "Unemployment (% of labour force)": {
+    "ro": "Șomaj (% din forța de muncă)",
+    "pt": "Desemprego (% da força de trabalho)"
   },
   "US$ bn": {
     "ro": "mld. USD",
@@ -402,5 +554,133 @@
   "US$, current": {
     "ro": "USD, prețuri curente",
     "pt": "US$, preços correntes"
+  },
+  "USD-adjusted S&P 500 comparison is staged.": {
+    "ro": "nu a fost pregătită o comparație S&P 500 ajustată în USD.",
+    "pt": "foi preparada comparação com o S&P 500 ajustada em USD."
+  },
+  "WDI annual CPI inflation": {
+    "ro": "Inflație anuală IPC, WDI",
+    "pt": "Inflação anual IPC, WDI"
+  },
+  "WDI exports minus imports; all 2006–2025 years": {
+    "ro": "Exporturi WDI minus importuri; toți anii 2006–2025",
+    "pt": "Exportações WDI menos importações; todos os anos de 2006–2025"
+  },
+  "WDI harmonised fertility; reference 2.1, ends 2024": {
+    "ro": "Fertilitate armonizată WDI; reper 2,1, până în 2024",
+    "pt": "Fecundidade harmonizada WDI; referência 2,1, até 2024"
+  },
+  "WDI mid-year model, not the 2024 BNS usual-resident census": {
+    "ro": "Model WDI de populație la mijlocul anului, nu recensământul BNS 2024",
+    "pt": "População WDI de meio do ano, não o censo BNS de 2024"
+  },
+  "WDI mid-year population, NOT BNS census residents": {
+    "ro": "Populație WDI la mijlocul anului, NU rezidenți din recensământul BNS",
+    "pt": "População WDI no meio do ano, NÃO os residentes do censo BNS"
+  },
+  "WDI survey Gini is available; poverty and minimum pay remain unverified": {
+    "ro": "Gini din WDI disponibil; sărăcia și salariul minim rămân neverificate",
+    "pt": "Gini WDI disponível; pobreza e salário mínimo ainda não validados"
+  },
+  "WEO October 2026 overall; FPP December 2025 primary": {
+    "ro": "WEO octombrie 2026 sold global; FPP decembrie 2025 sold primar",
+    "pt": "WEO de outubro de 2026 saldo global; FPP de dezembro de 2025 primário"
+  },
+  "Whole-economy investment (% of GDP)": {
+    "ro": "Investiții în întreaga economie (% din PIB)",
+    "pt": "Investimento de toda a economia (% do PIB)"
+  },
+  "World Bank WDI / UN Population Division": {
+    "ro": "Banca Mondială WDI / Divizia Populație ONU",
+    "pt": "Banco Mundial WDI / Divisão de População da ONU"
+  },
+  "World Bank WDI / UNODC; through 2023": {
+    "ro": "Banca Mondială WDI / UNODC; până în 2023",
+    "pt": "Banco Mundial WDI / UNODC; até 2023"
+  },
+  "World Bank WDI / WHO; through 2019": {
+    "ro": "Banca Mondială WDI / OMS; până în 2019",
+    "pt": "Banco Mundial WDI / OMS; até 2019"
+  },
+  "World Bank WDI / WHO; through 2021": {
+    "ro": "Banca Mondială WDI / OMS; până în 2021",
+    "pt": "Banco Mundial WDI / OMS; até 2021"
+  },
+  "World Bank WDI gross fixed capital formation": {
+    "ro": "Formarea brută de capital fix, Banca Mondială WDI",
+    "pt": "Formação bruta de capital fix, Banco Mundial WDI"
+  },
+  "World Bank WDI household-survey Gini; ends 2024": {
+    "ro": "Gini din sondajele gospodăriilor, Banca Mondială WDI; până în 2024",
+    "pt": "Gini de pesquisas domiciliares, Banco Mundial WDI; até 2024"
+  },
+  "World Bank WDI population rates; through 2024": {
+    "ro": "Rate demografice, Banca Mondială WDI; până în 2024",
+    "pt": "Taxas populacionais, Banco Mundial WDI; até 2024"
+  },
+  "World Bank WDI, annual CPI": {
+    "ro": "IPC anual, Banca Mondială WDI",
+    "pt": "IPC anual, Banco Mundial WDI"
+  },
+  "World Bank WDI, birth-cohort estimate; own scale": {
+    "ro": "Speranța de viață estimată la naștere, WDI; scară proprie",
+    "pt": "Expectativa de vida estimada ao nascer, WDI; escala própria"
+  },
+  "World Bank WDI, current US dollars": {
+    "ro": "Dolari SUA curenți, Banca Mondială WDI",
+    "pt": "Dólares correntes dos EUA, Banco Mundial WDI"
+  },
+  "World Bank WDI, goods AND services": {
+    "ro": "Bunuri ȘI servicii, Banca Mondială WDI",
+    "pt": "Bens E serviços, Banco Mundial WDI"
+  },
+  "World Bank WDI, ILO-modelled unemployment": {
+    "ro": "Șomaj modelat OIM, Banca Mondială WDI",
+    "pt": "Desemprego modelado pela OIT, Banco Mundial WDI"
+  },
+  "World Bank WDI, NE.EXP.GNFS.ZS and NE.IMP.GNFS.ZS": {
+    "ro": "Banca Mondială WDI, NE.EXP.GNFS.ZS și NE.IMP.GNFS.ZS",
+    "pt": "Banco Mundial WDI, NE.EXP.GNFS.ZS e NE.IMP.GNFS.ZS"
+  },
+  "World Bank WDI, real national-accounts growth": {
+    "ro": "Creștere reală în conturile naționale, Banca Mondială WDI",
+    "pt": "Crescimento real das contas nacionais, Banco Mundial WDI"
+  },
+  "World Bank WDI, UNODC, WHO": {
+    "ro": "Banca Mondială WDI, UNODC, OMS",
+    "pt": "Banco Mundial WDI, UNODC, OMS"
+  },
+  "World Bank WDI; BNS and legal-wage sources pending": {
+    "ro": "Banca Mondială WDI; sursele BNS și salariul legal sunt în așteptare",
+    "pt": "Banco Mundial WDI; fontes BNS e de salário legal pendentes"
+  },
+  "World Bank WDI; ends 2024, no fabricated 2025": {
+    "ro": "Banca Mondială WDI; până în 2024, fără 2025 inventat",
+    "pt": "Banco Mundial WDI; até 2024, sem inventar 2025"
+  },
+  "World Bank WDI; includes gold; not identical to NBM FX-only": {
+    "ro": "Banca Mondială WDI; include aurul, diferă de rezervele valutare BNM",
+    "pt": "Banco Mundial WDI; inclui ouro, difere das reservas cambiais do BNM"
+  },
+  "World Bank WDI; national vital data pending": {
+    "ro": "Banca Mondială WDI; statistici vitale naționale în așteptare",
+    "pt": "Banco Mundial WDI; estatísticas vitais nacionais pendentes"
+  },
+  "World Bank WDI; nominal current US dollars": {
+    "ro": "Banca Mondială WDI; dolari SUA nominali, curenți",
+    "pt": "Banco Mundial WDI; dólares correntes nominais dos EUA"
+  },
+  "World Bank WDI; source notes in SOURCES.yaml": {
+    "ro": "Banca Mondială WDI; note de sursă în SOURCES.yaml",
+    "pt": "Banco Mundial WDI; notas de fonte em SOURCES.yaml"
+  },
+  "World Bank WDI; UNDP and Transparency International pending": {
+    "ro": "Banca Mondială WDI; sursele UNDP și Transparency International în așteptare",
+    "pt": "Banco Mundial WDI; fontes UNDP e Transparência Internacional pendentes"
+  },
+  "World Bank's comparable macroeconomic measures": {
+    "ro": "Indicatori macroeconomici comparabili ai Băncii Mondiale",
+    "pt": "Indicadores macroeconômicos comparáveis do Banco Mundial"
   }
 }
