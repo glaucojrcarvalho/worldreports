@@ -51,6 +51,7 @@ def test_manifest_covers_exact_staged_wdi_files() -> None:
         "fiscal/budget_summary.csv", "fiscal/public_budget.csv",
         "fiscal/weo_bal_debt.csv", "fiscal/fpp_finances.csv",
         "markets/policy.csv", "markets/usd_mdl.csv",
+        "people/absolute_poverty.csv",
     }
     assert declared == files == expected
     assert manifest["meta"]["status"] == "research_only_not_an_atlas_edition"
@@ -75,6 +76,11 @@ def test_manifest_covers_exact_staged_wdi_files() -> None:
                 assert details["source"].startswith("National Bank of Moldova")
                 assert details["official"] is True
                 assert details["refreshed_by"] == "fetch/fetch_nbm.py"
+            elif group == "people" and name == "absolute_poverty.csv":
+                assert details["source"].startswith("National Bureau of Statistics")
+                assert details["official"] is True
+                assert "2019" in details["notes"]
+                assert "Raport_ODD_" in details["url"]
             else:
                 assert details["source"].startswith("World Bank WDI")
                 assert details["official"] is False
