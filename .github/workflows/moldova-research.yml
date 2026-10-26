@@ -127,3 +127,57 @@ jobs:
             countries/moldova/provenance.json
             /tmp/moldova-candidate-site/moldova/
           retention-days: 5
+
+  # No site deploy, no upstream write, no automatic registration. Preserve the
+  # exact reviewed plates within this isolated research branch after QA passes.
+  archive-validated-research-assets:
+    needs: moldova-research
+    if: >-
+      github.repository == 'glaucojrcarvalho/worldreports' &&
+      github.ref == 'refs/heads/research/moldova-source-audit' &&
+      github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install offline rendering dependencies
+        run: pip install -r requirements.txt
+      - name: Regenerate the passed candidate plates and thumbnails offline
+        run: |
+          cp countries/moldova/research/country_candidate.yaml countries/moldova/country.yaml
+          python -m core.render moldova
+          python -m core.thumbs moldova
+          python -m core.provenance moldova
+          rm countries/moldova/country.yaml
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path('countries/moldova')
+          plates = list((root / 'output').glob('*.png'))
+          thumbs = list((root / 'output' / 'thumbs').glob('*.png'))
+          sources = json.loads((root / 'provenance.json').read_text())
+          assert len(plates) == 36, len(plates)
+          assert len(thumbs) == 36, len(thumbs)
+          assert len(sources) == 12, len(sources)
+          assert not (root / 'country.yaml').exists(), 'research country must stay unregistered'
+          print('Research assets validated: 36 plates / 36 thumbs / 12 provenance records')
+          PY
+      - name: Commit only isolated research PNGs and source provenance
+        run: |
+          git add -- countries/moldova/output countries/moldova/provenance.json
+          if git diff --cached --quiet; then
+            echo 'No changes to validated Moldova assets.'
+            exit 0
+          fi
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -m 'build(moldova): archive validated trilingual research plates'
+          # This ref exists only on the user's fork; a concurrent update
+          # causes a non-fast-forward refusal, never an overwrite.
+          git push origin HEAD:refs/heads/research/moldova-source-audit
