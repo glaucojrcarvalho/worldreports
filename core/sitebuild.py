@@ -134,6 +134,23 @@ CURRENCY_AFFIX = {
 # and never has the placeholder.
 _N = NBSP
 _STYLE_AFFIX = {
+    # CLDR ro-MD: dot grouping, decimal comma, currency after amount,
+    # nonbreaking space before percent. Romanian large units are:
+    # milion (10^6), miliard (10^9), bilion (10^12).
+    "ro": {
+        "pct": ("", f"{_N}%"), "pct_s": ("", f"{_N}%"),
+        "pct2": ("", f"{_N}%"),
+        "pct_gdp": ("", f"{_N}% din PIB"),
+        "pct_gdp_s": ("", f"{_N}% din PIB"),
+        "rank": ("locul ", ""), "score100": ("", "/100"),
+        "pop_mn": ("", f"{_N}mil."),
+        "per100k": ("", "/100.000 loc."),
+        "per100k2": ("", "/100.000 loc."),
+        "years": ("", " ani"),
+        "usd_bn": ("", f"{_N}mld.{_N}USD"),
+        "usd_bn_s": ("", f"{_N}mld.{_N}USD"),
+        "usd_bn1": ("", f"{_N}mld.{_N}USD"),
+    },
     # Duden and DIN 5008: a space before %, the amount before the unit,
     # "Mrd." and "Mio." with their points, "US-$" (Duden). The EU style
     # guide's German section agrees on the order and the space.
@@ -287,6 +304,20 @@ for _style, _forms in _STYLE_AFFIX.items():
 # uses them. English follows the EU style guide: the symbol before the
 # amount, an ISO code (CHF) before it with a space.
 _STYLE_CURRENCY = {
+    # Moldovan leu: ISO MDL on international pages; Romanian ro-MD uses
+    # local "L" for individual amounts, and "mld. lei" for billions.
+    # All locale forms are explicit; the candidate country remains
+    # unregistered until chapter, sources and site gates pass.
+    "MDL": {
+        "money_bn": {"ro": ("", f"{_N}mld.{_N}lei"),
+                     "en": ("MDL ", "bn"), "pt": ("MDL ", " bi")},
+        "money_tn": {"ro": ("", f"{_N}bln.{_N}lei"),
+                     "en": ("MDL ", "tn"), "pt": ("MDL ", " tri")},
+        "money":    {"ro": ("", f"{_N}L"),
+                     "en": ("MDL ", ""), "pt": ("MDL ", "")},
+        "money2":   {"ro": ("", f"{_N}L"),
+                     "en": ("MDL ", ""), "pt": ("MDL ", "")},
+    },
     "EUR": {
         "money_bn": {"de": ("", f"{_N}Mrd.{_N}€"), "it": ("", f"{_N}mld{_N}€"),
                      "pt-PT": ("", f"{_N}mil milhões de euros")},
@@ -457,6 +488,7 @@ STEP_UP = {
     "uk": (("млрд", "трлн"), ("млн", "млрд")),
     "pl": (("mld", "bln"), ("mln", "mld")),
     "ru": (("млрд", "трлн"), ("млн", "млрд")),
+    "ro": (("mld.", "bln."), ("mil.", "mld.")),
 }
 _STEP_SIG = 3
 
