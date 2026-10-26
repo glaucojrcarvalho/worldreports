@@ -118,3 +118,44 @@ At the beginning of this research pass, publisher-page arithmetic was the only i
 2. Reconcile BNS/World Bank population geography and survey definitions with official methodology; keep parallel lines where definitions differ.
 3. Acquire direct national CPI/labour/poverty/credit/FX/migration statistics, and the WEO general-government fiscal comparables.
 4. Only then register `country.yaml` and implement Romanian + English + Portuguese catalogs, cards and canonical plates; run the full atlas render, provenance, layout and unit-test gates.
+
+---
+
+## Phase A follow-on — IMF comparable fiscal audit (2026-10-26)
+
+- Queried IMF DataMapper **v2** metadata and Moldova (`MDA`) values directly.
+  Its `GGXCNL_NGDP` and `GGXWDG_NGDP` are both **World Economic Outlook
+  (WEO), October 2026**, with publisher projection-year **2026**.
+  Both series contain 2006–2025 historical/vintage estimates plus a
+  clearly separated **2026 forecast**; neither is treated as final
+  audited Moldovan cash-budget execution.
+- The commonly abbreviated `rev`, `exp`, `pb`, `ie` series found in
+  DataMapper are **not WEO**: IMF metadata attributes all four to **Public
+  Finances in Modern History (FPP), December 2025**, ending in **2024**.
+  These were collected as a separate vintage, never blended with WEO.
+- Live import and internal checks succeeded in
+  [GitHub Actions run 40269456831](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40269456831).
+  **Both curated outputs** — `fiscal/weo_bal_debt.csv` (21 rows,
+  with forecast columns), `fiscal/fpp_finances.csv` (19 rows) — are now
+  listed in `SOURCES.yaml`. `fetch/fetch_imf.py` generates separate
+  review-only `*_from_imf.csv` sidecars and refuses unexpected publication
+  names, units, country series and forecast boundaries.
+- Added offline semantic tests, including a source-catalog check, a
+  no-forecast-as-actual check, within-FPP fiscal reconciliation,
+  protection against cross-vintage splicing, and a reproducible
+  four-panel source-separated `research/render_imf_preview.py` image.
+  The research workflow reported **63 passing tests** and successfully
+  exported both visual previews in
+  [GitHub Actions 40269867245](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40269867245).
+- The 2024 FPP balance computed from its own revenue/expenditure is about
+  **−3.884449% GDP**, compared with the **−4.0% GDP** 2024 WEO
+  October-2026 edition. This is recorded as an **edition mismatch**, not
+  "corrected" into agreement. The BNS national-public-budget series is a
+  third separately documented, cash-accounting perimeter.
+
+**Remaining Phase B gates:** establish a same-vintage compatible full
+canonical fiscal plate (if source coverage permits), verify the national
+statistics/migration/credit/currency data, introduce Romanian number and
+currency formatting plus `ro/en/pt` catalogs, compile chapter data and
+full atlas output, and run the cross-country suite. This research branch
+is still **not a merge-ready country edition**.
