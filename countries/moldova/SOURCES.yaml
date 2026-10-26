@@ -11,6 +11,39 @@
 # Every displayed series must be checked against its relevant NATIONAL
 # publisher and precise territorial definition before rendering.
 fiscal:
+  weo_bal_debt.csv:
+    source: "International Monetary Fund (IMF), World Economic Outlook (WEO), October 2026"
+    url: "https://www.imf.org/external/datamapper/api/v2/GGXCNL_NGDP/MDA"
+    official: true
+    refreshed_by: fetch/fetch_imf.py
+    notes: >-
+      WEO OCTOBER 2026 edition verified 2026-10-26 using DataMapper v2
+      metadata, source WEO, projection-year 2026, country MDA, annual % GDP.
+      General-government net lending/borrowing (GGXCNL_NGDP) and gross debt
+      (GGXWDG_NGDP): 2006-2025 in historical-estimate columns; 2026 only in
+      *_proj. 2025 is NOT asserted to be an audited final national outturn.
+      Publisher directly verified both 2024 -4.0% balance and 38.8% debt,
+      2025 -3.9% balance and 39.2% debt (Oct-2026 WEO VINTAGE).
+      Do not combine with BNS cash national budget, or with the December 2025
+      FPP revenue/expense series as if they were a common WEO vintage.
+      Source-audit evidence https://github.com/glaucojrcarvalho/worldreports/actions/runs/40269456831
+  fpp_finances.csv:
+    source: "International Monetary Fund (IMF), Public Finances in Modern History (FPP), December 2025"
+    url: "https://www.imf.org/external/datamapper/api/v2/rev/MDA"
+    official: true
+    refreshed_by: fetch/fetch_imf.py
+    notes: >-
+      IMF DataMapper v2 explicitly labels rev, exp, pb, ie as FPP (Dec 2025),
+      NOT WEO; source-metadata checked live 2026-10-26. Four measures (% GDP):
+      revenue, spending, primary fiscal balance and interest expense
+      from 2006-2024 ONLY. NO observations for 2025 and no 2026 projections.
+      The FPP rev minus exp balance matches (primary balance minus interest)
+      within 0.1 percentage point every year; no interpolation.
+      This historical FPP estimate is its OWN dataset/vintage, not a
+      WEO October 2026 six-column general-government table, even when
+      source institutions and fiscal terms sound similar. Comparison charts
+      must visibly label the distinct methodology, scope and release.
+      Source-audit evidence https://github.com/glaucojrcarvalho/worldreports/actions/runs/40269456831
   public_budget.csv:
     source: "National Bureau of Statistics of Moldova (BNS) / Ministry of Finance, FIN010100, national public budget execution"
     url: "https://statbank.statistica.md/PxWeb/api/v1/en/40%20Statistica%20economica/25%20FIN/FIN010100.px"
@@ -136,6 +169,18 @@ meta:
   last_checked: "2026-10-26"
   wdi_vintage: "2026-10-08"
   verified:
+    - name: "IMF WEO October 2026 balance/debt and FPP December 2025 revenue/expenditure"
+      publisher: "International Monetary Fund"
+      url: "https://www.imf.org/external/datamapper/api/v2/indicators"
+      official: true
+      reviewed_utc: "2026-10-26"
+      evidence: "https://github.com/glaucojrcarvalho/worldreports/actions/runs/40269456831"
+      notes: >-
+        WEO and FPP verified as TWO DIFFERENT datasets by live publisher
+        API metadata. 21 WEO rows (2006-2026 including separate 2026
+        forecasts); 19 FPP rows (2006-2024). Both imported and separately
+        attributed. Historical estimate does not mean audited national
+        final; country MDA and percent GDP are asserted in fetcher.
     - name: "BNS Statbank FIN010100 cash budget 2016–2025"
       publisher: "National Bureau of Statistics of Moldova / Ministry of Finance"
       url: "https://statbank.statistica.md/PxWeb/api/v1/en/40%20Statistica%20economica/25%20FIN/FIN010100.px"
@@ -155,10 +200,16 @@ meta:
       publisher: "National Bank of Moldova"
       url: "https://www.bnm.md/bdi/pages/reports/dovre/DOVRE8.xhtml?lang=en"
       notes: "Generator confirmed, exported time-series request parameters pending."
-    - name: "IMF general-government fiscal comparable"
-      publisher: "IMF World Economic Outlook, October 2026 vintage"
+    - name: "Fully harmonised four-panel fiscal spine (revenue, spending, balance, debt, primary balance, interest)"
+      publisher: "IMF WEO / FPP: non-identical releases"
       url: "https://data.imf.org/datasets/WEO"
-      notes: "Do not substitute national public budget cash balance for general-government IMF balance."
+      notes: >-
+        WEO balance/debt and FPP revenue/spending/primary balance/interest
+        have NOW been staged and attributed separately. What is STILL
+        pending is a verified consistent single-vintage, single-methodology
+        full four-panel fiscal presentation: FPP only goes to 2024 while
+        WEO October 2026 has balance/debt through 2025 and a 2026 forecast.
+        Never plot the FPP amounts as if they are WEO observations.
     - name: "BNS resident population and territorial concordance"
       publisher: "National Bureau of Statistics"
       url: "https://statistica.gov.md/en/final-results-of-the-2024-population-and-housing-census-geographical-distributio-10121_61877.html"
