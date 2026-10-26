@@ -127,5 +127,5 @@ def test_verified_curated_nbm_rate_series_and_units() -> None:
     policy_notes = (base / "policy.csv").read_text(encoding="utf-8")
     fx_notes = (base / "usd_mdl.csv").read_text(encoding="utf-8")
     assert "calendar-DAY-weighted" in policy_notes
-    assert "per one USD" in fx_notes
+    assert "MDL for 1 USD" in fx_notes
     assert "40273821580" in policy_notes and "40273821580" in fx_notes
