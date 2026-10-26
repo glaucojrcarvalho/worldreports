@@ -115,6 +115,18 @@ jobs:
           cat countries/moldova/provenance.json
           echo '=== MOLDOVA GENERATED PROVENANCE END ==='
 
+      - name: Install publication-equivalent CJK fonts for global render QA
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends fonts-noto-cjk
+          fc-cache -f
+      - name: Exercise full atlas and browser JS tests with isolated Moldova
+        run: |
+          # The candidate-only guard was already tested before its temporary
+          # country.yaml copy; the rest must pass WITH Moldova in the registry.
+          python -m pytest -q --ignore=tests/test_moldova_country_candidate.py
+          node --test tests/js/*.test.js
+
       - name: Preserve draft PNGs and candidate site for visual QA (not deployment)
         if: always()
         uses: actions/upload-artifact@v4
