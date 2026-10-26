@@ -80,3 +80,10 @@ review artifacts. Country remains **unregistered in the branch** until full
 trilingual graphic catalog, chart/thumb/provenance/site/global-regeneration
 gate. `events.py` includes only two evidence-based publication markers;
 recession dates are not fabricated from annual data.
+
+The research CI now contains a **non-blocking diagnostic** which attempts
+the full Romanian and Portuguese plate render and logs exact untranslated
+strings. This is intentionally not the publication gate; the real gate must
+be strict and green before registration. Its PNGs are stored as review-only
+artifacts. `i18n.json` is a starter catalog and needs to be filled from
+the diagnostic log without English fallback.

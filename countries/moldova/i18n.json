@@ -1,0 +1,86 @@
+{
+  "% of GDP": {
+    "ro": "% din PIB",
+    "pt": "% do PIB"
+  },
+  "% per year": {
+    "ro": "% pe an",
+    "pt": "% ao ano"
+  },
+  "% of labour force": {
+    "ro": "% din forța de muncă",
+    "pt": "% da força de trabalho"
+  },
+  "US$, current": {
+    "ro": "USD, prețuri curente",
+    "pt": "US$, preços correntes"
+  },
+  "per 1,000 people": {
+    "ro": "la 1.000 de locuitori",
+    "pt": "por 1.000 habitantes"
+  },
+  "per 100,000": {
+    "ro": "la 100.000 de locuitori",
+    "pt": "por 100 mil habitantes"
+  },
+  "index 2006 = 100": {
+    "ro": "indice 2006 = 100",
+    "pt": "índice 2006 = 100"
+  },
+  "index 2006 = 100, up = stronger": {
+    "ro": "indice 2006 = 100, creștere = întărire",
+    "pt": "índice 2006 = 100, maior = mais forte"
+  },
+  "US$ bn": {
+    "ro": "mld. USD",
+    "pt": "US$ bi"
+  },
+  "%, annual average": {
+    "ro": "%, medie anuală",
+    "pt": "%, média anual"
+  },
+  "score, 0–100": {
+    "ro": "scor, 0–100",
+    "pt": "pontuação, 0–100"
+  },
+  "HDI, 0–1": {
+    "ro": "IDU, 0–1",
+    "pt": "IDH, 0–1"
+  },
+  "children per woman": {
+    "ro": "copii per femeie",
+    "pt": "filhos por mulher"
+  },
+  "% of population": {
+    "ro": "% din populație",
+    "pt": "% da população"
+  },
+  "US$ per month": {
+    "ro": "USD pe lună",
+    "pt": "US$ por mês"
+  },
+  "Gini, 0–100": {
+    "ro": "Gini, 0–100",
+    "pt": "Gini, 0–100"
+  },
+  "% of people": {
+    "ro": "% din populație",
+    "pt": "% da população"
+  },
+  "% of loans": {
+    "ro": "% din credite",
+    "pt": "% dos empréstimos"
+  },
+  "% above 2015–2019 average": {
+    "ro": "% peste media 2015–2019",
+    "pt": "% acima da média de 2015–2019"
+  },
+  "index 2006 = 100, in US$": {
+    "ro": "indice 2006 = 100, în USD",
+    "pt": "índice 2006 = 100, em US$"
+  },
+  "%": {
+    "ro": "%",
+    "pt": "%"
+  }
+}

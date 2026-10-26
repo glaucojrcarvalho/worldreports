@@ -74,9 +74,15 @@ jobs:
           print(f"Candidate card QA passed: {len(cards)} chapters / {len(strip)} headlines")
           PY
           python -m core.render moldova --langs en --out /tmp/moldova-phase-b
+      - name: Inventory full Romanian and Portuguese plate translation gaps (diagnostic, not publication)
+        continue-on-error: true
+        run: |
+          python -m core.render moldova --langs ro,pt --out /tmp/moldova-phase-b-translations
       - name: Preserve draft PNGs for offline visual review (not a deployment)
         uses: actions/upload-artifact@v4
         with:
           name: moldova-phase-b-english-draft
-          path: /tmp/moldova-phase-b/
+          path: |
+            /tmp/moldova-phase-b/
+            /tmp/moldova-phase-b-translations/
           retention-days: 5
