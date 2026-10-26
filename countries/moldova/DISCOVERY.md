@@ -155,7 +155,7 @@ At the beginning of this research pass, publisher-page arithmetic was the only i
 
 **Remaining Phase B gates:** establish a same-vintage compatible full
 canonical fiscal plate (if source coverage permits), verify the national
-statistics/migration/credit/currency data, introduce Romanian number and
-currency formatting plus `ro/en/pt` catalogs, compile chapter data and
+statistics/migration/credit/currency data, use the newly added Romanian number and MDL currency formatting,
+implement final `ro/en/pt` catalogs, compile chapter data and
 full atlas output, and run the cross-country suite. This research branch
 is still **not a merge-ready country edition**.
