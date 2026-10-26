@@ -11,6 +11,25 @@
 # Every displayed series must be checked against its relevant NATIONAL
 # publisher and precise territorial definition before rendering.
 fiscal:
+  public_budget.csv:
+    source: "National Bureau of Statistics of Moldova (BNS) / Ministry of Finance, FIN010100, national public budget execution"
+    url: "https://statbank.statistica.md/PxWeb/api/v1/en/40%20Statistica%20economica/25%20FIN/FIN010100.px"
+    official: true
+    refreshed_by: fetch/fetch_bns_budget.py
+    notes: >-
+      VERIFIED LIVE 2026-10-26 from the publisher's official PxWeb JSON-stat2
+      data API (GitHub Actions run 40267150660): January-December full-year,
+      million nominal MDL, 2016-2025. Revenue (code 0), expenditure plus
+      nonfinancial assets (19), balance (30), ten spending functions (20-29).
+      Fiscal identity and ALL TEN function totals reconcile exactly at
+      published one-decimal precision. Caution: current live API's 2024
+      expenditure 122962.7 and balance -12624.2 differ by 0.1 million MDL
+      from BNS Finance overview's FINAL 2024 122962.6/-12624.1.
+      The overview's edition is preserved separately in budget_summary.csv,
+      not erased or silently spliced. 2025 139856.4/-14254.4 is PRELIMINARY.
+      Cash-execution national public budget; table explicitly excludes
+      left-bank Nistru districts and Bender. Not IMF WEO general-government
+      accrual accounts. A review-only refresh writes *_from_bns.csv sidecars.
   budget_summary.csv:
     source: "National Bureau of Statistics of Moldova (BNS), Ministry of Finance national public budget execution"
     url: "https://statistica.gov.md/en/statistic_indicator_details/21"
