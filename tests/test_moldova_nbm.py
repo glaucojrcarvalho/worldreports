@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import importlib.util
+import csv
 import math
 from datetime import date
 
@@ -101,3 +102,30 @@ def test_sidecar_headers_make_source_and_mean_semantics_explicit() -> None:
     fx = nbm.render_fx({year: 17.8 for year in range(2006, 2026)})
     assert "MDL per exactly ONE USD" in fx
     assert "2025,17.800000" in fx
+
+
+def test_verified_curated_nbm_rate_series_and_units() -> None:
+    base = ROOT / "countries" / "moldova" / "data" / "markets"
+    def read(name):
+        with (base / name).open(encoding="utf-8", newline="") as fp:
+            return list(csv.DictReader(line for line in fp if not line.startswith("#")))
+    policy = read("policy.csv")
+    fx = read("usd_mdl.csv")
+    assert [int(row["year"]) for row in policy] == list(range(2006, 2026))
+    assert [int(row["year"]) for row in fx] == list(range(2006, 2026))
+    assert list(policy[0]) == ["year", "policy_mean_pct", "policy_dec31_pct"]
+    assert list(fx[0]) == ["year", "mdl_per_usd_annual_avg"]
+    assert float(policy[-2]["policy_mean_pct"]) == pytest.approx(3.810519)
+    assert float(policy[-1]["policy_mean_pct"]) == pytest.approx(6.134247)
+    assert float(policy[-2]["policy_dec31_pct"]) == 3.6
+    assert float(policy[-1]["policy_dec31_pct"]) == 5.0
+    assert float(fx[-2]["mdl_per_usd_annual_avg"]) == pytest.approx(17.7918)
+    assert float(fx[-1]["mdl_per_usd_annual_avg"]) == pytest.approx(17.3705)
+    assert float(fx[0]["mdl_per_usd_annual_avg"]) == pytest.approx(13.1319)
+    assert float(policy[-1]["policy_mean_pct"]) != float(policy[-1]["policy_dec31_pct"])
+    assert all(3 <= float(row["mdl_per_usd_annual_avg"]) <= 50 for row in fx)
+    policy_notes = (base / "policy.csv").read_text(encoding="utf-8")
+    fx_notes = (base / "usd_mdl.csv").read_text(encoding="utf-8")
+    assert "calendar-DAY-weighted" in policy_notes
+    assert "per 1 USD" in fx_notes
+    assert "40273821580" in policy_notes and "40273821580" in fx_notes
