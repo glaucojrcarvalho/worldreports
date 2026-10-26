@@ -41,7 +41,8 @@ in core.i18n cite theirs beside each style):
     zh-Hans CLDR zh: English marks; 万 亿 万亿 = 1e4 1e8 1e12
     zh-Hant CLDR zh-Hant: English marks; 萬 億 兆 = 1e4 1e8 1e12
     vi      CLDR vi: 1.234,5; triệu tỷ nghìn tỷ = 1e6 1e9 1e12
-    ro      CLDR ro-MD: 1.234,5; local MDL after amount.\n    he      CLDR he: English marks. Hebrew is right-to-left; this module
+    ro      CLDR ro-MD: 1.234,5; local MDL after amount.
+    he      CLDR he: English marks. Hebrew is right-to-left; this module
             does numbers and affixes only. Bidi (the page direction, RLM
             marks around a figure, matplotlib's lack of shaping) is out
             of scope here and tracked in COUNTRIES.md.
