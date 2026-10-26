@@ -200,6 +200,14 @@ def _on_ladder(style, currencies, per100k, pp, gap=""):
 # "/100,000" is written with an English comma on purpose: the separator
 # pass runs after these rules and turns it into the style's own 100.000.
 _UNITS.update({
+    # Romanian ro-MD/CLDR: dot thousands, comma decimal, trailing currency
+    # unit and NBSP before percent sign. "miliard" = 10^9, "bilion" = 10^12.
+    # The source mark MDL is retained as an explicit currency ISO token;
+    # the local plain amount uses the BNM's L abbreviation.
+    "ro": _one_for_one(
+        [("MDL", "L"), (r"US\$", "USD"), ("€", "EUR")],
+        {"tn": "bln.", "bn": "mld.", "mn": "mil."},
+        "/100.000 loc.", f"{NBSP}p.p.", pct_space=True),
     # Duden / DIN 5008.
     "de": _one_for_one(
         [("€", "€"), (r"US\$", "US-$"), ("CHF", "CHF")],
@@ -353,7 +361,7 @@ def localize_numbers(text: str, lang: str | None = None) -> str:
 # currency marks, the digits and the magnitude suffixes; if no letter is
 # left, there is nothing to translate.
 _VALUE_PARTS = re.compile(
-    r"US\$|CN¥|NT\$|CHF|€|₩|R\$|\$US|Md€|M€|B€|Md\$US|B\$US"
+    r"US\$|CN¥|NT\$|CHF|MDL|€|₩|R\$|\$US|Md€|M€|B€|Md\$US|B\$US"
     r"|[\d.,:%+\-–—/()\s ]"
     r"|(?<=\d)(?:tn|bn|mn|pp|M|k|bi|mi|tri)\b")
 
