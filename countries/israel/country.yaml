@@ -9,6 +9,7 @@ wordmark: ישראל
 # centring — but the wordmark's first letter is א, an open left side.
 # Bearing was verified with the generated masthead in Phase C.
 name:
+  ro: "Israel"
   en: "Israel"
   fr: "Israël"
   pt: "Israel"
