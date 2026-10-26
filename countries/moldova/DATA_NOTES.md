@@ -260,15 +260,33 @@ MDL currency, 2006–2026 comparison window, `ro/en/pt` locales,
 trilingual SEO/source names and all presently used country-switcher
 languages, **without** creating `countries/moldova/country.yaml`.
 The project discovers published countries by that exact root filename,
-so registering now would introduce unsupported Romanian number formatting
-and MDL money-affix rules into the global renderer and fail missing
-chapters and provenance requirements.
+so registering now would fail on **missing final chapters, provenance,
+locale chrome and rendered assets** — not on currency syntax.
 
-To promote the candidate, first add **Romanian `ro` number-style support**
-to shared `core/numstyle.py`, equivalent `core/i18n.py` unit rules,
-shared `core/sitebuild.py` affixes (including MDL), site language chrome,
-full Romanian-English-Portuguese figure translations, canonical
-`plates.py`/`chapters.py`, source provenance, rendered assets,
-and successful complete global and country-specific tests. Only then
-move/copy the draft into the country root as `country.yaml`.
-The research translations are **not** substitutes for final `i18n.json`.
+### Phase B shared number-format contract — 2026-10-26
+
+**Implemented in the shared renderer, without registering Moldova:**
+`core/numstyle.py` now declares `ro` with decimal comma and grouped
+period (e.g. `1.234.567,89`), in line with Unicode CLDR ro-MD.
+`core/i18n.py` handles Romanian numeric/percentage/large-unit plate labels,
+recognises `MDL` value labels, and applies a nonbreaking space before the
+percent sign. `core/sitebuild.py` declares the corresponding complete
+Romanian page-affix table plus MDL currency forms for `ro`, `en` and
+`pt`. Money quantities are always explicitly identified as MDL: the
+local `lei` word is used for legibility in a mixed-country atlas, rather
+than relying on an ambiguous standalone `L` symbol. For example,
+`12.345,67 lei` and `291 mld. lei`. This deliberately chooses a full
+unit word instead of the shorter CLDR abbreviation.
+
+The regression suite `tests/test_moldova_ro_numstyle.py` checks card/plate
+number agreement and loads the candidate under an isolated temporary
+directory. The full existing `tests/test_numbers.py` suite is run in CI
+to protect the original countries' presentation formats. Neither test
+registers `countries/moldova/country.yaml`.
+
+**Remaining promotion steps:** implement Romanian site language chrome,
+full Romanian-English-Portuguese chapter catalogs (`i18n.json`, `ui.json`),
+canonical plates and chapters, source provenance, committed rendered assets,
+and the complete atlas regression suite. Only then move/copy the draft
+into the country root as `country.yaml`. The existing three-language
+research preview strings are **not** substitutes for final `i18n.json`.
