@@ -41,7 +41,7 @@ in core.i18n cite theirs beside each style):
     zh-Hans CLDR zh: English marks; 万 亿 万亿 = 1e4 1e8 1e12
     zh-Hant CLDR zh-Hant: English marks; 萬 億 兆 = 1e4 1e8 1e12
     vi      CLDR vi: 1.234,5; triệu tỷ nghìn tỷ = 1e6 1e9 1e12
-    he      CLDR he: English marks. Hebrew is right-to-left; this module
+    ro      CLDR ro-MD: 1.234,5; local MDL after amount.\n    he      CLDR he: English marks. Hebrew is right-to-left; this module
             does numbers and affixes only. Bidi (the page direction, RLM
             marks around a figure, matplotlib's lack of shaping) is out
             of scope here and tracked in COUNTRIES.md.
@@ -62,7 +62,7 @@ STYLES = {
     "en": "en", "fr": "fr", "pt": "pt", "pt-PT": "pt", "es": "es",
     "ko": "ko", "de": "de", "it": "it", "ja": "ja",
     "zh-Hans": "zh-Hans", "zh-Hant": "zh-Hant", "vi": "vi", "he": "he",
-    "uk": "uk", "pl": "pl", "ru": "ru",
+    "uk": "uk", "pl": "pl", "ru": "ru", "ro": "ro",
 }
 
 # The decimal and thousands marks, for the styles that change them. A
@@ -82,6 +82,9 @@ SEPARATORS = {
     # CLDR pl and ru: comma decimal, non-breaking-space thousands.
     "pl": {",": NBSP, ".": ","},
     "ru": {",": NBSP, ".": ","},
+    # CLDR ro-MD/ro: period thousands, comma decimal; unlike uk/pl/ru
+    # which use non-breaking spaces for grouping.
+    "ro": {",": ".", ".": ","},
 }
 
 
