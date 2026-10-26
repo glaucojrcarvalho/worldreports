@@ -26,9 +26,13 @@ jobs:
           python -m pytest -q tests/test_moldova_research.py tests/test_moldova_bns_budget.py tests/test_moldova_fiscal_data.py tests/test_moldova_fiscal_preview.py tests/test_moldova_imf.py
       - name: Render national budget research preview, not a published plate
         run: python countries/moldova/research/render_fiscal_preview.py
-      - name: Store preview image for visual QA only
+      - name: Render IMF WEO/FPP separate-vintage fiscal research preview
+        run: python countries/moldova/research/render_imf_preview.py
+      - name: Store BOTH research figures for visual QA only
         uses: actions/upload-artifact@v4
         with:
-          name: moldova-budget-research-preview
-          path: countries/moldova/research/output/moldova_fiscal_preview.png
+          name: moldova-fiscal-research-previews
+          path: |
+            countries/moldova/research/output/moldova_fiscal_preview.png
+            countries/moldova/research/output/moldova_imf_fiscal_preview.png
           retention-days: 14
