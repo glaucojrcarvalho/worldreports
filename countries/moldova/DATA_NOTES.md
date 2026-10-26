@@ -75,6 +75,43 @@ have been drawn or reviewed.
    overview; this historical API does not supply a year-by-year finality
    flag for the earlier rows.
 
+## IMF comparable fiscal layer — two original vintages (2026-10-26)
+
+The [IMF DataMapper v2 indicator catalogue](https://www.imf.org/external/datamapper/api/v2/indicators)
+is authoritative for *which dataset an indicator actually comes from*.
+The full live retrieval and validation ran in [GitHub Actions 40269456831](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40269456831).
+
+- **`fiscal/weo_bal_debt.csv`**: `GGXCNL_NGDP` (general-government net
+  lending/borrowing) and `GGXWDG_NGDP` (general-government gross debt),
+  both from the **World Economic Outlook, October 2026**, in **percent of GDP**.
+  It contains the 2006–2025 pre-projection WEO series; the 2026 values
+  exist **only** as explicitly separated `*_proj` columns. 2025's
+  pre-projection estimate is not described as an audited final national
+  outturn. October-2026 WEO anchors: 2024 balance **−4.0%**, debt **38.8%**;
+  2025 balance **−3.9%**, debt **39.2%**; 2026 forecast balance
+  **−5.0%**, debt **41.8%**. The older December-2025 IMF mission release
+  has different 2025 projected figures, which are **not** silently substituted.
+- **`fiscal/fpp_finances.csv`**: `rev`, `exp`, `pb`, `ie`, from
+  **Public Finances in Modern History (FPP), December 2025**, **NOT WEO**,
+  four annual percent-of-GDP series from **2006 to 2024 only**. It has no
+  2025 value. For each year, `rev - exp` reconciles to `pb - ie`
+  within source rounding. The FPP 2024 balance implied from its own
+  revenue/expenditure is **−3.884449% of GDP**, compared with the
+  separate WEO October-2026 2024 balance of **−4.0%**. They are **different
+  releases**, and this is not an unexplained algebra bug.
+- `fetch/fetch_imf.py` validates the official dataset code, metadata
+  source string, percentage-of-GDP unit, Moldova `MDA` country series,
+  calendar-year coverage and 2026 forecast boundary. It writes **review
+  sidecars only**; the two independently verified CSVs are committed
+  curated snapshots.
+- `research/render_imf_preview.py` plots the FPP historic indicators
+  in its top two panels and the WEO Oct-2026 data, including an explicit
+  dashed 2026 forecast, in its bottom two panels. This is a **research
+  preview only**: not a production canonical `fiscal` plate, because a
+  consistent all-indicator same-vintage fiscal-perimeter presentation
+  has not yet been verified, and the required locale/content/render QA is
+  still pending.
+
 ## Never conflate these series
 
 ### Budget perimeter
@@ -83,8 +120,10 @@ BNS/MF national public budget **cash execution** and IMF WEO
 **general-government** fiscal accounts are not the same measure.
 Until their perimeters, consolidation rules and vintages have been
 reviewed, do not splice them or treat their differences as errors.
-The canonical `fiscal` plate requires the harmonised series to be
-fetched and separately labelled.
+The canonical `fiscal` plate requires one verified comparable fiscal
+perimeter and consistent source/vintage treatment. WEO and FPP have now
+been fetched as **separately attributed** international layers; they must
+not be casually presented as one WEO publication.
 
 ### Territorial and population definitions
 
