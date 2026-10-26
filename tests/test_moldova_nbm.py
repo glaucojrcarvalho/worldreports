@@ -80,6 +80,19 @@ def test_policy_parser_rejects_partial_export() -> None:
         nbm.parse_policy(body)
 
 
+
+def test_policy_accepts_official_publisher_footer_only_after_complete_history() -> None:
+    header = ';'.join('"' + c + '"' for c in nbm.COLS)
+    body = header + "\\n"
+    for when, rate in reversed(events()):
+        body += f"{when:%d.%m.%Y};3,00;{rate:.2f};5,25;7,00\\n"
+    body += "Data source:;BNM\\n"
+    assert len(nbm.parse_policy(body.replace("\\n", "\n"))) == len(events())
+    with pytest.raises(ValueError):
+        nbm.parse_policy(body.replace("Data source:;BNM", "Data source:;other")
+                         .replace("\\n", "\n"))
+
+
 def test_sidecar_headers_make_source_and_mean_semantics_explicit() -> None:
     policy = nbm.render_policy(nbm.policy_by_year(events()))
     assert len([line for line in policy.splitlines() if line.startswith("20")]) == 20
