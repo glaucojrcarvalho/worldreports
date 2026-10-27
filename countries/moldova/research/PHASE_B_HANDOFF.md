@@ -575,3 +575,28 @@ The migration canonical `migration.foreign_born` was previously pending because 
 Files: `data/migration/foreign_born_census.csv`, guarded official-HTML fetcher with SHA256 sidecar, read-only live-source workflow and offline synthetic parser tests; chart, 3-language catalog/chapters/site notes, source manifest, data notes, lineage and semantic design tests updated.
 
 **Next hard gates:** check BOTH the independent BNS live workflow (the source HTML parser must pass with the actual 2025 BNS publication) and the full branch-only Moldova research quality gate. The latter must pass trilingual strict render; full PNG/SVG/thumb and static-vs-observed provenance including this new CSV; site, layout, Python and JS regressions; and safely archive the resulting 36 translated assets. Review `12-migration.{ro,pt}.png` and `03-spending.{ro,pt}.png` visually. Also confirm the prior automated provenance refresh for BNS spending is present. Only after all gates and human visual QA consider registration as a candidate on the fork. Never contact upstream, merge, deploy or fabricate missing immigration/emigration observations.
+
+## Reproducible fork-only artifact provenance handoff — 2026-10-27
+
+Audited the branch CI and found an archive reproducibility risk: the
+post-QA job rerendered SVG/PNG/thumbs instead of committing the EXACT
+output that had passed strict ro/en/pt source, lineage, site/layout and
+global Python/Node gates. Rendering may differ across jobs because of
+font installations, Matplotlib caches, or metadata timestamps, even
+with an unchanged Git SHA. The updated workflow now uploads a **success-
+only, run-scoped validated-asset artifact** after the whole suite;
+the archive job downloads it from that same workflow run, restores only
+36 SVG, 36 PNG, 36 thumbnails plus provenance, checks byte-for-byte
+identity, reruns `audit_candidate_assets.py`, removes temporary
+`country.yaml`, and commits only those validated outputs to the fork
+research branch. The non-fast-forward safety gate remains unchanged.
+A new offline CI-contract regression prevents accidental restoration
+of independent rerendering. No deployment or upstream write permitted.
+
+**Next iteration:** verify the quality gate and new artifact-transfer
+steps on their final SHA, and check the post-QA bot actually archives
+`03-spending` provenance with both BNS fiscal CSVs plus WDI macro.
+Review all three spending and migration PNGs, including the new BNS
+census foreign-born snapshot (subject to the independent publisher
+live audit). If either quality gate is red, use actual failed-step logs,
+fix source/render semantics, and repeat before any registration.

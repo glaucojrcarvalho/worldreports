@@ -47,7 +47,7 @@ jobs:
       - name: Validate Moldova source code and source tests, offline
         run: |
           python -m compileall -q countries/moldova/fetch countries/moldova/research tests/test_moldova_*.py
-          python -m pytest -q tests/test_moldova_research.py tests/test_moldova_bns_budget.py tests/test_moldova_bns_gdp.py tests/test_moldova_bns_census_foreign_born.py tests/test_moldova_bns_trade.py tests/test_moldova_fiscal_data.py tests/test_moldova_fiscal_preview.py tests/test_moldova_nbm.py tests/test_moldova_imf.py tests/test_moldova_markets_preview.py tests/test_moldova_country_candidate.py tests/test_moldova_ro_numstyle.py tests/test_moldova_bns_poverty.py tests/test_moldova_minimum_wage.py tests/test_moldova_wdi_credit.py tests/test_moldova_nbm_npl.py tests/test_moldova_nbm_npl_fetch.py tests/test_moldova_undp.py tests/test_moldova_ti.py
+          python -m pytest -q tests/test_moldova_research.py tests/test_moldova_bns_budget.py tests/test_moldova_bns_gdp.py tests/test_moldova_bns_census_foreign_born.py tests/test_moldova_bns_trade.py tests/test_moldova_fiscal_data.py tests/test_moldova_fiscal_preview.py tests/test_moldova_nbm.py tests/test_moldova_imf.py tests/test_moldova_markets_preview.py tests/test_moldova_country_candidate.py tests/test_moldova_ro_numstyle.py tests/test_moldova_bns_poverty.py tests/test_moldova_minimum_wage.py tests/test_moldova_wdi_credit.py tests/test_moldova_nbm_npl.py tests/test_moldova_nbm_npl_fetch.py tests/test_moldova_undp.py tests/test_moldova_ti.py tests/test_moldova_archive_contract.py
       - name: Run cross-country number formatting regression suite
         run: |
           python -m pytest -q tests/test_numbers.py
@@ -147,6 +147,18 @@ jobs:
           python -m pytest -q --ignore=tests/test_moldova_country_candidate.py
           node --test tests/js/*.test.js
 
+      # This artifact is created ONLY after the complete Python/Node gate.
+      # The archive job must consume these exact checked bytes, not rerender.
+      - name: Upload exact full-suite-validated Moldova assets for fork-only archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: moldova-validated-assets
+          path: |
+            countries/moldova/output/
+            countries/moldova/provenance.json
+          if-no-files-found: error
+          retention-days: 5
+
       - name: Preserve draft PNGs and candidate site for visual QA (not deployment)
         if: always()
         uses: actions/upload-artifact@v4
@@ -178,29 +190,49 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install offline rendering dependencies
+      - name: Download validated source-to-image artifacts from THIS workflow run
+        uses: actions/download-artifact@v4
+        with:
+          name: moldova-validated-assets
+          path: /tmp/moldova-validated-assets
+      - name: Install offline verification dependencies
         run: pip install -r requirements.txt
-      - name: Regenerate the passed candidate plates and thumbnails offline
+      - name: Restore ONLY the exact fully tested assets and verify independently
         run: |
+          test "${GITHUB_REPOSITORY}" = 'glaucojrcarvalho/worldreports'
+          test "${GITHUB_REF}" = 'refs/heads/research/moldova-source-audit'
+          test "$(git rev-parse HEAD)" = "${GITHUB_SHA}"
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import shutil
+
+          package = Path('/tmp/moldova-validated-assets')
+          # upload-artifact removes the common countries/moldova prefix.
+          # Explicitly fail if GitHub's artifact tree changes unexpectedly.
+          expected = {'provenance.json', 'output'}
+          assert {p.name for p in package.iterdir()} == expected
+          assert (package / 'provenance.json').is_file()
+          assert (package / 'output').is_dir()
+          output = package / 'output'
+          files = [p for p in output.rglob('*') if p.is_file()]
+          assert len(files) == 108, len(files)  # 36 SVG, 36 PNG, 36 thumbs
+          assert not any(p.is_symlink() for p in package.rglob('*'))
+          target = Path('countries/moldova')
+          shutil.rmtree(target / 'output')
+          shutil.copytree(output, target / 'output')
+          shutil.copyfile(package / 'provenance.json', target / 'provenance.json')
+          for original in [package / 'provenance.json', *files]:
+              copied = target / original.relative_to(package)
+              assert hashlib.sha256(original.read_bytes()).digest() == (
+                  hashlib.sha256(copied.read_bytes()).digest()
+              ), original
+          print('Archived candidate byte identity: 108 graphics and provenance')
+          PY
           cp countries/moldova/research/country_candidate.yaml countries/moldova/country.yaml
-          python -m core.render moldova
-          python -m core.thumbs moldova
-          python -m core.provenance moldova
           python countries/moldova/research/audit_candidate_assets.py
           rm countries/moldova/country.yaml
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          root = Path('countries/moldova')
-          plates = list((root / 'output').glob('*.png'))
-          thumbs = list((root / 'output' / 'thumbs').glob('*.png'))
-          sources = json.loads((root / 'provenance.json').read_text())
-          assert len(plates) == 36, len(plates)
-          assert len(thumbs) == 36, len(thumbs)
-          assert len(sources) == 12, len(sources)
-          assert not (root / 'country.yaml').exists(), 'research country must stay unregistered'
-          print('Research assets validated: 36 plates / 36 thumbs / 12 provenance records')
-          PY
+          test ! -e countries/moldova/country.yaml
       - name: Commit only isolated research PNGs and source provenance
         run: |
           git add -- countries/moldova/output countries/moldova/provenance.json
