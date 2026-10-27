@@ -230,3 +230,33 @@ pending primary-source slots: TI CPI methodology, BNS labour/legal
 minimum wage, NBM borrower-consistent household/NPL, government COFOG
 and capital spending, customs trade destinations, bond/equity.
 Do NOT register the country, deploy, merge, or modify upstream.
+
+
+## TI CPI 2025 primary-source audit lane — 2026-10-27
+
+Added \`fetch/fetch_ti.py\` and an isolated, non-publishing workflow
+\`.github/workflows/moldova-ti-live.yml\` to audit Transparency
+International's official **CPI2025_Results.xlsx** time-series tab.
+The 2025 workbook was released 2026-02-10 and contains scores under the
+**2012-and-newer comparable methodology only**. A constrained
+standard-library OOXML parser checks the workbook relation, sheet name,
+country identity, all 14 years, whole-number 0–100 values and publisher
+anchors 2023=42, 2024=43, 2025=42. An offline OOXML fixture suite tests
+truncated XLSX, malformed/missing values and method/vintage boundaries.
+The fetcher writes **only** \`world/cpi_from_ti.csv\` for review, with
+original-byte SHA256; the workflow has read-only contents permission and
+does not publish or modify curated assets. Publisher:
+https://images.transparencycdn.org/images/CPI2025_Results.xlsx ;
+method/source attribution:
+https://www.transparency.org/en/news/how-cpi-scores-are-calculated .
+TI lists the content licence as **CC BY-ND 4.0**. If publisher data
+are reused in visualization, verify attribution/licence requirements;
+do not mislabel these *perception* scores as measured corruption.
+
+**Next step**: inspect the new publisher-audit run and its sidecar before
+adding any CPI series to \`world/cpi.csv\`, \`SOURCES.yaml\`, trilingual
+labels, provenance or the world plate. If the publisher workbook schema
+differs, adapt the parser using actual worksheet evidence and rerun the
+offline contract tests. Keep CPI panel explicitly pending until the
+publisher-side audit actually passes. Do not commit output to upstream,
+register Moldova or deploy.
