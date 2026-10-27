@@ -29,9 +29,13 @@ FIRST = 2006
 LAST = 2023
 YEARS = range(FIRST, LAST + 1)
 DEST = ROOT / "data/world/hdi_from_undp.csv"
-# UNDP Moldova press release, 2025-05-06, reports both official anchors:
+# Frozen 2025 HDR *full time-series CSV* anchors, verified against actual
+# official source on 2026-10-27. The UNDP Moldova *press release* of
+# 2025-05-06 says 2022=0.763 while the downloadable historical CSV says
+# 2022=0.784; that is a genuine publisher-publication discrepancy.
+# Never silently substitute the press value or splice these presentations.
 # https://www.undp.org/moldova/press-releases/age-ai-moldova-faces-key-choices-ensure-human-development-progress-says-new-undp-report
-ANCHORS = {2022: 0.763, 2023: 0.785}
+ANCHORS = {2022: 0.784, 2023: 0.785}
 
 
 def parse_release(data: bytes) -> list[tuple[int, str]]:

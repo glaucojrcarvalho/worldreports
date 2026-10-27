@@ -186,3 +186,20 @@ Then curate a separate world HDI CSV, extend SOURCES.yaml/DATA_NOTES.md,
 draw the canonical `world.hdi` slot, add Romanian/Portuguese strings,
 provenance and strict regression tests. CPI and household-credit gaps
 remain separate. No upstream changes or release until verified.
+
+## HDR 2025 official release mismatch discovered live — 2026-10-27
+
+The **first successful real UNDP CSV download** from the official 2025
+historical file exposed a genuine contradiction: source
+`MDA.hdi_2022 = 0.784`, but the **UNDP Moldova May 6, 2025 press release**
+prints **0.763** for 2022. The same publications agree on
+**2023 = 0.785**. This is NOT a parser rounding issue (0.021 difference)
+and is not licence to interpolate. The first live audit intentionally
+**failed closed**:
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40436059535.
+The guarded fetcher now anchors the **complete time-series CSV** at 0.784
+for 2022 and 0.785 for 2023 while explicitly disclosing the conflicting
+press release; the later live run must independently confirm the full
+dataset before any publication. Never characterize the 2022–23 change
+as 0.022 points without specifying the *press-release* edition. In the
+2025 full historical CSV it is 0.001 points.

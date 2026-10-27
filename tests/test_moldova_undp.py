@@ -16,7 +16,7 @@ def fixture_csv(**changes):
     buf = io.StringIO()
     writer = csv.DictWriter(buf, fieldnames=headers, lineterminator="\n")
     writer.writeheader()
-    base = {f"hdi_{y}": ("0.763" if y == 2022
+    base = {f"hdi_{y}": ("0.784" if y == 2022
                           else "0.785" if y == 2023 else "0.711")
             for y in YEARS}
     for i in range(205):
@@ -35,7 +35,7 @@ def test_complete_moldova_isolation_exact_vintage_and_missing_years():
     rows = parse_release(data)
     assert len(rows) == 18
     assert [y for y, _ in rows] == list(range(2006, 2024))
-    assert dict(rows)[2022] == "0.763"
+    assert dict(rows)[2022] == "0.784"
     assert dict(rows)[2023] == "0.785"
     txt = render_sidecar(rows, data)
     assert txt.count("\n2023,0.785\n") == 1
@@ -45,7 +45,7 @@ def test_complete_moldova_isolation_exact_vintage_and_missing_years():
 
 @pytest.mark.parametrize("changes", [
     {"hdi_2023": ""},
-    {"hdi_2022": "0.784"},
+    {"hdi_2022": "0.763"},
     {"hdi_2023": "1.22"},
     {"hdi_2009": "NaN"},
     {"hdi_2010": "not_a_number"},
