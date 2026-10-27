@@ -334,3 +334,35 @@ businesses or certain public enterprises. Credit is shown only in
 the fourth credit contextual lens. Household debt, lending rates
 and NPL ratios remain pending borrower-matched NBM official records.
 Territory concordance with the national perimeter is not established.
+
+## UNDP HDR 2025 Human Development Index — pinned historical release, 2026-10-27
+
+The official UNDP HDR 2025 *complete composite indices time-series* CSV
+(`MDA`, one row in its 206-country/aggregate release) was checked by the
+read-only GitHub Actions publisher-audit job:
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40436229785 .
+The downloaded publisher payload had SHA256
+`61ed82e5b66c88dfca8ff9fac775c63981ecab6a254862af97acacc41c143117`.
+The exact isolated audit file is archived in that run as
+`moldova-undp-2025-hdi-source-review`; `fetch/fetch_undp.py` always writes
+a review sidecar rather than silently modifying the curated `world/hdi.csv`.
+
+The curated data covers **2006–2023 only** (18 values, original
+three-decimal precision where present), from **0.711 in 2006** to
+**0.785 in 2023**. Years 2024 and 2025 are explicitly missing; there is
+no 2026 observation. The *complete 2025 vintage* says **2022 = 0.784**,
+**2023 = 0.785**, a within-edition change of **0.001** index points.
+Separately, [UNDP Moldova's 2025-05-06 press release](
+https://www.undp.org/moldova/press-releases/age-ai-moldova-faces-key-choices-ensure-human-development-progress-says-new-undp-report)
+says **2022 = 0.763**, **2023 = 0.785** (0.022 points). This **0.021
+index-point conflict in 2022** is an official-publication/vintage
+discrepancy, not a parsing error. We choose the **single pinned full-data
+CSV edition** for every historical year, display its values and explicitly
+disclose the press mismatch. No cross-edition splice, extrapolation,
+causal interpretation, or year-2025 data claim is justified.
+
+HDI is a composite of health, education and income measures (0–1).
+It must not be confused with WDI GDP per person, household inequality
+or the pending Transparency International Corruption Perceptions Index.
+The UNDP historical national statistical perimeter is not assumed to be
+identical to BNS's 2024 census or its budget execution geography.

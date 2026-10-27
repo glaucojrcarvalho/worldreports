@@ -203,3 +203,30 @@ press release; the later live run must independently confirm the full
 dataset before any publication. Never characterize the 2022–23 change
 as 0.022 points without specifying the *press-release* edition. In the
 2025 full historical CSV it is 0.001 points.
+
+## Phase C: UNDP HDI promoted into observed world spine — 2026-10-27
+
+Independent official-source audit
+[40436229785](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40436229785)
+passed all seven parser tests, downloaded and verified the official 2025
+HDR CSV, and archived its complete country-MDA 2006–2023 sidecar.
+The pinned source bytes SHA256 is
+`61ed82e5b66c88dfca8ff9fac775c63981ecab6a254862af97acacc41c143117`.
+Curated `world/hdi.csv` now fills canonical `world.hdi` through 2023.
+The same 2025 vintage yields 2022=0.784 and 2023=0.785; UNDP Moldova's
+2025 press-release 2022=0.763 remains a **documented 0.021 discrepancy**,
+not a substituted datapoint. Site notes, chapter cards and all three
+languages distinguish this issue, show no 2024–2025 HDI, and retain
+only Transparency International CPI as pending in that section.
+Source manifest, observed provenance, translations and offline regression
+tests are updated with the identical source lane.
+
+**Next gates:** confirm the next complete quality-gate run passes
+(strict trilingual render, 36 figures and thumbs, full Python/Node tests,
+layout, site and provenance); inspect generated HDI panel images across
+ro/en/pt. Validate the read-only peer-scale regeneration workflow and
+archive peer output only after pixel/contact-sheet review. Further
+pending primary-source slots: TI CPI methodology, BNS labour/legal
+minimum wage, NBM borrower-consistent household/NPL, government COFOG
+and capital spending, customs trade destinations, bond/equity.
+Do NOT register the country, deploy, merge, or modify upstream.

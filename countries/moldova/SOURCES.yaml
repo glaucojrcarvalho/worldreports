@@ -138,6 +138,26 @@ credit:
       Only chart in credit.lens; all three household canonical panels pending
       NBM borrower/currency/denominator-compatible primary records.
 world:
+  hdi.csv:
+    source: "United Nations Development Programme (UNDP), Human Development Report 2025, complete composite indices time series"
+    url: "https://hdr.undp.org/sites/default/files/2025_HDR/HDR25_Composite_indices_complete_time_series.csv"
+    official: true
+    refreshed_by: fetch/fetch_undp.py
+    notes: >-
+      Reviewed directly against the FULL official HDR 2025 historical CSV
+      (UNDP country code MDA, original publisher bytes SHA256
+      61ed82e5b66c88dfca8ff9fac775c63981ecab6a254862af97acacc41c143117).
+      Eighteen historical observations, 2006-2023; 2024 and 2025 are BLANK,
+      not estimates or interpolations. The 2025 edition revises earlier years;
+      do not splice any value from an earlier HDR edition. The official
+      full-series CSV reports 2022=0.784 and 2023=0.785. A separate UNDP
+      Moldova press release dated 2025-05-06 instead reports 2022=0.763
+      (2023=0.785); we privilege the pinned complete-data edition, disclose
+      this 0.021 disagreement and do NOT claim a 0.022 improvement.
+      Source audit (2026-10-27) https://github.com/glaucojrcarvalho/worldreports/actions/runs/40436229785
+      UNDP index (0-1) is NOT World Bank GDP, BNS census population,
+      inequality-adjusted HDI or a Transparency International CPI score.
+      Verify historical territorial perimeter before deriving national comparisons.
   world.csv:
     source: "World Bank WDI, NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, FI.RES.TOTL.CD"
     url: "https://api.worldbank.org/v2/country/MDA/indicator/NY.GDP.MKTP.CD?format=json"

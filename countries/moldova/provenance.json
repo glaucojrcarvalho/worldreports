@@ -26,6 +26,7 @@
   "people/gini.csv"
  ],
  "08-world": [
+  "world/hdi.csv",
   "world/world.csv"
  ],
  "09-demography": [

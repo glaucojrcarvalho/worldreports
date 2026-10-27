@@ -138,3 +138,21 @@ def test_private_credit_lens_does_not_fill_household_slots():
     assert all(tag in credit for tag in ("credit.household_debt", "credit.lending_rate", "credit.npl", "credit.lens"))
     assert "credit/private_credit.csv" in credit
     assert "NOT households" in credit
+
+def test_world_hdi_has_observed_data_and_cpi_remains_unverified():
+    rows = _rows("world/hdi.csv")
+    assert [r["year"] for r in rows] == list(range(2006, 2026))
+    observed = {r["year"]: r["hdi"] for r in rows if r["hdi"] is not None}
+    assert list(observed) == list(range(2006, 2024))
+    assert observed[2022] == pytest.approx(0.784)
+    assert observed[2023] == pytest.approx(0.785)
+    assert all(spine.SLOTS["world.hdi"].ref[0] <= v <=
+               spine.SLOTS["world.hdi"].ref[1] for v in observed.values())
+    plate = (ROOT / "plates.py").read_text(encoding="utf-8")
+    world = plate.split("def plate_world(", 1)[1].split("def plate_demography(", 1)[0]
+    assert '_series(ctx, "world/hdi.csv", "hdi")' in world
+    before_cpi = world.split('ig.slot("world.cpi"', 1)[0]
+    assert '"UNDP HDR 2025 CSV' in before_cpi
+    assert '_pending(ctx, ig, ax,' not in before_cpi
+    cpi = world.split('ig.slot("world.cpi"', 1)[1].split('ig.slot("world.reserves"', 1)[0]
+    assert "_pending(ctx, ig, ax," in cpi

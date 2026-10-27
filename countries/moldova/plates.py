@@ -223,8 +223,8 @@ def plate_world(ctx, ig):
     _foot(ctx, ax, "World Bank WDI; nominal current US dollars")
 
     ax = ig.slot("world.hdi", "Human Development Index (0–1)")
-    _pending(ctx, ig, ax, "UNDP HDR Moldova time series has not yet\n"
-             "been fetched with a pinned report vintage.")
+    ctx.line(ax, *_series(ctx, "world/hdi.csv", "hdi"), p.TEAL)
+    _foot(ctx, ax, "UNDP HDR 2025 CSV; through 2023; see edition note")
     ax = ig.slot("world.cpi", "Corruption Perceptions Index (0–100)")
     _pending(ctx, ig, ax, "Transparency International annual scores\n"
              "and their method seam have not been verified.")
@@ -370,10 +370,10 @@ PLATES = (
          source="World Bank WDI; BNS national poverty; statutory wage pending",
          alt="WDI Gini and national absolute consumption poverty in disconnected survey regimes; minimum wage pending."),
     dict(id="08", slug="world", topic="world", builder=plate_world,
-         title="Moldova in the World — Output and Reserves",
-         subtitle="Nominal US-dollar measures; other international indices need validation",
-         source="World Bank WDI; UNDP and Transparency International pending",
-         alt="GDP in current US dollars and reserves, with HDI and CPI pending."),
+         title="Moldova in the World — GDP, HDI and Reserves",
+         subtitle="WDI nominal measures; UNDP HDR 2025 HDI; corruption index pending",
+         source="World Bank WDI; UNDP HDR 2025; TI CPI pending",
+         alt="GDP and reserves in US dollars; UNDP HDI through 2023; corruption index pending."),
     dict(id="09", slug="demography", topic="demography", builder=plate_demography,
          title="Moldova — A Smaller Population",
          subtitle="WDI mid-year model, not the 2024 BNS usual-resident census",

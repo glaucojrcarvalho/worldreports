@@ -766,5 +766,25 @@
   "Private-sector credit is contextual only; household debt, rates and non-performing loans remain unverified.": {
     "ro": "Creditul privat total este doar context; datoria gospodăriilor, dobânzile și creditele neperformante rămân neverificate.",
     "pt": "Crédito privado total serve apenas como contexto; dívida familiar, juros e inadimplência seguem sem validação."
+  },
+  "UNDP HDR 2025 CSV; through 2023; see edition note": {
+    "ro": "PNUD RDU 2025; până în 2023; vezi nota privind edițiile",
+    "pt": "PNUD RDH 2025; até 2023; veja a nota sobre as edições"
+  },
+  "Moldova in the World — GDP, HDI and Reserves": {
+    "ro": "Moldova în lume — PIB, IDU și rezerve",
+    "pt": "Moldávia no Mundo — PIB, IDH e Reservas"
+  },
+  "WDI nominal measures; UNDP HDR 2025 HDI; corruption index pending": {
+    "ro": "Serii nominale WDI; IDU PNUD HDR 2025; indicele corupției în așteptare",
+    "pt": "Séries nominais WDI; IDH PNUD RDH 2025; índice de corrupção pendente"
+  },
+  "World Bank WDI; UNDP HDR 2025; TI CPI pending": {
+    "ro": "Banca Mondială WDI; PNUD RDU 2025; IPC TI în așteptare",
+    "pt": "Banco Mundial WDI; PNUD RDH 2025; IPC TI pendente"
+  },
+  "GDP and reserves in US dollars; UNDP HDI through 2023; corruption index pending.": {
+    "ro": "PIB și rezerve în dolari SUA; IDU PNUD până în 2023; indicele corupției în așteptare.",
+    "pt": "PIB e reservas em dólares; IDH PNUD até 2023; índice de corrupção pendente."
   }
 }

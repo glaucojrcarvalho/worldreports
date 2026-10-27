@@ -11,7 +11,8 @@
       "Rata de bază BNM este media anuală ponderată cu zilele de aplicabilitate ale fiecărei decizii, nu media simplă a deciziilor sau rata de la 31 decembrie.",
       "Cursul BNM este media oficială anuală a leilor pentru un dolar SUA. Indicele afișat inversează acea cotare și are valoarea 100 în 2006: mai sus înseamnă leu mai puternic.",
       "Seria ONU de migrație netă este o estimare modelată, nu un registru. Stocul de migranți are doar patru observații (2010, 2015, 2020, 2024); între ele nu se trasează o linie.",
-      "Sărăcia absolută BNS folosește consumul gospodăriilor, nu praguri internaționale în dolari sau sărăcia relativă experimentală. Ancheta BNS a fost revizuită în 2019, deci 2014–2018 și 2019–2025 sunt linii neconectate. BNS indică 33,6% în 2024 și 31,1% în 2025."
+      "Sărăcia absolută BNS folosește consumul gospodăriilor, nu praguri internaționale în dolari sau sărăcia relativă experimentală. Ancheta BNS a fost revizuită în 2019, deci 2014–2018 și 2019–2025 sunt linii neconectate. BNS indică 33,6% în 2024 și 31,1% în 2025.",
+      "IDU (indicele dezvoltării umane) folosește exclusiv seria istorică oficială PNUD HDR 2025, 2006–2023: 0,784 în 2022 și 0,785 în 2023; 2024–2025 lipsesc. Comunicatul PNUD Moldova din 6 mai 2025 indică 0,763 pentru 2022; diferența de 0,021 față de CSV nu este ascunsă și edițiile nu sunt combinate."
     ],
     "unavailable": [
       {
@@ -43,8 +44,8 @@
         "detail": "Sărăcia absolută BNS după consum este observată în 2014–2025, cu ruptură metodologică în 2019. Nu este comparabilă automat cu sărăcia relativă sau internațională. Salariul minim în MDL și conversia în USD rămân nevalidate."
       },
       {
-        "term": "Indicele dezvoltării umane și indicele corupției",
-        "detail": "Seriile UNDP HDR și Transparency International, inclusiv anii și versiunile metodologice, nu sunt încă importate și validate."
+        "term": "Indicele percepției corupției",
+        "detail": "Indicele Transparency International și rupturile metodologice rămân nevalidate. IDU PNUD este acum observat în seria oficială HDR 2025 (2006–2023), cu diferența dintre CSV și comunicatul pentru 2022 explicată separat."
       },
       {
         "term": "Decesele excedentare și COVID-19",
@@ -90,7 +91,8 @@
       "The NBM base rate is averaged using each decision's days in force during a year, not as the simple mean of rate decisions nor the 31 December setting.",
       "The NBM exchange rate is the official calendar-year average in MDL per USD. The plotted strength index inverts the quote and equals 100 in 2006; higher means a stronger leu.",
       "UN net migration is modelled, not a register. Migrant stock has only four observations (2010, 2015, 2020 and 2024); no connecting line is interpolated.",
-      "BNS absolute poverty uses household consumption, not international dollar thresholds or experimental relative poverty. Its Household Budget Survey revision in 2019 separates unconnected 2014–2018 and 2019–2025 lines. BNS reports 33.6% for 2024 and 31.1% for 2025."
+      "BNS absolute poverty uses household consumption, not international dollar thresholds or experimental relative poverty. Its Household Budget Survey revision in 2019 separates unconnected 2014–2018 and 2019–2025 lines. BNS reports 33.6% for 2024 and 31.1% for 2025.",
+      "Human Development Index follows only the UNDP HDR 2025 complete historical CSV, 2006–2023: 0.784 in 2022 and 0.785 in 2023; 2024–2025 are missing. UNDP Moldova's 6 May 2025 press release instead prints 0.763 for 2022, a 0.021 difference. These publisher presentations are not spliced."
     ],
     "unavailable": [
       {
@@ -122,8 +124,8 @@
         "detail": "BNS national consumption-based absolute poverty is now source-checked for 2014–2025 with a 2019 method break. This is not interchangeable with relative or international poverty. The statutory MDL wage and matching annual USD conversion remain unverified."
       },
       {
-        "term": "Human development and corruption indices",
-        "detail": "UNDP HDR and Transparency International series, including publication vintages and methodology breaks, are not yet validated."
+        "term": "Corruption Perceptions Index",
+        "detail": "Transparency International CPI values and methodology breaks remain unverified. UNDP HDI is now observed in the pinned 2025 full historical CSV (2006–2023), with the 2022 press-release discrepancy disclosed in the editorial notes."
       },
       {
         "term": "Excess mortality and COVID-19 underlying cause",
@@ -169,7 +171,8 @@
       "A taxa básica BNM é uma média anual ponderada pelos dias de vigência de cada decisão, não a média simples das decisões nem a taxa de 31 de dezembro.",
       "O câmbio BNM é a média oficial do ano em MDL por dólar. O índice de força do leu inverte essa cotação e vale 100 em 2006; valores maiores indicam leu mais forte.",
       "A migração líquida ONU é modelada, não um registro. O estoque de migrantes tem apenas quatro observações (2010, 2015, 2020 e 2024), sem interpolação por linhas.",
-      "A pobreza absoluta BNS usa consumo das famílias, não limites internacionais em dólares ou pobreza relativa experimental. A pesquisa domiciliar mudou de método em 2019, deixando 2014–2018 e 2019–2025 em linhas não conectadas. O BNS informa 33,6% em 2024 e 31,1% em 2025."
+      "A pobreza absoluta BNS usa consumo das famílias, não limites internacionais em dólares ou pobreza relativa experimental. A pesquisa domiciliar mudou de método em 2019, deixando 2014–2018 e 2019–2025 em linhas não conectadas. O BNS informa 33,6% em 2024 e 31,1% em 2025.",
+      "O IDH usa somente a série histórica completa do PNUD, RDH 2025, de 2006 a 2023: 0,784 em 2022 e 0,785 em 2023; 2024–2025 estão ausentes. O comunicado do PNUD Moldávia de 6 de maio de 2025 informa 0,763 para 2022, divergência de 0,021 em relação ao CSV; não misturamos edições."
     ],
     "unavailable": [
       {
@@ -201,8 +204,8 @@
         "detail": "A pobreza absoluta BNS por consumo foi verificada para 2014–2025, com ruptura metodológica em 2019. Não substitui pobreza relativa ou internacional. Salário mínimo legal em MDL e conversão anual para dólares seguem pendentes."
       },
       {
-        "term": "Índices de desenvolvimento humano e corrupção",
-        "detail": "Séries do IDH do PNUD e do Índice de Percepção da Corrupção da Transparency International, incluindo edições e mudanças metodológicas, ainda não foram validadas."
+        "term": "Índice de Percepção da Corrupção",
+        "detail": "Os valores e rupturas metodológicas do índice da Transparency International seguem não verificados. O IDH do PNUD usa a série histórica completa HDR 2025 (2006–2023), com a divergência do comunicado sobre 2022 explicada nas notas."
       },
       {
         "term": "Excesso de mortes e COVID-19 como causa básica",
