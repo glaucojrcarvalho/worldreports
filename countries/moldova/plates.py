@@ -97,19 +97,70 @@ def plate_fiscal(ctx, ig):
     _finish(ig)
 
 
-# National FIN010100 functions are MDL cash execution; without same-scope
-# annual nominal GDP in MDL they MUST NOT be converted to "% of GDP".
+# National BNS FIN010100 (cash execution) and BNS national-account GDP
+# BOTH exclude the left-bank Nistru districts and municipality Bender.
+# This is a domestic national-public-budget classification, NOT identical
+# to IMF FPP/WEO or independently verified general-government GFS/COFOG.
+# 2025 GDP and spending remain PRELIMINARY; older data are source-vintage
+# observations without an invented year-by-year finality flag.
 def plate_spending(ctx, ig):
     p = ctx.p
+    columns = (
+        "expenditure_mdl_mn", "general_services_mdl_mn",
+        "defense_mdl_mn", "public_order_mdl_mn", "economic_affairs_mdl_mn",
+        "environment_mdl_mn", "housing_mdl_mn", "health_mdl_mn",
+        "culture_mdl_mn", "education_mdl_mn", "social_protection_mdl_mn",
+    )
+    budget = {col: dict(zip(*_series(ctx, "fiscal/public_budget.csv", col)))
+              for col in columns}
+    gdp = dict(zip(*_series(ctx, "fiscal/nominal_gdp_bns.csv", "gdp_mdl_mn")))
+    years = sorted(set(gdp) & set(budget["expenditure_mdl_mn"]))
+    if years != list(range(2016, 2026)) or any(gdp[y] <= 0 for y in years):
+        raise ValueError("Moldova national functional spending GDP scope/year gap")
+
+    # Ten mutually exclusive official national functions → seven atlas groups.
+    # 'Other' combines environment, housing/community amenities and culture.
+    groups = (
+        ("Social protection, BNS", ("social_protection_mdl_mn",), p.TEAL),
+        ("Health, BNS", ("health_mdl_mn",), p.GREEN),
+        ("Education, BNS", ("education_mdl_mn",), p.BLUE),
+        ("General services, BNS", ("general_services_mdl_mn",), p.NAVY),
+        ("Economic affairs, BNS", ("economic_affairs_mdl_mn",), p.GOLD),
+        ("Defence and public order, BNS",
+         ("defense_mdl_mn", "public_order_mdl_mn"), p.RED),
+        ("Other functions, BNS",
+         ("environment_mdl_mn", "housing_mdl_mn", "culture_mdl_mn"), p.MUTED),
+    )
+    shares = {
+        label: [sum(budget[col][y] for col in cols) / gdp[y] * 100
+                for y in years]
+        for label, cols, _ in groups
+    }
+    totals = [budget["expenditure_mdl_mn"][y] / gdp[y] * 100 for y in years]
+    for idx, year in enumerate(years):
+        if abs(sum(shares[label][idx] for label, _, _ in groups) -
+               totals[idx]) > 0.01:
+            raise ValueError(f"{year}: BNS function totals do not reconcile")
+    # Independent source anchors: BNS Finance overview explicitly publishes
+    # 38.0% (2024 FINAL) / 39.6% (2025 PRELIMINARY) of GDP. Its 2024
+    # vintage differs by 0.1 MDL million from the 2016-25 PxWeb table.
+    if round(totals[-2], 1) != 38.0 or round(totals[-1], 1) != 39.6:
+        raise ValueError("Moldova BNS functional spending denominator revised")
+
     ax = ig.slot("spending.by_function", "Spending by function (% of GDP)")
-    _pending(ctx, ig, ax, "BNS functional cash spending is staged in MDL.\n"
-             "A compatible GDP denominator is not yet audited.")
-    _foot(ctx, ax, "BNS FIN010100; no incompatible cash/GDP conversion")
+    ax.stackplot(years, *(shares[label] for label, _, _ in groups),
+                 labels=[label for label, _, _ in groups],
+                 colors=[color for _, _, color in groups], alpha=0.88, lw=0)
+    ax.legend(fontsize=5.9, ncol=2, loc="upper left", frameon=False)
+    _foot(ctx, ax, "BNS national cash functions / BNS GDP; 2025 provisional")
 
     ax = ig.slot("spending.social_protection", "Social protection (% of GDP)")
-    _pending(ctx, ig, ax, "National-budget social protection is in MDL;\n"
-             "the general-government GDP share is not verified.")
-    _foot(ctx, ax, "BNS FIN010100, separate from IMF FPP")
+    social = shares["Social protection, BNS"]
+    remainder = [total - soc for total, soc in zip(totals, social)]
+    ctx.line(ax, years, social, p.TEAL, label="Social protection, BNS")
+    ctx.line(ax, years, remainder, p.NAVY, label="Other national functions")
+    ax.legend(fontsize=7.3, frameon=False)
+    _foot(ctx, ax, "Same BNS budget/GDP denominator; not IMF GFS")
 
     ax = ig.slot("spending.investment", "Whole-economy investment (% of GDP)")
     ctx.line(ax, *_series(ctx, "macro/economy.csv", "gfcf_pct_gdp"), p.TEAL)
@@ -368,9 +419,9 @@ PLATES = (
          alt="General-government revenue, spending, balances, gross debt and interest."),
     dict(id="03", slug="spending", topic="spending", builder=plate_spending,
          title="Moldova — Public Spending and Investment",
-         subtitle="National cash budget is not a general-government GDP share",
+         subtitle="BNS national functional cash spending / same-scope GDP",
          source="BNS FIN010100; World Bank WDI; IMF FPP",
-         alt="The investment rate, with national cash-spending definitions pending."),
+         alt="BNS national-budget functions and social protection as GDP shares, alongside the whole-economy investment rate; government GFCF remains pending."),
     dict(id="04", slug="trade", topic="trade", builder=plate_trade,
          title="Moldova — Imports, Exports and the Gap",
          subtitle="WDI national-accounts trade versus separate BNS customs destinations",
