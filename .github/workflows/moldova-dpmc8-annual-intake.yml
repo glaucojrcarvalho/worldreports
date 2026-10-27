@@ -1,0 +1,39 @@
+name: Moldova annual DPMC8 source intake guard
+on:
+  push:
+    branches: [research/moldova-nbm-annual-intake]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    if: github.repository == 'glaucojrcarvalho/worldreports'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test evidence intake without staging publisher observations
+        run: |
+          python -m pip install -q pytest
+          python -m compileall -q countries/moldova/research/dpmc8_annual_intake.py tests/test_moldova_dpmc8_annual_intake.py
+          python -m pytest -q tests/test_moldova_dpmc8_annual_intake.py
+          python -m countries.moldova.research.dpmc8_annual_intake
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path("/tmp/moldova-dpmc8-intake.json").read_text())
+          assert report["status"]=="AWAITING_OFFICIAL_DPMC8_ANNUAL_EXPORT"
+          assert not report["publication_authorized"]
+          assert report["canonical_rows_promoted"]==0
+          PY
+          test ! -f countries/moldova/country.yaml
+      - name: Preserve fail-closed DPMC8 export gate
+        uses: actions/upload-artifact@v4
+        with:
+          name: moldova-dpmc8-annual-intake
+          path: /tmp/moldova-dpmc8-intake.json
+          retention-days: 14
+          if-no-files-found: error
