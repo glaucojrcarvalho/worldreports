@@ -136,7 +136,7 @@ def test_curated_cpi_matches_pinned_original_publisher_and_provenance():
         assert all(labels[label].values())
     ui = json.loads((root / "ui.json").read_text(encoding="utf-8"))
     for lang in ("ro", "en", "pt"):
-        assert len(ui[lang]["unavailable"]) == 9
+        assert len(ui[lang]["unavailable"]) == 8
         assert any("2012" in n and "2025" in n and "42" in n and "43" in n
                    for n in ui[lang]["notes"])
         assert not any("corup" in x["term"].casefold() or
