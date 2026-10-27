@@ -868,3 +868,50 @@ canonical panels explicit. No upstream PR, merge or deploy.
 Focused fork-only branch: research/moldova-archive-hardening. It adds a pure offline guard and targeted GitHub Actions test lane. Image archives that passed the full source, locale, provenance, site, Python and JS gates may be non-force rebased across newer research commits ONLY if the final changed tracked path is exactly countries/moldova/research/PHASE_B_HANDOFF.md. Edits to plates, code, CSVs, translations, sources, site, graphics, workflows or other files must fail; Git ancestry and non-force push remain mandatory. The research branch is not changed by this experiment.
 
 Next: check the focused fast CI, then optionally apply equivalent changes to research/moldova-source-audit after its current full run completes. Do not merge the focused branch, deploy, register Moldova on source branch, or contact upstream.
+
+
+## Registered-site real-HTML/asset route audit — 2026-10-27
+
+A new read-only `research/site_route_audit.py` performs **post-generation
+HTML validation** independently of the source/render semantic gates.
+It parses the actual Moldova `ro`, `en` and `pt` pages and requires
+exactly 12 correctly ordered plate cards, 12 locale-matched thumbnails
+with nonempty screen-reader alt text and dimensions, corresponding
+PNG and SVG files, working SVG download targets, canonical locale URLs,
+three `hreflang` alternates plus `x-default`, locale-correct
+OpenGraph language and image and nonempty SEO descriptions. A wrong
+locale, missing SVG, missing translation alt, broken image or duplicate
+card fails closed. No network access, production changes or upstream
+PR is involved.
+
+The audit ran locally against the **original registered-rehearsal
+artifact** from green Action
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40478736058,
+then passed the focused, fully isolated fork CI
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40489984989 :
+**22 archive branch-replay tests + 3 site-link regression tests +
+real fresh rendering/site QA for all 36 locale-page plate entries**.
+The released 2026-10-27 research source CI
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40484830412
+has also passed the full **3,488 Python + 8 subtests and 20 JS tests**
+on the corrected source-caption revision, with 12 lineage records,
+23 CSV hashes and zero outside-canvas faults; its separate asset
+archiver must still be checked for an actual successful push.
+
+The rehearsal site's JSON-LD `DataDownload.contentUrl` points to the
+upstream repository's future Moldova data path. **Before an upstream
+merge that external path does not exist**: it is a projected release
+URL, not currently an accessible dataset URL. This finding must be
+rechecked during editorial/publication review. No attempt should be
+made to publish the fork, alter upstream or claim the prerelease URL
+already resolves.
+
+**Next substantive step:** after the archive job has written the current
+source-caption assets and the updated isolated release-rehearsal run
+is green, carry the tested `archive_branch_guard.py` and
+`site_route_audit.py`, their regression tests and the workflow
+checks onto `research/moldova-source-audit` as a focused commit
+(without merging this branch). Rerun the main source/site gate and
+visually inspect full-resolution page assets. The root
+`country.yaml` stays only in `research/moldova-release-rehearsal`
+until final manual approval.
