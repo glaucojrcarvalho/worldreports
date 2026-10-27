@@ -1,6 +1,7 @@
 {
  "01-economy": [
   "macro/economy.csv",
+  "macro/national_lfs.csv",
   "world/world.csv"
  ],
  "02-fiscal": [
@@ -8,6 +9,8 @@
   "fiscal/weo_bal_debt.csv"
  ],
  "03-spending": [
+  "fiscal/nominal_gdp_bns.csv",
+  "fiscal/public_budget.csv",
   "macro/economy.csv"
  ],
  "04-trade": [
@@ -45,6 +48,7 @@
  ],
  "12-migration": [
   "demography/demography.csv",
+  "migration/foreign_born_census.csv",
   "migration/migration.csv"
  ]
 }
