@@ -437,3 +437,38 @@ workflow `moldova-nbm-npl-live.yml`. This source auditor creates review
 sidecars, checks 2022–25 original rates and reference dates and refuses to
 silently change curated figures or the country registry. Review the live
 workflow's source evidence and its response hashes before final release.
+
+
+## Trilingual generated-asset and data-lineage integrity gate — 2026-10-27
+
+The last completed isolated Moldova workflow (40453006770) PASSED all
+source, rendering, provenance, layout, Python and browser-JavaScript stages.
+The archive bot committed 36 reviewed-source Moldova plate PNGs, 36 thumbs,
+36 corresponding vector SVGs and 12 provenance mappings in
+research/moldova-source-audit at 6100e706. The NBM primary-source audit
+40453006876 also PASSED for all four prudential reports. Neither action
+published a country; the root country.yaml intentionally remains absent.
+
+New countries/moldova/research/audit_candidate_assets.py performs an
+independent release-candidate integrity audit after each CI re-render,
+and again before the research bot archives images. It checks the exact
+12 x 3 PNG/SVG/thumb inventory, decodes each PNG, inspects actual SVG
+viewports and topic-specific panel IDs, compares every visible English
+annotation against the rendered Romanian and Portuguese SVG strings,
+rejects English fallbacks, statically traces each plate's literal CSV
+readers independently of runtime provenance, and requires publisher
+metadata and data files for every referenced CSV. The gate is read-only.
+It will fail the research run and prevent the asset commit on any
+discrepancy; it is not a substitute for human visual QA.
+
+Next: inspect the new run, including this gate's summary and full Python/
+JavaScript results, then visually review final PNGs and peer-language
+contact sheets for clipping/legibility (the prior 414-peer-file archive
+was already committed to the fork). The largest unresolved *data*
+requirements are government COFOG/GFCF, household-specific banking,
+long-bond yield and a defensible local equity index, comparable excess
+mortality and registered migration flows. Keep these slots pending until
+their source definitions and periods are independently verified.
+Only after review consider promoting the candidate configuration to the
+root country.yaml on the fork research branch, running final suite with
+registration enabled; never deploy, merge or modify upstream automatically.

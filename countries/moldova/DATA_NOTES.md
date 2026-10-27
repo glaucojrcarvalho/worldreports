@@ -4,8 +4,9 @@
 
 This file records the meanings behind the staged observations in
 [SOURCES.yaml](SOURCES.yaml) and the source probes in
-[DISCOVERY.md](DISCOVERY.md). It is *not* evidence that Moldova's 12 plates
-have been drawn or reviewed.
+[DISCOVERY.md](DISCOVERY.md). The 12 draft plates and their three-language assets have been rendered
+and archived in the isolated fork research branch. That does *not* mean
+they have received final human visual signoff or been published.
 
 ## What was actually collected
 
@@ -165,10 +166,11 @@ population denominator in place, period, and definition.
   committed with exact scope and per-source edition metadata; the 2024/25
   release differences remain documented instead of hidden.
 - Pending: resolution of **why** the BNS/API and SDDS release editions differ,
-  comparison with the Ministry's final yearbooks, national
-  economics/trade/population/credit publishers, fully translated
-  Romanian/English/Portuguese atlas, provenance, canonical plate rendering,
-  and complete atlas regression. The research-only cash-budget preview
+  comparison with the Ministry's final yearbooks, and stronger national
+  statistics/household-banking/mortality sources. The three-language draft
+  atlas, generated provenance, source audit, and complete Python/JS quality
+  suite passed at run 40453006770; the archived assets are not a claim of
+  final human visual signoff or authorization to publish. The research-only cash-budget preview
   is *not* a canonical published fiscal plate.
 
 No invented rates, interpolated years, provisional-to-final upgrades

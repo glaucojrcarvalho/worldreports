@@ -99,6 +99,7 @@ jobs:
           python -m core.render moldova
           python -m core.thumbs moldova
           python -m core.provenance moldova
+          python countries/moldova/research/audit_candidate_assets.py
           python -m core.page --out /tmp/moldova-candidate-site moldova
           python - <<'PY'
           import json
@@ -178,6 +179,7 @@ jobs:
           python -m core.render moldova
           python -m core.thumbs moldova
           python -m core.provenance moldova
+          python countries/moldova/research/audit_candidate_assets.py
           rm countries/moldova/country.yaml
           python - <<'PY'
           import json
