@@ -111,5 +111,5 @@ def test_curated_hdr_2025_hdi_is_single_vintage_with_missing_later_years():
                    for note in ui[lang]["notes"])
         terms = [x["term"] for x in ui[lang]["unavailable"]]
         assert len(terms) == 10
-        assert any("corup" in word.lower() for word in terms) or (
-            "Corruption Perceptions Index" in terms)
+        assert any(any(fragment in word.lower() for fragment in ("corup", "corrup"))
+                   for word in terms)
