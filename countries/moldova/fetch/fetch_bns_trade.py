@@ -236,6 +236,84 @@ def render(rows: dict, partners: dict) -> str:
     return stream.getvalue()
 
 
+
+# These codes are BNS's own declared INDIVIDUAL countries. Category codes
+# 1, 13 and 42 are overlapping country groups, NOT eligible country totals.
+DESTINATION_CODES = {
+    "romania_pct": ("35", "..Romania"),
+    "turkey_pct": ("86", "..Turkey"),
+    "italy_pct": ("27", "..Italy"),
+    "czechia_pct": ("17", "..Czechia"),
+}
+UKRAINE_CODES = {"old": ("11", "..Ukraine (CSI)"),
+                 "new": ("87", "..Ukraine")}
+DESTINATIONS_SIDECAR = ROOT / "data/trade/destinations_from_bns.csv"
+PARTNER_GROUPS = {"1": "CIS countries", "13": "European Union countries",
+                  "42": "The other countries of the world"}
+
+
+def verify_destination_taxonomy(rows: dict, partners: dict) -> None:
+    """Fail closed on source taxonomy revisions, double-count or coverage gaps."""
+    expected = {**PARTNER_GROUPS,
+                **{code: label for code, label in DESTINATION_CODES.values()},
+                **{code: label for code, label in UKRAINE_CODES.values()}}
+    for code, label in expected.items():
+        if partners.get(code) != label:
+            raise ValueError(f"BNS changed partner code {code}: {partners.get(code)}")
+    for year in YEARS:
+        total = rows[(year, "0")][1]
+        if total is None or total <= 0:
+            raise ValueError(f"Missing BNS all-partners Total {year}")
+        groups = [rows[(year, code)][1] for code in PARTNER_GROUPS]
+        if any(value is None for value in groups) or abs(sum(groups) - total) > 0.3:
+            raise ValueError(f"BNS country group partition mismatch {year}")
+        ukraine_code = "11" if year <= 2023 else "87"
+        opposite = "87" if ukraine_code == "11" else "11"
+        if (rows[(year, ukraine_code)][1] is None or
+                rows[(year, opposite)][1] is not None):
+            raise ValueError(f"BNS Ukraine changed year-group split {year}")
+        for code, _ in DESTINATION_CODES.values():
+            val = rows[(year, code)][1]
+            if val is None or val > total:
+                raise ValueError(f"Missing/out-of-scope country {year}/{code}")
+    ranked = sorted(
+        ((value, code) for code, label in partners.items()
+         if label.startswith("..")
+         for value in [rows[(2025, code)][1]] if value is not None),
+        reverse=True)[:5]
+    if [code for _, code in ranked] != ["35", "86", "27", "17", "87"]:
+        raise ValueError(f"2025 top individual export partners changed: {ranked}")
+
+
+def render_destinations(rows: dict, partners: dict, response_sha: str,
+                        metadata_sha: str) -> str:
+    """Produce reproducible same-year customs-goods shares for review only."""
+    verify_destination_taxonomy(rows, partners)
+    stream = io.StringIO()
+    for line in (
+        "# BNS EXT010200.px — customs GOODS exports (not WDI goods and services).",
+        "# Share in % of SAME-year ALL-PARTNERS goods exports, 2006–2025.",
+        "# 2025 TOP FIVE INDIVIDUAL country destinations, based on current Statbank release.",
+        "# Raw BNS source JSON-stat2 SHA256 " + response_sha + ".",
+        "# BNS source metadata SHA256 " + metadata_sha + ".",
+        "# Codes: Total=0; Romania=35, Turkey=86, Italy=27, Czechia=17; Ukraine=11 until 2023, 87 from 2024.",
+        "# Ukraine changed from CIS to other-country GROUP in 2024; individual country remains Ukraine.",
+        "# National customs universe excludes left-bank Nistru/Bender exporters; groups/totals never double-counted.",
+        "# Full BNS Statbank 2025 total 3,780,863.9 thousand USD; BNS preliminary 2025 release 3,782.7m USD (different editions).",
+        "# Missing source values remain blank; do not synthesize or interpolate.",
+    ):
+        stream.write(line + "\n")
+    writer = csv.writer(stream, lineterminator="\n")
+    writer.writerow(("year", *DESTINATION_CODES.keys(), "ukraine_pct"))
+    for year in YEARS:
+        total = rows[(year, "0")][1]
+        codes = [code for code, _ in DESTINATION_CODES.values()]
+        codes.append("11" if year <= 2023 else "87")
+        writer.writerow((year, *(f"{rows[(year, code)][1] / total * 100:.6f}"
+                                 for code in codes)))
+    return stream.getvalue()
+
+
 def main() -> None:
     url, metadata = locate_table()
     pcode, ycode, partners, years = metadata_codes(metadata)
@@ -243,8 +321,14 @@ def main() -> None:
     payload = request_json(url, request)
     rows = decode(payload, pcode, ycode, partners, years)
     verify(rows, partners)
+    verify_destination_taxonomy(rows, partners)
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(render(rows, partners), encoding="utf-8")
+    response_sha = hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
+    metadata_sha = hashlib.sha256(json.dumps(metadata, sort_keys=True).encode()).hexdigest()
+    DESTINATIONS_SIDECAR.write_text(
+        render_destinations(rows, partners, response_sha, metadata_sha),
+        encoding="utf-8")
     provenance = {
         "status": "publisher_verified_sidecar_not_curated_or_published",
         "api_url": url, "table": TABLE_ID, "publisher": "National Bureau of Statistics of Moldova",
@@ -267,6 +351,7 @@ def main() -> None:
     print(f"Official BNS {TABLE_ID} audited via {url}: "
           f"{len(partners)} partner/group codes × {len(YEARS)} years = {len(rows)} cells")
     print("2025 total (million USD):", rows[(2025, next(k for k, v in partners.items() if v == "Total"))][1] / 1000)
+    print("BNS partner destination shares verified against source: 20 years × 5 individual countries.")
     print("Research sidecars only. No canonical plate or registry changed.")
 
 

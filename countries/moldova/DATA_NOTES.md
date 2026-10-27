@@ -396,3 +396,39 @@ The source perimeter is not assumed interchangeable with WDI GDP or BNS
 census areas. `fetch/fetch_ti.py` writes a review-only sidecar and rejects
 unreviewed publisher-byte changes; it never silently overwrites the curated
 `world/cpi.csv`.
+
+## BNS goods-export destinations, official EXT010200 table — 2026-10-27
+
+The BNS Statbank [EXT010200.px](https://statbank.statistica.md/PxWeb/pxweb/en/40%20Statistica%20economica/40%20Statistica%20economica__21%20EXT__EXT010__serii%20anuale/EXT010200.px)
+publisher table provides customs **goods** exports, in thousand US dollars,
+for 89 coded country/group categories over 1997–2025. The independent
+[primary-source audit 40446267708](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40446267708)
+downloaded the 2006–2025 cube (1,780 partner-year cells) and retained the
+original data and codebook as a read-only Actions artifact.
+Source JSON-stat2 SHA256:
+`5e1fc55f430c4e75a07c172b99a7b60501217fbfd6816e3dc5a5a32a97454fa4`.
+Publisher metadata SHA256:
+`1adfac120905d511a524ed0a8c957e48da88fe9c9a41f4ee76a36d186e7`.
+
+`data/trade/destinations.csv` contains observed 2006–2025 percentages of
+**total customs goods exports** for the five largest *individual-country*
+destinations in **2025**. The actual 2025 shares (source precision derived
+as same-year country / BNS all-partner Total) are Romania **29.007598%**,
+Turkey **9.950059%**, Italy **9.226513%**, Czechia **8.218764%** and Ukraine
+**7.919071%**. Codes 35, 86, 27 and 17 refer to the first four; Ukraine's
+country code is 11 through 2023, then 87 from 2024. The source changed
+Ukraine from **CIS** to **other countries** group in 2024; that group's
+aggregate is **not** added to any country share. Country groups 1, 13
+and 42 reconcile to the official Total (0), accounting only for source
+rounding. No partner-group membership series is spliced into a country
+series. No years have been interpolated.
+
+The 2025 **current Statbank** Total is **US$3,780.8639 million**; the
+independent, *preliminary* BNS 2025 release reported US$3,782.7 million
+(difference US$1.8361 million, **0.049%**), a documented edition difference,
+not a licence to substitute an inconsistent denominator. BNS's customs
+territory excludes companies on the left bank of the Nistru and Bender.
+This is separate from WDI *goods and services* as percent GDP and is
+never combined with it. The live source audit regenerates a
+`destinations_from_bns.csv` sidecar and compares it byte-for-byte with the
+committed curated dataset, failing closed on source revisions.

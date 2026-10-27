@@ -338,3 +338,27 @@ The read-only 40440531390 peer audit regenerated **138 peer-localized
 trade/world charts** and found 414 corresponding modified PNG/SVG assets.
 Those peer assets have NOT been committed to this branch, and require
 careful review before release registration. No merge/deploy or upstream PR.
+
+## BNS trade-partner promotion and next release gates — 2026-10-27
+
+New official [BNS publisher audit 40446267708](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40446267708)
+passed 89 coded partner/group categories over 20 years. Committed
+`data/trade/destinations.csv` and filled canonical
+`trade.destinations` with five *actual individual destination* share
+series (Romania, Turkey, Italy, Czechia, Ukraine) in Romanian, English and
+Portuguese. Data notes and `SOURCES.yaml` pin official payload hashes,
+customs territory, 2024 Ukraine group reclassification and the difference
+between the current BNS 2025 Total and earlier preliminary news release.
+WDI goods-and-services GDP shares remain an independent dataset.
+
+**New gates:** inspect live BNS source-diff job and full research quality gate
+at this new commit; strict tri-locale rendering must pass, 36 images and
+thumbs, all source provenance, layout, Python and Node regressions.
+Review newly generated trade PNGs in ro/en/pt for legends and clipping.
+Last earlier green [research gate 40441289491](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40441289491)
+passed 3,431 Python tests, 20 Node tests, and complete candidate QA.
+Separately, the [read-only peer shared-axis gate 40440531390](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40440531390)
+passed 25 countries and 138 locale-specific peer plates (414 files);
+those images are not yet committed. Keep Moldova unregistered until peer
+assets and full-source/locale QA are approved. Do not open upstream PR,
+merge or deploy.

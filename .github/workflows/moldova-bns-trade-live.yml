@@ -43,13 +43,17 @@ jobs:
           assert len(rows) == len(evidence['partner_codebook']) * 20
           assert evidence['status'] == 'publisher_verified_sidecar_not_curated_or_published'
           assert evidence['table'] == 'EXT010200.px'
+          assert Path('countries/moldova/data/trade/destinations_from_bns.csv').is_file()
           print('BNS source audit passed:', len(rows), 'partner-year cells, unregistered.')
           PY
+          diff -u countries/moldova/data/trade/destinations.csv countries/moldova/data/trade/destinations_from_bns.csv
+          echo "Verified BNS publisher fractions exactly match committed curated CSV."
       - name: Preserve primary-publisher sidecars for controlled curation
         uses: actions/upload-artifact@v4
         with:
           name: moldova-bns-customs-export-partners-review-only
           path: |
+            countries/moldova/data/trade/destinations_from_bns.csv
             countries/moldova/data/trade/exports_partner_from_bns.csv
             countries/moldova/data/trade/exports_partner_source_metadata.json
           retention-days: 14
