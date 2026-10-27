@@ -103,6 +103,12 @@ def test_manifest_covers_exact_staged_publisher_files() -> None:
                 assert "2022-09-01" in details["notes"]
                 assert "2023=4000" in details["notes"]
                 assert "fetch/fetch_nbm.py" in details["refreshed_by"]
+            elif group == "credit" and name == "prudential_npl.csv":
+                assert details["source"].startswith("National Bank of Moldova")
+                assert details["official"] is True
+                assert details["refreshed_by"] == "fetch/fetch_nbm_npl.py"
+                assert "2022=6.4%" in details["notes"] and "2025=4.1%" in details["notes"]
+                assert "NOT" in details["notes"] and "IFRS" in details["notes"]
             else:
                 assert details["source"].startswith("World Bank WDI")
                 assert details["official"] is False
