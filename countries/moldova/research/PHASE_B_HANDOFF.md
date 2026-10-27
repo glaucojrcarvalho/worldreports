@@ -1007,3 +1007,42 @@ then integrate source-semantic audit and artifact output in
 \`research/moldova-source-audit\` after the currently running full CI
 and successful image archive, WITHOUT merging branch history.
 Keep country.yaml unregistered and upstream untouched.
+
+## Verified semantic readiness matrix — 2026-10-27
+
+Focused fork-only read-only quality run
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40497636124
+finished **GREEN**, including publisher/rehearsal Git-SHA parity,
+three-locale HTML route checks, 22 archive safety checks, and the
+new `audit_semantic_readiness.py` AST/spine inventory with its
+negative mutation tests. The retained CI artifact
+`moldova-semantic-readiness-inventory` contains the
+`moldova-semantic-readiness.json` report, independently read back
+and checked for exact totals:
+
+- **45** claimed slots out of 48 fixed spine positions;
+- **42/42** canonical slots present;
+- **36** observed slots, with explicitly separate BNS 2025 LFS and
+  2024 census lens semantics;
+- **9** source-unavailable canonical slots, each with a clear
+  `_pending` note and no plotted fabricated values;
+- **3** optional, unclaimed lenses (trade, people, security) which are
+  NOT missing canonical panels.
+
+The tool fails if any canonical slot disappears, a placeholder
+becomes an undocumented chart, a pending panel also draws data, or
+its missing-data explanation is removed. It does not claim that those
+nine indicators categorically lack external data; it preserves
+an unresolved sourcing gate rather than asserting publication readiness.
+
+**Next hourly substantive action:** inspect the active source research
+full CI at
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40495644533,
+including successful archive job and exact 109 committed file objects.
+When green, copy the proven `audit_semantic_readiness.py` and
+`tests/test_moldova_semantic_readiness.py` into
+`research/moldova-source-audit`, add the offline validation and
+JSON-report upload steps to its research workflow, re-run its full
+suite, and check upstream delta. Source branch must retain unregistered
+root `country.yaml`, while the registered rehearsal stays isolated.
+No PR, merge, deploy or push to `akitaonrails/worldreports`.
