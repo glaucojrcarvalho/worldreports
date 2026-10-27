@@ -87,3 +87,16 @@ def test_full_atlas_runner_finishes_and_image_only_archive_does_not_retrigger():
         next(step["run"] for step in archive["steps"]
              if step.get("name", "").startswith("Commit only isolated"))
     )
+
+def test_archive_rejected_push_fails_closed_instead_of_reporting_success():
+    """The former archive returned zero even when its push was refused."""
+    workflow = yaml.safe_load(WORKFLOW.read_text(encoding="utf-8"))
+    job = workflow["jobs"]["archive-validated-research-assets"]
+    write_step = next(step for step in job["steps"]
+                      if step.get("name", "").startswith("Commit only isolated"))
+    commands = write_step["run"]
+    assert "git push origin HEAD:refs/heads/research/moldova-source-audit" in commands
+    assert "if ! git push" not in commands
+    assert "Skipped the stale image push" not in commands
+    assert "force" not in commands
+    assert "git diff --cached --quiet" in commands  # no-op if same bytes

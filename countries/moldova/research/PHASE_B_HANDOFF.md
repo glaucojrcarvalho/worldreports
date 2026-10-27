@@ -773,3 +773,61 @@ PNG/SVG/thumbs and 12 provenance maps, including:
 `12-migration` BNS census + UN/WDI;
 then inspect full RO/EN/PT figures. Do not alter upstream, deploy,
 open PR or register country until semantic and visual QA.
+
+
+## Research branch full-atlas archive and Git-blob identity ACCEPTED — 2026-10-27
+
+**Source research run 40474639482 is GREEN**
+(https://github.com/glaucojrcarvalho/worldreports/actions/runs/40474639482).
+It passed the complete 12-topic, RO/EN/PT SVG and image fidelity,
+source-lineage, full site and layout audit with **zero out-of-canvas
+faults** in all three languages, as well as **3,486 Python tests plus
+8 subtests and 20 browser JavaScript tests**. The visual-review evidence
+recorded **12 trilingual contact sheets, all 108 rendered assets, and
+23 curated CSV source fingerprints**.
+
+The fork-only archive job subsequently committed the exact tested
+graphics as
+[7cc84e4ab8b1413308231f47eb0d158ebe8c8da6](https://github.com/glaucojrcarvalho/worldreports/commit/7cc84e4ab8b1413308231f47eb0d158ebe8c8da6).
+Independent validation compared **each of 109 archived ZIP entries**
+(36 PNG + 36 SVG + 36 thumbnails + 1 provenance.json) with its Git
+blob object ID in the current branch tree: **109/109 byte-identical**.
+The FNV-1a 32-bit fingerprint of the sorted \`path Git-blob-SHA1\`
+records was \`0x6f93d974\` on BOTH independent listings. The FNV
+value is only a compact equality check; integrity rests on matching
+each underlying Git blob SHA-1, not on FNV collision resistance.
+
+Confirmed actual committed plate → data maps:
+- \`01-economy\`: \`macro/economy.csv\`,
+  \`macro/national_lfs.csv\`, \`world/world.csv\`.
+- \`03-spending\`: \`fiscal/nominal_gdp_bns.csv\`,
+  \`fiscal/public_budget.csv\`, \`macro/economy.csv\`.
+- \`12-migration\`: \`demography/demography.csv\`,
+  \`migration/foreign_born_census.csv\`,
+  \`migration/migration.csv\`.
+
+All **12 trilingual contact sheets** were visually reviewed at overview
+resolution, and the three above were checked at larger contact-sheet
+resolution. No obvious text clipping or unlabeled discontinuities were
+observed. This is **not pixel-perfect / native full-resolution review**;
+unsupported panels remain explicitly pending in the data and rendered
+plates. The main research branch **still has no root country.yaml** and
+has not deployed or merged anything.
+
+**Critical future CI correctness fix:** previous run 40473065555
+had passed all tests but its archive push was refused after the branch
+advanced. The archive job swallowed that refusal and reported *success*,
+incorrectly implying output persistence. The archive job now invokes
+a normal non-force \`git push\` and allows any rejection to fail the
+job, while the no-diff case remains a valid no-op. Offline regression
+guards against accidentally restoring a swallowed push failure.
+
+**Next hard gate:** the isolated registered-country rehearsal branch
+\`research/moldova-release-rehearsal\` at commit \`2b43cab116e16...\`
+must pass its full atlas Python and Node suite, not just site build,
+and its artifacts must be inspected. Then decide whether it is
+appropriate to promote \`country.yaml\` into the user's research branch
+(never auto-merge/publish or touch upstream). Any sources still missing
+government GFCF, 10-year yields/equities, household-only credit,
+registered migration flows, excess/cause-specific mortality remain
+pending, not generated.

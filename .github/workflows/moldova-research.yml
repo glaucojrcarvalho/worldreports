@@ -262,11 +262,7 @@ jobs:
           git -c user.name='github-actions[bot]' \
               -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
               commit -m 'build(moldova): archive validated trilingual research plates'
-          # This ref exists only on the user's fork; a concurrent update
-          # causes a non-fast-forward refusal, never an overwrite.
-          if ! git push origin HEAD:refs/heads/research/moldova-source-audit; then
-            # Branch updates during old image builds are expected. Stale
-            # generated previews must never overwrite newer source commits.
-            echo "::warning::Research branch advanced while archiving. Skipped the stale image push; a newer workflow will regenerate its own artifacts."
-            exit 0
-          fi
+          # A rejected non-fast-forward is NOT success: the images were
+          # verified locally but were NOT archived on the research branch.
+          # Never force, rewrite history, or claim this gate is green.
+          git push origin HEAD:refs/heads/research/moldova-source-audit
