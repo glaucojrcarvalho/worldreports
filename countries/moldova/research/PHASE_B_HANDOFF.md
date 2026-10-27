@@ -362,3 +362,25 @@ passed 25 countries and 138 locale-specific peer plates (414 files);
 those images are not yet committed. Keep Moldova unregistered until peer
 assets and full-source/locale QA are approved. Do not open upstream PR,
 merge or deploy.
+
+## Peer shared-axis asset archive — bounded write gate, 2026-10-27
+
+The earlier **read-only** peer regeneration at
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40440531390
+has been reviewed: 25 published countries, 138 locale-specific world/trade
+plates and 414 changed peer PNG/SVG/thumb assets, with changed decoded
+pixels about 4–9% and image dimension drift no more than 1 px. English
+side-by-side contact sheets have been visually inspected at contact-sheet
+resolution; these comparisons show intended shared-axis rescaling without
+obvious label overflow, not a claim to pixel-perfect review of every locale.
+
+A separate fork-only **write** workflow
+`.github/workflows/moldova-peer-archive.yml` now reruns the same
+source-neutral rebuild on an isolated runner, requires *exactly* the
+138/414 expected artifacts, nontrivial but bounded <=12% pixel changes,
+<=2-pixel dimension drift, source/catalog/site and Node tests, and stages
+only approved peer output paths. It makes one non-forced commit to the
+research branch, optionally safely rebased over Moldova-only work; if
+published peer or core sources changed concurrently, it aborts. It does
+NOT register Moldova, deploy, contact or modify upstream. The workflow
+must finish successfully before marking this release gate closed.
