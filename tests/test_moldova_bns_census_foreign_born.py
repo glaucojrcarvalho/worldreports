@@ -37,7 +37,7 @@ def test_exact_single_census_statement_and_blanks_not_annual_interpolation():
     assert [int(x["year"]) for x in rows] == list(range(2006, 2026))
     assert [(int(x["year"]), x["foreign_born_pct"]) for x in rows
             if x["foreign_born_pct"]] == [(2024, "4.4")]
-    assert "NOT" not in body  # no request for a national registration series
+    assert "not an annual migration series" in body
 
 
 @pytest.mark.parametrize("kwargs", [
