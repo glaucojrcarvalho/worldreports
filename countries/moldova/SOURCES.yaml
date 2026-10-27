@@ -135,8 +135,27 @@ credit:
       Observations 2010-2025; 2006-2009 missing, not zero.
       This includes total private-sector claims by financial corporations,
       NOT household-only debt. Some public enterprises may be included.
-      Only chart in credit.lens; all three household canonical panels pending
-      NBM borrower/currency/denominator-compatible primary records.
+      Only chart in credit.lens; it does not measure household debt.
+      The NBM bank-wide prudential NPL series uses a DIFFERENT denominator
+      and is not a household-only non-performing loan indicator.
+  prudential_npl.csv:
+    source: "National Bank of Moldova (NBM), official banking-sector year-end prudential NPL reports"
+    url: "https://bnm.md/en/content/financial-situation-banking-sector-year-2022"
+    official: true
+    notes: >-
+      Original NBM bank-wide December 31 non-performing loans as a share of
+      ALL bank prudential gross loans: 2022=6.4%, 2023=5.6%, 2024=4.1%,
+      2025=4.1%. Substandard, doubtful and compromised loans, NOT borrower-
+      defined household-only NPL, not IFRS impairment or overdue loans.
+      Individual 2023 report https://bnm.md/ru/node/66762 ;
+      2024 report https://bnm.md/en/content/financial-situation-banking-sector-2024 ;
+      2025 report https://bnm.md/ro/node/69800 .
+      2024 text reports 1.4 pp improvement vs 2023, but subtraction of
+      separately published rounded 2023=5.6 and 2024=4.1 gives 1.5 pp.
+      Do NOT invent a revised rate or assert a methodology break;
+      preserve separate unconnected publisher-publication segments.
+      2006-2021 and incomplete 2026 are blank; no annual averaging.
+      Territorial scope not asserted equal to BNS resident statistics.
 world:
   cpi.csv:
     source: "Transparency International, Corruption Perceptions Index 2025, official score timeseries since 2012"

@@ -410,3 +410,23 @@ to push *only* reviewed binaries into this fork research branch; audit
 its exact path inventory and rendered pages. Keep Moldova unregistered
 until global peer output and visual signoff. No upstream PR, merge, deploy
 or upstream modification.
+
+## Phase C — official bank-wide NBM NPL replaces one credit pending slot, 2026-10-27
+
+Transcribed four original NBM year-end **bank-wide prudential** credit-quality
+bulletins into `data/credit/prudential_npl.csv` (2022=6.4%, 2023=5.6%,
+2024=4.1%, 2025=4.1%) and filled `credit.npl` without claiming that
+business loans are household debt. Preserved the publisher's 2024
+**1.4 pp** stated change versus **1.5 pp** subtraction of the separately
+rounded values by plotting two unconnected report-edition segments.
+Updated manifest, trilingual titles/legends/footnote, chapter/UI text,
+data notes and offline tests; no missing years fabricated.
+
+The fork-only peer-axis archive workflow
+[40447785568](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40447785568)
+was successful and committed 414 peer PNG/SVG/thumb files at 296c0ddd.
+**Next mandatory:** verify full Python/Node CI and generated 36 plates,
+36 thumbnails, 12 provenance mappings after this source change; verify the
+new credit source is traced to plate 06; review all three localized NPL
+panels visually, along with global peer axis image contact sheets. Keep
+Moldova unregistered and do not merge/deploy or contact upstream.

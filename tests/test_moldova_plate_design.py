@@ -134,7 +134,10 @@ def test_private_credit_lens_does_not_fill_household_slots():
     assert next(r for r in rows if r["year"] == 2025)["private_credit_pct_gdp"] == pytest.approx(33.593935)
     content = (ROOT / "plates.py").read_text("utf-8")
     credit = content.split("def plate_credit(", 1)[1].split("def plate_people(", 1)[0]
-    assert credit.count("_pending(ctx, ig, ax,") == 3
+    assert credit.count("_pending(ctx, ig, ax,") == 2
+    assert '"credit/prudential_npl.csv"' in credit
+    assert "release_2022_2023_pct" in credit
+    assert "release_2024_2025_pct" in credit
     assert all(tag in credit for tag in ("credit.household_debt", "credit.lending_rate", "credit.npl", "credit.lens"))
     assert "credit/private_credit.csv" in credit
     assert "NOT households" in credit

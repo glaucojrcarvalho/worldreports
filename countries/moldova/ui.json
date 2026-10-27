@@ -15,7 +15,8 @@
       "IDU (indicele dezvoltării umane) folosește exclusiv seria istorică oficială PNUD HDR 2025, 2006–2023: 0,784 în 2022 și 0,785 în 2023; 2024–2025 lipsesc. Comunicatul PNUD Moldova din 6 mai 2025 indică 0,763 pentru 2022; diferența de 0,021 față de CSV nu este ascunsă și edițiile nu sunt combinate.",
       "Indicele percepției corupției (Transparency International, IPC 2025) este comparabil în această metodologie numai pentru 2012–2025: scor 42 în 2023, 43 în 2024 și 42 în 2025. Scara este 0–100, mai mare = corupție percepută mai redusă. Sunt evaluări ale experților și firmelor, nu numărul faptelor de corupție; 2006–2011 rămân necompletați. Sursa: TI, CC BY-ND 4.0.",
       "BNS EXT010200: exporturi vamale numai de MĂRFURI. Seriile 2006–2025 prezintă cele cinci destinații cu cele mai mari valori în 2025: România, Turcia, Italia, Cehia și Ucraina, ca pondere în totalul BNS al fiecărui an. Grupele CIS/UE/altele se suprapun cu țările și nu se adună. Ucraina a fost reclasificată din CIS în alte țări în 2024; nu duplicăm țara. Perimetrul exclude exportatorii din stânga Nistrului și Bender. Statbank actual: 3.780,864 milioane USD în 2025; comunicatul preliminar: 3.782,7 milioane USD; ediții distincte.",
-      "Salariul minim legal unificat pentru muncă cu normă întreagă este 4.000 MDL în 2023, 5.000 MDL în 2024 și 5.500 MDL în 2025 (Guvern). Valoarea în USD este derivată din media anuală oficială BNM, nu salariul efectiv plătit. Unificarea sectorului public cu cel privat a intrat în vigoare în septembrie 2022; nu construim artificial o serie comparabilă pentru 2006–2022."
+      "Salariul minim legal unificat pentru muncă cu normă întreagă este 4.000 MDL în 2023, 5.000 MDL în 2024 și 5.500 MDL în 2025 (Guvern). Valoarea în USD este derivată din media anuală oficială BNM, nu salariul efectiv plătit. Unificarea sectorului public cu cel privat a intrat în vigoare în septembrie 2022; nu construim artificial o serie comparabilă pentru 2006–2022.",
+      "BNM publică ponderea prudențială a creditelor neperformante pentru toate băncile la 31 decembrie: 6,4% (2022), 5,6% (2023), 4,1% (2024), 4,1% (2025). Nu este rata creditelor gospodăriilor și nici clasificare IFRS. Comunicatul din 2024 indică o scădere cu 1,4 puncte față de 2023; cifrele rotunjite publicate separat indică 1,5 puncte. Nu presupunem cauza; cele două segmente editoriale rămân separate."
     ],
     "unavailable": [
       {
@@ -28,7 +29,7 @@
       },
       {
         "term": "Creditul gospodăriilor",
-        "detail": "Stocul gospodăriilor, dobânda la împrumuturile noi și creditele neperformante cer serii BNM coerente pe definiții și monedă. Lentila WDI conține doar creditul intern al întregului sector privat (2010–2025), nu datoria gospodăriilor."
+        "detail": "Stocul creditelor gospodăriilor și dobânzile la împrumuturile noi nu au încă serii BNM compatibile. Ratele neperformante prudențiale verificate pentru 2022–2025 acoperă toate împrumuturile băncilor, nu doar gospodăriile; lentila WDI este pentru întregul sector privat."
       },
       {
         "term": "Cheltuieli pe funcții raportate la PIB",
@@ -66,7 +67,7 @@
       },
       {
         "term": "Banca Națională a Moldovei",
-        "detail": "Deciziile de politică monetară cu datele de aplicare și cursul mediu anual MDL/USD, 2006–2025."
+        "detail": "Deciziile de politică monetară cu datele de aplicare și cursul mediu anual MDL/USD, 2006–2025. Publicațiile BNM 2022–2025 furnizează și credite neperformante prudențiale ale întregului sector bancar."
       },
       {
         "term": "Limitele comparației",
@@ -90,7 +91,8 @@
       "Human Development Index follows only the UNDP HDR 2025 complete historical CSV, 2006–2023: 0.784 in 2022 and 0.785 in 2023; 2024–2025 are missing. UNDP Moldova's 6 May 2025 press release instead prints 0.763 for 2022, a 0.021 difference. These publisher presentations are not spliced.",
       "Transparency International's CPI 2025 time series is methodologically comparable only for 2012–2025: score 42 in 2023, 43 in 2024 and 42 in 2025. On its 0–100 scale, higher means less perceived public-sector corruption. These are expert/business assessments, not recorded incidents; 2006–2011 remain missing. Source: TI, CC BY-ND 4.0.",
       "BNS EXT010200: customs exports of GOODS only. The 2006–2025 series shows the five top individual country destinations in 2025—Romania, Turkey, Italy, Czechia and Ukraine—as shares of that year's BNS total. CIS/EU/other groups overlap countries and are never summed with them. Ukraine was moved from CIS to the other-country group in 2024, without duplicating its country series. Left-bank Nistru and Bender exporters are excluded. Current Statbank 2025 total: US$3,780.864m; preliminary release: US$3,782.7m, separate source vintages.",
-      "The government unified statutory full-time minimum is MDL 4,000 in 2023, MDL 5,000 in 2024 and MDL 5,500 in 2025. Plotted USD/month uses the official NBM calendar-year USD/MDL average, not actual pay. Unification across public and private sectors took effect in September 2022; there is no manufactured comparable full-year series for 2006–2022."
+      "The government unified statutory full-time minimum is MDL 4,000 in 2023, MDL 5,000 in 2024 and MDL 5,500 in 2025. Plotted USD/month uses the official NBM calendar-year USD/MDL average, not actual pay. Unification across public and private sectors took effect in September 2022; there is no manufactured comparable full-year series for 2006–2022.",
+      "NBM bank-wide prudential non-performing loans at 31 December were 6.4% (2022), 5.6% (2023), 4.1% (2024) and 4.1% (2025). These are not household-only or IFRS ratios. The 2024 bulletin reports a 1.4-point fall, while subtracting the two separately published rounded rates gives 1.5 points. The cause is unverified, so publication segments are disconnected."
     ],
     "unavailable": [
       {
@@ -103,7 +105,7 @@
       },
       {
         "term": "Household credit",
-        "detail": "Household stocks, new-loan rates and non-performing loans require borrower-, currency- and denominator-consistent NBM series. The WDI lens presents broader private-sector credit (2010–2025), not household borrowing."
+        "detail": "Household-specific loan stocks and new-loan rates still lack borrower-consistent NBM series. The observed 2022–2025 prudential NPL ratio covers all bank borrowers rather than households alone; WDI broad credit also covers the whole private sector."
       },
       {
         "term": "Functional public spending as GDP shares",
@@ -141,7 +143,7 @@
       },
       {
         "term": "National Bank of Moldova",
-        "detail": "Effective-dated official policy-rate decisions and annual-average MDL/USD exchange rates, 2006–2025."
+        "detail": "Effective-dated official policy-rate decisions and annual-average MDL/USD exchange rates, 2006–2025. The 2022–2025 bank-wide prudential NPL ratios come from NBM bank-sector reports."
       },
       {
         "term": "Comparison boundaries",
@@ -165,7 +167,8 @@
       "O IDH usa somente a série histórica completa do PNUD, RDH 2025, de 2006 a 2023: 0,784 em 2022 e 0,785 em 2023; 2024–2025 estão ausentes. O comunicado do PNUD Moldávia de 6 de maio de 2025 informa 0,763 para 2022, divergência de 0,021 em relação ao CSV; não misturamos edições.",
       "A série CPI 2025 da Transparency International é comparável nesta metodologia apenas entre 2012 e 2025: nota 42 em 2023, 43 em 2024 e 42 em 2025. Na escala de 0–100, maior significa menor corrupção percebida no setor público. São avaliações de especialistas e empresas, não ocorrências registradas; 2006–2011 continuam vazios. Fonte: TI, CC BY-ND 4.0.",
       "BNS EXT010200: exportações aduaneiras apenas de MERCADORIAS. As séries 2006–2025 apresentam os cinco principais destinos individuais de 2025—Romênia, Turquia, Itália, Tchéquia e Ucrânia—como parcelas do total BNS de cada ano. Grupos CEI/UE/outros se sobrepõem aos países e não são somados. A Ucrânia passou de CEI a outros países em 2024, sem duplicação. Exportadores da margem esquerda do Nistru e de Bender são excluídos. Statbank atual: US$ 3.780,864 milhões em 2025; comunicado preliminar: US$ 3.782,7 milhões, edições distintas.",
-      "O remuneração mínima legal unificada para tempo integral foi de 4.000 MDL em 2023, 5.000 MDL em 2024 e 5.500 MDL em 2025 (governo). O valor mensal em dólares usa o câmbio médio anual oficial do BNM, não o salário efetivamente pago. A unificação dos setores público e privado entrou em vigor em setembro de 2022; não criamos uma série artificial comparável para 2006–2022."
+      "O remuneração mínima legal unificada para tempo integral foi de 4.000 MDL em 2023, 5.000 MDL em 2024 e 5.500 MDL em 2025 (governo). O valor mensal em dólares usa o câmbio médio anual oficial do BNM, não o salário efetivamente pago. A unificação dos setores público e privado entrou em vigor em setembro de 2022; não criamos uma série artificial comparável para 2006–2022.",
+      "A inadimplência prudencial de todos os bancos BNM em 31 de dezembro foi 6,4% (2022), 5,6% (2023), 4,1% (2024) e 4,1% (2025). Não é exclusiva de famílias nem uma taxa IFRS. O boletim de 2024 informa queda de 1,4 ponto, mas a subtração das taxas arredondadas publicadas separadamente dá 1,5. A causa não foi verificada e os segmentos editoriais permanecem separados."
     ],
     "unavailable": [
       {
@@ -178,7 +181,7 @@
       },
       {
         "term": "Crédito das famílias",
-        "detail": "Estoque das famílias, juros de novos empréstimos e inadimplência exigem séries BNM coerentes por tomador, moeda e denominador. A lente WDI apresenta o crédito do setor privado agregado (2010–2025), não a dívida familiar."
+        "detail": "Estoque e juros de empréstimos novos específicos das famílias ainda exigem séries BNM compatíveis. A inadimplência prudencial observada em 2022–2025 cobre todos os tomadores bancários, não apenas famílias; o crédito WDI também abrange todo o setor privado."
       },
       {
         "term": "Despesas funcionais em proporção do PIB",
@@ -216,7 +219,7 @@
       },
       {
         "term": "Banco Nacional da Moldávia",
-        "detail": "Decisões oficiais de taxa básica com datas de vigência e câmbio anual médio MDL/USD, 2006–2025."
+        "detail": "Decisões oficiais de taxa básica com datas de vigência e câmbio anual médio MDL/USD, 2006–2025. Os relatórios prudenciais BNM também fornecem taxas de inadimplência de todos os bancos em 2022–2025."
       },
       {
         "term": "Limites de comparação",

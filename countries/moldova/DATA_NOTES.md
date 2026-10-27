@@ -470,3 +470,29 @@ The strict trilingual plate and site now distinguish this short valid
 run from the excluded 2006–2022 history. `tests/test_moldova_minimum_wage.py`
 checks the Government anchors, exact WDI/BNM-style currency arithmetic,
 missing-year contract, manifest, source provenance, translations and plate.
+
+## National Bank of Moldova — original prudential bank-wide NPL year-end reports, 2026-10-27
+
+The NBM publishes **bank-wide**, **prudential** non-performing loans as a
+share of total gross prudential loans, NOT borrower-defined household-only
+NPL. Original year-end publisher reports give **6.4% at 2022-12-31**
+([2022](https://bnm.md/en/content/financial-situation-banking-sector-year-2022)),
+**5.6% at 2023-12-31** ([2023](https://bnm.md/ru/node/66762)),
+**4.1% at 2024-12-31** ([2024](https://bnm.md/en/content/financial-situation-banking-sector-2024))
+and **4.1% at 2025-12-31** ([2025](https://bnm.md/ro/node/69800)).
+The 2022–24 reports expressly describe substandard, doubtful and
+compromised credit; the 2025 report explicitly calls it prudential.
+Overdue loans and IFRS-impaired loans are NOT synonymous with this ratio.
+Banking assets span both corporations and households.
+
+A publisher-publication distinction remains unresolved: the **2024**
+release says 2023-to-2024 NPL fell **1.4 pp**, whereas the separately
+published rounded 2023 rate **5.6%** less 2024 **4.1%** is **1.5 pp**.
+Rounding or a later revision *might* explain it; neither is confirmed.
+No numerical adjustment or alleged methodological break is fabricated.
+The canonical panel connects 2022–23 and 2024–25 **within** their dated
+source editions but does not connect the two pairs across that difference.
+2006–2021 and partial 2026 remain blank; all values are December 31 levels,
+never calendar-year averages. The data path is `credit/prudential_npl.csv`.
+It is not a substitute for household debt stocks/new-loan rates, which
+remain unavailable, or for WDI's broader private-credit lens.

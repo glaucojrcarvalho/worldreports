@@ -55,53 +55,53 @@
     "ro": "Pentru seria BNM de credite neperformante lipsesc numărătorul, numitorul",
     "pt": "Na série BNM de crédito inadimplente faltam numerador, denominador"
   },
-  "a crude rate cannot be treated as a death count.": {
-    "ro": "o rată brută nu poate fi considerată număr de decese.",
-    "pt": "uma taxa bruta não pode ser tratada como contagem de mortes."
-  },
-  "and break history are not staged.": {
-    "ro": "și istoricul schimbărilor metodologice.",
-    "pt": "e histórico de mudanças metodológicas."
-  },
-  "and currency perimeter validation.": {
-    "ro": "și a monedei de denominare.",
-    "pt": "e o perímetro por moeda."
-  },
-  "and their method seam have not been verified.": {
-    "ro": "și schimbările de metodologie nu au fost verificate.",
-    "pt": "e suas mudanças metodológicas ainda não foram verificadas."
-  },
   "Arrivals and departures (/1,000)": {
     "ro": "Sosiri și plecări (la 1.000)",
     "pt": "Entradas e saídas (por 1.000)"
   },
-  "been fetched with a pinned report vintage.": {
-    "ro": "preluată într-o ediție de raport fixată.",
-    "pt": "obtida de uma edição de relatório identificada."
-  },
-  "Births minus deaths (WDI)": {
-    "ro": "Nașteri minus decese (WDI)",
-    "pt": "Nascimentos menos mortes (WDI)"
-  },
-  "BNS customs or UN Comtrade route not yet verified": {
-    "ro": "Sursele vamale BNS sau UN Comtrade nu sunt încă verificate",
-    "pt": "Fontes aduaneiras BNS ou UN Comtrade ainda não verificadas"
+  "BNS EXT010200 customs GOODS; Ukraine group moved in 2024": {
+    "ro": "BNS EXT010200, mărfuri vamale; Ucraina schimbă grupa în 2024",
+    "pt": "BNS EXT010200, mercadorias aduaneiras; Ucrânia muda de grupo em 2024"
   },
   "BNS FIN010100, separate from IMF FPP": {
     "ro": "BNS FIN010100, separat de FMI FPP",
     "pt": "BNS FIN010100, separado do FMI FPP"
   },
-  "BNS FIN010100; no incompatible cash/GDP conversion": {
-    "ro": "BNS FIN010100; fără conversie incompatibilă din valori de casă în % din PIB",
-    "pt": "BNS FIN010100; sem conversão incompatível de caixa para % do PIB"
-  },
   "BNS FIN010100; World Bank WDI; IMF FPP": {
     "ro": "BNS FIN010100; Banca Mondială WDI; FMI FPP",
     "pt": "BNS FIN010100; Banco Mundial WDI; FMI FPP"
   },
+  "BNS FIN010100; no incompatible cash/GDP conversion": {
+    "ro": "BNS FIN010100; fără conversie incompatibilă din valori de casă în % din PIB",
+    "pt": "BNS FIN010100; sem conversão incompatível de caixa para % do PIB"
+  },
+  "BNS consumption poverty; methodology break in 2019": {
+    "ro": "BNS: sărăcie după consum; ruptură metodologică în 2019",
+    "pt": "BNS: pobreza por consumo; ruptura metodológica em 2019"
+  },
+  "BNS customs or UN Comtrade route not yet verified": {
+    "ro": "Sursele vamale BNS sau UN Comtrade nu sunt încă verificate",
+    "pt": "Fontes aduaneiras BNS ou UN Comtrade ainda não verificadas"
+  },
   "BNS functional cash spending is staged in MDL.": {
     "ro": "Cheltuielile de casă pe funcții BNS sunt pregătite în MDL.",
     "pt": "As despesas de caixa por função do BNS estão disponíveis em MDL."
+  },
+  "BNS revised survey, 2019–2025": {
+    "ro": "Ancheta BNS revizuită, 2019–2025",
+    "pt": "Pesquisa BNS revisada, 2019–2025"
+  },
+  "BNS survey, 2014–2018": {
+    "ro": "Ancheta BNS, 2014–2018",
+    "pt": "Pesquisa BNS, 2014–2018"
+  },
+  "Bank-wide prudential non-performing loans (%)": {
+    "ro": "Credite neperformante prudențiale ale tuturor băncilor (%)",
+    "pt": "Créditos inadimplentes prudenciais de todos os bancos (%)"
+  },
+  "Births minus deaths (WDI)": {
+    "ro": "Nașteri minus decese (WDI)",
+    "pt": "Nascimentos menos mortes (WDI)"
   },
   "Borrower and loan-definition checks remain necessary": {
     "ro": "Mai sunt necesare verificări ale definițiilor debitorului și creditului",
@@ -111,21 +111,17 @@
     "ro": "Stocul creditelor gospodăriilor definit după debitor",
     "pt": "Estoque de crédito familiar definido por tipo de tomador"
   },
+  "COVID deaths, underlying cause (/100,000)": {
+    "ro": "Decese COVID, cauză de bază (la 100.000)",
+    "pt": "Óbitos por COVID como causa básica (por 100 mil)"
+  },
   "Cause-of-death COVID series is not staged;": {
     "ro": "Seria deceselor COVID după cauza decesului nu este pregătită;",
     "pt": "A série de mortes por COVID segundo a causa básica não foi preparada;"
   },
-  "children per woman": {
-    "ro": "copii per femeie",
-    "pt": "filhos por mulher"
-  },
   "Children per woman (total fertility)": {
     "ro": "Copii per femeie (fertilitate totală)",
     "pt": "Filhos por mulher (fecundidade total)"
-  },
-  "citizenship where birthplace is unavailable.": {
-    "ro": "cetățenia când locul nașterii lipsește.",
-    "pt": "cidadania quando o local de nascimento não está disponível."
   },
   "Consumer price inflation (% per year)": {
     "ro": "Inflația prețurilor de consum (% pe an)",
@@ -134,10 +130,6 @@
   "Corruption Perceptions Index (0–100)": {
     "ro": "Indicele percepției corupției (0–100)",
     "pt": "Índice de Percepção da Corrupção (0–100)"
-  },
-  "COVID deaths, underlying cause (/100,000)": {
-    "ro": "Decese COVID, cauză de bază (la 100.000)",
-    "pt": "Óbitos por COVID como causa básica (por 100 mil)"
   },
   "Crude birth rate": {
     "ro": "Rata brută a natalității",
@@ -159,17 +151,17 @@
     "ro": "Cotele pe parteneri vamali nu sunt încă pregătite.",
     "pt": "Participações por parceiro aduaneiro ainda não foram preparadas."
   },
-  "data pending — run fetchers / add CSV": {
-    "ro": "date în așteptare — rulați colectoarele / adăugați CSV",
-    "pt": "dados pendentes — executar coletores / adicionar CSV"
+  "Czechia": {
+    "ro": "Cehia",
+    "pt": "Tchéquia"
   },
   "Do not substitute a synthetic market index": {
     "ro": "Nu înlocuiți datele cu un indice bursier sintetic",
     "pt": "Não substituir os dados por índice acionário sintético"
   },
-  "emigration registration series is staged.": {
-    "ro": "emigrare din registre.",
-    "pt": "emigração registrada."
+  "Domestic credit to private sector (% of GDP)": {
+    "ro": "Creditul intern către sectorul privat (% din PIB)",
+    "pt": "Crédito interno ao setor privado (% do PIB)"
   },
   "Equity index in US$ (2006 = 100)": {
     "ro": "Indice bursier în USD (2006 = 100)",
@@ -182,10 +174,6 @@
   "Exports, national accounts": {
     "ro": "Exporturi, conturi naționale",
     "pt": "Exportações, contas nacionais"
-  },
-  "Foreign-born share (%)": {
-    "ro": "Ponderea persoanelor născute în străinătate (%)",
-    "pt": "Participação de pessoas nascidas no exterior (%)"
   },
   "FPP 2025-12 and WEO 2026-10: never mistaken for one release": {
     "ro": "FPP 2025-12 și WEO 2026-10: două ediții distincte",
@@ -203,6 +191,18 @@
     "ro": "Venituri FPP",
     "pt": "Receitas FPP"
   },
+  "Foreign-born share (%)": {
+    "ro": "Ponderea persoanelor născute în străinătate (%)",
+    "pt": "Participação de pessoas nascidas no exterior (%)"
+  },
+  "GDP and reserves in US dollars; HDI through 2023; comparable CPI scores for 2012–2025.": {
+    "ro": "PIB și rezerve în dolari SUA; IDU până în 2023; scoruri IPC comparabile din 2012 până în 2025.",
+    "pt": "PIB e reservas em dólares; IDH até 2023; notas IPC comparáveis de 2012 a 2025."
+  },
+  "GDP and reserves in US dollars; UNDP HDI through 2023; corruption index pending.": {
+    "ro": "PIB și rezerve în dolari SUA; IDU PNUD până în 2023; indicele corupției în așteptare.",
+    "pt": "PIB e reservas em dólares; IDH PNUD até 2023; índice de corrupção pendente."
+  },
   "GDP at current prices (US$ bn)": {
     "ro": "PIB la prețuri curente (mld. USD)",
     "pt": "PIB a preços correntes (US$ bi)"
@@ -210,10 +210,6 @@
   "GDP per person (US$, current)": {
     "ro": "PIB pe locuitor (USD, curent)",
     "pt": "PIB por pessoa (US$, corrente)"
-  },
-  "generated from committed CSVs": {
-    "ro": "generate din fișierele CSV din repository",
-    "pt": "gerados a partir dos CSVs versionados"
   },
   "Gini, 0–100": {
     "ro": "Gini, 0–100",
@@ -239,13 +235,13 @@
     "ro": "Investițiile guvernului (% din PIB)",
     "pt": "Investimento do governo (% do PIB)"
   },
+  "Govt minimum 2023–25 / NBM annual USD/MDL": {
+    "ro": "Salariul minim 2023–25 / cursul mediu anual USD/MDL al BNM",
+    "pt": "Salário mínimo 2023–25 / câmbio médio anual USD/MDL do BNM"
+  },
   "Gross general-government debt (% of GDP)": {
     "ro": "Datoria brută a guvernului general (% din PIB)",
     "pt": "Dívida bruta do governo geral (% do PIB)"
-  },
-  "have not been definition-checked side by side.": {
-    "ro": "nu au fost verificate definiție cu definiție.",
-    "pt": "não foram verificadas definição por definição."
   },
   "HDI, 0–1": {
     "ro": "IDU, 0–1",
@@ -254,6 +250,10 @@
   "Household credit (% of GDP)": {
     "ro": "Creditele gospodăriilor (% din PIB)",
     "pt": "Crédito às famílias (% do PIB)"
+  },
+  "Household inequality and BNS poverty with a 2019 method break; verified legal minimum 2023–25.": {
+    "ro": "Inegalitate și sărăcie BNS cu ruptură metodologică în 2019; salariul minim legal verificat pentru 2023–2025.",
+    "pt": "Desigualdade e pobreza BNS com ruptura metodológica em 2019; salário mínimo legal verificado para 2023–2025."
   },
   "Household lending rate vs policy (%)": {
     "ro": "Rata creditelor gospodăriilor față de rata de politică (%)",
@@ -287,18 +287,6 @@
     "ro": "Inegalitatea veniturilor, Gini (0–100)",
     "pt": "Desigualdade de renda, Gini (0–100)"
   },
-  "index 2006 = 100": {
-    "ro": "indice 2006 = 100",
-    "pt": "índice 2006 = 100"
-  },
-  "index 2006 = 100, in US$": {
-    "ro": "indice 2006 = 100, în USD",
-    "pt": "índice 2006 = 100, em US$"
-  },
-  "index 2006 = 100, up = stronger": {
-    "ro": "indice 2006 = 100, creștere = întărire",
-    "pt": "índice 2006 = 100, maior = mais forte"
-  },
   "Intentional homicides (/100,000)": {
     "ro": "Omucideri intenționate (la 100.000)",
     "pt": "Homicídios intencionais (por 100 mil)"
@@ -315,25 +303,37 @@
     "ro": "Ratele internaționale au ani finali diferiți; lipsurile rămân vizibile",
     "pt": "Séries internacionais terminam em anos distintos; lacunas ficam visíveis"
   },
-  "is not verified; aggregate private credit differs.": {
-    "ro": "nu este verificat; creditele private totale sunt diferite.",
-    "pt": "não foi verificado; crédito privado agregado é diferente."
+  "Italy": {
+    "ro": "Italia",
+    "pt": "Itália"
   },
   "Life expectancy at birth (years)": {
     "ro": "Speranța de viață la naștere (ani)",
     "pt": "Expectativa de vida ao nascer (anos)"
   },
-  "market yield has been staged.": {
-    "ro": "piața secundară în datele pregătite.",
-    "pt": "mercado secundário nos dados preparados."
-  },
   "Minimum wage (US$ monthly)": {
     "ro": "Salariu minim (USD pe lună)",
     "pt": "Salário mínimo (US$ por mês)"
   },
+  "Moldova in the World — GDP, HDI and CPI": {
+    "ro": "Moldova în lume — PIB, IDU și IPC",
+    "pt": "Moldávia no Mundo — PIB, IDH e IPC"
+  },
+  "Moldova in the World — GDP, HDI and Reserves": {
+    "ro": "Moldova în lume — PIB, IDU și rezerve",
+    "pt": "Moldávia no Mundo — PIB, IDH e Reservas"
+  },
+  "Moldova in the World — Output and Reserves": {
+    "ro": "Moldova în lume — PIB și rezerve",
+    "pt": "Moldávia no Mundo — PIB e Reservas"
+  },
   "Moldova — A Smaller Population": {
     "ro": "Moldova — O populație în scădere",
     "pt": "Moldávia — População em Queda"
+  },
+  "Moldova — Credit and Its Definitions": {
+    "ro": "Moldova — Creditul și definițiile sale",
+    "pt": "Moldávia — Crédito e Suas Definições"
   },
   "Moldova — Death Rates and Life Expectancy": {
     "ro": "Moldova — Mortalitate și speranță de viață",
@@ -375,41 +375,17 @@
     "ro": "Moldova — Două ediții fiscale FMI",
     "pt": "Moldávia — Duas Edições Fiscais do FMI"
   },
-  "Moldova in the World — Output and Reserves": {
-    "ro": "Moldova în lume — PIB și rezerve",
-    "pt": "Moldávia no Mundo — PIB e Reservas"
-  },
   "Moldovan leu vs US$ (2006 = 100)": {
     "ro": "Leul moldovenesc față de USD (2006 = 100)",
     "pt": "Leu moldavo frente ao dólar (2006 = 100)"
   },
-  "National Bank of Moldova; World Bank WDI": {
-    "ro": "Banca Națională a Moldovei; Banca Mondială WDI",
-    "pt": "Banco Nacional da Moldávia; Banco Mundial WDI"
+  "NBM 2022–23 year-end reports": {
+    "ro": "Rapoarte BNM la sfârșit de an 2022–2023",
+    "pt": "Relatórios BNM de fim de ano 2022–2023"
   },
-  "National cash budget is not a general-government GDP share": {
-    "ro": "Bugetul național de casă nu este ponderea în PIB a guvernului general",
-    "pt": "Orçamento nacional de caixa não representa % do PIB do governo geral"
-  },
-  "National poverty and WDI poverty thresholds": {
-    "ro": "Pragurile sărăciei naționale și WDI",
-    "pt": "Limiares de pobreza nacionais e do WDI"
-  },
-  "National poverty rate (% of people)": {
-    "ro": "Rata sărăciei naționale (% din persoane)",
-    "pt": "Taxa nacional de pobreza (% da população)"
-  },
-  "national-budget capital spending is not the same.": {
-    "ro": "cheltuielile de capital din bugetul național nu sunt echivalente.",
-    "pt": "as despesas de capital do orçamento nacional não são equivalentes."
-  },
-  "National-budget social protection is in MDL;": {
-    "ro": "Protecția socială din bugetul național este în MDL;",
-    "pt": "Proteção social do orçamento nacional está em MDL;"
-  },
-  "Natural change and modelled net migration (/1,000)": {
-    "ro": "Spor natural și migrație netă modelată (la 1.000)",
-    "pt": "Crescimento natural e migração líquida modelada (por 1.000)"
+  "NBM 2024–25 year-end reports": {
+    "ro": "Rapoarte BNM la sfârșit de an 2024–2025",
+    "pt": "Relatórios BNM de fim de ano 2024–2025"
   },
   "NBM and Ministry of Finance route unresolved": {
     "ro": "Sursele BNM și Ministerului Finanțelor sunt încă nerezolvate",
@@ -431,9 +407,37 @@
     "ro": "Rata BNM a creditelor necesită validarea creditelor noi, a gospodăriilor",
     "pt": "A taxa de empréstimos BNM exige validar créditos novos, a clientela familiar"
   },
+  "NBM prudential bank-wide NPL; NOT household; release seam": {
+    "ro": "BNM: credite neperformante prudențiale ale tuturor băncilor, NU doar gospodării; ediții distincte",
+    "pt": "BNM: inadimplência prudencial de todos os bancos, NÃO apenas famílias; edições distintas"
+  },
   "NBM route pending; see SOURCES.yaml": {
     "ro": "Sursele BNM în așteptare; vedeți SOURCES.yaml",
     "pt": "Fontes BNM pendentes; ver SOURCES.yaml"
+  },
+  "National Bank of Moldova; World Bank WDI": {
+    "ro": "Banca Națională a Moldovei; Banca Mondială WDI",
+    "pt": "Banco Nacional da Moldávia; Banco Mundial WDI"
+  },
+  "National cash budget is not a general-government GDP share": {
+    "ro": "Bugetul național de casă nu este ponderea în PIB a guvernului general",
+    "pt": "Orçamento nacional de caixa não representa % do PIB do governo geral"
+  },
+  "National poverty and WDI poverty thresholds": {
+    "ro": "Pragurile sărăciei naționale și WDI",
+    "pt": "Limiares de pobreza nacionais e do WDI"
+  },
+  "National poverty rate (% of people)": {
+    "ro": "Rata sărăciei naționale (% din persoane)",
+    "pt": "Taxa nacional de pobreza (% da população)"
+  },
+  "National-budget social protection is in MDL;": {
+    "ro": "Protecția socială din bugetul național este în MDL;",
+    "pt": "Proteção social do orçamento nacional está em MDL;"
+  },
+  "Natural change and modelled net migration (/1,000)": {
+    "ro": "Spor natural și migrație netă modelată (la 1.000)",
+    "pt": "Crescimento natural e migração líquida modelada (por 1.000)"
   },
   "Net migration (/1,000)": {
     "ro": "Migrație netă (la 1.000)",
@@ -471,14 +475,6 @@
     "ro": "Sold global și primar (% din PIB)",
     "pt": "Saldo global e primário (% do PIB)"
   },
-  "per 1,000 people": {
-    "ro": "la 1.000 de locuitori",
-    "pt": "por 1.000 habitantes"
-  },
-  "per 100,000": {
-    "ro": "la 100.000 de locuitori",
-    "pt": "por 100 mil habitantes"
-  },
   "Policy base rate and CPI inflation (%)": {
     "ro": "Rata de bază și inflația IPC (%)",
     "pt": "Taxa básica e inflação IPC (%)"
@@ -487,13 +483,21 @@
     "ro": "Populație (indice 2006 = 100)",
     "pt": "População (índice 2006 = 100)"
   },
+  "Private-sector context is not a household loan series": {
+    "ro": "Creditul privat total nu este o serie de împrumuturi doar pentru gospodării",
+    "pt": "Crédito privado agregado não é uma série de empréstimos familiares"
+  },
+  "Private-sector credit is contextual only; household debt, rates and non-performing loans remain unverified.": {
+    "ro": "Creditul privat total este doar context; datoria gospodăriilor, dobânzile și creditele neperformante rămân neverificate.",
+    "pt": "Crédito privado total serve apenas como contexto; dívida familiar, juros e inadimplência seguem sem validação."
+  },
+  "Private-sector credit is contextual; bank-wide prudential NPL is observed in 2022–2025, not household debt.": {
+    "ro": "Creditul privat este contextual; creditele neperformante prudențiale ale tuturor băncilor sunt observate în 2022–2025, nu datoria gospodăriilor.",
+    "pt": "O crédito privado é contextual; a inadimplência prudencial de todos os bancos é observada em 2022–2025, não a dívida familiar."
+  },
   "Real GDP growth (% per year)": {
     "ro": "Creșterea reală a PIB (% pe an)",
     "pt": "Crescimento real do PIB (% ao ano)"
-  },
-  "reported cases are not death certificates.": {
-    "ro": "cazurile raportate nu sunt certificate de deces.",
-    "pt": "casos notificados não são atestados de óbito."
   },
   "Revenue and spending (% of GDP)": {
     "ro": "Venituri și cheltuieli (% din PIB)",
@@ -503,6 +507,10 @@
     "ro": "Decese rutiere (la 100.000)",
     "pt": "Mortes no trânsito (por 100 mil)"
   },
+  "Romania": {
+    "ro": "România",
+    "pt": "Romênia"
+  },
   "Same WDI population denominator; not a registry flow": {
     "ro": "Același numitor de populație WDI; nu sunt fluxuri din registre",
     "pt": "Mesmo denominador populacional WDI; não são fluxos registrados"
@@ -510,10 +518,6 @@
   "Same-territory yearly death counts are needed;": {
     "ro": "Sunt necesare numărări anuale ale deceselor pentru același teritoriu;",
     "pt": "São necessárias contagens anuais de mortes para o mesmo território;"
-  },
-  "score, 0–100": {
-    "ro": "scor, 0–100",
-    "pt": "pontuação, 0–100"
   },
   "Social protection (% of GDP)": {
     "ro": "Protecție socială (% din PIB)",
@@ -527,10 +531,6 @@
     "ro": "Sinucideri (la 100.000)",
     "pt": "Suicídios (por 100 mil)"
   },
-  "the general-government GDP share is not verified.": {
-    "ro": "ponderea corespunzătoare în PIB a guvernului general nu este verificată.",
-    "pt": "a participação correspondente do governo geral no PIB não foi verificada."
-  },
   "Top merchandise-export destinations": {
     "ro": "Principalele destinații ale exporturilor de mărfuri",
     "pt": "Principais destinos das exportações de mercadorias"
@@ -543,9 +543,17 @@
     "ro": "Sold comercial (% din PIB)",
     "pt": "Saldo comercial (% do PIB)"
   },
+  "Transparency International CPI 2025; comparable since 2012": {
+    "ro": "Transparency International IPC 2025; comparabil din 2012",
+    "pt": "Transparency International IPC 2025; comparável desde 2012"
+  },
   "Transparency International annual scores": {
     "ro": "Scorurile anuale Transparency International",
     "pt": "Pontuações anuais da Transparência Internacional"
+  },
+  "Turkey": {
+    "ro": "Turcia",
+    "pt": "Turquia"
   },
   "UN international migrant stock may use": {
     "ro": "Stocul ONU de migranți internaționali poate folosi",
@@ -563,13 +571,13 @@
     "ro": "Migrație netă modelată de ONU",
     "pt": "Migração líquida modelada pela ONU"
   },
+  "UNDP HDR 2025 CSV; through 2023; see edition note": {
+    "ro": "PNUD RDU 2025; până în 2023; vezi nota privind edițiile",
+    "pt": "PNUD RDH 2025; até 2023; veja a nota sobre as edições"
+  },
   "UNDP HDR Moldova time series has not yet": {
     "ro": "Seria IDU Moldova din UNDP HDR încă nu a fost",
     "pt": "A série IDH da Moldávia no UNDP HDR ainda não foi"
-  },
-  "Unemployment (% of labour force)": {
-    "ro": "Șomaj (% din forța de muncă)",
-    "pt": "Desemprego (% da força de trabalho)"
   },
   "US$ bn": {
     "ro": "mld. USD",
@@ -587,6 +595,26 @@
     "ro": "nu a fost pregătită o comparație S&P 500 ajustată în USD.",
     "pt": "foi preparada comparação com o S&P 500 ajustada em USD."
   },
+  "Ukraine": {
+    "ro": "Ucraina",
+    "pt": "Ucrânia"
+  },
+  "Unemployment (% of labour force)": {
+    "ro": "Șomaj (% din forța de muncă)",
+    "pt": "Desemprego (% da força de trabalho)"
+  },
+  "WDI FS.AST.PRVT.GD.ZS: private sector, NOT households": {
+    "ro": "WDI FS.AST.PRVT.GD.ZS: sectorul privat, NU doar gospodării",
+    "pt": "WDI FS.AST.PRVT.GD.ZS: setor privado, NÃO apenas famílias"
+  },
+  "WDI Gini and BNS consumption poverty; 2019 survey break preserved": {
+    "ro": "Gini WDI și sărăcia BNS după consum; ruptura din 2019 rămâne vizibilă",
+    "pt": "Gini WDI e pobreza BNS por consumo; ruptura de 2019 preservada"
+  },
+  "WDI Gini, BNS poverty and 2023–25 statutory minimum wage": {
+    "ro": "Gini WDI, sărăcie BNS și salariul minim legal în 2023–2025",
+    "pt": "Gini WDI, pobreza BNS e salário mínimo legal em 2023–2025"
+  },
   "WDI annual CPI inflation": {
     "ro": "Inflație anuală IPC, WDI",
     "pt": "Inflação anual IPC, WDI"
@@ -594,6 +622,10 @@
   "WDI exports minus imports; all 2006–2025 years": {
     "ro": "Exporturi WDI minus importuri; toți anii 2006–2025",
     "pt": "Exportações WDI menos importações; todos os anos de 2006–2025"
+  },
+  "WDI exports, imports and trade balance; BNS customs-goods partner shares, 2006–2025.": {
+    "ro": "Exporturi, importuri și balanță comercială WDI; ponderile partenerilor BNS pentru mărfuri vamale, 2006–2025.",
+    "pt": "Exportações, importações e saldo comercial WDI; parcelas de parceiros aduaneiros BNS para mercadorias, 2006–2025."
   },
   "WDI harmonised fertility; reference 2.1, ends 2024": {
     "ro": "Fertilitate armonizată WDI; reper 2,1, până în 2024",
@@ -606,6 +638,18 @@
   "WDI mid-year population, NOT BNS census residents": {
     "ro": "Populație WDI la mijlocul anului, NU rezidenți din recensământul BNS",
     "pt": "População WDI no meio do ano, NÃO os residentes do censo BNS"
+  },
+  "WDI national-accounts trade versus separate BNS customs destinations": {
+    "ro": "Comerț WDI în conturile naționale, separat de destinațiile vamale BNS",
+    "pt": "Comércio WDI nas contas nacionais, separado dos destinos aduaneiros BNS"
+  },
+  "WDI nominal measures; UNDP HDR 2025 HDI; corruption index pending": {
+    "ro": "Serii nominale WDI; IDU PNUD HDR 2025; indicele corupției în așteptare",
+    "pt": "Séries nominais WDI; IDH PNUD RDH 2025; índice de corrupção pendente"
+  },
+  "WDI nominal; UNDP HDR 2025 HDI; TI CPI 2025, comparable since 2012": {
+    "ro": "Serii nominale WDI; IDU PNUD HDR 2025; IPC TI 2025, comparabil din 2012",
+    "pt": "Séries nominais WDI; IDH PNUD RDH 2025; IPC TI 2025, comparável desde 2012"
   },
   "WDI survey Gini is available; poverty and minimum pay remain unverified": {
     "ro": "Gini din WDI disponibil; sărăcia și salariul minim rămân neverificate",
@@ -647,6 +691,18 @@
     "ro": "Rate demografice, Banca Mondială WDI; până în 2024",
     "pt": "Taxas populacionais, Banco Mundial WDI; até 2024"
   },
+  "World Bank WDI, ILO-modelled unemployment": {
+    "ro": "Șomaj modelat OIM, Banca Mondială WDI",
+    "pt": "Desemprego modelado pela OIT, Banco Mundial WDI"
+  },
+  "World Bank WDI, NE.EXP.GNFS.ZS and NE.IMP.GNFS.ZS": {
+    "ro": "Banca Mondială WDI, NE.EXP.GNFS.ZS și NE.IMP.GNFS.ZS",
+    "pt": "Banco Mundial WDI, NE.EXP.GNFS.ZS e NE.IMP.GNFS.ZS"
+  },
+  "World Bank WDI, UNODC, WHO": {
+    "ro": "Banca Mondială WDI, UNODC, OMS",
+    "pt": "Banco Mundial WDI, UNODC, OMS"
+  },
   "World Bank WDI, annual CPI": {
     "ro": "IPC anual, Banca Mondială WDI",
     "pt": "IPC anual, Banco Mundial WDI"
@@ -663,25 +719,37 @@
     "ro": "Bunuri ȘI servicii, Banca Mondială WDI",
     "pt": "Bens E serviços, Banco Mundial WDI"
   },
-  "World Bank WDI, ILO-modelled unemployment": {
-    "ro": "Șomaj modelat OIM, Banca Mondială WDI",
-    "pt": "Desemprego modelado pela OIT, Banco Mundial WDI"
-  },
-  "World Bank WDI, NE.EXP.GNFS.ZS and NE.IMP.GNFS.ZS": {
-    "ro": "Banca Mondială WDI, NE.EXP.GNFS.ZS și NE.IMP.GNFS.ZS",
-    "pt": "Banco Mundial WDI, NE.EXP.GNFS.ZS e NE.IMP.GNFS.ZS"
-  },
   "World Bank WDI, real national-accounts growth": {
     "ro": "Creștere reală în conturile naționale, Banca Mondială WDI",
     "pt": "Crescimento real das contas nacionais, Banco Mundial WDI"
   },
-  "World Bank WDI, UNODC, WHO": {
-    "ro": "Banca Mondială WDI, UNODC, OMS",
-    "pt": "Banco Mundial WDI, UNODC, OMS"
+  "World Bank WDI; BNS EXT010200 merchandise exports": {
+    "ro": "Banca Mondială WDI; mărfuri exportate BNS EXT010200",
+    "pt": "Banco Mundial WDI; exportações de mercadorias BNS EXT010200"
   },
   "World Bank WDI; BNS and legal-wage sources pending": {
     "ro": "Banca Mondială WDI; sursele BNS și salariul legal sunt în așteptare",
     "pt": "Banco Mundial WDI; fontes BNS e de salário legal pendentes"
+  },
+  "World Bank WDI; BNS poverty; Moldova Government wage; NBM FX": {
+    "ro": "Banca Mondială WDI; sărăcie BNS; salariul Guvernului; cursul BNM",
+    "pt": "Banco Mundial WDI; pobreza BNS; salário legal do governo; câmbio BNM"
+  },
+  "World Bank WDI; NBM household loan definitions pending": {
+    "ro": "Banca Mondială WDI; definițiile BNM ale creditului gospodăriilor sunt în așteptare",
+    "pt": "Banco Mundial WDI; definições BNM de crédito familiar pendentes"
+  },
+  "World Bank WDI; UNDP HDR 2025; TI CPI 2025": {
+    "ro": "Banca Mondială WDI; PNUD RDU 2025; IPC TI 2025",
+    "pt": "Banco Mundial WDI; PNUD RDH 2025; IPC TI 2025"
+  },
+  "World Bank WDI; UNDP HDR 2025; TI CPI pending": {
+    "ro": "Banca Mondială WDI; PNUD RDU 2025; IPC TI în așteptare",
+    "pt": "Banco Mundial WDI; PNUD RDH 2025; IPC TI pendente"
+  },
+  "World Bank WDI; UNDP and Transparency International pending": {
+    "ro": "Banca Mondială WDI; sursele UNDP și Transparency International în așteptare",
+    "pt": "Banco Mundial WDI; fontes UNDP e Transparência Internacional pendentes"
   },
   "World Bank WDI; ends 2024, no fabricated 2025": {
     "ro": "Banca Mondială WDI; până în 2024, fără 2025 inventat",
@@ -703,144 +771,96 @@
     "ro": "Banca Mondială WDI; note de sursă în SOURCES.yaml",
     "pt": "Banco Mundial WDI; notas de fonte em SOURCES.yaml"
   },
-  "World Bank WDI; UNDP and Transparency International pending": {
-    "ro": "Banca Mondială WDI; sursele UNDP și Transparency International în așteptare",
-    "pt": "Banco Mundial WDI; fontes UNDP e Transparência Internacional pendentes"
-  },
   "World Bank's comparable macroeconomic measures": {
     "ro": "Indicatori macroeconomici comparabili ai Băncii Mondiale",
     "pt": "Indicadores macroeconômicos comparáveis do Banco Mundial"
   },
-  "BNS survey, 2014–2018": {
-    "ro": "Ancheta BNS, 2014–2018",
-    "pt": "Pesquisa BNS, 2014–2018"
+  "a crude rate cannot be treated as a death count.": {
+    "ro": "o rată brută nu poate fi considerată număr de decese.",
+    "pt": "uma taxa bruta não pode ser tratada como contagem de mortes."
   },
-  "BNS revised survey, 2019–2025": {
-    "ro": "Ancheta BNS revizuită, 2019–2025",
-    "pt": "Pesquisa BNS revisada, 2019–2025"
+  "and break history are not staged.": {
+    "ro": "și istoricul schimbărilor metodologice.",
+    "pt": "e histórico de mudanças metodológicas."
   },
-  "BNS consumption poverty; methodology break in 2019": {
-    "ro": "BNS: sărăcie după consum; ruptură metodologică în 2019",
-    "pt": "BNS: pobreza por consumo; ruptura metodológica em 2019"
+  "and currency perimeter validation.": {
+    "ro": "și a monedei de denominare.",
+    "pt": "e o perímetro por moeda."
   },
-  "WDI Gini and BNS consumption poverty; 2019 survey break preserved": {
-    "ro": "Gini WDI și sărăcia BNS după consum; ruptura din 2019 rămâne vizibilă",
-    "pt": "Gini WDI e pobreza BNS por consumo; ruptura de 2019 preservada"
+  "and their method seam have not been verified.": {
+    "ro": "și schimbările de metodologie nu au fost verificate.",
+    "pt": "e suas mudanças metodológicas ainda não foram verificadas."
   },
-  "Domestic credit to private sector (% of GDP)": {
-    "ro": "Creditul intern către sectorul privat (% din PIB)",
-    "pt": "Crédito interno ao setor privado (% do PIB)"
+  "been fetched with a pinned report vintage.": {
+    "ro": "preluată într-o ediție de raport fixată.",
+    "pt": "obtida de uma edição de relatório identificada."
   },
-  "WDI FS.AST.PRVT.GD.ZS: private sector, NOT households": {
-    "ro": "WDI FS.AST.PRVT.GD.ZS: sectorul privat, NU doar gospodării",
-    "pt": "WDI FS.AST.PRVT.GD.ZS: setor privado, NÃO apenas famílias"
+  "children per woman": {
+    "ro": "copii per femeie",
+    "pt": "filhos por mulher"
   },
-  "Moldova — Credit and Its Definitions": {
-    "ro": "Moldova — Creditul și definițiile sale",
-    "pt": "Moldávia — Crédito e Suas Definições"
+  "citizenship where birthplace is unavailable.": {
+    "ro": "cetățenia când locul nașterii lipsește.",
+    "pt": "cidadania quando o local de nascimento não está disponível."
   },
-  "Private-sector context is not a household loan series": {
-    "ro": "Creditul privat total nu este o serie de împrumuturi doar pentru gospodării",
-    "pt": "Crédito privado agregado não é uma série de empréstimos familiares"
+  "data pending — run fetchers / add CSV": {
+    "ro": "date în așteptare — rulați colectoarele / adăugați CSV",
+    "pt": "dados pendentes — executar coletores / adicionar CSV"
   },
-  "World Bank WDI; NBM household loan definitions pending": {
-    "ro": "Banca Mondială WDI; definițiile BNM ale creditului gospodăriilor sunt în așteptare",
-    "pt": "Banco Mundial WDI; definições BNM de crédito familiar pendentes"
+  "emigration registration series is staged.": {
+    "ro": "emigrare din registre.",
+    "pt": "emigração registrada."
   },
-  "Private-sector credit is contextual only; household debt, rates and non-performing loans remain unverified.": {
-    "ro": "Creditul privat total este doar context; datoria gospodăriilor, dobânzile și creditele neperformante rămân neverificate.",
-    "pt": "Crédito privado total serve apenas como contexto; dívida familiar, juros e inadimplência seguem sem validação."
+  "generated from committed CSVs": {
+    "ro": "generate din fișierele CSV din repository",
+    "pt": "gerados a partir dos CSVs versionados"
   },
-  "UNDP HDR 2025 CSV; through 2023; see edition note": {
-    "ro": "PNUD RDU 2025; până în 2023; vezi nota privind edițiile",
-    "pt": "PNUD RDH 2025; até 2023; veja a nota sobre as edições"
+  "have not been definition-checked side by side.": {
+    "ro": "nu au fost verificate definiție cu definiție.",
+    "pt": "não foram verificadas definição por definição."
   },
-  "Moldova in the World — GDP, HDI and Reserves": {
-    "ro": "Moldova în lume — PIB, IDU și rezerve",
-    "pt": "Moldávia no Mundo — PIB, IDH e Reservas"
+  "index 2006 = 100": {
+    "ro": "indice 2006 = 100",
+    "pt": "índice 2006 = 100"
   },
-  "WDI nominal measures; UNDP HDR 2025 HDI; corruption index pending": {
-    "ro": "Serii nominale WDI; IDU PNUD HDR 2025; indicele corupției în așteptare",
-    "pt": "Séries nominais WDI; IDH PNUD RDH 2025; índice de corrupção pendente"
+  "index 2006 = 100, in US$": {
+    "ro": "indice 2006 = 100, în USD",
+    "pt": "índice 2006 = 100, em US$"
   },
-  "World Bank WDI; UNDP HDR 2025; TI CPI pending": {
-    "ro": "Banca Mondială WDI; PNUD RDU 2025; IPC TI în așteptare",
-    "pt": "Banco Mundial WDI; PNUD RDH 2025; IPC TI pendente"
+  "index 2006 = 100, up = stronger": {
+    "ro": "indice 2006 = 100, creștere = întărire",
+    "pt": "índice 2006 = 100, maior = mais forte"
   },
-  "GDP and reserves in US dollars; UNDP HDI through 2023; corruption index pending.": {
-    "ro": "PIB și rezerve în dolari SUA; IDU PNUD până în 2023; indicele corupției în așteptare.",
-    "pt": "PIB e reservas em dólares; IDH PNUD até 2023; índice de corrupção pendente."
+  "is not verified; aggregate private credit differs.": {
+    "ro": "nu este verificat; creditele private totale sunt diferite.",
+    "pt": "não foi verificado; crédito privado agregado é diferente."
   },
-  "Moldova in the World — GDP, HDI and CPI": {
-    "ro": "Moldova în lume — PIB, IDU și IPC",
-    "pt": "Moldávia no Mundo — PIB, IDH e IPC"
+  "market yield has been staged.": {
+    "ro": "piața secundară în datele pregătite.",
+    "pt": "mercado secundário nos dados preparados."
   },
-  "WDI nominal; UNDP HDR 2025 HDI; TI CPI 2025, comparable since 2012": {
-    "ro": "Serii nominale WDI; IDU PNUD HDR 2025; IPC TI 2025, comparabil din 2012",
-    "pt": "Séries nominais WDI; IDH PNUD RDH 2025; IPC TI 2025, comparável desde 2012"
+  "national-budget capital spending is not the same.": {
+    "ro": "cheltuielile de capital din bugetul național nu sunt echivalente.",
+    "pt": "as despesas de capital do orçamento nacional não são equivalentes."
   },
-  "World Bank WDI; UNDP HDR 2025; TI CPI 2025": {
-    "ro": "Banca Mondială WDI; PNUD RDU 2025; IPC TI 2025",
-    "pt": "Banco Mundial WDI; PNUD RDH 2025; IPC TI 2025"
+  "per 1,000 people": {
+    "ro": "la 1.000 de locuitori",
+    "pt": "por 1.000 habitantes"
   },
-  "GDP and reserves in US dollars; HDI through 2023; comparable CPI scores for 2012–2025.": {
-    "ro": "PIB și rezerve în dolari SUA; IDU până în 2023; scoruri IPC comparabile din 2012 până în 2025.",
-    "pt": "PIB e reservas em dólares; IDH até 2023; notas IPC comparáveis de 2012 a 2025."
+  "per 100,000": {
+    "ro": "la 100.000 de locuitori",
+    "pt": "por 100 mil habitantes"
   },
-  "Transparency International CPI 2025; comparable since 2012": {
-    "ro": "Transparency International IPC 2025; comparabil din 2012",
-    "pt": "Transparency International IPC 2025; comparável desde 2012"
+  "reported cases are not death certificates.": {
+    "ro": "cazurile raportate nu sunt certificate de deces.",
+    "pt": "casos notificados não são atestados de óbito."
   },
-  "Romania": {
-    "ro": "România",
-    "pt": "Romênia"
+  "score, 0–100": {
+    "ro": "scor, 0–100",
+    "pt": "pontuação, 0–100"
   },
-  "Turkey": {
-    "ro": "Turcia",
-    "pt": "Turquia"
-  },
-  "Italy": {
-    "ro": "Italia",
-    "pt": "Itália"
-  },
-  "Czechia": {
-    "ro": "Cehia",
-    "pt": "Tchéquia"
-  },
-  "Ukraine": {
-    "ro": "Ucraina",
-    "pt": "Ucrânia"
-  },
-  "BNS EXT010200 customs GOODS; Ukraine group moved in 2024": {
-    "ro": "BNS EXT010200, mărfuri vamale; Ucraina schimbă grupa în 2024",
-    "pt": "BNS EXT010200, mercadorias aduaneiras; Ucrânia muda de grupo em 2024"
-  },
-  "WDI national-accounts trade versus separate BNS customs destinations": {
-    "ro": "Comerț WDI în conturile naționale, separat de destinațiile vamale BNS",
-    "pt": "Comércio WDI nas contas nacionais, separado dos destinos aduaneiros BNS"
-  },
-  "World Bank WDI; BNS EXT010200 merchandise exports": {
-    "ro": "Banca Mondială WDI; mărfuri exportate BNS EXT010200",
-    "pt": "Banco Mundial WDI; exportações de mercadorias BNS EXT010200"
-  },
-  "WDI exports, imports and trade balance; BNS customs-goods partner shares, 2006–2025.": {
-    "ro": "Exporturi, importuri și balanță comercială WDI; ponderile partenerilor BNS pentru mărfuri vamale, 2006–2025.",
-    "pt": "Exportações, importações e saldo comercial WDI; parcelas de parceiros aduaneiros BNS para mercadorias, 2006–2025."
-  },
-  "Govt minimum 2023–25 / NBM annual USD/MDL": {
-    "ro": "Salariul minim 2023–25 / cursul mediu anual USD/MDL al BNM",
-    "pt": "Salário mínimo 2023–25 / câmbio médio anual USD/MDL do BNM"
-  },
-  "WDI Gini, BNS poverty and 2023–25 statutory minimum wage": {
-    "ro": "Gini WDI, sărăcie BNS și salariul minim legal în 2023–2025",
-    "pt": "Gini WDI, pobreza BNS e salário mínimo legal em 2023–2025"
-  },
-  "World Bank WDI; BNS poverty; Moldova Government wage; NBM FX": {
-    "ro": "Banca Mondială WDI; sărăcie BNS; salariul Guvernului; cursul BNM",
-    "pt": "Banco Mundial WDI; pobreza BNS; salário legal do governo; câmbio BNM"
-  },
-  "Household inequality and BNS poverty with a 2019 method break; verified legal minimum 2023–25.": {
-    "ro": "Inegalitate și sărăcie BNS cu ruptură metodologică în 2019; salariul minim legal verificat pentru 2023–2025.",
-    "pt": "Desigualdade e pobreza BNS com ruptura metodológica em 2019; salário mínimo legal verificado para 2023–2025."
+  "the general-government GDP share is not verified.": {
+    "ro": "ponderea corespunzătoare în PIB a guvernului general nu este verificată.",
+    "pt": "a participação correspondente do governo geral no PIB não foi verificada."
   }
 }

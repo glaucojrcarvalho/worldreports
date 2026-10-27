@@ -190,9 +190,19 @@ def plate_credit(ctx, ig):
     ax = ig.slot("credit.lending_rate", "Household lending rate vs policy (%)")
     _pending(ctx, ig, ax, "NBM lending rate needs new-loan, household\n"
              "and currency perimeter validation.")
-    ax = ig.slot("credit.npl", "Non-performing loans (% of loans)")
-    _pending(ctx, ig, ax, "A consistent NBM NPL numerator, denominator\n"
-             "and break history are not staged.")
+    ax = ig.slot("credit.npl", "Bank-wide prudential non-performing loans (%)")
+    # Prudential NPL means ALL bank loans, not a household-only ratio.
+    # The published 2024 drop of 1.4pp differs from the separately
+    # rounded 2023 5.6% minus 2024 4.1% (=1.5pp). No inferred cause.
+    # Keep the two source-edition segments disconnected.
+    ctx.line(ax, *_series(ctx, "credit/prudential_npl.csv",
+                          "release_2022_2023_pct"), ctx.p.RED,
+             label="NBM 2022–23 year-end reports")
+    ctx.line(ax, *_series(ctx, "credit/prudential_npl.csv",
+                          "release_2024_2025_pct"), ctx.p.BLUE,
+             label="NBM 2024–25 year-end reports")
+    ax.legend(fontsize=7.2, frameon=False)
+    _foot(ctx, ax, "NBM prudential bank-wide NPL; NOT household; release seam")
     # A separate contextual lens, NEVER a household-credit proxy.
     # FS.AST.PRVT.GD.ZS covers private corporations as well as households.
     ax = ig.slot("credit.lens", "Domestic credit to private sector (% of GDP)")
@@ -375,7 +385,7 @@ PLATES = (
          title="Moldova — Credit and Its Definitions",
          subtitle="Private-sector context is not a household loan series",
          source="World Bank WDI; NBM household loan definitions pending",
-         alt="Private-sector credit is contextual only; household debt, rates and non-performing loans remain unverified."),
+         alt="Private-sector credit is contextual; bank-wide prudential NPL is observed in 2022–2025, not household debt."),
     dict(id="07", slug="people", topic="people", builder=plate_people,
          title="Moldova — Household Inequality",
          subtitle="WDI Gini, BNS poverty and 2023–25 statutory minimum wage",

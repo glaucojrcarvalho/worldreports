@@ -1,0 +1,30 @@
+# NBM original 31 December BANK-WIDE prudential non-performing loans, percent of ALL bank loans.
+# 2022 https://bnm.md/en/content/financial-situation-banking-sector-year-2022
+# 2023 https://bnm.md/ru/node/66762
+# 2024 https://bnm.md/en/content/financial-situation-banking-sector-2024
+# 2025 https://bnm.md/ro/node/69800
+# 2022-24 NPL = substandard, doubtful and compromised / prudential bank loans.
+# NOT household-only, NOT IFRS-impaired/overdue loans; these are year-end levels, not annual means.
+# Publisher's 2024 claimed fall 1.4 pp vs separate rounded 5.6 - 4.1 = 1.5 pp.
+# No conjectured cause: do not join publisher-release segments or invent missing years.
+year,release_2022_2023_pct,release_2024_2025_pct
+2006,,
+2007,,
+2008,,
+2009,,
+2010,,
+2011,,
+2012,,
+2013,,
+2014,,
+2015,,
+2016,,
+2017,,
+2018,,
+2019,,
+2020,,
+2021,,
+2022,6.4,
+2023,5.6,
+2024,,4.1
+2025,,4.1
