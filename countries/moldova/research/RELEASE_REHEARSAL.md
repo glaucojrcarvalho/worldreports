@@ -39,3 +39,8 @@ published upstream and root candidate identity are untouched.
 including strict SVG translation and whole-site Python/JS tests, and
 review the changed source footers at native/full zoom. Keep research
 branch unregistered and never merge, deploy or modify upstream.
+
+
+## Moldova mortality lens displays years (2026-10-27)
+
+The separately tested fork-only correction at [4a29880](https://github.com/glaucojrcarvalho/worldreports/commit/4a298800434eaf2e7ee0faedb3b24bd021112b97) changes only the optional `mortality.lens` axis unit: life expectancy is expressed in **years** (Romanian **ani**, English **years**, Portuguese **anos**), not per 100,000 people. The three canonical mortality axes retain their shared units. No numerical CSV, national definition or peer-country code has changed. This registered rehearsal includes the exact patched plate/i18n bytes and a branch-adjusted regression verifying root `country.yaml` is byte-identical to the candidate rather than absent. The full isolated release rehearsal must pass before the source research revision is considered ready, and neither branch is deployed or merged.

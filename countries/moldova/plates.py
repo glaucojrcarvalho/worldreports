@@ -384,7 +384,12 @@ def plate_mortality(ctx, ig):
     ax = ig.slot("mortality.covid", "COVID deaths, underlying cause (/100,000)")
     _pending(ctx, ig, ax, "Cause-of-death COVID series is not staged;\n"
              "reported cases are not death certificates.")
-    ax = ig.slot("mortality.lens", "Life expectancy at birth (years)")
+    # The shared mortality lens defaults to "per 100,000" for other
+    # countries. Here the lens measures period life expectancy in YEARS.
+    # Override only this optional lens; preserve shared canonical units.
+    ax = ig.slot("mortality.lens", "Life expectancy at birth (years)",
+                 unit=False)
+    ax.set_ylabel("years", fontsize=8.6, color=p.muted)
     ctx.line(ax, *_series(ctx, "mortality/mortality.csv",
                          "life_expectancy"), p.TEAL)
     _foot(ctx, ax, "WDI period life table; not observed cohort lifespan")
