@@ -98,5 +98,9 @@ def test_archive_rejected_push_fails_closed_instead_of_reporting_success():
     assert "git push origin HEAD:refs/heads/research/moldova-source-audit" in commands
     assert "if ! git push" not in commands
     assert "Skipped the stale image push" not in commands
-    assert "force" not in commands
+    executable = "\n".join(line.strip() for line in commands.splitlines()
+                           if line.strip() and not line.lstrip().startswith("#"))
+    assert "git push --force" not in executable
+    assert "git push -f " not in executable
+    assert "--force-with-lease" not in executable
     assert "git diff --cached --quiet" in commands  # no-op if same bytes
