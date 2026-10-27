@@ -10,7 +10,7 @@ from xml.etree import ElementTree as ET
 
 import pytest
 
-OUTPUT = Path("/tmp/moldova-mortality-unit")
+OUTPUT = Path("/tmp/moldova-mortality-unit/moldova")
 EXPECTED = {
     "en": ("11-mortality.svg", "years", "Life expectancy at birth (years)"),
     "ro": ("11-mortality.ro.svg", "ani", "Speranța de viață la naștere (ani)"),
