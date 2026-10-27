@@ -587,3 +587,29 @@ For reproducibility, `fetch/fetch_bns_census_foreign_born.py` validates the orig
 
 
 The [BNS source audit](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40463501640) completed successfully on 2026-10-27, passing **8 offline parser/definition tests** and retrieving the original 2025 census-article HTML. The downloaded original bytes are recorded as SHA256 `e9da05a2fab871578d1e6a62db93fc45480966ab20cbde889b7a7307ceae488b`; the sidecar contains the exact 2006–2025 blank grid with only 2024=4.4%. This digest identifies the **audited original response**, not a promise that the publisher's dynamically served HTML will remain byte-identical in future; future changes are fail-closed on the verified census values and dates.
+
+
+## BNS AFM/LFS national unemployment — two disjoint source regimes (2026-10-27)
+
+The national annual unemployment values were directly retrieved from the
+official BNS PxWeb \`MUN160100_2025\` JSON-stat2 response, with **Sexe=0
+(Both sexes), Medii=0 (Whole country), Trimestre=0 (Annual average)**.
+The [real source audit](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40469496895)
+passed, including the external 2025 official 3.8% anchor. Observations:
+2019 **5.1%**, 2020 **3.8%**, 2021 **3.2%**, 2022 **3.1%**, 2023
+**4.6%**, 2024 **4.0%**, 2025 **3.8%**. Publisher bytes:
+metadata SHA256 \`e32d58d6278434a20a4c316d22c420c0f0b7cd342e2c80cb0c9dc706fcb849e0\`,
+data SHA256 \`406001baf473d0bb0a890ad5951fd4b058cb9941a808c38fd64fd5894c29f750\`.
+
+The **2019–2024 national AFM/EMDOS2 observations** are shown as one line,
+and **2025 EMDOS3/2024-census-weighted observation** as a separate diamond:
+BNS directly warns its 2025 method and sample are not fully comparable
+with previous years. The WDI/ILO modelled unemployment remains its own
+harmonised series, not spliced into BNS levels. The published BNS
+2000–2018 and 2014–2018 discontinued LFS series remain out of the
+new national CSV. The two producer definitions, geographic scope (BNS
+excludes left-bank Nistru/Bender), 2026 survey redesign and source
+vintage are explained across chart, languages, manifest and UI notes.
+
+This is not a change to IMF WEO/FPP, BNS budget accounting, UN migration,
+or the production atlas registry.

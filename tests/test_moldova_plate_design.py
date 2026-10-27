@@ -264,3 +264,34 @@ def test_bns_foreign_born_is_exactly_one_census_snapshot_not_un_stock() -> None:
         assert len(ui[language]["unavailable"]) == 7
         assert any("2024" in note and ("4.4%" in note or "4,4%" in note)
                    for note in ui[language]["notes"])
+
+
+def test_bns_emdos_2025_source_break_is_not_drawn_as_continuous_line():
+    rows = _rows("macro/national_lfs.csv")
+    assert [r["year"] for r in rows] == list(range(2006, 2026))
+    former = {r["year"]: r["bns_lfs_2019_2024_pct"]
+              for r in rows if r["bns_lfs_2019_2024_pct"] is not None}
+    latest = {r["year"]: r["bns_lfs_2025_pct"]
+              for r in rows if r["bns_lfs_2025_pct"] is not None}
+    assert former == {2019:5.1,2020:3.8,2021:3.2,2022:3.1,2023:4.6,2024:4.0}
+    assert latest == {2025:3.8}
+    assert set(former).isdisjoint(latest)
+    text = (ROOT / "plates.py").read_text("utf-8")
+    economy = text.split("def plate_economy(", 1)[1].split("def plate_fiscal(", 1)[0]
+    assert '"macro/economy.csv", "unemployment_pct"' in economy
+    assert '"macro/national_lfs.csv"' in economy
+    assert '"bns_lfs_2019_2024_pct"' in economy
+    assert '"bns_lfs_2025_pct"' in economy
+    assert 'ax.scatter(cy, cv' in economy and 'marker="D"' in economy
+    import json
+    labels = json.loads((ROOT / "i18n.json").read_text("utf-8"))
+    for label in ("WDI ILO-modelled unemployment", "BNS LFS 2019–2024",
+                  "BNS LFS 2025 (method break)",
+                  "BNS LFS 2025 break; WDI modelled line remains separate"):
+        assert set(labels[label]) == {"ro","pt"}
+    import yaml
+    metadata = yaml.safe_load((ROOT / "SOURCES.yaml").read_text("utf-8"))
+    national = metadata["macro"]["national_lfs.csv"]
+    assert national["official"] is True
+    assert "EMDOS3" in national["notes"]
+    assert "2025=3.8" in national["notes"]

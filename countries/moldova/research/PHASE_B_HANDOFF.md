@@ -691,3 +691,27 @@ Only after the live audit is green consider a separate official national
 series, never connected through the 2025 break or spliced to old LFS
 or WDI ILO-modelled rates. Also check the newest full atlas QA and visual
 artifact archives; no upstream modification, merge, PR or deployment.
+
+
+## National unemployment source successfully adopted as separate BNS line — 2026-10-27
+
+The exact national annual BNS LFS source query PASSED independently:
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40469496895 .
+Seven verified 2019–2025 official observations, original metadata and
+JSON-stat data SHA256 and the 2025 3.8% external BNS anchor were
+collected without inference. Curated \`data/macro/national_lfs.csv\`
+now provides 2019–24 only in an EMDOS2 segment and an isolated 2025
+EMDOS3/2024-census-reweighted diamond in \`economy.unemployment\`.
+The WDI modelled rate remains intact as the international comparison.
+Romanian, English and Portuguese legends, chapter summaries and
+site notes now explain the breaks. Source inventory, case-specific
+tests and visual review \`01-economy\` provenance are updated.
+
+**Next gate:** full branch CI including original source regression, strict
+RO/EN/PT rendered SVG translation, 36 plates/thumbs, source provenance
+for BNS annual unemployment, fiscal spending and 2024 foreign-born
+census, layout and Python/Node regressions. Visually audit the economy
+panel's three-series legend and 2025 disconnected dot. Have the
+research bot archive EXACT validated images without any new rerender
+or production registration. Moldova country.yaml remains unregistered.
+Never merge, deploy, PR or change the upstream repository.
