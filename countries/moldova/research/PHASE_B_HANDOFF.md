@@ -1130,3 +1130,32 @@ year coverage and publisher weighting; source compatible actual
 government S13/P51 annual outturns across years. Only after
 independent validation should these pending slots be promoted
 as observed country data with new full CI and registered rehearsal.
+
+## Critical ERP year-column alignment correction — 2026-10-27
+
+The *official Ministry of Finance PDF* was re-opened at
+https://mf.gov.md/sites/default/files/ERP%202026-2028%20ENG.pdf,
+printed page **82**, PDF index **81**, with a visual screenshot and
+original lines 3707–3717 and 3721–3759 inspected. The early
+research-only source candidate had **incorrectly shifted nominal S13
+P51 values one year forward**, erroneously assigning 2025=5.20 and
+2026=8.10 billion MDL. The official source has independent tables:
+
+* Table 2a (% GDP), for 2024–2028: **1.0, 1.0, 1.4, 2.0, 1.8**.
+* Table 2b (billions MDL), for 2024–2028:
+  **3.20, 3.40, 5.20, 8.10, 8.00**.
+* Table 1e (billions MDL GDP), same years:
+  **323.8, 351.5, 377.6, 406.9, 440.0**.
+
+The focus QA branch now stores all FIVE correctly aligned years and
+tests the original pair of tables and same-year nominal GDP share.
+2024 is the historical programme baseline, 2025 remains a programme
+estimate, and 2026–2028 are forecast values. None should be treated
+as audited 2025–28 actuals. This error was **never used in the rendered
+Moldova plates**: spending.public_investment remains explicitly
+pending. The original research branch's source-candidate files must
+be corrected by copying the validated focus QA files, after its
+current full suite and archive finish. Until then the source
+candidate is known incorrect, **not publication-ready**. Do not cite
+earlier shifted research figures and never infer government GFCF from
+WDI economy-wide GDP or cash nonfinancial asset purchases.

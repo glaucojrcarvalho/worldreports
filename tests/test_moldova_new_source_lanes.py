@@ -16,7 +16,11 @@ def test_two_official_routes_keep_both_canonical_slots_pending():
     assert r["household_new_loans"]["annual_rate_rows_verified"]==0
     assert r["public_investment"]["historical_baseline"]==[2024]
     assert r["public_investment"]["program_estimate"]==[2025]
-    assert r["public_investment"]["forecast"]==[2026]
+    assert r["public_investment"]["forecast"]==[2026,2027,2028]
+    assert [row["amount_bn_mdl"] for row in investment] == [
+        "3.20","3.40","5.20","8.10","8.00"]
+    assert [row["share_pct_gdp"] for row in investment] == [
+        "1.0","1.0","1.4","2.0","1.8"]
     assert r["canonical_data_rows_changed"]==0
     registered = ROOT/"country.yaml"
     if registered.exists():
@@ -58,3 +62,22 @@ def test_missing_snapshot_or_source_release_rejected():
         verify(mortgage[:1],investment)
     with pytest.raises(AssertionError):
         verify(mortgage,investment[:1])
+
+def test_misaligned_2025_or_2026_amount_rejected():
+    mortgage,investment=evidence()
+    investment[1]["amount_bn_mdl"]="5.20"
+    with pytest.raises(AssertionError,match="ERP value"):
+        verify(mortgage,investment)
+    mortgage,investment=evidence()
+    investment[2]["amount_bn_mdl"]="8.10"
+    with pytest.raises(AssertionError,match="ERP value"):
+        verify(mortgage,investment)
+
+def test_program_nominal_amount_and_gdp_percentages_reconcile_year_by_year():
+    from countries.moldova.research.audit_new_source_lanes import ERP_NOMINAL_GDP
+    _,investment=evidence()
+    for row in investment:
+        year=int(row["year"])
+        computed=100*float(row["amount_bn_mdl"])/ERP_NOMINAL_GDP[year]
+        assert abs(computed-float(row["share_pct_gdp"])) < 0.06
+    assert len(ERP_NOMINAL_GDP)==5
