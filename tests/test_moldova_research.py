@@ -52,7 +52,7 @@ def test_manifest_covers_exact_staged_publisher_files() -> None:
         "fiscal/weo_bal_debt.csv", "fiscal/fpp_finances.csv",
         "markets/policy.csv", "markets/usd_mdl.csv",
         "people/absolute_poverty.csv", "people/minimum_wage.csv", "world/hdi.csv", "world/cpi.csv",
-        "trade/destinations.csv",
+        "trade/destinations.csv", "credit/prudential_npl.csv",
     }
     assert declared == files == expected
     assert manifest["meta"]["status"] == "research_only_not_an_atlas_edition"
