@@ -139,6 +139,10 @@
     "ro": "Funcții de casă BNS / PIB BNS; 2025 provizoriu",
     "pt": "Funções de caixa BNS / PIB BNS; 2025 provisório"
   },
+  "BNS national cash functions; BNS nominal GDP; World Bank WDI": {
+    "ro": "Funcții bugetare de casă BNS; PIB nominal BNS; Banca Mondială WDI",
+    "pt": "Funções orçamentárias de caixa BNS; PIB nominal BNS; Banco Mundial WDI"
+  },
   "BNS national functional cash spending / same-scope GDP": {
     "ro": "Cheltuieli funcționale de casă BNS / PIB cu același teritoriu",
     "pt": "Despesas funcionais de caixa BNS / PIB do mesmo território"
@@ -827,6 +831,10 @@
     "ro": "Populație WDI la mijlocul anului, NU rezidenți din recensământul BNS",
     "pt": "População WDI no meio do ano, NÃO os residentes do censo BNS"
   },
+  "WDI modelled unemployment; BNS 2019–24 and 2025 separate": {
+    "ro": "Șomaj WDI modelat; ancheta BNS 2019–24 separată de 2025",
+    "pt": "Desemprego modelado WDI; pesquisa BNS 2019–24 separada de 2025"
+  },
   "WDI national-accounts trade versus separate BNS customs destinations": {
     "ro": "Comerț WDI în conturile naționale, separat de destinațiile vamale BNS",
     "pt": "Comércio WDI nas contas nacionais, separado dos destinos aduaneiros BNS"
@@ -923,6 +931,10 @@
     "ro": "Banca Mondială WDI; mărfuri exportate BNS EXT010200",
     "pt": "Banco Mundial WDI; exportações de mercadorias BNS EXT010200"
   },
+  "World Bank WDI; BNS MUN160100_2025 national LFS": {
+    "ro": "Banca Mondială WDI; ancheta națională BNS MUN160100_2025",
+    "pt": "Banco Mundial WDI; pesquisa nacional BNS MUN160100_2025"
+  },
   "World Bank WDI; BNS poverty; Moldova Government wage; NBM FX": {
     "ro": "Banca Mondială WDI; sărăcie BNS; salariul Guvernului; cursul BNM",
     "pt": "Banco Mundial WDI; pobreza BNS; salário legal do governo; câmbio BNM"
@@ -938,6 +950,10 @@
   "World Bank WDI; national vital data pending": {
     "ro": "Banca Mondială WDI; statistici vitale naționale în așteptare",
     "pt": "Banco Mundial WDI; estatísticas vitais nacionais pendentes"
+  },
+  "World Bank WDI; NBM bank-wide prudential NPL": {
+    "ro": "Banca Mondială WDI; credite neperformante prudențiale pentru toate băncile, BNM",
+    "pt": "Banco Mundial WDI; crédito inadimplente prudencial de todos os bancos, BNM"
   },
   "World Bank WDI; NBM household loan definitions pending": {
     "ro": "Banca Mondială WDI; definițiile BNM ale creditului gospodăriilor sunt în așteptare",
