@@ -119,12 +119,48 @@ def test_market_rate_is_inverted_and_policy_mean_is_not_year_end():
     assert '"policy_mean_pct"' in src
 
 
-def test_bns_cash_budget_is_not_used_in_fpp_gdp_spine():
+def test_bns_functional_cash_budget_is_distinct_from_fpp_fiscal_spine():
     src = (ROOT / "plates.py").read_text(encoding="utf-8")
-    # Only an explicit pending explanation may mention the cash budget.
-    assert '_series(ctx, "fiscal/public_budget.csv"' not in src
-    assert 'ig.slot("spending.by_function"' in src
-    assert 'ctx.pending(ax)' in src
+    fiscal = src.split("def plate_fiscal(", 1)[1].split("def plate_spending(", 1)[0]
+    spending = src.split("def plate_spending(", 1)[1].split("def plate_trade(", 1)[0]
+    # The national cash budget is now used ONLY for the spending classification,
+    # paired with same-territory BNS nominal-MDL GDP, never IMF fiscal panels.
+    assert 'fiscal/public_budget.csv' not in fiscal
+    assert 'fiscal/nominal_gdp_bns.csv' not in fiscal
+    assert '_series(ctx, "fiscal/public_budget.csv"' in spending
+    assert '_series(ctx, "fiscal/nominal_gdp_bns.csv"' in spending
+    assert 'ig.slot("spending.by_function"' in spending
+    assert 'ig.slot("spending.social_protection"' in spending
+    assert 'ctx.pending(ax)' in spending  # Government GFCF still unavailable.
+
+
+def test_national_budget_function_grouping_and_matched_nominal_gdp():
+    budget = {r["year"]: r for r in _rows("fiscal/public_budget.csv")}
+    gdp = {r["year"]: r["gdp_mdl_mn"]
+           for r in _rows("fiscal/nominal_gdp_bns.csv")}
+    assert sorted(budget) == sorted(gdp) == list(range(2016, 2026))
+    functions = (
+        "general_services_mdl_mn", "defense_mdl_mn", "public_order_mdl_mn",
+        "economic_affairs_mdl_mn", "environment_mdl_mn", "housing_mdl_mn",
+        "health_mdl_mn", "culture_mdl_mn", "education_mdl_mn",
+        "social_protection_mdl_mn",
+    )
+    for year in sorted(gdp):
+        assert gdp[year] > 0
+        row = budget[year]
+        assert sum(row[k] for k in functions) == pytest.approx(
+            row["expenditure_mdl_mn"], abs=1.1)
+        total = 100 * row["expenditure_mdl_mn"] / gdp[year]
+        social = 100 * row["social_protection_mdl_mn"] / gdp[year]
+        assert 0 < social < total < 65
+        assert total-social < 45
+    # Independently cross-checked with BNS Finance own GDP-ratio presentation.
+    assert round(100 * budget[2024]["expenditure_mdl_mn"] / gdp[2024], 1) == 38.0
+    assert round(100 * budget[2025]["expenditure_mdl_mn"] / gdp[2025], 1) == 39.6
+    assert gdp[2023] == pytest.approx(303554.038)
+    assert gdp[2024] == pytest.approx(323932.494)
+    assert gdp[2025] == pytest.approx(353520.9)
+
 
 def test_private_credit_lens_does_not_fill_household_slots():
     """A verified broad-sector context lens is not a household debt series."""
