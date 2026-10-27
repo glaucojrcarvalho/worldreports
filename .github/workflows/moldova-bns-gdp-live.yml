@@ -1,0 +1,41 @@
+# Evidence-only live GDP audit for national-budget denominators.
+# This deliberately cannot push, register Moldova, publish or deploy.
+name: Moldova BNS nominal GDP source audit
+
+on:
+  push:
+    branches: [research/moldova-source-audit]
+    paths:
+      - 'countries/moldova/fetch/fetch_bns_gdp.py'
+      - 'tests/test_moldova_bns_gdp.py'
+      - '.github/workflows/moldova-bns-gdp-live.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  nominal-gdp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate offline parser, geography and denominator anchors
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pytest -q tests/test_moldova_bns_gdp.py
+      - name: Audit official BNS GDP PxWeb directly (review sidecar only)
+        run: |
+          python countries/moldova/fetch/fetch_bns_gdp.py
+          echo "=== BNS NOMINAL GDP SIDE-CAR: NOT CURATED ==="
+          cat countries/moldova/data/fiscal/nominal_gdp_from_bns.csv
+          echo "=== END GDP SIDE-CAR ==="
+      - name: Preserve read-only official source evidence for manual promotion
+        uses: actions/upload-artifact@v4
+        with:
+          name: moldova-bns-gdp-national-denominator-source
+          path: countries/moldova/data/fiscal/nominal_gdp_from_bns.csv
+          retention-days: 14
