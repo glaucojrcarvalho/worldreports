@@ -975,3 +975,35 @@ source test gate and the corresponding versioned JSON report
 is retained as an Actions artifact. Review its source-vintage and
 translation limitations. Keep the registered rehearsal isolated,
 the public atlas undeployed, and upstream untouched.
+
+
+## Canonical spine release-readiness evidence — 2026-10-27
+
+Added an isolated static semantic compiler for the real
+\`countries/moldova/plates.py\` plus spine definitions from
+\`core/spine.py\`. Every \`ig.slot(...)\` is classified from AST-detected
+drawing versus \`_pending\` calls; the tool **requires all 42 canonical
+slots to be present, 36 observed figures in 45 claimed slots, 9 exact
+unsupported canonical slots and 3 deliberately unclaimed optional
+lens slots**. A pending panel needs a substantive reason and must have
+no drawn observations. Conversely, accidental filling of an unsupported
+panel, removing a canonical slot or adding an undocumented gap FAILS
+the audit instead of silently marking that sector complete.
+
+Nine explicitly pending sources are government fixed capital formation;
+10-year secondary-market sovereign yield; equity index in USD;
+borrower-defined household debt; household new-loan rate;
+excess deaths; COVID underlying-cause deaths; comparable registered
+inbound/outbound migration; annual foreign-born share. National BNM
+bank-wide NPL and 2024 BNS-born-abroad are separately OBSERVED in
+their correct slots/lens and do not satisfy unrelated household/migration
+requirements. The report is a machine-readable **review inventory,
+not proof of missing-data nonexistence**, and must not be confused
+with publication clearance.
+
+The tool and tests run only in fork QA, without changing historical
+observations or interpolating gaps. Next: inspect focused short CI,
+then integrate source-semantic audit and artifact output in
+\`research/moldova-source-audit\` after the currently running full CI
+and successful image archive, WITHOUT merging branch history.
+Keep country.yaml unregistered and upstream untouched.

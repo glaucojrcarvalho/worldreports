@@ -34,6 +34,18 @@ jobs:
           path: /tmp/moldova-parity.json
           retention-days: 14
           if-no-files-found: error
+      - name: Audit all canonical spine slots and preserve pending-source decisions
+        run: |
+          python -m pytest -q tests/test_moldova_semantic_readiness.py
+          python -m countries.moldova.research.audit_semantic_readiness
+          cat /tmp/moldova-semantic-readiness.json
+      - name: Upload source-backed release-readiness matrix (not publication)
+        uses: actions/upload-artifact@v4
+        with:
+          name: moldova-semantic-readiness-inventory
+          path: /tmp/moldova-semantic-readiness.json
+          if-no-files-found: error
+          retention-days: 14
       - name: Rebuild exact Moldova site and audit three-language asset routes
         run: |
           test "$GITHUB_REPOSITORY" = "glaucojrcarvalho/worldreports"
