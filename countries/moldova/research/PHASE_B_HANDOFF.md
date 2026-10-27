@@ -1050,8 +1050,10 @@ gross fixed capital formation (not total-economy WDI investment).
 The observed **6.99% December 2024** and **8.24% December 2025**
 housing-loan rates are release-verified MONTHLY snapshots, not
 annual averages. The Ministry's **2024 3.20 bn MDL / 1.0% GDP**
-is its historical programme baseline, while **2025 5.20 bn / 1.0%**
-is a programme ESTIMATE and **2026 8.10 bn / 1.4%** a FORECAST.
+is its historical programme baseline, while **2025 3.40 bn MDL / 1.0%**
+is a programme ESTIMATE; **2026 5.20 bn MDL / 1.4%**,
+**2027 8.10 bn MDL / 2.0%** and **2028 8.00 bn MDL / 1.8%**
+are FORECASTS, not realized outcomes.
 No annual historical observations have been fabricated or filled.
 
 The original source research now has separate review-only CSVs under
