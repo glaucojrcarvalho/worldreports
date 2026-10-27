@@ -5,12 +5,16 @@ when using its usual glyph-font export. This test looks INSIDE the
 mortality.lens group, not anywhere on the figure: the canonical slots
 legitimately mention rates per 1,000 or per 100,000 inhabitants.
 """
+import os
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
 import pytest
 
-OUTPUT = Path("/tmp/moldova-mortality-unit/moldova")
+# Full atlas QA reads freshly rendered candidate assets inside the source
+# tree; isolated work can instead pass an explicit temporary output folder.
+ROOT = Path(__file__).resolve().parents[1] / "countries/moldova"
+OUTPUT = Path(os.environ.get("MOLDOVA_MORTALITY_SVG_DIR", str(ROOT / "output")))
 EXPECTED = {
     "en": ("11-mortality.svg", "years", "Life expectancy at birth (years)"),
     "ro": ("11-mortality.ro.svg", "ani", "Speranța de viață la naștere (ani)"),
