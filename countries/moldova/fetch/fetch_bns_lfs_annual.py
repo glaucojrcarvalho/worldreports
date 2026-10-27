@@ -64,7 +64,7 @@ def selection(variables: list[dict]) -> tuple[dict, dict, dict]:
         "query": [
             {"code": v["code"], "selection": {
                 "filter": "item", "values": chosen[v["code"]]}}
-            for v in variables,
+            for v in variables
         ],
         "response": {"format": "json-stat2"},
     }
