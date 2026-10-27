@@ -25,7 +25,7 @@ jobs:
           python-version: '3.12'
       - name: Verify source parser with offline OOXML fixtures
         run: |
-          python -m pip install 'pytest~=9.0'
+          python -m pip install -r requirements.txt
           python -m pytest -q tests/test_moldova_ti.py
       - name: Download and audit TI 2025 official historical workbook
         run: |
