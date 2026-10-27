@@ -11,7 +11,7 @@ from countries.moldova.fetch.fetch_ti import YEARS, parse_release, render_sideca
 def fixture_xlsx(*, changes=None, header_change=None, sheet="CPI Timeseries 2012 - 2025"):
     """Build a real ZIP/OOXML workbook with inline strings and cached numbers."""
     changes = changes or {}
-    headers = ["Country"] + [f"CPI Score {year}" for year in YEARS]
+    headers = ["Country / Territory"] + [f"CPI Score {year}" for year in YEARS]
     if header_change is not None:
         headers[1] = header_change
     countries = [f"Country {n}" for n in range(181)] + ["Moldova"]

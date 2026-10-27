@@ -127,7 +127,7 @@ def parse_release(payload: bytes) -> list[tuple[int, int]]:
     rows = _timeseries_rows(payload)
     header_candidates: list[tuple[int, str, dict[int, str]]] = []
     for n, row in enumerate(rows[:45]):
-        labels = {col: v.casefold().replace("/", " ").replace("-", " ").strip()
+        labels = {col: " ".join(v.casefold().replace("/", " ").replace("-", " ").split())
                   for col, v in row.items()}
         country_cols = [col for col, name in labels.items()
                         if name in ("country", "country territory", "country name",
@@ -202,6 +202,7 @@ def main() -> int:
     target.write_text(render_sidecar(rows, raw), encoding="utf-8")
     print(f"Verified official TI 2025: {len(rows)} scores; "
           f"2012={rows[0][1]}; 2023–25={rows[-3:]}")
+    print("Audited annual CPI scores (publisher original integers):", rows)
     print(f"Publisher SHA256={hashlib.sha256(raw).hexdigest()}")
     print(f"Review-only sidecar: {target}")
     return 0
