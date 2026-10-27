@@ -59,3 +59,31 @@ def test_archiver_consumes_exact_successful_validation_artifact() -> None:
     assert "git push origin HEAD:refs/heads/research/moldova-source-audit" in (
         archive_steps[commit]["run"]
     )
+
+
+def test_full_atlas_runner_finishes_and_image_only_archive_does_not_retrigger():
+    """Hourly commits must not repeatedly cancel the 30-minute global suite."""
+    workflow = yaml.safe_load(WORKFLOW.read_text(encoding="utf-8"))
+    group = workflow["concurrency"]
+    assert group["group"] == "moldova-research-${{ github.ref }}"
+    assert group["cancel-in-progress"] is False
+    # PyYAML 1.1 reads YAML's 'on' key as the boolean True.
+    events = workflow.get("on", workflow.get(True))
+    assert events is not None
+    push = events["push"]
+    assert push["branches"] == ["research/moldova-source-audit"]
+    assert set(push["paths-ignore"]) == {
+        "countries/moldova/output/**",
+        "countries/moldova/provenance.json",
+    }
+    assert "workflow_dispatch" in events
+    jobs = workflow["jobs"]
+    assert 40 <= jobs["moldova-research"]["timeout-minutes"] <= 90
+    assert jobs["archive-validated-research-assets"]["timeout-minutes"] <= 30
+    archive = jobs["archive-validated-research-assets"]
+    assert archive["needs"] == "moldova-research"
+    assert "github.event_name == 'push'" in archive["if"]
+    assert "git push origin HEAD:refs/heads/research/moldova-source-audit" in (
+        next(step["run"] for step in archive["steps"]
+             if step.get("name", "").startswith("Commit only isolated"))
+    )

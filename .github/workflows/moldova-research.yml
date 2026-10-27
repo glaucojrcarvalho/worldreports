@@ -5,14 +5,22 @@ on:
   push:
     branches:
       - research/moldova-source-audit
+    # The archive bot writes only artifacts previously verified by this
+    # workflow; do not recursively run another 30-minute global test.
+    paths-ignore:
+      - 'countries/moldova/output/**'
+      - 'countries/moldova/provenance.json'
   workflow_dispatch:
 
-# A single fork research branch receives frequent source and localization
-# commits. Do not spend runner time archiving stale candidate assets or
-# compete with a more recent regression; retain only the newest SHA.
+# Regression with 25+ published peers takes ~30 minutes. A newer research
+# push must NOT cancel an already-running validated-source job: that caused
+# repeated cancellations and prevented exact-source asset archival.
+# GitHub's concurrency group retains at most one RUNNING and one PENDING
+# run, replacing obsolete pending runs. Non-fast-forward archive pushes
+# already refuse to overwrite images built from stale commits.
 concurrency:
   group: moldova-research-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -20,6 +28,7 @@ permissions:
 jobs:
   moldova-research:
     runs-on: ubuntu-latest
+    timeout-minutes: 80
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -190,6 +199,7 @@ jobs:
       github.ref == 'refs/heads/research/moldova-source-audit' &&
       github.event_name == 'push'
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     permissions:
       contents: write
     steps:

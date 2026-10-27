@@ -739,3 +739,37 @@ manifest, rendered trio for `01-economy` showing disconnected BNS 2025,
 fork research job. Retain the root `country.yaml` as unregistered until
 manual locale/layout review and final global regression. No upstream PR,
 merge or deploy.
+
+
+## CI cancellation starvation and artifact recursion fixed — 2026-10-27
+
+GitHub Actions had a repeated release-candidate starvation failure:
+the full shared atlas regression can take 28–35 minutes, but each
+new research commit ran the SAME branch-scoped concurrency group with
+`cancel-in-progress: true`, repeatedly cancelling the previous
+full Python/Node run before it could upload `moldova-validated-assets`
+or enter the guarded archive job. The previous commits **did pass**
+the offline Moldova source tests, strict RO/PT render, generated PNGs,
+SVG localization/lineage, page and layout checks inside ephemeral
+runners, but no successful archive can be claimed until the full run
+and the bot both finish.
+
+Now the existing branch concurrency group uses **cancel-in-progress:
+false**. One running suite completes even if a newer research SHA arrives;
+GitHub still retains only the latest pending run. Archive pushes are
+non-force and fail closed on stale branch heads. The workflow also
+ignores **image/provenance-only bot commits** so verified generated
+assets do not trigger another 30-minute full suite (manual dispatch
+remains available). The full job has an 80-minute bound and archive job
+25 minutes. The offline `test_moldova_archive_contract.py` now
+enforces these CI/recursion invariants.
+
+**Next run MUST verify:** on this SHA, check a green full suite and
+ensure `moldova-validated-assets` and `moldova-visual-review`
+upload; the fork-only archive bot must commit exact tested 108
+PNG/SVG/thumbs and 12 provenance maps, including:
+`01-economy` WDI + BNS LFS (2025 isolated);
+`03-spending` BNS cash functions + BNS GDP + WDI;
+`12-migration` BNS census + UN/WDI;
+then inspect full RO/EN/PT figures. Do not alter upstream, deploy,
+open PR or register country until semantic and visual QA.
