@@ -35,3 +35,16 @@ def test_pixel_comparison_is_not_fooled_by_file_metadata(tmp_path: Path):
     different = compare_png(a, b)
     assert different["difference_bbox"] == [0, 0, 16, 16]
     assert different["pixel_change_percent"] == 100
+
+def test_one_pixel_font_metric_jitter_is_recorded_not_rejected(tmp_path: Path):
+    from PIL import Image
+    import pytest
+    a, b = tmp_path / "base.png", tmp_path / "rebuild.png"
+    Image.new("RGB", (32, 20), "white").save(a)
+    Image.new("RGB", (32, 21), "white").save(b)
+    small = compare_png(a, b)
+    assert small["dimension_drift_px"] == [0, 1]
+    assert small["difference_bbox"] is None
+    Image.new("RGB", (32, 25), "white").save(b)
+    with pytest.raises(ValueError, match="Material image dimension drift"):
+        compare_png(a, b)

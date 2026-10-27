@@ -66,13 +66,23 @@ def _digest(path: Path) -> str:
 def compare_png(baseline: Path, rebuilt: Path) -> dict:
     """Compare decoded pixels as well as bytes; file metadata isn't visual."""
     with Image.open(baseline) as b, Image.open(rebuilt) as n:
-        if b.size != n.size:
-            raise ValueError(f"Image dimension drift: {baseline}: {b.size} vs {n.size}")
-        changed = ImageChops.difference(b.convert("RGB"), n.convert("RGB"))
-        h = changed.convert("L").histogram()
-        ratio = round((1 - h[0] / (b.width * b.height)) * 100, 3)
+        # Matplotlib font metrics can add/subtract one raster pixel to
+        # tight bounding boxes between runners. Compare the common canvas
+        # without concealing a materially different aspect ratio.
+        drift = (n.width - b.width, n.height - b.height)
+        if any(abs(d) > 3 for d in drift):
+            raise ValueError(f"Material image dimension drift: {baseline}: "
+                             f"{b.size} vs {n.size}")
+        w, height = min(b.width, n.width), min(b.height, n.height)
+        box = (0, 0, w, height)
+        changed = ImageChops.difference(
+            b.convert("RGB").crop(box), n.convert("RGB").crop(box))
+        histogram = changed.convert("L").histogram()
+        ratio = round((1 - histogram[0] / (w * height)) * 100, 3)
         return {
-            "size": list(b.size),
+            "baseline_size": list(b.size),
+            "rebuilt_size": list(n.size),
+            "dimension_drift_px": list(drift),
             "pixel_change_percent": ratio,
             "difference_bbox": list(changed.getbbox()) if changed.getbbox() else None,
             "old_sha256": _digest(baseline),
