@@ -24,6 +24,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install offline test runner
+        run: python -m pip install pytest
       - name: Test vintage, isolated country, payload and semantics offline
         run: python -m pytest -q tests/test_moldova_undp.py
       - name: Fetch and verify the actual official HDR 2025 CSV
