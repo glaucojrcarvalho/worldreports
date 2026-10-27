@@ -131,7 +131,7 @@ def test_bns_functional_cash_budget_is_distinct_from_fpp_fiscal_spine():
     assert '_series(ctx, "fiscal/nominal_gdp_bns.csv"' in spending
     assert 'ig.slot("spending.by_function"' in spending
     assert 'ig.slot("spending.social_protection"' in spending
-    assert 'ctx.pending(ax)' in spending  # Government GFCF still unavailable.
+    assert '_pending(ctx, ig, ax,' in spending  # Government GFCF still unavailable.
 
 
 def test_national_budget_function_grouping_and_matched_nominal_gdp():
