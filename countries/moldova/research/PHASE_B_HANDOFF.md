@@ -131,3 +131,36 @@ generated trilingual PNGs/SVGs and full provenance and peer-axis
 regeneration; source-audit NBM household/NPL/bonds, legal wages, UNDP
 HDI, TI CPI and census concordance before any root country.yaml
 registration. Do not merge, deploy or contact upstream.
+
+
+## Peer comparison-scale release rehearsal — 2026-10-27
+
+The last isolated trilingual candidate full-suite quality gate passed:
+[GitHub Actions 40429317411](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40429317411)
+reported **3,406 Python tests passed**, 8 subtests passed, and **20 Node
+tests passed**, with no Moldovan layout faults in ro/en/pt. The subsequent
+assets archiver recorded 36 PNG plates, 36 thumbnails and 12 observed source
+provenance mappings in the **unregistered** research branch.
+
+To address the still-open global shared-axis regeneration requirement,
+`research/peer_scale_gate.py` and the isolated
+`.github/workflows/moldova-peer-scales.yml` now rebuild **trade and world
+plates for every published country and its own locales**, without changing
+the single-country source data. The gate asserts the three shared-scale
+contracts; requires precisely one trade and one world declarative plate per
+peer; records per-locale old/new SHA256, decoded pixel-difference bounds,
+image dimensions and full coverage; and generates **old-versus-new English
+contact sheets** for all peers. A disposable runner stages regenerated
+PNG/SVG/thumb assets *only for validation*, then builds the whole atlas site,
+runs source/catalog and browser checks, and uploads regenerated assets plus
+comparison report. **This workflow has read-only repository permission and
+does not commit, push, merge, register Moldova or deploy.**
+
+Next run: inspect the peer-scale workflow's result, downloadable comparison
+contact sheets and delta manifest. If green and visually cleared, commit
+only the regenerated peer outputs on the research fork branch, then repeat
+the full source, catalog, render, layout, provenance and site tests with
+Moldova registered in an isolated branch runner. Do not add the root
+`country.yaml` until the peer assets and semantic audits are approved.
+Unfilled HDI/CPI, household credit, bond/equity, COFOG and national labour
+routes still need actual publisher evidence or explicit pending descriptions.

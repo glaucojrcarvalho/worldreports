@@ -1,0 +1,75 @@
+# Fork-only peer-axis release rehearsal; never publishes or pushes.
+name: Moldova peer comparison-scale audit
+
+on:
+  push:
+    branches:
+      - research/moldova-source-audit
+    paths:
+      - core/spine.py
+      - countries/moldova/research/peer_scale_gate.py
+      - tests/test_moldova_peer_scale_gate.py
+      - .github/workflows/moldova-peer-scales.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  peer-scales:
+    if: github.repository == 'glaucojrcarvalho/worldreports'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install CJK publication fonts before Python imports
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends fonts-noto-cjk
+          fc-cache -f
+          find "${HOME}/.cache/matplotlib" -maxdepth 1 -name 'fontlist-*.json' -delete 2>/dev/null || true
+      - name: Install renderer and test dependencies
+        run: pip install -r requirements.txt
+      - name: Assert review boundaries and peer topic coverage
+        run: python -m pytest -q tests/test_moldova_peer_scale_gate.py
+      - name: Re-render all published countries' trade and world images in every locale
+        run: |
+          python -m countries.moldova.research.peer_scale_gate \
+            --out /tmp/moldova-peer-scale-review --stage-for-site
+      - name: Build full site from staged assets and run non-rendering integrity tests
+        run: |
+          python -m core.page --out /tmp/moldova-peer-scale-site
+          python -m pytest -q tests/test_sources.py tests/test_catalogs.py
+          node --test tests/js/*.test.js
+          python - <<'PY'
+          import json
+          import subprocess
+          from pathlib import Path
+          from PIL import Image
+          report = json.loads(Path('/tmp/moldova-peer-scale-review/peer-scale-report.json').read_text())
+          assert len(report['published_peers']) >= 25
+          assert report['render_count'] > 100
+          assert report['changed_decoded_images'] > 0
+          paths = subprocess.check_output(['git','diff','--name-only','--','countries'], text=True).splitlines()
+          assert paths, 'No peer images differed after changing three shared axis limits'
+          for path in paths:
+              bits = Path(path).parts
+              assert len(bits) >= 4 and bits[0] == 'countries'
+              assert bits[2] == 'output' and ('trade' in bits[-1] or 'world' in bits[-1]), path
+              assert path.endswith(('.png','.svg')), path
+          print(f"Site built and tested; {len(paths)} modified peer output files, all trade/world only.")
+          for topic in ('trade','world'):
+              with Image.open('/tmp/moldova-peer-scale-review/before-after-' + topic + '.png') as image:
+                  image.verify()
+          PY
+      - name: Preserve the full peer output diff and human visual comparison
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: moldova-all-peers-trade-world-prepublication-review
+          path: |
+            /tmp/moldova-peer-scale-review/
+          retention-days: 7
