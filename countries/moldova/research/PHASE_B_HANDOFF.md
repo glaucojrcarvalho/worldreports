@@ -861,3 +861,10 @@ source branch and re-check full site and the three locale pages
 before final release-ready status. Keep official BNS methodology breaks,
 IMF WEO versus FPP vintages, incomplete 2026 and all unsupported
 canonical panels explicit. No upstream PR, merge or deploy.
+
+
+## Source-neutral archive rebase experiment — October 27, 2026
+
+Focused fork-only branch: research/moldova-archive-hardening. It adds a pure offline guard and targeted GitHub Actions test lane. Image archives that passed the full source, locale, provenance, site, Python and JS gates may be non-force rebased across newer research commits ONLY if the final changed tracked path is exactly countries/moldova/research/PHASE_B_HANDOFF.md. Edits to plates, code, CSVs, translations, sources, site, graphics, workflows or other files must fail; Git ancestry and non-force push remain mandatory. The research branch is not changed by this experiment.
+
+Next: check the focused fast CI, then optionally apply equivalent changes to research/moldova-source-audit after its current full run completes. Do not merge the focused branch, deploy, register Moldova on source branch, or contact upstream.

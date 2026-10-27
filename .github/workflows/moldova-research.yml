@@ -265,4 +265,15 @@ jobs:
           # A rejected non-fast-forward is NOT success: the images were
           # verified locally but were NOT archived on the research branch.
           # Never force, rewrite history, or claim this gate is green.
+          git fetch origin research/moldova-source-audit
+          newest="$(git rev-parse origin/research/moldova-source-audit)"
+          if test "$newest" != "$GITHUB_SHA"; then
+            git merge-base --is-ancestor "$GITHUB_SHA" "$newest" || {
+              echo "::error::Run SHA is no longer an ancestor of the research branch."
+              exit 1
+            }
+            git diff --name-only "$GITHUB_SHA" "$newest" \
+              | python countries/moldova/research/archive_branch_guard.py
+            git rebase "$newest"
+          fi
           git push origin HEAD:refs/heads/research/moldova-source-audit
