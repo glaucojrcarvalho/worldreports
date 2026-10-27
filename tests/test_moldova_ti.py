@@ -88,12 +88,13 @@ def test_cannot_confuse_rank_or_method_break_with_scores():
         parse_release(b"<html>502 bad gateway</html>")
 
 
-def test_source_is_not_implicitly_published():
+def test_curated_cpi_remains_fork_only_without_country_registration_claim():
     from pathlib import Path
     root = Path(__file__).resolve().parents[1] / "countries/moldova"
     # The full regression suite temporarily registers the candidate in CI;
     # the separate candidate-only guard enforces absence in the checkout.
-    assert not (root / "data/world/cpi.csv").exists()
+    assert (root / "data/world/cpi.csv").is_file()
+    assert (root / "research/country_candidate.yaml").is_file()
     plate = (root / "plates.py").read_text(encoding="utf-8")
     assert '_series(ctx, "world/cpi.csv", "cpi_score")' in plate
 
