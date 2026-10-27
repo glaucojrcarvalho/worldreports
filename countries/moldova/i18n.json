@@ -123,6 +123,18 @@
     "ro": "Cheltuielile de casă pe funcții BNS sunt pregătite în MDL.",
     "pt": "As despesas de caixa por função do BNS estão disponíveis em MDL."
   },
+  "BNS LFS 2019–2024": {
+    "ro": "Ancheta BNS 2019–2024",
+    "pt": "Pesquisa BNS 2019–2024"
+  },
+  "BNS LFS 2025 (method break)": {
+    "ro": "Ancheta BNS 2025 (ruptură metodologică)",
+    "pt": "Pesquisa BNS 2025 (ruptura metodológica)"
+  },
+  "BNS LFS 2025 break; WDI modelled line remains separate": {
+    "ro": "Ruptura AFM BNS 2025; seria WDI modelată rămâne separată",
+    "pt": "Ruptura BNS 2025; série WDI modelada permanece separada"
+  },
   "BNS national cash functions / BNS GDP; 2025 provisional": {
     "ro": "Funcții de casă BNS / PIB BNS; 2025 provizoriu",
     "pt": "Funções de caixa BNS / PIB BNS; 2025 provisório"
@@ -802,6 +814,10 @@
   "WDI harmonised fertility; reference 2.1, ends 2024": {
     "ro": "Fertilitate armonizată WDI; reper 2,1, până în 2024",
     "pt": "Fecundidade harmonizada WDI; referência 2,1, até 2024"
+  },
+  "WDI ILO-modelled unemployment": {
+    "ro": "Șomaj modelat OIM din WDI",
+    "pt": "Desemprego modelado OIT no WDI"
   },
   "WDI mid-year model, not the 2024 BNS usual-resident census": {
     "ro": "Model WDI de populație la mijlocul anului, nu recensământul BNS 2024",

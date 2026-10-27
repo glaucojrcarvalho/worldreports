@@ -62,8 +62,18 @@ def plate_economy(ctx, ig):
     _foot(ctx, ax, "World Bank WDI, annual CPI")
 
     ax = ig.slot("economy.unemployment", "Unemployment (% of labour force)")
-    ctx.line(ax, *_series(ctx, "macro/economy.csv", "unemployment_pct"), p.NAVY)
-    _foot(ctx, ax, "World Bank WDI, ILO-modelled unemployment")
+    ctx.line(ax, *_series(ctx, "macro/economy.csv", "unemployment_pct"),
+             p.NAVY, label="WDI ILO-modelled unemployment")
+    # National BNS LFS 2019-24 and 2025 have distinct source-defined
+    # survey designs. Never connect the 2024->2025 national points.
+    ctx.line(ax, *_series(ctx, "macro/national_lfs.csv",
+                          "bns_lfs_2019_2024_pct"), p.TEAL,
+             label="BNS LFS 2019–2024")
+    cy, cv = _series(ctx, "macro/national_lfs.csv", "bns_lfs_2025_pct")
+    ax.scatter(cy, cv, color=p.GOLD, marker="D", s=50, zorder=5,
+               label="BNS LFS 2025 (method break)")
+    ax.legend(fontsize=6.2, frameon=False, loc="upper right")
+    _foot(ctx, ax, "BNS LFS 2025 break; WDI modelled line remains separate")
     _finish(ig)
 
 

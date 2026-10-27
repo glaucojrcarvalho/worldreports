@@ -144,6 +144,24 @@ markets:
       The source links use 2025 as an example; fetcher requests every
       completed annual window separately and writes review-only sidecars.
 macro:
+  national_lfs.csv:
+    source: "National Bureau of Statistics of Moldova (BNS), Labour Force Survey national unemployment, MUN160100_2025"
+    url: "https://statbank.statistica.md/PxWeb/api/v1/en/30%20Statistica%20sociala/03%20FM/03%20MUN/MUN060/MUN160100_2025.px"
+    official: true
+    refreshed_by: fetch/fetch_bns_lfs_annual.py
+    notes: >-
+      Verified annual BNS unemployment, both sexes, whole country,
+      annual average, 2019=5.1 2020=3.8 2021=3.2 2022=3.1
+      2023=4.6 2024=4.0 2025=3.8 percent.
+      BNS 2019-2024 EMDOS2 survey and 2025 EMDOS3 sampling,
+      2024 census-reweighted population and method revisions: NEVER
+      connect the national 2024 and 2025 values into a continuous line.
+      BNS surveys prior to 2019 were officially discontinued.
+      National territory excludes the left-bank Nistru and Bender.
+      This national LFS is NOT WDI ILO-MODELLED unemployment.
+      Publisher codebook SHA256 e32d58d6278434a20a4c316d22c420c0f0b7cd342e2c80cb0c9dc706fcb849e0;
+      original data SHA256 406001baf473d0bb0a890ad5951fd4b058cb9941a808c38fd64fd5894c29f750.
+      Original 7-year source audit https://github.com/glaucojrcarvalho/worldreports/actions/runs/40469496895
   economy.csv:
     source: "World Bank WDI (source 2), NY.GDP.MKTP.KD.ZG, FP.CPI.TOTL.ZG, SL.UEM.TOTL.ZS, NE.GDI.FTOT.ZS"
     url: "https://api.worldbank.org/v2/country/MDA/indicator/NY.GDP.MKTP.KD.ZG?format=json"

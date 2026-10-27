@@ -20,6 +20,7 @@ PANEL_WIDTH = 680
 HEADER = 34
 PADDING = 10
 REQUIRED_LINEAGE = {
+    "01-economy": {"macro/economy.csv", "macro/national_lfs.csv", "world/world.csv"},
     "03-spending": {
         "fiscal/public_budget.csv", "fiscal/nominal_gdp_bns.csv",
         "macro/economy.csv",

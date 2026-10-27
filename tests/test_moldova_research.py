@@ -54,7 +54,7 @@ def test_manifest_covers_exact_staged_publisher_files() -> None:
         "markets/policy.csv", "markets/usd_mdl.csv",
         "people/absolute_poverty.csv", "people/minimum_wage.csv", "world/hdi.csv", "world/cpi.csv",
         "trade/destinations.csv", "credit/prudential_npl.csv",
-        "migration/foreign_born_census.csv",
+        "migration/foreign_born_census.csv", "macro/national_lfs.csv",
     }
     assert declared == files == expected
     assert manifest["meta"]["status"] == "research_only_not_an_atlas_edition"
@@ -78,6 +78,11 @@ def test_manifest_covers_exact_staged_publisher_files() -> None:
                 else:
                     assert details["source"].startswith("International Monetary Fund")
                     assert details["refreshed_by"] == "fetch/fetch_imf.py"
+            elif group == "macro" and name == "national_lfs.csv":
+                assert details["source"].startswith("National Bureau of Statistics")
+                assert details["official"] is True
+                assert details["refreshed_by"] == "fetch/fetch_bns_lfs_annual.py"
+                assert "2025" in details["notes"] and "EMDOS3" in details["notes"]
             elif group == "markets":
                 assert name in {"policy.csv", "usd_mdl.csv"}
                 assert details["source"].startswith("National Bank of Moldova")
