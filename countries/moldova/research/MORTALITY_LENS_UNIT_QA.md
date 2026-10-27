@@ -25,3 +25,16 @@ artifact archive have finished. Rerender and inspect `11-mortality`
 in each language, run the global Python/JS suite and the registered
 rehearsal comparison; keep `country.yaml` unregistered, never touch
 `akitaonrails/worldreports`, open PR, merge or deploy.
+
+## SVG-level validation of rendered locale units
+
+A second independent check parses the *actual exported SVG XML*
+with Python's standard library. Instead of searching the whole file,
+it isolates the exact `<g id="mortality.lens">` group and verifies the
+legend/title plus vertical-axis unit `years`, `ani`, or `anos`. The
+canonical death-rate and COVID units are checked **in their own SVG
+groups**, so a correct 'per 100,000' elsewhere is not treated as an
+error. A missing group, repeated unit label, untranslated title, or
+unexpected /100k caption fails. The test runs immediately AFTER
+rendering all RO/EN/PT output in the isolated branch workflow. No data
+changes, source imputation, shared core edits, or publication.
