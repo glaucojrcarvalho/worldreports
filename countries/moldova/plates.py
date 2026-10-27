@@ -218,8 +218,12 @@ def plate_people(ctx, ig):
     _foot(ctx, ax, "BNS consumption poverty; methodology break in 2019")
 
     ax = ig.slot("people.minimum_wage", "Minimum wage (US$ monthly)")
-    _pending(ctx, ig, ax, "The legal MDL monthly wage schedule and\n"
-             "matching annual USD conversion are not staged.")
+    # A full-year *unified* legal floor exists from 2023. The 2022 law
+    # took effect September 1; earlier sectoral minima MUST NOT be spliced.
+    # Each USD value is MDL per month / official NBM annual mean MDL/USD.
+    ctx.line(ax, *_series(ctx, "people/minimum_wage.csv",
+                          "usd_per_month"), ctx.p.TEAL)
+    _foot(ctx, ax, "Govt minimum 2023–25 / NBM annual USD/MDL")
     _finish(ig)
 
 
@@ -374,9 +378,9 @@ PLATES = (
          alt="Private-sector credit is contextual only; household debt, rates and non-performing loans remain unverified."),
     dict(id="07", slug="people", topic="people", builder=plate_people,
          title="Moldova — Household Inequality",
-         subtitle="WDI Gini and BNS consumption poverty; 2019 survey break preserved",
-         source="World Bank WDI; BNS national poverty; statutory wage pending",
-         alt="WDI Gini and national absolute consumption poverty in disconnected survey regimes; minimum wage pending."),
+         subtitle="WDI Gini, BNS poverty and 2023–25 statutory minimum wage",
+         source="World Bank WDI; BNS poverty; Moldova Government wage; NBM FX",
+         alt="Household inequality and BNS poverty with a 2019 method break; verified legal minimum 2023–25."),
     dict(id="08", slug="world", topic="world", builder=plate_world,
          title="Moldova in the World — GDP, HDI and CPI",
          subtitle="WDI nominal; UNDP HDR 2025 HDI; TI CPI 2025, comparable since 2012",

@@ -327,10 +327,6 @@
     "ro": "piața secundară în datele pregătite.",
     "pt": "mercado secundário nos dados preparados."
   },
-  "matching annual USD conversion are not staged.": {
-    "ro": "conversia în USD la media anuală nu sunt pregătite.",
-    "pt": "a conversão anual correspondente para US$ ainda não estão documentados."
-  },
   "Minimum wage (US$ monthly)": {
     "ro": "Salariu minim (USD pe lună)",
     "pt": "Salário mínimo (US$ por mês)"
@@ -535,10 +531,6 @@
     "ro": "ponderea corespunzătoare în PIB a guvernului general nu este verificată.",
     "pt": "a participação correspondente do governo geral no PIB não foi verificada."
   },
-  "The legal MDL monthly wage schedule and": {
-    "ro": "Calendarul legal al salariului lunar minim în MDL și",
-    "pt": "O calendário legal do salário mínimo mensal em MDL e"
-  },
   "Top merchandise-export destinations": {
     "ro": "Principalele destinații ale exporturilor de mărfuri",
     "pt": "Principais destinos das exportações de mercadorias"
@@ -735,14 +727,6 @@
     "ro": "Gini WDI și sărăcia BNS după consum; ruptura din 2019 rămâne vizibilă",
     "pt": "Gini WDI e pobreza BNS por consumo; ruptura de 2019 preservada"
   },
-  "World Bank WDI; BNS national poverty; statutory wage pending": {
-    "ro": "Banca Mondială WDI; sărăcia națională BNS; salariul minim în așteptare",
-    "pt": "Banco Mundial WDI; pobreza nacional BNS; salário mínimo pendente"
-  },
-  "WDI Gini and national absolute consumption poverty in disconnected survey regimes; minimum wage pending.": {
-    "ro": "Gini WDI și sărăcia absolută națională după consum în perioade de anchetă neconectate; salariul minim rămâne în așteptare.",
-    "pt": "Gini WDI e pobreza absoluta nacional por consumo em períodos metodológicos separados; salário mínimo pendente."
-  },
   "Domestic credit to private sector (% of GDP)": {
     "ro": "Creditul intern către sectorul privat (% din PIB)",
     "pt": "Crédito interno ao setor privado (% do PIB)"
@@ -842,5 +826,21 @@
   "WDI exports, imports and trade balance; BNS customs-goods partner shares, 2006–2025.": {
     "ro": "Exporturi, importuri și balanță comercială WDI; ponderile partenerilor BNS pentru mărfuri vamale, 2006–2025.",
     "pt": "Exportações, importações e saldo comercial WDI; parcelas de parceiros aduaneiros BNS para mercadorias, 2006–2025."
+  },
+  "Govt minimum 2023–25 / NBM annual USD/MDL": {
+    "ro": "Salariul minim 2023–25 / cursul mediu anual USD/MDL al BNM",
+    "pt": "Salário mínimo 2023–25 / câmbio médio anual USD/MDL do BNM"
+  },
+  "WDI Gini, BNS poverty and 2023–25 statutory minimum wage": {
+    "ro": "Gini WDI, sărăcie BNS și salariul minim legal în 2023–2025",
+    "pt": "Gini WDI, pobreza BNS e salário mínimo legal em 2023–2025"
+  },
+  "World Bank WDI; BNS poverty; Moldova Government wage; NBM FX": {
+    "ro": "Banca Mondială WDI; sărăcie BNS; salariul Guvernului; cursul BNM",
+    "pt": "Banco Mundial WDI; pobreza BNS; salário legal do governo; câmbio BNM"
+  },
+  "Household inequality and BNS poverty with a 2019 method break; verified legal minimum 2023–25.": {
+    "ro": "Inegalitate și sărăcie BNS cu ruptură metodologică în 2019; salariul minim legal verificat pentru 2023–2025.",
+    "pt": "Desigualdade e pobreza BNS com ruptura metodológica em 2019; salário mínimo legal verificado para 2023–2025."
   }
 }

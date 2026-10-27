@@ -1,0 +1,32 @@
+# Republic of Moldova: statutory full-time national minimum monthly wage (gross nominal MDL).
+# Countrywide uniform 2023-2025 values from Republic of Moldova Government announcements:
+# 2023: https://old.gov.md/ro/content/salariul-minim-pe-tara-va-fi-majorat-pana-la-4000-de-lei
+# 2024: https://old.gov.md/ro/content/salariul-minim-pe-tara-anul-2024-va-constitui-5000-lei-mai-mare-cu-1000-de-lei-decat-2023
+# 2025: https://old.gov.md/ro/content/salariul-mediu-lunar-pe-economie-prognozat-pentru-anul-2025-va-constitui-16-100-de-lei
+# Scope break: unification was introduced 2022-09-01, NOT for the full 2022 calendar year.
+# https://social.gov.md/comunicare/comunicate/din-1-septembrie-2022-salariul-minim-va-fi-unificat-in-toate-institutiile-din-tara/
+# No comparable full-calendar-year unified observations are claimed for 2006-2022.
+# USD derived as national gross monthly statutory floor (MDL) / NBM full-calendar-year mean MDL for 1 USD.
+# NBM FX: countries/moldova/data/markets/usd_mdl.csv, independently official-source audited.
+# This is NOT an observed monthly wage, not a purchasing-power measure and not a 2026 year average.
+year,minimum_wage_mdl,nbm_mdl_per_usd_annual_avg,usd_per_month
+2006,,,
+2007,,,
+2008,,,
+2009,,,
+2010,,,
+2011,,,
+2012,,,
+2013,,,
+2014,,,
+2015,,,
+2016,,,
+2017,,,
+2018,,,
+2019,,,
+2020,,,
+2021,,,
+2022,,,
+2023,4000,18.160700,220.255827
+2024,5000,17.791800,281.028339
+2025,5500,17.370500,316.628767

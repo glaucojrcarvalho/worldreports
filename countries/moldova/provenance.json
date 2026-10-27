@@ -23,7 +23,8 @@
  ],
  "07-people": [
   "people/absolute_poverty.csv",
-  "people/gini.csv"
+  "people/gini.csv",
+  "people/minimum_wage.csv"
  ],
  "08-world": [
   "world/cpi.csv",

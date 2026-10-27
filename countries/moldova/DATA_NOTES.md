@@ -432,3 +432,41 @@ This is separate from WDI *goods and services* as percent GDP and is
 never combined with it. The live source audit regenerates a
 `destinations_from_bns.csv` sidecar and compares it byte-for-byte with the
 committed curated dataset, failing closed on source revisions.
+
+## Government statutory minimum wage and NBM annual USD conversion — 2026-10-27
+
+This previously pending canonical `people.minimum_wage` slot now has
+**three comparable full-calendar-year observations only (2023–2025)**.
+The Moldovan Government approved a unified full-time gross monthly
+statutory wage of **MDL 4,000 effective 2023-01-01**, **MDL 5,000
+effective 2024-01-01**, and **MDL 5,500 effective 2025-01-01**:
+
+- [2023 Government decision, 2022-12-07](https://old.gov.md/ro/content/salariul-minim-pe-tara-va-fi-majorat-pana-la-4000-de-lei)
+- [2024 Government decision, 2023-12-06](https://old.gov.md/ro/content/salariul-minim-pe-tara-anul-2024-va-constitui-5000-lei-mai-mare-cu-1000-de-lei-decat-2023)
+- [2025 Government decision, 2024-12-18](https://old.gov.md/ro/content/salariul-mediu-lunar-pe-economie-prognozat-pentru-anul-2025-va-constitui-16-100-de-lei)
+
+The [Ministry of Labour's 2022-07-22 announcement](https://social.gov.md/comunicare/comunicate/din-1-septembrie-2022-salariul-minim-va-fi-unificat-in-toate-institutiile-din-tara/)
+explicitly dates public/private sector unification to **2022-09-01**.
+Even though the Government also reports MDL 3,500 for 2022, it is NOT
+a full-year identical-scope legal floor. Years **2006–2022 remain blank**,
+not zero, backfilled or joined to an earlier sector-specific minimum.
+
+The conversion is strictly the shared-spine nominal **US$/month**,
+computed `legal_MDL_per_month / NBM_annual_average_MDL_per_USD`
+using separately audited official annual NBM quotes in
+`data/markets/usd_mdl.csv`: 2023 **18.160700**, 2024 **17.791800**,
+2025 **17.370500**. The curated
+`data/people/minimum_wage.csv` retains the legal value, exact
+annual-average FX denominator and a six-decimal derived USD value.
+This is a nominal conversion of a *legal floor*, not an observed wage,
+median earnings, tax net amount, PPP or real purchasing power.
+The Government's 2026 MDL 6,300 minimum is deliberately omitted
+because **2026 is not a completed FX calendar year**. No 2026 average
+or projected wage is passed off as a full-year observation.
+Territorial equivalence to the BNS household poverty survey and WDI
+population series is **not asserted**.
+
+The strict trilingual plate and site now distinguish this short valid
+run from the excluded 2006–2022 history. `tests/test_moldova_minimum_wage.py`
+checks the Government anchors, exact WDI/BNM-style currency arithmetic,
+missing-year contract, manifest, source provenance, translations and plate.

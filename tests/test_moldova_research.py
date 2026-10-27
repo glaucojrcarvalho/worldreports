@@ -51,7 +51,7 @@ def test_manifest_covers_exact_staged_publisher_files() -> None:
         "fiscal/budget_summary.csv", "fiscal/public_budget.csv",
         "fiscal/weo_bal_debt.csv", "fiscal/fpp_finances.csv",
         "markets/policy.csv", "markets/usd_mdl.csv",
-        "people/absolute_poverty.csv", "world/hdi.csv", "world/cpi.csv",
+        "people/absolute_poverty.csv", "people/minimum_wage.csv", "world/hdi.csv", "world/cpi.csv",
         "trade/destinations.csv",
     }
     assert declared == files == expected
@@ -97,6 +97,12 @@ def test_manifest_covers_exact_staged_publisher_files() -> None:
                 assert details["official"] is True
                 assert "2019" in details["notes"]
                 assert "Raport_ODD_" in details["url"]
+            elif group == "people" and name == "minimum_wage.csv":
+                assert details["source"].startswith("Government of the Republic of Moldova")
+                assert details["official"] is True
+                assert "2022-09-01" in details["notes"]
+                assert "2023=4000" in details["notes"]
+                assert "fetch/fetch_nbm.py" in details["refreshed_by"]
             else:
                 assert details["source"].startswith("World Bank WDI")
                 assert details["official"] is False

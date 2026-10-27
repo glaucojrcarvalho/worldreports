@@ -384,3 +384,29 @@ research branch, optionally safely rebased over Moldova-only work; if
 published peer or core sources changed concurrently, it aborts. It does
 NOT register Moldova, deploy, contact or modify upstream. The workflow
 must finish successfully before marking this release gate closed.
+
+## Phase C: government unified minimum wage fills legal floor, 2026-10-27
+
+Three **verified, full-year comparable** legal wage floors are now staged
+as `people/minimum_wage.csv`: 2023 MDL 4,000, 2024 MDL 5,000 and
+2025 MDL 5,500, sourced to the Republic of Moldova Government's dated
+decisions, translated to nominal USD/month using the **already audited
+annual NBM MDL/USD** dataset. The Ministry of Labour explicitly dates
+public/private unification to **September 1, 2022**, so 2006–2022 stay
+blank rather than splicing earlier sector-specific minima or treating
+the partial 2022 statutory regime as a full-year observation.
+The incomplete 2026 calendar FX is likewise excluded. See
+`DATA_NOTES.md` for source URLs, scope and numerical method.
+This change fills `people.minimum_wage` and updates source manifest,
+Romanian/English/Portuguese captions, chapter text, site notes, immutable
+provenance and offline integrity regression tests. No unsupported
+bond/equity/household-credit, COFOG or Covid values were introduced.
+
+**Next mandatory gate:** inspect the new `moldova-research.yml`
+full-atlas green status after this commit, check 36 full + 36 thumbnails,
+source-to-plate provenance and localized visual layout, and inspect the
+concurrent 414-file peer-axis archival workflow. The peer bot is allowed
+to push *only* reviewed binaries into this fork research branch; audit
+its exact path inventory and rendered pages. Keep Moldova unregistered
+until global peer output and visual signoff. No upstream PR, merge, deploy
+or upstream modification.

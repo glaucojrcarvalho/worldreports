@@ -14,7 +14,8 @@
       "Sărăcia absolută BNS folosește consumul gospodăriilor, nu praguri internaționale în dolari sau sărăcia relativă experimentală. Ancheta BNS a fost revizuită în 2019, deci 2014–2018 și 2019–2025 sunt linii neconectate. BNS indică 33,6% în 2024 și 31,1% în 2025.",
       "IDU (indicele dezvoltării umane) folosește exclusiv seria istorică oficială PNUD HDR 2025, 2006–2023: 0,784 în 2022 și 0,785 în 2023; 2024–2025 lipsesc. Comunicatul PNUD Moldova din 6 mai 2025 indică 0,763 pentru 2022; diferența de 0,021 față de CSV nu este ascunsă și edițiile nu sunt combinate.",
       "Indicele percepției corupției (Transparency International, IPC 2025) este comparabil în această metodologie numai pentru 2012–2025: scor 42 în 2023, 43 în 2024 și 42 în 2025. Scara este 0–100, mai mare = corupție percepută mai redusă. Sunt evaluări ale experților și firmelor, nu numărul faptelor de corupție; 2006–2011 rămân necompletați. Sursa: TI, CC BY-ND 4.0.",
-      "BNS EXT010200: exporturi vamale numai de MĂRFURI. Seriile 2006–2025 prezintă cele cinci destinații cu cele mai mari valori în 2025: România, Turcia, Italia, Cehia și Ucraina, ca pondere în totalul BNS al fiecărui an. Grupele CIS/UE/altele se suprapun cu țările și nu se adună. Ucraina a fost reclasificată din CIS în alte țări în 2024; nu duplicăm țara. Perimetrul exclude exportatorii din stânga Nistrului și Bender. Statbank actual: 3.780,864 milioane USD în 2025; comunicatul preliminar: 3.782,7 milioane USD; ediții distincte."
+      "BNS EXT010200: exporturi vamale numai de MĂRFURI. Seriile 2006–2025 prezintă cele cinci destinații cu cele mai mari valori în 2025: România, Turcia, Italia, Cehia și Ucraina, ca pondere în totalul BNS al fiecărui an. Grupele CIS/UE/altele se suprapun cu țările și nu se adună. Ucraina a fost reclasificată din CIS în alte țări în 2024; nu duplicăm țara. Perimetrul exclude exportatorii din stânga Nistrului și Bender. Statbank actual: 3.780,864 milioane USD în 2025; comunicatul preliminar: 3.782,7 milioane USD; ediții distincte.",
+      "Salariul minim legal unificat pentru muncă cu normă întreagă este 4.000 MDL în 2023, 5.000 MDL în 2024 și 5.500 MDL în 2025 (Guvern). Valoarea în USD este derivată din media anuală oficială BNM, nu salariul efectiv plătit. Unificarea sectorului public cu cel privat a intrat în vigoare în septembrie 2022; nu construim artificial o serie comparabilă pentru 2006–2022."
     ],
     "unavailable": [
       {
@@ -38,8 +39,8 @@
         "detail": "Formarea brută de capital fix a administrației publice nu este verificată. Investiția întregii economii nu o substituie."
       },
       {
-        "term": "Salariul minim și comparabilitatea sărăciei",
-        "detail": "Sărăcia absolută BNS după consum este observată în 2014–2025, cu ruptură metodologică în 2019. Nu este comparabilă automat cu sărăcia relativă sau internațională. Salariul minim în MDL și conversia în USD rămân nevalidate."
+        "term": "Salariul minim înainte de unificarea din 2022",
+        "detail": "Legea privind unificarea a intrat în vigoare la 1 septembrie 2022. Seria din 2023–2025 este verificată; valorile sectoriale sau parțiale anterioare nu sunt substituite unui salariu minim unitar pentru întregul an."
       },
       {
         "term": "Decesele excedentare și COVID-19",
@@ -88,7 +89,8 @@
       "BNS absolute poverty uses household consumption, not international dollar thresholds or experimental relative poverty. Its Household Budget Survey revision in 2019 separates unconnected 2014–2018 and 2019–2025 lines. BNS reports 33.6% for 2024 and 31.1% for 2025.",
       "Human Development Index follows only the UNDP HDR 2025 complete historical CSV, 2006–2023: 0.784 in 2022 and 0.785 in 2023; 2024–2025 are missing. UNDP Moldova's 6 May 2025 press release instead prints 0.763 for 2022, a 0.021 difference. These publisher presentations are not spliced.",
       "Transparency International's CPI 2025 time series is methodologically comparable only for 2012–2025: score 42 in 2023, 43 in 2024 and 42 in 2025. On its 0–100 scale, higher means less perceived public-sector corruption. These are expert/business assessments, not recorded incidents; 2006–2011 remain missing. Source: TI, CC BY-ND 4.0.",
-      "BNS EXT010200: customs exports of GOODS only. The 2006–2025 series shows the five top individual country destinations in 2025—Romania, Turkey, Italy, Czechia and Ukraine—as shares of that year's BNS total. CIS/EU/other groups overlap countries and are never summed with them. Ukraine was moved from CIS to the other-country group in 2024, without duplicating its country series. Left-bank Nistru and Bender exporters are excluded. Current Statbank 2025 total: US$3,780.864m; preliminary release: US$3,782.7m, separate source vintages."
+      "BNS EXT010200: customs exports of GOODS only. The 2006–2025 series shows the five top individual country destinations in 2025—Romania, Turkey, Italy, Czechia and Ukraine—as shares of that year's BNS total. CIS/EU/other groups overlap countries and are never summed with them. Ukraine was moved from CIS to the other-country group in 2024, without duplicating its country series. Left-bank Nistru and Bender exporters are excluded. Current Statbank 2025 total: US$3,780.864m; preliminary release: US$3,782.7m, separate source vintages.",
+      "The government unified statutory full-time minimum is MDL 4,000 in 2023, MDL 5,000 in 2024 and MDL 5,500 in 2025. Plotted USD/month uses the official NBM calendar-year USD/MDL average, not actual pay. Unification across public and private sectors took effect in September 2022; there is no manufactured comparable full-year series for 2006–2022."
     ],
     "unavailable": [
       {
@@ -112,8 +114,8 @@
         "detail": "General-government gross fixed capital formation has not been independently validated. Economy-wide investment is not substituted."
       },
       {
-        "term": "Minimum wage and poverty comparability",
-        "detail": "BNS national consumption-based absolute poverty is now source-checked for 2014–2025 with a 2019 method break. This is not interchangeable with relative or international poverty. The statutory MDL wage and matching annual USD conversion remain unverified."
+        "term": "Pre-2023 statutory minimum comparability",
+        "detail": "Public/private sector minimum-pay unification took effect 1 September 2022. Only 2023–2025 full-year unified floors are verified and converted at official NBM annual averages; sectoral or partial-year minima are not silently backfilled."
       },
       {
         "term": "Excess mortality and COVID-19 underlying cause",
@@ -162,7 +164,8 @@
       "A pobreza absoluta BNS usa consumo das famílias, não limites internacionais em dólares ou pobreza relativa experimental. A pesquisa domiciliar mudou de método em 2019, deixando 2014–2018 e 2019–2025 em linhas não conectadas. O BNS informa 33,6% em 2024 e 31,1% em 2025.",
       "O IDH usa somente a série histórica completa do PNUD, RDH 2025, de 2006 a 2023: 0,784 em 2022 e 0,785 em 2023; 2024–2025 estão ausentes. O comunicado do PNUD Moldávia de 6 de maio de 2025 informa 0,763 para 2022, divergência de 0,021 em relação ao CSV; não misturamos edições.",
       "A série CPI 2025 da Transparency International é comparável nesta metodologia apenas entre 2012 e 2025: nota 42 em 2023, 43 em 2024 e 42 em 2025. Na escala de 0–100, maior significa menor corrupção percebida no setor público. São avaliações de especialistas e empresas, não ocorrências registradas; 2006–2011 continuam vazios. Fonte: TI, CC BY-ND 4.0.",
-      "BNS EXT010200: exportações aduaneiras apenas de MERCADORIAS. As séries 2006–2025 apresentam os cinco principais destinos individuais de 2025—Romênia, Turquia, Itália, Tchéquia e Ucrânia—como parcelas do total BNS de cada ano. Grupos CEI/UE/outros se sobrepõem aos países e não são somados. A Ucrânia passou de CEI a outros países em 2024, sem duplicação. Exportadores da margem esquerda do Nistru e de Bender são excluídos. Statbank atual: US$ 3.780,864 milhões em 2025; comunicado preliminar: US$ 3.782,7 milhões, edições distintas."
+      "BNS EXT010200: exportações aduaneiras apenas de MERCADORIAS. As séries 2006–2025 apresentam os cinco principais destinos individuais de 2025—Romênia, Turquia, Itália, Tchéquia e Ucrânia—como parcelas do total BNS de cada ano. Grupos CEI/UE/outros se sobrepõem aos países e não são somados. A Ucrânia passou de CEI a outros países em 2024, sem duplicação. Exportadores da margem esquerda do Nistru e de Bender são excluídos. Statbank atual: US$ 3.780,864 milhões em 2025; comunicado preliminar: US$ 3.782,7 milhões, edições distintas.",
+      "O remuneração mínima legal unificada para tempo integral foi de 4.000 MDL em 2023, 5.000 MDL em 2024 e 5.500 MDL em 2025 (governo). O valor mensal em dólares usa o câmbio médio anual oficial do BNM, não o salário efetivamente pago. A unificação dos setores público e privado entrou em vigor em setembro de 2022; não criamos uma série artificial comparável para 2006–2022."
     ],
     "unavailable": [
       {
@@ -186,8 +189,8 @@
         "detail": "A formação bruta de capital fixo do governo geral ainda não foi validada. O investimento da economia inteira não substitui."
       },
       {
-        "term": "Salário mínimo e comparabilidade da pobreza",
-        "detail": "A pobreza absoluta BNS por consumo foi verificada para 2014–2025, com ruptura metodológica em 2019. Não substitui pobreza relativa ou internacional. Salário mínimo legal em MDL e conversão anual para dólares seguem pendentes."
+        "term": "Comparabilidade do salário mínimo antes de 2023",
+        "detail": "A unificação entre os setores público e privado entrou em vigor em 1º de setembro de 2022. Só os pisos anuais unificados de 2023–2025 foram verificados e convertidos pela taxa média anual do BNM; pisos setoriais ou de parte do ano não foram preenchidos artificialmente."
       },
       {
         "term": "Excesso de mortes e COVID-19 como causa básica",

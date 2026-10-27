@@ -201,6 +201,30 @@ people:
       interpolation or 2018-2019 comparable growth claim. National
       household survey coverage must not be assumed identical to
       internationally harmonised population or Gini series.
+  minimum_wage.csv:
+    source: "Government of the Republic of Moldova (statutory minimum wage); National Bank of Moldova (annual USD/MDL exchange rate)"
+    url: "https://old.gov.md/ro/content/salariul-minim-pe-tara-va-fi-majorat-pana-la-4000-de-lei"
+    official: true
+    refreshed_by: "Audited Government decisions 2022-12-07, 2023-12-06 and 2024-12-18; NBM official FX from fetch/fetch_nbm.py"
+    notes: >-
+      Official GOVERNMENT full-time gross MONTHLY statutory national minimum,
+      nominal MDL: 2023=4000, 2024=5000 and 2025=5500; effective January 1
+      in each year (169 hours/month reference). Government reports:
+      2023 https://old.gov.md/ro/content/salariul-minim-pe-tara-va-fi-majorat-pana-la-4000-de-lei
+      2024 https://old.gov.md/ro/content/salariul-minim-pe-tara-anul-2024-va-constitui-5000-lei-mai-mare-cu-1000-de-lei-decat-2023
+      2025 https://old.gov.md/ro/content/salariul-mediu-lunar-pe-economie-prognozat-pentru-anul-2025-va-constitui-16-100-de-lei
+      Labor Ministry: countrywide pay unification took effect 2022-09-01;
+      https://social.gov.md/comunicare/comunicate/din-1-septembrie-2022-salariul-minim-va-fi-unificat-in-toate-institutiile-din-tara/
+      Therefore 2006-2022 are BLANK, not zero or backfilled by earlier
+      public/private sector minima. USD/month = legal MDL/month divided by
+      same-year official NBM calendar-year average MDL per 1 USD (usd_mdl.csv):
+      2023=18.160700, 2024=17.791800, 2025=17.370500.
+      This is a currency translation of a statutory floor, NOT actual earnings,
+      median wages, inflation-adjusted purchasing power, or PPP.
+      Government set 2026=6300 MDL, but full-calendar-year 2026 NBM FX
+      is unavailable, so no 2026 annual USD point is drawn.
+      Legal jurisdiction and sample-population perimeter must not be assumed
+      identical to BNS poverty or WDI Gini.
   gini.csv:
     source: "World Bank WDI, SI.POV.GINI (harmonised household-survey Gini)"
     url: "https://api.worldbank.org/v2/country/MDA/indicator/SI.POV.GINI?format=json"
