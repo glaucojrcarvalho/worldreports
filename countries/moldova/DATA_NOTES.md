@@ -408,14 +408,14 @@ original data and codebook as a read-only Actions artifact.
 Source JSON-stat2 SHA256:
 `5e1fc55f430c4e75a07c172b99a7b60501217fbfd6816e3dc5a5a32a97454fa4`.
 Publisher metadata SHA256:
-`1adfac120905d511a524ed0a8c957e48da88fe9c9a41f4ee76a36d186e7`.
+`1adfac120905d511a5246b524ed0a8c957e48da88fe9c9a41f4ee76a36d186e7`.
 
 `data/trade/destinations.csv` contains observed 2006–2025 percentages of
 **total customs goods exports** for the five largest *individual-country*
 destinations in **2025**. The actual 2025 shares (source precision derived
-as same-year country / BNS all-partner Total) are Romania **29.007598%**,
-Turkey **9.950059%**, Italy **9.226513%**, Czechia **8.218764%** and Ukraine
-**7.919071%**. Codes 35, 86, 27 and 17 refer to the first four; Ukraine's
+as same-year country / BNS all-partner Total) are Romania **29.007597%**,
+Turkey **9.950060%**, Italy **9.226514%**, Czechia **8.218765%** and Ukraine
+**7.919070%**. Codes 35, 86, 27 and 17 refer to the first four; Ukraine's
 country code is 11 through 2023, then 87 from 2024. The source changed
 Ukraine from **CIS** to **other countries** group in 2024; that group's
 aggregate is **not** added to any country share. Country groups 1, 13

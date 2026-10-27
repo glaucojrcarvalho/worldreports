@@ -221,7 +221,7 @@ trade:
       Numerator: same-year named customs-country exports (thousand USD);
       denominator: SAME-year BNS all-partner goods-export Total (code 0).
       NOT WDI goods-and-services national-accounts percent GDP. Source JSON-stat2
-      SHA256 5e1fc55f430c4e75a07c172b99a7b60501217fbfd6816e3dc5a5a32a97454fa4; metadata SHA256 1adfac120905d511a524ed0a8c957e48da88fe9c9a41f4ee76a36d186e7.
+      SHA256 5e1fc55f430c4e75a07c172b99a7b60501217fbfd6816e3dc5a5a32a97454fa4; metadata SHA256 1adfac120905d511a5246b524ed0a8c957e48da88fe9c9a41f4ee76a36d186e7.
       BNS partner codes 35, 86, 27, 17 and for Ukraine 11 (2006-2023),
       87 (2024-2025). Ukraine moves from the CIS group to the other-country
       group in 2024; country observations remain separate from groups.

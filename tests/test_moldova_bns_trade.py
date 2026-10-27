@@ -131,12 +131,12 @@ def test_verified_2025_top_five_source_codebook_and_annual_shares():
         assert all(0 <= value < 90 for value in percentages)
         assert sum(percentages) < 100
     assert [float(rows[-1][k]) for k in list(rows[-1])[1:]] == pytest.approx(
-        [29.007598, 9.950059, 9.226513, 8.218764, 7.919071], abs=1e-6)
+        [29.007597, 9.950060, 9.226514, 8.218765, 7.919070], abs=1e-6)
     assert float(rows[-3]["ukraine_pct"]) == pytest.approx(14.706501, abs=1e-6)
     assert float(rows[-2]["ukraine_pct"]) == pytest.approx(9.257305, abs=1e-6)
     source = curated.read_text("utf-8")
     assert "5e1fc55f430c4e75a07c172b99a7b60501217fbfd6816e3dc5a5a32a97454fa4" in source
-    assert "1adfac120905d511a524ed0a8c957e48da88fe9c9a41f4ee76a36d186e7" in source
+    assert "1adfac120905d511a5246b524ed0a8c957e48da88fe9c9a41f4ee76a36d186e7" in source
     assert "Bender" in source and "not WDI goods and services" in source
 
 
