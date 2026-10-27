@@ -86,7 +86,7 @@ jobs:
           with open("site/ui.json", encoding="utf-8") as f:
               shared = json.load(f)
           assert set(u) == {"ro","en","pt"}
-          assert len(u["ro"]["unavailable"]) == len(u["en"]["unavailable"]) == len(u["pt"]["unavailable"]) == 8
+          assert len(u["ro"]["unavailable"]) == len(u["en"]["unavailable"]) == len(u["pt"]["unavailable"]) == 7
           assert set(shared["ro"]) == set(shared["en"])
           print(f"Candidate card QA passed: {len(cards)} chapters / {len(strip)} headlines")
           PY
