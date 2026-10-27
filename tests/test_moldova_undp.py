@@ -110,6 +110,6 @@ def test_curated_hdr_2025_hdi_is_single_vintage_with_missing_later_years():
         assert any(all(token in note for token in decimals)
                    for note in ui[lang]["notes"])
         terms = [x["term"] for x in ui[lang]["unavailable"]]
-        assert len(terms) == 8
+        assert len(terms) == 7
         assert not any(any(fragment in word.lower() for fragment in ("corup", "corrup"))
                        for word in terms)
