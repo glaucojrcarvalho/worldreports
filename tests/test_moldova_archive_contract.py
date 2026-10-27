@@ -23,9 +23,9 @@ def test_archiver_consumes_exact_successful_validation_artifact() -> None:
     assert "github.event_name == 'push'" in archival["if"]
     steps = validation["steps"]
     gate = next(i for i, s in enumerate(steps)
-                if s["name"].startswith("Exercise full atlas and browser JS"))
+                if s.get("name", "").startswith("Exercise full atlas and browser JS"))
     producer = next(i for i, s in enumerate(steps)
-                    if s["name"].startswith("Upload exact full-suite-validated"))
+                    if s.get("name", "").startswith("Upload exact full-suite-validated"))
     assert gate < producer
     assert "node --test tests/js/*.test.js" in steps[gate]["run"]
     artifact = steps[producer]
@@ -37,11 +37,11 @@ def test_archiver_consumes_exact_successful_validation_artifact() -> None:
 
     archive_steps = archival["steps"]
     consumer = next(i for i, s in enumerate(archive_steps)
-                    if s["name"].startswith("Download validated"))
+                    if s.get("name", "").startswith("Download validated"))
     checked = next(i for i, s in enumerate(archive_steps)
-                   if s["name"].startswith("Restore ONLY the exact fully tested"))
+                   if s.get("name", "").startswith("Restore ONLY the exact fully tested"))
     commit = next(i for i, s in enumerate(archive_steps)
-                  if s["name"].startswith("Commit only isolated"))
+                  if s.get("name", "").startswith("Commit only isolated"))
     assert consumer < checked < commit
     assert archive_steps[consumer]["uses"] == "actions/download-artifact@v4"
     assert archive_steps[consumer]["with"]["name"] == artifact["with"]["name"]
