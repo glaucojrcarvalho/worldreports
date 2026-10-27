@@ -87,6 +87,10 @@
     "ro": "Nașteri minus decese (WDI)",
     "pt": "Nascimentos menos mortes (WDI)"
   },
+  "BNS 2024 census, 8 April; birth country, NOT UN stock": {
+    "ro": "Recensământ BNS 2024, 8 aprilie; țara nașterii, NU stocul ONU",
+    "pt": "Censo BNS 2024, 8 de abril; país de nascimento, NÃO estoque ONU"
+  },
   "BNS consumption poverty; methodology break in 2019": {
     "ro": "BNS: sărăcie după consum; ruptură metodologică în 2019",
     "pt": "BNS: pobreza por consumo; ruptura metodológica em 2019"

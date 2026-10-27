@@ -178,11 +178,12 @@ def build(ctx):
          T(ro="Migrația netă modelată de ONU și stocul de migranți internaționali nu sunt aceleași date cu înregistrările naționale.",
            en="UN-modelled net migration and international migrant stock are not national arrival/departure registers.",
            pt="Migração líquida modelada pela ONU e estoque de migrantes internacionais não são registros nacionais de entradas e saídas."),
-         T(ro="Migrația netă folosește populația WDI din același an; stocul ONU este afișat doar ca instantanee 2010, 2015, 2020 și 2024, fără interpolare.",
-           en="Net migration uses same-year WDI population; UN migrant stock is shown only at 2010, 2015, 2020 and 2024, without interpolation.",
-           pt="A migração líquida usa a população WDI do mesmo ano; o estoque da ONU aparece apenas em 2010, 2015, 2020 e 2024, sem interpolação."),
+         T(ro="Migrația netă folosește populația WDI din același an. Stocul ONU apare doar în 2010, 2015, 2020 și 2024. Separat, recensământul BNS din 8 aprilie 2024 constată 4,4% rezidenți născuți peste hotare, o singură observație, nu o serie anuală.",
+           en="Net migration uses same-year WDI population; UN stock appears only in 2010, 2015, 2020 and 2024. Separately the BNS census of 8 April 2024 reports 4.4% of usual residents born abroad: a single census observation, not an annual series.",
+           pt="A migração líquida usa a população WDI do mesmo ano; o estoque ONU aparece só em 2010, 2015, 2020 e 2024. Separadamente, o censo BNS de 8 de abril de 2024 informa 4,4% dos residentes habituais nascidos no exterior: uma observação censitária, não série anual."),
          "migration/migration.csv", "net_migration", "count",
-         ["migration/migration.csv", "demography/demography.csv"]),
+         ["migration/migration.csv", "demography/demography.csv",
+          "migration/foreign_born_census.csv"]),
     ]
     rows = []
     for ident, topic, family, title, blurb, alt, path, column, fmt, sources in specs:

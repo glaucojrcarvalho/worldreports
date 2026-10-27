@@ -1,0 +1,41 @@
+# Independent live publisher HTML audit, read-only and review-sidecar only.
+# No registration, source overwrite, push, deployment or upstream contact.
+name: Moldova BNS census foreign-born source audit
+
+on:
+  push:
+    branches: [research/moldova-source-audit]
+    paths:
+      - 'countries/moldova/fetch/fetch_bns_census_foreign_born.py'
+      - 'tests/test_moldova_bns_census_foreign_born.py'
+      - '.github/workflows/moldova-bns-census-foreign-born-live.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  census-country-of-birth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run offline census methodology, vintage, schema and missing-year tests
+        run: |
+          python -m pytest -q tests/test_moldova_bns_census_foreign_born.py
+      - name: Verify directly with BNS original HTML, save only review sidecar
+        run: |
+          python countries/moldova/fetch/fetch_bns_census_foreign_born.py
+          echo "=== BNS CENSUS FOREIGN-BORN SOURCE REVIEW ==="
+          cat countries/moldova/data/migration/foreign_born_census_from_bns.csv
+          echo "=== END REVIEW ==="
+      - name: Keep evidence for subsequent audit without committing source sidecar
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: moldova-bns-foreign-born-2024-source-review
+          path: countries/moldova/data/migration/foreign_born_census_from_bns.csv
+          retention-days: 14

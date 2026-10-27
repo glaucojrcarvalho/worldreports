@@ -222,3 +222,36 @@ def test_wdi_life_expectancy_is_period_not_birth_cohort_longevity():
     manifest = (ROOT / "SOURCES.yaml").read_text(encoding="utf-8")
     assert "PERIOD life-table estimate" in manifest
     assert "SP.DYN.LE00.IN" in manifest
+
+
+def test_bns_foreign_born_is_exactly_one_census_snapshot_not_un_stock() -> None:
+    """Official BNS country of birth != UN international migrant stock."""
+    import json
+    import yaml
+    rows = _rows("migration/foreign_born_census.csv")
+    assert [r["year"] for r in rows] == list(range(2006, 2026))
+    observed = {r["year"]: r["foreign_born_pct"] for r in rows
+                if r["foreign_born_pct"] is not None}
+    assert observed == {2024: 4.4}
+    src = (ROOT / "plates.py").read_text(encoding="utf-8")
+    migration = src.split("def plate_migration(", 1)[1].split("PLATES = (", 1)[0]
+    slot = migration.split('ig.slot("migration.foreign_born"', 1)[1].split(
+        'ig.slot("migration.lens"', 1)[0]
+    assert '"migration/foreign_born_census.csv"' in slot
+    assert "ax.scatter(census_years, census_pct" in slot
+    assert "ctx.line(" not in slot
+    assert "_pending(" not in slot
+    assert "NOT UN stock" in slot
+    manifest = yaml.safe_load((ROOT / "SOURCES.yaml").read_text(encoding="utf-8"))
+    entry = manifest["migration"]["foreign_born_census.csv"]
+    assert entry["official"] is True
+    assert "National Bureau of Statistics" in entry["source"]
+    assert "2024-04-08" in entry["notes"]
+    assert "157" in entry["notes"]
+    catalog = json.loads((ROOT / "i18n.json").read_text(encoding="utf-8"))
+    assert set(catalog["BNS 2024 census, 8 April; birth country, NOT UN stock"]) == {"ro", "pt"}
+    ui = json.loads((ROOT / "ui.json").read_text(encoding="utf-8"))
+    for language in ("ro", "en", "pt"):
+        assert len(ui[language]["unavailable"]) == 7
+        assert any("2024" in note and ("4.4%" in note or "4,4%" in note)
+                   for note in ui[language]["notes"])

@@ -575,3 +575,12 @@ This change does not alter the IMF WEO/FPP fiscal plate, country registration,
 2026 calendar-year values, national-budget year statuses, or peer chart axes.
 It still requires complete strict trilingual render, source/provenance,
 site/layout QA and final human visual inspection before publication.
+
+
+## BNS 2024 final census: foreign-born share is one reference-date observation
+
+The original [BNS 2024 census migration-characteristics publication](https://statistica.gov.md/en/final-results-of-the-2024-population-and-housing-census-migration-10121_61958.html), released **2025-08-25**, reports **106.7 thousand (rounded)** residents born outside Moldova, **4.4%** of the *census's own usual-resident population*. Census reference date: **2024-04-08**. The published 4.4% is directly transcribed into `data/migration/foreign_born_census.csv`, without recalculation against World Bank mid-year population. Other years stay missing; the plate draws a **single dot**, never a line or extrapolation.
+
+The [geographical census release](https://statistica.gov.md/en/final-results-of-the-2024-population-and-housing-census-geographical-distributio-10121_61877.html) notes 157 unenumerated localities. This census is not a same-time/same-territory denominator for WDI data. Being *born abroad* does not equal foreign citizenship, immigration permit registration, or the UN's separate international migrant stock, which can use citizenship when birthplace data are unavailable. The UN snapshots remain separate in `migration.lens`; observed BNS arrivals and departures still cannot be converted into per-1,000 rates without a year- and territory-compatible population series.
+
+For reproducibility, `fetch/fetch_bns_census_foreign_born.py` validates the original BNS HTML page's release date, reference date and joint count/percentage statement and writes only a `*_from_bns.csv` **review sidecar** with the original response SHA256; it does not automatically overwrite the curated point. An isolated read-only GitHub Action independently fetches the source. Its success or any drift must be examined before release.

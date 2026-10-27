@@ -566,3 +566,12 @@ alongside WDI `macro/economy.csv`. Review localized stacked-area legends
 at full size, 36 PNG/SVG/thumb sets, 12 mappings, all Python/JS/layout/site
 checks. Keep root `country.yaml` unregistered until those gates pass.
 No upstream changes, PR, merge, or deploy.
+
+
+## Phase C — verified foreign-country-of-birth census snapshot and protected source lane, 2026-10-27
+
+The migration canonical `migration.foreign_born` was previously pending because the WDI/UN migrant stock does not guarantee a birthplace definition. The *BNS final census* directly publishes a separate, official **2024-04-08 foreign-born share of 4.4%**, alongside an approximate 106.7 thousand persons (published **2025-08-25**). We have added **one source-defined census point** rather than silently treating the UN stock as foreign-born, or creating an annual series. It is drawn with a scatter mark, not a line. Previous/next years are blank. Its territorial limitation (157 unenumerated localities) and non-identical WDI mid-year denominator are explicit. This does NOT resolve year-comparable immigration/emigration rates, which stay pending.
+
+Files: `data/migration/foreign_born_census.csv`, guarded official-HTML fetcher with SHA256 sidecar, read-only live-source workflow and offline synthetic parser tests; chart, 3-language catalog/chapters/site notes, source manifest, data notes, lineage and semantic design tests updated.
+
+**Next hard gates:** check BOTH the independent BNS live workflow (the source HTML parser must pass with the actual 2025 BNS publication) and the full branch-only Moldova research quality gate. The latter must pass trilingual strict render; full PNG/SVG/thumb and static-vs-observed provenance including this new CSV; site, layout, Python and JS regressions; and safely archive the resulting 36 translated assets. Review `12-migration.{ro,pt}.png` and `03-spending.{ro,pt}.png` visually. Also confirm the prior automated provenance refresh for BNS spending is present. Only after all gates and human visual QA consider registration as a candidate on the fork. Never contact upstream, merge, deploy or fabricate missing immigration/emigration observations.

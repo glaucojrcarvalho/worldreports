@@ -354,6 +354,26 @@ security:
       Verify each numerator/denominator against national and WHO/UNODC
       territorial and definition metadata before any official plate.
 migration:
+  foreign_born_census.csv:
+    source: "National Bureau of Statistics of Moldova (BNS), final 2024 Population and Housing Census: migration characteristics"
+    url: "https://statistica.gov.md/en/final-results-of-the-2024-population-and-housing-census-migration-10121_61958.html"
+    official: true
+    refreshed_by: fetch/fetch_bns_census_foreign_born.py
+    notes: >-
+      The original BNS final census release published 2025-08-25 reports
+      foreign country of BIRTH for 106.7 thousand (rounded) usual residents,
+      or 4.4% of the 2024 census population, on reference date 2024-04-08.
+      The 4.4% is TRANSCRIBED directly, not calculated using WDI
+      mid-year population or UN migrant stock. The 2024 census territory
+      excludes 157 unenumerated localities, including areas not controlled
+      by constitutional authorities. Different territory/reference dates
+      make WDI mid-year population and the UN modelled migrant stock
+      NON-INTERCHANGEABLE. 2006-2023 and 2025 remain BLANK.
+      Census country-of-birth is distinct from citizenship, registered
+      immigration/emigration, and UN migrant stock which can use citizenship
+      where country of birth is unavailable. The official HTML snapshot
+      is guarded by a deterministic source parser; it writes only
+      foreign_born_census_from_bns.csv review evidence.
   migration.csv:
     source: "World Bank WDI/UN, SM.POP.NETM (annual modeled net migration), SM.POP.TOTL (international migrant stock)"
     url: "https://api.worldbank.org/v2/country/MDA/indicator/SM.POP.NETM?format=json"
@@ -370,6 +390,17 @@ meta:
   last_checked: "2026-10-27"
   wdi_vintage: "2026-10-08"
   verified:
+    - name: "BNS 2024 census country-of-birth share, isolated observation"
+      publisher: "National Bureau of Statistics of Moldova"
+      official: true
+      dataset_paths: ["migration/foreign_born_census.csv"]
+      reviewed_utc: "2026-10-27"
+      evidence: "https://statistica.gov.md/en/final-results-of-the-2024-population-and-housing-census-migration-10121_61958.html"
+      notes: >-
+        Final BNS release dated 2025-08-25: 2024-04-08 census, 4.4%
+        born abroad and 106.7 thousand persons (rounded). Excludes 157
+        unenumerated localities. Exactly one census snapshot, NOT an annual
+        or UN internationally modelled migration-stock observation.
     - name: "BNS same-territory nominal GDP and functional public-budget shares, 2016–2025"
       publisher: "National Bureau of Statistics of Moldova"
       official: true

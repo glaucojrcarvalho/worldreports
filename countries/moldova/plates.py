@@ -393,8 +393,15 @@ def plate_migration(ctx, ig):
     _foot(ctx, ax, "UN model / WDI population; not BNS registered moves")
 
     ax = ig.slot("migration.foreign_born", "Foreign-born share (%)")
-    _pending(ctx, ig, ax, "UN international migrant stock may use\n"
-             "citizenship where birthplace is unavailable.")
+    # Official census COUNTRY OF BIRTH, not the UN migrant stock series.
+    # A single 8-Apr-2024 census estimate is a point, never a
+    # 2006–2025 annual line or a WDI-population ratio.
+    census_years, census_pct = _series(
+        ctx, "migration/foreign_born_census.csv", "foreign_born_pct")
+    if census_years != [2024] or census_pct != [4.4]:
+        raise ValueError("Moldova census foreign-born anchor/coverage revised")
+    ax.scatter(census_years, census_pct, color=p.TEAL, s=54, zorder=4)
+    _foot(ctx, ax, "BNS 2024 census, 8 April; birth country, NOT UN stock")
 
     ax = ig.slot("migration.lens", "International migrant stock, UN snapshots (%)")
     stock = dict(zip(*_series(ctx, "migration/migration.csv", "migrant_stock")))

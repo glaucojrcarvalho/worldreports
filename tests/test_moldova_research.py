@@ -54,6 +54,7 @@ def test_manifest_covers_exact_staged_publisher_files() -> None:
         "markets/policy.csv", "markets/usd_mdl.csv",
         "people/absolute_poverty.csv", "people/minimum_wage.csv", "world/hdi.csv", "world/cpi.csv",
         "trade/destinations.csv", "credit/prudential_npl.csv",
+        "migration/foreign_born_census.csv",
     }
     assert declared == files == expected
     assert manifest["meta"]["status"] == "research_only_not_an_atlas_edition"
@@ -108,6 +109,11 @@ def test_manifest_covers_exact_staged_publisher_files() -> None:
                 assert "2022-09-01" in details["notes"]
                 assert "2023=4000" in details["notes"]
                 assert "fetch/fetch_nbm.py" in details["refreshed_by"]
+            elif group == "migration" and name == "foreign_born_census.csv":
+                assert details["source"].startswith("National Bureau of Statistics")
+                assert details["official"] is True
+                assert details["refreshed_by"] == "fetch/fetch_bns_census_foreign_born.py"
+                assert "4.4%" in details["notes"] and "2024-04-08" in details["notes"]
             elif group == "credit" and name == "prudential_npl.csv":
                 assert details["source"].startswith("National Bank of Moldova")
                 assert details["official"] is True

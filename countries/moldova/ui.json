@@ -17,7 +17,8 @@
       "BNS EXT010200: exporturi vamale numai de MĂRFURI. Seriile 2006–2025 prezintă cele cinci destinații cu cele mai mari valori în 2025: România, Turcia, Italia, Cehia și Ucraina, ca pondere în totalul BNS al fiecărui an. Grupele CIS/UE/altele se suprapun cu țările și nu se adună. Ucraina a fost reclasificată din CIS în alte țări în 2024; nu duplicăm țara. Perimetrul exclude exportatorii din stânga Nistrului și Bender. Statbank actual: 3.780,864 milioane USD în 2025; comunicatul preliminar: 3.782,7 milioane USD; ediții distincte.",
       "Salariul minim legal unificat pentru muncă cu normă întreagă este 4.000 MDL în 2023, 5.000 MDL în 2024 și 5.500 MDL în 2025 (Guvern). Valoarea în USD este derivată din media anuală oficială BNM, nu salariul efectiv plătit. Unificarea sectorului public cu cel privat a intrat în vigoare în septembrie 2022; nu construim artificial o serie comparabilă pentru 2006–2022.",
       "BNM publică ponderea prudențială a creditelor neperformante pentru toate băncile la 31 decembrie: 6,4% (2022), 5,6% (2023), 4,1% (2024), 4,1% (2025). Nu este rata creditelor gospodăriilor și nici clasificare IFRS. Comunicatul din 2024 indică o scădere cu 1,4 puncte față de 2023; cifrele rotunjite publicate separat indică 1,5 puncte. Nu presupunem cauza; cele două segmente editoriale rămân separate.",
-      "Cheltuielile funcționale BNS FIN010100 pentru bugetul public național, în milioane MDL și pe bază de casă, sunt împărțite la PIB nominal BNS al aceluiași an și teritoriu (CNT208100 în 2016–2024, comunicatul PIB provizoriu pentru 2025). Cele zece funcții naționale sunt grupate în șapte categorii; nu sunt conturi COFOG/GFS armonizate ale guvernului general. Totalul este 38,0% din PIB în 2024 și 39,6% în 2025 (provizoriu), conform ratelor publicate de BNS."
+      "Cheltuielile funcționale BNS FIN010100 pentru bugetul public național, în milioane MDL și pe bază de casă, sunt împărțite la PIB nominal BNS al aceluiași an și teritoriu (CNT208100 în 2016–2024, comunicatul PIB provizoriu pentru 2025). Cele zece funcții naționale sunt grupate în șapte categorii; nu sunt conturi COFOG/GFS armonizate ale guvernului general. Totalul este 38,0% din PIB în 2024 și 39,6% în 2025 (provizoriu), conform ratelor publicate de BNS.",
+      "Recensământul BNS din 8 aprilie 2024: 4,4% dintre rezidenții obișnuiți s-au născut în alte țări (106,7 mii persoane, număr rotunjit). Este o instantanee din recensământ, nu un indicator anual și nu stocul ONU de migranți; 157 de localități nu au fost recenzate. Nu folosim populația WDI la mijlocul anului ca numitor."
     ],
     "unavailable": [
       {
@@ -45,8 +46,8 @@
         "detail": "Sunt necesare numărări anuale de decese pe același teritoriu și date privind cauza inițială a decesului. Rata brută a mortalității nu este un număr de decese."
       },
       {
-        "term": "Intrări, ieșiri și ponderea născuților peste hotare",
-        "detail": "Migrația netă modelată nu oferă fluxuri de intrare/ieșire. Stocul ONU nu este afirmat ca exclusiv născuți în străinătate fără verificarea definiției."
+        "term": "Fluxuri de intrare și ieșire comparabile",
+        "detail": "Datele de migrație netă modelată ONU nu oferă fluxuri de sosiri/plecări măsurate. Recensământul BNS din 8 aprilie 2024 furnizează separat ponderea de 4,4% a rezidenților născuți peste hotare; nu o confundăm cu stocul ONU."
       }
     ],
     "colophon": [
@@ -90,7 +91,8 @@
       "BNS EXT010200: customs exports of GOODS only. The 2006–2025 series shows the five top individual country destinations in 2025—Romania, Turkey, Italy, Czechia and Ukraine—as shares of that year's BNS total. CIS/EU/other groups overlap countries and are never summed with them. Ukraine was moved from CIS to the other-country group in 2024, without duplicating its country series. Left-bank Nistru and Bender exporters are excluded. Current Statbank 2025 total: US$3,780.864m; preliminary release: US$3,782.7m, separate source vintages.",
       "The government unified statutory full-time minimum is MDL 4,000 in 2023, MDL 5,000 in 2024 and MDL 5,500 in 2025. Plotted USD/month uses the official NBM calendar-year USD/MDL average, not actual pay. Unification across public and private sectors took effect in September 2022; there is no manufactured comparable full-year series for 2006–2022.",
       "NBM bank-wide prudential non-performing loans at 31 December were 6.4% (2022), 5.6% (2023), 4.1% (2024) and 4.1% (2025). These are not household-only or IFRS ratios. The 2024 bulletin reports a 1.4-point fall, while subtracting the two separately published rounded rates gives 1.5 points. The cause is unverified, so publication segments are disconnected.",
-      "BNS FIN010100 national-public-budget spending by function, in million MDL on a cash basis, is divided by same-year and same-territory BNS nominal GDP (CNT208100 for 2016–2024; separate provisional GDP release for 2025). Ten national functions are grouped into seven categories, not harmonised general-government COFOG/GFS. Total spending is 38.0% of GDP in 2024 and 39.6% in preliminary 2025, consistent with BNS published GDP ratios."
+      "BNS FIN010100 national-public-budget spending by function, in million MDL on a cash basis, is divided by same-year and same-territory BNS nominal GDP (CNT208100 for 2016–2024; separate provisional GDP release for 2025). Ten national functions are grouped into seven categories, not harmonised general-government COFOG/GFS. Total spending is 38.0% of GDP in 2024 and 39.6% in preliminary 2025, consistent with BNS published GDP ratios.",
+      "The BNS census on 8 April 2024 reports that 4.4% of usual residents were born in other countries (106.7 thousand, rounded). This is a census snapshot, not an annual series or UN migrant stock; 157 localities were not enumerated. WDI mid-year population is not its denominator."
     ],
     "unavailable": [
       {
@@ -118,8 +120,8 @@
         "detail": "The required annual death counts must have matching territory, and underlying-cause COVID-19 deaths need cause-of-death registers. Crude death rates are not death counts."
       },
       {
-        "term": "Registered migration and foreign-born share",
-        "detail": "Modelled net migration cannot supply separate arrivals and departures. UN migrant stock is not asserted to be exclusively foreign-born without validating its definition."
+        "term": "Comparable immigration and emigration flows",
+        "detail": "UN-modelled net migration does not provide measured arrival/departure flows. The separate 8 April 2024 BNS census supplies a 4.4% foreign-born share; this is not the UN migrant-stock definition."
       }
     ],
     "colophon": [
@@ -163,7 +165,8 @@
       "BNS EXT010200: exportações aduaneiras apenas de MERCADORIAS. As séries 2006–2025 apresentam os cinco principais destinos individuais de 2025—Romênia, Turquia, Itália, Tchéquia e Ucrânia—como parcelas do total BNS de cada ano. Grupos CEI/UE/outros se sobrepõem aos países e não são somados. A Ucrânia passou de CEI a outros países em 2024, sem duplicação. Exportadores da margem esquerda do Nistru e de Bender são excluídos. Statbank atual: US$ 3.780,864 milhões em 2025; comunicado preliminar: US$ 3.782,7 milhões, edições distintas.",
       "O remuneração mínima legal unificada para tempo integral foi de 4.000 MDL em 2023, 5.000 MDL em 2024 e 5.500 MDL em 2025 (governo). O valor mensal em dólares usa o câmbio médio anual oficial do BNM, não o salário efetivamente pago. A unificação dos setores público e privado entrou em vigor em setembro de 2022; não criamos uma série artificial comparável para 2006–2022.",
       "A inadimplência prudencial de todos os bancos BNM em 31 de dezembro foi 6,4% (2022), 5,6% (2023), 4,1% (2024) e 4,1% (2025). Não é exclusiva de famílias nem uma taxa IFRS. O boletim de 2024 informa queda de 1,4 ponto, mas a subtração das taxas arredondadas publicadas separadamente dá 1,5. A causa não foi verificada e os segmentos editoriais permanecem separados.",
-      "As despesas funcionais do orçamento público nacional BNS FIN010100, em milhões de MDL e regime de caixa, são divididas pelo PIB nominal BNS do mesmo ano e território (CNT208100 de 2016 a 2024; comunicado provisório do PIB para 2025). Dez funções nacionais são agrupadas em sete categorias, sem equivalência automática ao COFOG/GFS harmonizado do governo geral. A despesa total representa 38,0% do PIB em 2024 e 39,6% no ano preliminar de 2025, conforme as proporções publicadas pelo BNS."
+      "As despesas funcionais do orçamento público nacional BNS FIN010100, em milhões de MDL e regime de caixa, são divididas pelo PIB nominal BNS do mesmo ano e território (CNT208100 de 2016 a 2024; comunicado provisório do PIB para 2025). Dez funções nacionais são agrupadas em sete categorias, sem equivalência automática ao COFOG/GFS harmonizado do governo geral. A despesa total representa 38,0% do PIB em 2024 e 39,6% no ano preliminar de 2025, conforme as proporções publicadas pelo BNS.",
+      "O censo BNS de 8 de abril de 2024 registra que 4,4% dos residentes habituais nasceram em outros países (106,7 mil pessoas, número arredondado). É um retrato censitário, não uma série anual nem o estoque ONU; 157 localidades não foram recenseadas. Não se usa a população WDI do meio do ano como denominador."
     ],
     "unavailable": [
       {
@@ -191,8 +194,8 @@
         "detail": "Excesso de mortes exige contagens anuais com território compatível; COVID-19 como causa básica requer registros de causas de morte. Taxa bruta de mortalidade não é contagem de óbitos."
       },
       {
-        "term": "Fluxos migratórios registrados e participação dos nascidos fora",
-        "detail": "Migração líquida modelada não informa separadamente entradas e saídas. O estoque ONU não é necessariamente composto apenas por nascidos no exterior sem verificar a definição."
+        "term": "Fluxos comparáveis de imigração e emigração",
+        "detail": "A migração líquida modelada pela ONU não fornece fluxos medidos de entradas e saídas. O censo BNS de 8 de abril de 2024 fornece, em separado, 4,4% de residentes nascidos no exterior; essa medida não equivale ao estoque de migrantes da ONU."
       }
     ],
     "colophon": [
