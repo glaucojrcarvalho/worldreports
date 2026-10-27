@@ -23,6 +23,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install isolated test runner
+        run: python -m pip install pytest
       - name: Run offline census methodology, vintage, schema and missing-year tests
         run: |
           python -m pytest -q tests/test_moldova_bns_census_foreign_born.py
