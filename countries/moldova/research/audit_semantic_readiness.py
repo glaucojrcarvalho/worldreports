@@ -42,6 +42,23 @@ def _call(node: ast.AST) -> tuple[str, str] | None:
 
 def inventory(code: str) -> dict:
     parsed = ast.parse(code, filename="countries/moldova/plates.py")
+    # Validate all canonical claims before grouping statements into
+    # panel bodies; otherwise removing a slot can misattribute the next
+    # pending marker to the previous observed slot.
+    all_claimed = []
+    for function in parsed.body:
+        if not (isinstance(function, ast.FunctionDef)
+                and function.name.removeprefix("plate_") in TOPICS):
+            continue
+        for stmt in function.body:
+            if isinstance(stmt, ast.Assign) and _call(stmt.value) == ("ig", "slot"):
+                if stmt.value.args and isinstance(stmt.value.args[0], ast.Constant):
+                    all_claimed.append(stmt.value.args[0].value)
+    all_canonical = {slot.key for topic in TOPICS
+                     for slot in spine.SPINE[topic] if slot.canonical}
+    missing = all_canonical - set(all_claimed)
+    if missing:
+        raise AssertionError(f"Canonical slots missing: {sorted(missing)}")
     found = {}
     for node in parsed.body:
         if not isinstance(node, ast.FunctionDef) or not node.name.startswith("plate_"):
@@ -93,8 +110,8 @@ def inventory(code: str) -> dict:
     if set(found) != set(TOPICS):
         raise AssertionError(f"Missing topic builder: {set(TOPICS)-set(found)}")
 
-    expected = {key for topic in TOPICS for key in
-                (s.key for s in spine.SPINE[topic]) if s.canonical}
+    expected = {slot.key for topic in TOPICS
+                for slot in spine.SPINE[topic] if slot.canonical}
     actual = set().union(*(set(group) for group in found.values()))
     if not expected <= actual:
         raise AssertionError(f"Canonical slots missing: {sorted(expected-actual)}")
