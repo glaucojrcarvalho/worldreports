@@ -934,3 +934,29 @@ government GFCF, household-only credit, bonds/equity and migration
 registers must remain pending. If the registered rehearsal is updated
 later, the attestation must detect incompatible changes; re-run both
 pipelines without merging or publishing.
+
+## CI attestation pinned to tested checkout SHA — 2026-10-27
+
+A second read-only hardening pass prevents a subtle cross-run race:
+the original cross-branch attestation compared the **moving**
+`origin/research/moldova-source-audit` tip, while the Python/Node
+site tests and generated artifacts came from the immutable
+`GITHUB_SHA` checked out by GitHub Actions. A separate archive job
+could advance the branch between those steps, falsely certifying a
+different source revision.
+
+The quality step now first asserts `git rev-parse HEAD = GITHUB_SHA`,
+fetches only the registered rehearsal ref, and executes parity with
+`--source HEAD`. Its JSON evidence therefore pins the *same exact
+source commit* that produced the trilingual images and passed full
+tests, regardless of concurrent image-only commits. A regression
+checks this workflow contract and that a missing parity report fails
+the upload step. No new source data, image values, merger, deployment
+or upstream write is introduced.
+
+**Next:** inspect the refreshed source run for early parity and
+complete Python+JS. If the branch advances after the run,
+the guarded archive must still fail closed unless only the
+allowlisted non-rendering handoff note changed. Re-run the registered
+rehearsal only if the national/shared input blobs change; currently
+the focused green audit has established 70 common source blobs.

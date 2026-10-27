@@ -50,3 +50,22 @@ def test_source_maps_and_publication_rejected():
     with pytest.raises(AssertionError):check(s,r,p)
     s,r,p=sample();s[REGISTERED]=s[CANDIDATE]
     with pytest.raises(AssertionError,match="unexpectedly registered"):check(s,r,p)
+
+
+def test_quality_gate_attests_checkout_sha_not_moving_research_branch_tip():
+    """A parallel archive must not change the identity of the checked release."""
+    from pathlib import Path
+    import yaml
+    root = Path(__file__).resolve().parents[1]
+    spec = yaml.safe_load((root / ".github/workflows/moldova-research.yml").read_text("utf-8"))
+    steps = spec["jobs"]["moldova-research"]["steps"]
+    stage = next(step["run"] for step in steps
+                 if step.get("name", "").startswith("Verify exact source-to-registered"))
+    assert 'test "$(git rev-parse HEAD)" = "$GITHUB_SHA"' in stage
+    assert "--source HEAD" in stage
+    assert "git fetch --no-tags origin" in stage
+    assert "research/moldova-release-rehearsal" in stage
+    assert "refs/heads/research/moldova-source-audit:" not in stage
+    command = next(s for s in steps
+                   if s.get("name", "").startswith("Preserve SHA-pinned"))
+    assert command["with"]["if-no-files-found"] == "error"
