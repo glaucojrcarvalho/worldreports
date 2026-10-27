@@ -164,3 +164,25 @@ Moldova registered in an isolated branch runner. Do not add the root
 `country.yaml` until the peer assets and semantic audits are approved.
 Unfilled HDI/CPI, household credit, bond/equity, COFOG and national labour
 routes still need actual publisher evidence or explicit pending descriptions.
+
+## UNDP source-audit lane — 2026-10-27
+
+The UNDP Human Development Report Office offers the **official** 2025
+composite-indices historical release at
+https://hdr.undp.org/sites/default/files/2025_HDR/HDR25_Composite_indices_complete_time_series.csv.
+The site documents a time series through **2023**, not through 2025.
+UNDP Moldova's May 6, 2025 release independently confirms **HDI 0.763
+(2022)** and **0.785 (2023)**. Earlier HDR vintages are revised: NEVER
+splice them into this 2025 restatement. A separate guarded,
+Windows-1252-aware source fetcher, offline tests and a no-write-back
+GitHub Actions live audit now capture the official MDA 2006–2023 values
+as `hdi_from_undp.csv` for review, not as a published plate series.
+The script enforces schema, complete-release row count, country identity,
+missing-year behavior, 2022–2023 publication anchors and raw SHA256.
+
+Next run: inspect the new independent UNDP workflow; do **not** add
+HDI to the atlas until the publisher fetch and sidecar checks pass.
+Then curate a separate world HDI CSV, extend SOURCES.yaml/DATA_NOTES.md,
+draw the canonical `world.hdi` slot, add Romanian/Portuguese strings,
+provenance and strict regression tests. CPI and household-credit gaps
+remain separate. No upstream changes or release until verified.
