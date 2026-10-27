@@ -539,3 +539,30 @@ create/merge a PR against `akitaonrails/worldreports`, deploy or modify
 published peers. Remaining major data gaps are government GFCF, household
 bank lending/stock, 10-year yield/equity, registered migration flows,
 and territory-matched excess mortality/COVID underlying deaths.
+
+## Source-manifest reconciliation and research QA — 2026-10-27
+
+The dataset-level source entries had moved forward, but the `SOURCES.yaml`
+top-level `meta.pending` ledger still erroneously listed the prudential NPL
+ratio as *unverified*. Corrected that contradiction: **bank-wide** NPL
+2022–2025 is independently source-audited; borrower-specific household
+credit, household new-loan rates, and 10-year sovereign yield remain
+pending, with no household inference from either bank-wide NPL or WDI
+private-credit totals. Added five traceable, dataset-linked records to
+`meta.verified` for BNS nominal GDP + budget functions, BNS customs
+partner shares, BNM prudential NPL, UNDP HDR 2025 HDI and TI CPI 2025.
+Each links to the existing publisher-audit CI evidence and discloses
+vintage/method/territorial restrictions. The offline manifest regression
+now verifies existence, publisher metadata, evidence URLs, uniqueness
+and no contradiction between the verified NPL and pending routes.
+
+**Next mandatory:** inspect the newest green full-trilingual CI on this
+SHA and its autoarchived assets: the prior committed `03-spending`
+provenance still listed ONLY WDI macro investment because the 2016–2025
+matched-BNS-GDP/functional-spending change had not yet been archived.
+Successful isolated regeneration must include `fiscal/public_budget.csv`
+and `fiscal/nominal_gdp_bns.csv` in its `03-spending` provenance,
+alongside WDI `macro/economy.csv`. Review localized stacked-area legends
+at full size, 36 PNG/SVG/thumb sets, 12 mappings, all Python/JS/layout/site
+checks. Keep root `country.yaml` unregistered until those gates pass.
+No upstream changes, PR, merge, or deploy.

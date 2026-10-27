@@ -218,3 +218,55 @@ def test_sidecar_writer_preserves_undisclosed_years_as_blanks() -> None:
     assert next(row for row in rows if row["year"] == "2023")["population"] == ""
     assert next(row for row in rows if row["year"] == "2024")["population"] == "2402306.000000"
     assert next(row for row in rows if row["year"] == "2025")["population"] == ""
+
+
+def test_verified_publisher_ledger_is_not_contradicted_by_pending_routes() -> None:
+    """Live audited publisher routes must not drift back into discovery gaps."""
+    manifest = yaml.safe_load((MOLDOVA / "SOURCES.yaml").read_text("utf-8"))
+    ledger = manifest["meta"]["verified"]
+    by_name = {entry["name"]: entry for entry in ledger}
+    names_and_files = {
+        "BNS same-territory nominal GDP and functional public-budget shares, 2016–2025": {
+            "fiscal/public_budget.csv", "fiscal/nominal_gdp_bns.csv"},
+        "BNS customs merchandise export destinations, 2006–2025": {
+            "trade/destinations.csv"},
+        "NBM bank-wide prudential non-performing loans, 2022–2025": {
+            "credit/prudential_npl.csv"},
+        "UNDP HDR 2025 historical HDI for Moldova, 2006–2023": {
+            "world/hdi.csv"},
+        "TI CPI 2025 comparable corruption perception scores, 2012–2025": {
+            "world/cpi.csv"},
+    }
+    assert len(by_name) == len(ledger), "Duplicate verified-source names"
+    for name, paths in names_and_files.items():
+        entry = by_name[name]
+        assert entry["official"] is True
+        assert set(entry["dataset_paths"]) == paths
+        assert entry["reviewed_utc"] == "2026-10-27"
+        assert entry["evidence"].startswith(
+            "https://github.com/glaucojrcarvalho/worldreports/actions/runs/")
+        for path in paths:
+            assert (MOLDOVA / "data" / path).is_file(), path
+            group, filename = path.split("/", 1)
+            assert manifest[group][filename]["official"] is True
+            assert manifest[group][filename]["source"]
+            assert manifest[group][filename]["url"].startswith("https://")
+    pending = " ".join(
+        (item["name"] + " " + item["notes"]).lower()
+        for item in manifest["meta"]["pending"])
+    assert "nonperforming ratio" not in pending
+    assert "non-performing ratio" not in pending
+    assert "prudential npl series is already verified" in pending
+    assert "household" in pending and "10-year" in pending
+    assert "2016-2024" in by_name[
+        "BNS same-territory nominal GDP and functional public-budget shares, 2016–2025"
+    ]["notes"]
+    assert "NOT a household-only" in by_name[
+        "NBM bank-wide prudential non-performing loans, 2022–2025"
+    ]["notes"]
+    assert "0.763" in by_name[
+        "UNDP HDR 2025 historical HDI for Moldova, 2006–2023"
+    ]["notes"]
+    assert "2012" in by_name[
+        "TI CPI 2025 comparable corruption perception scores, 2012–2025"
+    ]["notes"]

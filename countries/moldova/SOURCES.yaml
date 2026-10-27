@@ -370,6 +370,67 @@ meta:
   last_checked: "2026-10-27"
   wdi_vintage: "2026-10-08"
   verified:
+    - name: "BNS same-territory nominal GDP and functional public-budget shares, 2016–2025"
+      publisher: "National Bureau of Statistics of Moldova"
+      official: true
+      dataset_paths: ["fiscal/public_budget.csv", "fiscal/nominal_gdp_bns.csv"]
+      reviewed_utc: "2026-10-27"
+      evidence: "https://github.com/glaucojrcarvalho/worldreports/actions/runs/40460281083"
+      notes: >-
+        CNT208100 2016-2024 GDP in thousand MDL was verified against the
+        official API and divided by exactly 1000 for million MDL; 2025
+        provisional GDP 353520.9 million MDL is a separately dated official
+        BNS release. The FIN010100 cash functions have the same year and
+        geographic exclusion (left-bank Nistru/Bender); these are NATIONAL
+        public-budget functions, NOT harmonised general-government COFOG.
+        The BNS 2024 and 2025 ratios round to 38.0% and 39.6%.
+    - name: "BNS customs merchandise export destinations, 2006–2025"
+      publisher: "National Bureau of Statistics of Moldova"
+      official: true
+      dataset_paths: ["trade/destinations.csv"]
+      reviewed_utc: "2026-10-27"
+      evidence: "https://github.com/glaucojrcarvalho/worldreports/actions/runs/40446267708"
+      notes: >-
+        EXT010200 actual-country share numerators and same-year all-country
+        goods-export totals; JSON-stat2 source SHA256
+        5e1fc55f430c4e75a07c172b99a7b60501217fbfd6816e3dc5a5a32a97454fa4.
+        Ukraine changed statistical group in 2024; customs goods are NOT
+        WDI goods-and-services national-accounts exports.
+    - name: "NBM bank-wide prudential non-performing loans, 2022–2025"
+      publisher: "National Bank of Moldova"
+      official: true
+      dataset_paths: ["credit/prudential_npl.csv"]
+      reviewed_utc: "2026-10-27"
+      evidence: "https://github.com/glaucojrcarvalho/worldreports/actions/runs/40453006876"
+      notes: >-
+        Four original dated banking-sector publications independently
+        audited: 2022=6.4%, 2023=5.6%, 2024=4.1%, 2025=4.1%.
+        This is a bank-wide prudential ratio, NOT a household-only NPL
+        measure or an IFRS impairment rate. The 2024 publisher states a
+        1.4 pp improvement; separately rounded values subtract to 1.5 pp.
+    - name: "UNDP HDR 2025 historical HDI for Moldova, 2006–2023"
+      publisher: "United Nations Development Programme"
+      official: true
+      dataset_paths: ["world/hdi.csv"]
+      reviewed_utc: "2026-10-27"
+      evidence: "https://github.com/glaucojrcarvalho/worldreports/actions/runs/40436229785"
+      notes: >-
+        Complete official 2025 historical series SHA256
+        61ed82e5b66c88dfca8ff9fac775c63981ecab6a254862af97acacc41c143117;
+        2022=0.784 in that series vs 0.763 in a separate country press
+        release. No 2024 or 2025 HDI and no mixed release vintages.
+    - name: "TI CPI 2025 comparable corruption perception scores, 2012–2025"
+      publisher: "Transparency International"
+      official: true
+      dataset_paths: ["world/cpi.csv"]
+      reviewed_utc: "2026-10-27"
+      evidence: "https://github.com/glaucojrcarvalho/worldreports/actions/runs/40440734736"
+      notes: >-
+        Pinned official 2025 XLSX original-byte SHA256
+        543a2ad438c4ba9a70367ee10a44a2565de7fae6bcd8a8db0c23d0b993e46e31;
+        methodology is comparable only from 2012. Expert perception
+        scores are NOT a count of recorded corruption offences; publisher
+        licence noted as CC BY-ND 4.0 in the dataset entry.
     - name: "WDI domestic private-sector credit 2010–2025"
       publisher: "World Bank World Development Indicators"
       official: false
@@ -419,16 +480,18 @@ meta:
         difference and the independent 2025 SDDS 0.8 million difference.
         Source year 2025 remains preliminary; no model interpolation.
   pending:
-    - name: "NBM household credit, bank loan rates, non-performing ratio and sovereign yields"
+    - name: "NBM household borrower credit, household new-loan rates and 10-year sovereign yields"
       publisher: "National Bank of Moldova"
       url: "https://www.bnm.md/bdi/pages/reports/dpmc/DPMC10.xhtml?id=74410&lang=en"
       notes: >-
         The monetary policy rate and official USD/MDL exchange averages
         are now verified and curated separately under markets/. Credit
-        stock by borrower, new-loan rate, nonperforming ratio and
-        government bond yields still need compatible published definitions,
-        machine-readable reports and a source audit. Do not label
-        credit as complete merely because NBM market data are complete.
+        household stock by borrower, household new-loan rates and
+        10-year secondary-market government yields still need compatible
+        published definitions and source audits. The separate bank-wide
+        prudential NPL series is already verified in credit/prudential_npl.csv;
+        never label it a household NPL measure or infer household debt from
+        total private-sector credit.
     - name: "Fully harmonised four-panel fiscal spine (revenue, spending, balance, debt, primary balance, interest)"
       publisher: "IMF WEO / FPP: non-identical releases"
       url: "https://data.imf.org/datasets/WEO"
