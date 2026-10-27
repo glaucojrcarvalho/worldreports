@@ -295,3 +295,31 @@ def test_bns_emdos_2025_source_break_is_not_drawn_as_continuous_line():
     assert national["official"] is True
     assert "EMDOS3" in national["notes"]
     assert "2025=3.8" in national["notes"]
+
+
+def test_plate_publisher_footer_matches_actual_audited_source_lineage() -> None:
+    """Never credit IMF FPP for national cash spending or omit observed NBM NPL."""
+    from countries.moldova.research.audit_candidate_assets import ast_sources
+    sources = ast_sources()
+    plates = {p.topic: p for p in _plates()}
+    assert set(plates) == set(sources)
+    assert sources["economy"] == {
+        "macro/economy.csv", "macro/national_lfs.csv", "world/world.csv"}
+    assert sources["spending"] == {
+        "fiscal/public_budget.csv", "fiscal/nominal_gdp_bns.csv",
+        "macro/economy.csv"}
+    assert sources["credit"] == {
+        "credit/private_credit.csv", "credit/prudential_npl.csv"}
+    assert "WDI" in plates["economy"].source and "BNS" in plates["economy"].source
+    assert "2025" in plates["economy"].subtitle and "separate" in plates["economy"].subtitle
+    assert "BNS" in plates["spending"].source and "nominal GDP" in plates["spending"].source
+    assert "WDI" in plates["spending"].source and "FPP" not in plates["spending"].source
+    assert "NBM" in plates["credit"].source and "prudential NPL" in plates["credit"].source
+    assert "household loan definitions pending" not in plates["credit"].source
+    import json
+    translations = json.loads((ROOT / "i18n.json").read_text(encoding="utf-8"))
+    for topic in ("economy", "spending", "credit"):
+        footer = plates[topic].source
+        assert set(translations[footer]) == {"ro", "pt"}
+        assert all(translations[footer][lang] != footer for lang in ("ro", "pt"))
+    assert set(translations[plates["economy"].subtitle]) == {"ro", "pt"}

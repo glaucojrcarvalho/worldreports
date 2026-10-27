@@ -831,3 +831,33 @@ appropriate to promote \`country.yaml\` into the user's research branch
 government GFCF, 10-year yields/equities, household-only credit,
 registered migration flows, excess/cause-specific mortality remain
 pending, not generated.
+
+
+## Publisher attribution correction at the plate metadata level — 2026-10-27
+
+The registered rehearsal passed, but a post-run semantic inspection found
+three **stale/incorrect visible source footers** left over from earlier
+research stages. The economy metadata cited only World Bank WDI even
+though the panel also draws officially verified BNS national LFS rates.
+The national cash **spending** plate still credited IMF FPP despite
+drawing no FPP CSV; its sources are BNS FIN010100 functions,
+same-territory BNS nominal GDP and separate WDI economy-wide
+investment. The **credit** metadata still said NBM household definitions
+were pending *without* naming the observed bank-wide prudential NPL.
+These are corrected in the plate metadata, with Romanian and Portuguese
+catalog translations; the actual numerical CSVs are unchanged.
+
+The new design-level regression compares the exact static plate source
+paths against declared publisher captions for these high-risk topics,
+ensures no FPP appears in the national spending attribution, and requires
+strict ro/pt catalogue coverage. This is semantic/provenance QA rather
+than cosmetic polishing.
+
+**Next required:** the latest research workflow must pass strict
+trilingual SVG and full Python/Node tests and archive updated
+01-economy/03-spending/06-credit figures with metadata and provenance.
+Run or refresh the registered, isolated rehearsal from the revised
+source branch and re-check full site and the three locale pages
+before final release-ready status. Keep official BNS methodology breaks,
+IMF WEO versus FPP vintages, incomplete 2026 and all unsupported
+canonical panels explicit. No upstream PR, merge or deploy.
