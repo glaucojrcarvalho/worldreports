@@ -142,6 +142,19 @@ population estimate. **Do not calculate migration from their numerical
 difference**. Rates using BNS death or crime counts need a matching
 population denominator in place, period, and definition.
 
+### Life expectancy: period life table, never observed cohort lifespan
+
+The World Bank WDI indicator SP.DYN.LE00.IN is an expected lifetime **under
+the age-specific mortality rates prevailing in the reference period**. It
+summarizes a synthetic period life table, not the realized length of life
+of the actual birth cohort. It should not be described as a
+“birth-cohort estimate” or measured longevity of children born that year.
+The publisher also warns that the WPP-derived annual series can be
+interpolated from multi-year rates, so it is not equivalent to a national
+continuous death-register cohort study. The mortality plate footnote and
+Romanian/Portuguese translations now state the period-vs-cohort limitation.
+Publisher definition: https://databank.worldbank.org/metadataglossary/millennium-development-goals/series/SP.DYN.LE00.IN
+
 ### Gaps and vintages
 
 - WDI Gini, fertility, crude births/deaths and life expectancy stop in

@@ -326,7 +326,7 @@ def plate_mortality(ctx, ig):
     ax = ig.slot("mortality.lens", "Life expectancy at birth (years)")
     ctx.line(ax, *_series(ctx, "mortality/mortality.csv",
                          "life_expectancy"), p.TEAL)
-    _foot(ctx, ax, "World Bank WDI, birth-cohort estimate; own scale")
+    _foot(ctx, ax, "WDI period life table; not observed cohort lifespan")
     _finish(ig)
 
 

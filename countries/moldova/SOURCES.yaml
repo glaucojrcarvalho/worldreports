@@ -304,6 +304,10 @@ mortality:
     refreshed_by: fetch/fetch_wdi.py
     notes: >-
       Crude death rate per 1,000 people and life expectancy at birth.
+      WDI life expectancy is a PERIOD life-table estimate based on
+      prevailing age-specific mortality, not an observed birth cohort's
+      actual lifetime. Official methodology:
+      https://databank.worldbank.org/metadataglossary/millennium-development-goals/series/SP.DYN.LE00.IN
       As of WDI lastupdated 2026-10-08, both stop in 2024.
       BNS national registered deaths are a separate perimeter/source.
 security:

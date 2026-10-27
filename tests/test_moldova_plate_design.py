@@ -166,3 +166,23 @@ def test_world_hdi_and_ti_cpi_use_distinct_verified_source_vintages():
     assert [r["year"] for r in rows if r["cpi_score"] is not None] == list(range(2012, 2026))
     assert {r["year"]: r["cpi_score"] for r in rows if r["year"] in (2023, 2024, 2025)} == {2023: 42, 2024: 43, 2025: 42}
     assert all(spine.SLOTS["world.cpi"].ref[0] <= r["cpi_score"] <= spine.SLOTS["world.cpi"].ref[1] for r in rows if r["cpi_score"] is not None)
+
+
+def test_wdi_life_expectancy_is_period_not_birth_cohort_longevity():
+    """WDI SP.DYN.LE00.IN is a synthetic period life table, not observed lifespan."""
+    import json
+    from pathlib import Path
+    source = (ROOT / "plates.py").read_text(encoding="utf-8")
+    mortality = source.split("def plate_mortality(", 1)[1].split("def plate_migration(", 1)[0]
+    assert '_series(ctx, "mortality/mortality.csv"' in mortality
+    label = "WDI period life table; not observed cohort lifespan"
+    assert label in mortality
+    assert "birth-cohort estimate" not in mortality
+    catalog = json.loads((ROOT / "i18n.json").read_text(encoding="utf-8"))
+    assert catalog[label] == {
+        "ro": "WDI: tabelă de viață pe perioadă, nu durata reală a cohortei",
+        "pt": "WDI: tábua de vida de período; não a longevidade da coorte",
+    }
+    manifest = (ROOT / "SOURCES.yaml").read_text(encoding="utf-8")
+    assert "PERIOD life-table estimate" in manifest
+    assert "SP.DYN.LE00.IN" in manifest

@@ -707,9 +707,9 @@
     "ro": "IPC anual, Banca Mondială WDI",
     "pt": "IPC anual, Banco Mundial WDI"
   },
-  "World Bank WDI, birth-cohort estimate; own scale": {
-    "ro": "Speranța de viață estimată la naștere, WDI; scară proprie",
-    "pt": "Expectativa de vida estimada ao nascer, WDI; escala própria"
+  "WDI period life table; not observed cohort lifespan": {
+    "ro": "WDI: tabelă de viață pe perioadă, nu durata reală a cohortei",
+    "pt": "WDI: tábua de vida de período; não a longevidade da coorte"
   },
   "World Bank WDI, current US dollars": {
     "ro": "Dolari SUA curenți, Banca Mondială WDI",

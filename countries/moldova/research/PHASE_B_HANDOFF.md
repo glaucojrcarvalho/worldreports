@@ -472,3 +472,20 @@ their source definitions and periods are independently verified.
 Only after review consider promoting the candidate configuration to the
 root country.yaml on the fork research branch, running final suite with
 registration enabled; never deploy, merge or modify upstream automatically.
+
+
+## Period life expectancy definition correction — 2026-10-27
+
+Independent review of the World Bank SP.DYN.LE00.IN metadata found a
+specific methodological mislabel: the Moldova mortality-plate caption
+had called life expectancy at birth a "birth-cohort estimate". The
+official indicator is instead a synthetic PERIOD life table under
+current age-specific mortality rates, not observed longevity of a cohort.
+The English, Romanian and Portuguese source footer, source manifest,
+data notes and a regression guard now use the correct interpretation.
+The curated annual values are unchanged. The official methodology is
+https://databank.worldbank.org/metadataglossary/millennium-development-goals/series/SP.DYN.LE00.IN
+
+The trilingual rendered-asset auditor must pass again on the changed
+mortality SVGs before archiving. Keep country.yaml unregistered until the
+complete fork-only quality gate and outstanding human visual review pass.
