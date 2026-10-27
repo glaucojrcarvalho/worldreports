@@ -37,7 +37,7 @@ def test_wrong_source_category_rejected(name,bad):
 
 
 @pytest.mark.parametrize("bad",[
-  "2022,7.25,12.5", "2022,0,12.5",
+  "2023,7.25,12.5", "2022,0,12.5",
   "2022,NaN,12.5", "2022,-5,12.5",
   "2022,7,25,12.5", "2022,7.25,0"])
 def test_bad_data_rejected(bad):
