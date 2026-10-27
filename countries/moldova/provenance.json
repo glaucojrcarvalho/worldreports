@@ -11,6 +11,7 @@
   "macro/economy.csv"
  ],
  "04-trade": [
+  "trade/destinations.csv",
   "trade/trade.csv"
  ],
  "05-markets": [
@@ -19,7 +20,8 @@
   "markets/usd_mdl.csv"
  ],
  "06-credit": [
-  "credit/private_credit.csv"
+  "credit/private_credit.csv",
+  "credit/prudential_npl.csv"
  ],
  "07-people": [
   "people/absolute_poverty.csv",
