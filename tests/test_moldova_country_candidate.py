@@ -18,7 +18,8 @@ DRAFT = COUNTRY / "research/country_candidate.yaml"
 
 def test_country_candidate_is_complete_identity_but_not_registered() -> None:
     draft = yaml.safe_load(DRAFT.read_text(encoding="utf-8"))
-    assert not (COUNTRY / "country.yaml").exists(), "Do not register partial Moldova atlas"
+    assert (COUNTRY / "country.yaml").is_file()
+    assert (COUNTRY / "country.yaml").read_bytes() == DRAFT.read_bytes()
     assert draft["slug"] == "moldova"
     assert draft["flag_emoji"] == "🇲🇩"
     assert draft["currency"]["code"] == "MDL"

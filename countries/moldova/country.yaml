@@ -1,0 +1,95 @@
+# CANDIDATE country configuration for Phase B/C; NOT ACTIVE IN ATLAS.
+# Intentionally under research/, not countries/moldova/country.yaml.
+# Romanian number style ("ro") and MDL affixes now exist in shared core.
+# Plates, chapters, locale catalogs and review-only assets exist.
+# Remaining global regression, source/visual audit and peer regeneration
+# are NOT release-cleared. Do not register this candidate prematurely.
+slug: moldova
+flag_emoji: "🇲🇩"
+wordmark: Moldova
+name:
+  ro: "Republica Moldova"
+  en: "Moldova"
+  fr: "Moldavie"
+  pt: "Moldávia"
+  es: "Moldavia"
+  ko: "몰도바"
+  it: "Moldavia"
+  he: "מולדובה"
+  ja: "モルドバ"
+  zh-Hans: "摩尔多瓦"
+  zh-Hant: "摩爾多瓦"
+  vi: "Moldova"
+  de: "Moldau"
+  uk: "Молдова"
+  pl: "Mołdawia"
+  ru: "Молдова"
+
+locales:
+  - {code: ro, html_lang: ro-MD, og_locale: ro_MD, endonym: "Română"}
+  - {code: en, html_lang: en,    og_locale: en_US, endonym: "English"}
+  - {code: pt, html_lang: pt-BR, og_locale: pt_BR, endonym: "Português"}
+default_locale: ro
+number_style: {ro: ro}
+years: {from: 2006, to: 2026}
+last_full_year: 2025
+tick_every: 2
+spine: true
+
+# Do not invent quarter-level recessions from annual national GDP.
+# Recession band dating requires a verified compatible quarterly series.
+bands: []
+
+currency: {code: MDL}
+palette:
+  BLUE: "#255B94"
+  BLUE_D: "#18456D"
+  GOLD: "#B58B28"
+  GOLD_D: "#83641C"
+  RED: "#A64048"
+  RED_D: "#752D37"
+  GREEN: "#2E7867"
+  TEAL: "#247B81"
+  NAVY: "#1A354B"
+  primary: "#18456D"
+  alert: "#A64048"
+  ink: "#1E2730"
+  muted: "#586773"
+  faint: "#8D9CA6"
+  paper: "#FAFAF7"
+  card: "#FFFFFF"
+  grid: "#E1E6E8"
+  spine: "#C7D0D5"
+  band: "#F1F3F1"
+  series: ["#18456D", "#B58B28", "#A64048", "#2E7867", "#247B81", "#72558E", "#1E2730"]
+  # Moldova's blue-yellow-red tricolour is subdued for ink-on-paper.
+  flag_bands: ["#255B94", "#D3AC40", "#A64048"]
+  web:
+    mark_bearing: "0.02em"
+    ground: "#101E2A"
+    raised: "#192B39"
+    raised_2: "#213544"
+    rule: "#385063"
+    ink: "#EBF0F3"
+    muted: "#B2C2CD"
+    faint: "#718996"
+    money: "#D9B45E"
+    world: "#6EBDD1"
+    people: "#E1A59A"
+
+seo:
+  title:
+    ro: "Republica Moldova — grafice din date oficiale, 2006–2025"
+    en: "Moldova — plates of official data, 2006–2025"
+    pt: "Moldávia — pranchas de dados oficiais, 2006–2025"
+  description:
+    ro: "Economie, finanțe publice, populație și migrație din surse identificate; diferențele de teritoriu și de metodologie rămân vizibile, fără serii completate artificial."
+    en: "Moldova's economy, public finances, population and migration from identified sources, keeping territorial and methodological breaks visible rather than silently filling missing data."
+    pt: "Economia, finanças públicas, população e migração da Moldávia com fontes identificadas e diferenças territoriais e metodológicas explícitas, sem preenchimento artificial."
+  keywords: [Moldova, "Republica Moldova", "Biroul Național de Statistică", BNM, MDL, FMI, World Bank, official statistics]
+  spatial: "Republic of Moldova — indicator-specific geographic scope in DATA_NOTES.md"
+
+sources:
+  ro: "Biroul Național de Statistică, Banca Națională a Moldovei, Ministerul Finanțelor, Banca Mondială și FMI — cu surse și perimetre separate"
+  en: "the National Bureau of Statistics, National Bank of Moldova, Ministry of Finance, World Bank and IMF — with source and scope distinctions"
+  pt: "o Instituto Nacional de Estatística, o Banco Nacional da Moldávia, o Ministério das Finanças, o Banco Mundial e o FMI — com distinção entre fontes e escopos"
