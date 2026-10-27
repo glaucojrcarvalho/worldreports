@@ -46,8 +46,8 @@
         "detail": "Sunt necesare numărări anuale de decese pe același teritoriu și date privind cauza inițială a decesului. Rata brută a mortalității nu este un număr de decese."
       },
       {
-        "term": "Fluxuri de intrare și ieșire comparabile",
-        "detail": "Datele de migrație netă modelată ONU nu oferă fluxuri de sosiri/plecări măsurate. Recensământul BNS din 8 aprilie 2024 furnizează separat ponderea de 4,4% a rezidenților născuți peste hotare; nu o confundăm cu stocul ONU."
+        "term": "Fluxuri comparabile și serie anuală a celor născuți peste hotare",
+        "detail": "Seria netă modelată ONU nu furnizează intrări și ieșiri observate. Recensământul BNS de la 8 aprilie 2024 oferă doar o instantanee a ponderii celor născuți peste hotare (4,4%), afișată exclusiv în panoul contextual, nu ca serie canonică anuală."
       }
     ],
     "colophon": [
@@ -120,8 +120,8 @@
         "detail": "The required annual death counts must have matching territory, and underlying-cause COVID-19 deaths need cause-of-death registers. Crude death rates are not death counts."
       },
       {
-        "term": "Comparable immigration and emigration flows",
-        "detail": "UN-modelled net migration does not provide measured arrival/departure flows. The separate 8 April 2024 BNS census supplies a 4.4% foreign-born share; this is not the UN migrant-stock definition."
+        "term": "Comparable migration flows and annual foreign-born series",
+        "detail": "UN-modelled net migration does not give registered arrivals/departures. The 8 April 2024 BNS census provides only one foreign-born snapshot (4.4%), shown in the contextual lens and not as a comparable annual canonical series."
       }
     ],
     "colophon": [
@@ -194,8 +194,8 @@
         "detail": "Excesso de mortes exige contagens anuais com território compatível; COVID-19 como causa básica requer registros de causas de morte. Taxa bruta de mortalidade não é contagem de óbitos."
       },
       {
-        "term": "Fluxos comparáveis de imigração e emigração",
-        "detail": "A migração líquida modelada pela ONU não fornece fluxos medidos de entradas e saídas. O censo BNS de 8 de abril de 2024 fornece, em separado, 4,4% de residentes nascidos no exterior; essa medida não equivale ao estoque de migrantes da ONU."
+        "term": "Fluxos comparáveis e série anual de nascidos no exterior",
+        "detail": "A migração líquida modelada pela ONU não informa entradas/saídas registradas. O censo BNS de 8 de abril de 2024 fornece somente um retrato da população nascida no exterior (4,4%), exibido apenas no painel contextual e não como série anual canônica."
       }
     ],
     "colophon": [

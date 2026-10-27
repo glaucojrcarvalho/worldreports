@@ -600,3 +600,10 @@ Review all three spending and migration PNGs, including the new BNS
 census foreign-born snapshot (subject to the independent publisher
 live audit). If either quality gate is red, use actual failed-step logs,
 fix source/render semantics, and repeat before any registration.
+
+
+## Canonical migration-slot semantics correction — 2026-10-27
+
+The first implementation placed the BNS **single 2024 foreign-born census observation** in the canonical `migration.foreign_born` slot. Rechecked `PLATE_SPINE.md` §1 rule 2: isolated snapshots are permitted in a *country lens*, not as canonical annual time series. Moved that genuine observation (4.4%, BNS census reference **2024-04-08**) into `migration.lens` as a **separate red diamond**, next to four **teal UN migrant-stock snapshot dots** (2010/2015/2020/2024) and with a bilingual/trilingual legend identifying distinct definitions. The canonical foreign-born time-series slot is explicitly pending again; neither UN stock nor a single census reference date is misrepresented as an annual series. Provenance still records the BNS census CSV and UN/WDI data as separately sourced. The release candidate, three-language i18n/site notes, semantic tests and the peer comparison invariant reflect this correction.
+
+**Next:** monitor BNS live HTML audit and most recent full trilingual CI, archive source-valid 36 PNG/SVG/thumb sets with exact provenance, review 03-spending and 12-migration PNGs at full scale and confirm upstream delta. Never auto-register, merge, PR, deploy or change upstream.

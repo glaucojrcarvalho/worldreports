@@ -235,13 +235,18 @@ def test_bns_foreign_born_is_exactly_one_census_snapshot_not_un_stock() -> None:
     assert observed == {2024: 4.4}
     src = (ROOT / "plates.py").read_text(encoding="utf-8")
     migration = src.split("def plate_migration(", 1)[1].split("PLATES = (", 1)[0]
-    slot = migration.split('ig.slot("migration.foreign_born"', 1)[1].split(
+    canonical = migration.split('ig.slot("migration.foreign_born"', 1)[1].split(
         'ig.slot("migration.lens"', 1)[0]
-    assert '"migration/foreign_born_census.csv"' in slot
-    assert "ax.scatter(census_years, census_pct" in slot
-    assert "ctx.line(" not in slot
-    assert "_pending(" not in slot
-    assert "NOT UN stock" in slot
+    lens = migration.split('ig.slot("migration.lens"', 1)[1]
+    # PLATE_SPINE.md allows isolated snapshots ONLY within a lens.
+    assert "_pending(ctx, ig, ax," in canonical
+    assert "ax.scatter(" not in canonical and "ctx.line(" not in canonical
+    assert '"migration/foreign_born_census.csv"' in lens
+    assert "ax.scatter(census_years, census_pct" in lens
+    assert "UN migrant-stock snapshots" in lens
+    assert "BNS 2024 foreign-born census" in lens
+    assert "marker=\"D\"" in lens
+    assert "ax.legend(" in lens
     manifest = yaml.safe_load((ROOT / "SOURCES.yaml").read_text(encoding="utf-8"))
     entry = manifest["migration"]["foreign_born_census.csv"]
     assert entry["official"] is True
@@ -249,7 +254,11 @@ def test_bns_foreign_born_is_exactly_one_census_snapshot_not_un_stock() -> None:
     assert "2024-04-08" in entry["notes"]
     assert "157" in entry["notes"]
     catalog = json.loads((ROOT / "i18n.json").read_text(encoding="utf-8"))
-    assert set(catalog["BNS 2024 census, 8 April; birth country, NOT UN stock"]) == {"ro", "pt"}
+    for phrase in ("UN migrant stock versus BNS census (%)",
+                   "BNS 2024 foreign-born census",
+                   "UN stock vs BNS country of birth; different definitions",
+                   "One 2024 BNS census observation;"):
+        assert set(catalog[phrase]) == {"ro", "pt"}
     ui = json.loads((ROOT / "ui.json").read_text(encoding="utf-8"))
     for language in ("ro", "en", "pt"):
         assert len(ui[language]["unavailable"]) == 7

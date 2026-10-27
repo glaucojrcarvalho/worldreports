@@ -91,6 +91,10 @@
     "ro": "Recensământ BNS 2024, 8 aprilie; țara nașterii, NU stocul ONU",
     "pt": "Censo BNS 2024, 8 de abril; país de nascimento, NÃO estoque ONU"
   },
+  "BNS 2024 foreign-born census": {
+    "ro": "Recensământul BNS 2024, născuți peste hotare",
+    "pt": "Censo BNS 2024, nascidos no exterior"
+  },
   "BNS consumption poverty; methodology break in 2019": {
     "ro": "BNS: sărăcie după consum; ruptură metodologică în 2019",
     "pt": "BNS: pobreza por consumo; ruptura metodológica em 2019"
@@ -415,6 +419,10 @@
     "ro": "Salariu minim (USD pe lună)",
     "pt": "Salário mínimo (US$ por mês)"
   },
+  "Modelled net migration; distinct UN stock snapshots and one BNS 2024 foreign-born census point in the lens. Measured migration flows pending.": {
+    "ro": "Migrație netă modelată; instantanee ONU și o observație BNS din 2024 despre locul nașterii, exclusiv în panoul contextual. Fluxurile înregistrate rămân nevalidate.",
+    "pt": "Migração líquida modelada; retratos ONU e um ponto BNS de 2024 sobre país de nascimento apenas no painel contextual. Fluxos registrados seguem pendentes."
+  },
   "Moldova — A Smaller Population": {
     "ro": "Moldova — O populație în scădere",
     "pt": "Moldávia — População em Queda"
@@ -547,6 +555,10 @@
     "ro": "Migrație netă (la 1.000)",
     "pt": "Migração líquida (por 1.000)"
   },
+  "no comparable annual foreign-born series.": {
+    "ro": "nu există o serie anuală comparabilă a celor născuți în străinătate.",
+    "pt": "não há série anual comparável de nascidos no exterior."
+  },
   "No nationally comparable immigration and": {
     "ro": "Nu este disponibilă o serie comparabilă la nivel național de imigrare și",
     "pt": "Não foi preparada uma série nacionalmente comparável de imigração e"
@@ -574,6 +586,10 @@
   "Official NBM annual rates; WDI inflation; no invented securities": {
     "ro": "Rate anuale oficiale BNM; inflație WDI; fără titluri inventate",
     "pt": "Taxas anuais oficiais BNM; inflação WDI; sem títulos inventados"
+  },
+  "One 2024 BNS census observation;": {
+    "ro": "Doar o observație BNS din recensământul 2024;",
+    "pt": "Uma única observação do censo BNS 2024;"
   },
   "Other functions, BNS": {
     "ro": "Alte funcții, BNS",
@@ -703,6 +719,14 @@
     "ro": "Stocul ONU de migranți internaționali poate folosi",
     "pt": "Estoque de migrantes internacionais da ONU pode usar"
   },
+  "UN migrant stock versus BNS census (%)": {
+    "ro": "Stocul ONU de migranți versus recensământul BNS (%)",
+    "pt": "Estoque de migrantes da ONU versus censo BNS (%)"
+  },
+  "UN migrant-stock snapshots": {
+    "ro": "Instantanee ale stocului ONU de migranți",
+    "pt": "Retratos do estoque ONU de migrantes"
+  },
   "UN model / WDI population; not BNS registered moves": {
     "ro": "Model ONU / populație WDI; nu deplasări înregistrate de BNS",
     "pt": "Modelo ONU / população WDI; não movimentos registrados pelo BNS"
@@ -710,6 +734,14 @@
   "UN modelled flow and discrete migrant-stock estimates are not registers": {
     "ro": "Fluxul modelat ONU și estimările discrete ale stocului de migranți nu sunt registre",
     "pt": "Fluxos modelados ONU e estimativas pontuais de estoque não são registros"
+  },
+  "UN modelled flow; separate UN-stock and BNS birth-country snapshots": {
+    "ro": "Migrație netă modelată ONU; instantanee ONU și BNS, definiții separate",
+    "pt": "Migração líquida modelada ONU; retratos ONU e BNS separados"
+  },
+  "UN stock vs BNS country of birth; different definitions": {
+    "ro": "Stoc ONU versus țara nașterii BNS; definiții diferite",
+    "pt": "Estoque ONU versus país de nascimento BNS; definições distintas"
   },
   "UN-modelled net migration": {
     "ro": "Migrație netă modelată de ONU",
@@ -810,6 +842,10 @@
   "World Bank WDI / UN Population Division": {
     "ro": "Banca Mondială WDI / Divizia Populație ONU",
     "pt": "Banco Mundial WDI / Divisão de População da ONU"
+  },
+  "World Bank WDI / UN Population Division; BNS 2024 census": {
+    "ro": "Banca Mondială WDI / Divizia ONU pentru Populație; recensământul BNS 2024",
+    "pt": "Banco Mundial WDI / Divisão de População da ONU; censo BNS 2024"
   },
   "World Bank WDI / UNODC; through 2023": {
     "ro": "Banca Mondială WDI / UNODC; până în 2023",

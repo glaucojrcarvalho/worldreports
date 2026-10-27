@@ -393,23 +393,30 @@ def plate_migration(ctx, ig):
     _foot(ctx, ax, "UN model / WDI population; not BNS registered moves")
 
     ax = ig.slot("migration.foreign_born", "Foreign-born share (%)")
-    # Official census COUNTRY OF BIRTH, not the UN migrant stock series.
-    # A single 8-Apr-2024 census estimate is a point, never a
-    # 2006–2025 annual line or a WDI-population ratio.
-    census_years, census_pct = _series(
-        ctx, "migration/foreign_born_census.csv", "foreign_born_pct")
-    if census_years != [2024] or census_pct != [4.4]:
-        raise ValueError("Moldova census foreign-born anchor/coverage revised")
-    ax.scatter(census_years, census_pct, color=p.TEAL, s=54, zorder=4)
-    _foot(ctx, ax, "BNS 2024 census, 8 April; birth country, NOT UN stock")
+    # Only a national census snapshot exists for 2024, not a comparable
+    # time series for the canonical slot. Per PLATE_SPINE.md §1 rule 2,
+    # isolated snapshots belong ONLY in a country-specific lens panel.
+    _pending(ctx, ig, ax, "One 2024 BNS census observation;\n"
+             "no comparable annual foreign-born series.")
 
-    ax = ig.slot("migration.lens", "International migrant stock, UN snapshots (%)")
+    ax = ig.slot("migration.lens", "UN migrant stock versus BNS census (%)")
+    # UN international migrant stock (sometimes citizenship-based) is
+    # not BNS country-of-birth status. They are plotted as DISCRETE
+    # observations with separate legends and source definitions.
     stock = dict(zip(*_series(ctx, "migration/migration.csv", "migrant_stock")))
     denom = dict(zip(*pop))
     years = sorted(stock.keys() & denom.keys())
     share = [stock[y] / denom[y] * 100 for y in years]
-    ax.scatter(years, share, color=p.TEAL, s=42, zorder=4)
-    _foot(ctx, ax, "2010, 2015, 2020, 2024 only; points, never interpolation")
+    ax.scatter(years, share, color=p.TEAL, s=42, zorder=4,
+               label="UN migrant-stock snapshots")
+    census_years, census_pct = _series(
+        ctx, "migration/foreign_born_census.csv", "foreign_born_pct")
+    if census_years != [2024] or census_pct != [4.4]:
+        raise ValueError("Moldova census foreign-born anchor/coverage revised")
+    ax.scatter(census_years, census_pct, color=p.RED, marker="D",
+               s=54, zorder=5, label="BNS 2024 foreign-born census")
+    ax.legend(fontsize=7.0, frameon=False)
+    _foot(ctx, ax, "UN stock vs BNS country of birth; different definitions")
     _finish(ig)
 
 
@@ -471,7 +478,7 @@ PLATES = (
          alt="Crude mortality and life expectancy; excess and COVID deaths pending."),
     dict(id="12", slug="migration", topic="migration", builder=plate_migration,
          title="Moldova — Migration and Its Definitions",
-         subtitle="UN modelled flow and discrete migrant-stock estimates are not registers",
-         source="World Bank WDI / UN Population Division",
-         alt="Modelled net migration and four stock snapshots, with flow registers pending."),
+         subtitle="UN modelled flow; separate UN-stock and BNS birth-country snapshots",
+         source="World Bank WDI / UN Population Division; BNS 2024 census",
+         alt="Modelled net migration; distinct UN stock snapshots and one BNS 2024 foreign-born census point in the lens. Measured migration flows pending."),
 )
