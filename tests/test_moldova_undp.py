@@ -20,13 +20,14 @@ def fixture_csv(**changes):
                           else "0.785" if y == 2023 else "0.711")
             for y in YEARS}
     for i in range(205):
-        writer.writerow({"iso3": f"ZZ{i:03d}", "country": f"Country {i}",
+        # Long text fields produce a realistic complete-size fixture without
+        # appending a spurious 207th CSV row after the final newline.
+        writer.writerow({"iso3": f"ZZ{i:03d}",
+                         "country": f"Country {i}" + (" " * 490),
                          **base})
     writer.writerow({"iso3": "MDA", "country": "Republic of Moldova",
                      **(base | changes)})
-    # Pad to match the real publisher's released file size; the parser
-    # checks the payload to catch truncated fetches before any CSV parse.
-    return (buf.getvalue() + " " * (100_100 - len(buf.getvalue()))).encode("cp1252")
+    return buf.getvalue().encode("cp1252")
 
 
 def test_complete_moldova_isolation_exact_vintage_and_missing_years():
