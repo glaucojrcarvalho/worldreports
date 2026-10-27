@@ -49,6 +49,7 @@ def test_manifest_covers_exact_staged_publisher_files() -> None:
     }
     expected = set(wdi.GROUPS) | {
         "fiscal/budget_summary.csv", "fiscal/public_budget.csv",
+        "fiscal/nominal_gdp_bns.csv",
         "fiscal/weo_bal_debt.csv", "fiscal/fpp_finances.csv",
         "markets/policy.csv", "markets/usd_mdl.csv",
         "people/absolute_poverty.csv", "people/minimum_wage.csv", "world/hdi.csv", "world/cpi.csv",
@@ -62,13 +63,17 @@ def test_manifest_covers_exact_staged_publisher_files() -> None:
         for name, details in entries.items():
             if group == "fiscal":
                 assert name in {
-                    "budget_summary.csv", "public_budget.csv",
+                    "budget_summary.csv", "public_budget.csv", "nominal_gdp_bns.csv",
                     "weo_bal_debt.csv", "fpp_finances.csv",
                 }
                 assert details["official"] is True
                 if name in {"budget_summary.csv", "public_budget.csv"}:
                     assert details["source"].startswith("National Bureau of Statistics")
                     assert details["refreshed_by"] == "fetch/fetch_bns_budget.py"
+                elif name == "nominal_gdp_bns.csv":
+                    assert details["source"].startswith("National Bureau of Statistics")
+                    assert details["refreshed_by"] == "fetch/fetch_bns_gdp.py"
+                    assert "2025" in details["notes"] and "PRELIMINARY" in details["notes"]
                 else:
                     assert details["source"].startswith("International Monetary Fund")
                     assert details["refreshed_by"] == "fetch/fetch_imf.py"
