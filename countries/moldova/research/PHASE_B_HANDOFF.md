@@ -612,3 +612,26 @@ The first implementation placed the BNS **single 2024 foreign-born census observ
 ## Original census publisher audit passed — 2026-10-27
 
 [Read-only BNS workflow https://github.com/glaucojrcarvalho/worldreports/actions/runs/40463501640](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40463501640) passed **8 source/parser tests** and the publisher HTML download. Its saved sidecar confirms 2024 **4.4%**, all other atlas years blank, source digest `e9da05a2fab871578d1e6a62db93fc45480966ab20cbde889b7a7307ceae488b`. Added the digest and Actions evidence to `SOURCES.yaml` and `DATA_NOTES.md`; this is a real independently checked BNS snapshot, **not** a fabricated foreign-born annual series or a household/emigration count. The canonical annual foreign-born panel remains pending under the spine snapshot rule and the 2024 point belongs only to the migration lens. Check the latest full research CI and generated SVG/PNG migration legends before publication clearance.
+
+
+## Full trilingual visual-review evidence — 2026-10-27
+
+Added \`research/visual_review.py\` and an offline test suite to turn all
+12 Moldova rendered plate topics into **RO / EN / PT side-by-side
+contact sheets**, with identical panel sizing for reviewers. The script
+does not download, infer, regenerate or publish any data. Its machine-readable
+visual-review-manifest.json SHA256-fingerprints every PNG, SVG and thumbnail
+(108 files), associates each plate with its observed provenance, and refuses
+to proceed if either new BNS fiscal source is absent from \`03-spending\` or
+the separately verified 2024 birthplace census source is absent from
+\`12-migration\`. Source tests cover the exact inventory, lost locale
+assets, and stale BNS provenance. The archive still consumes original
+fully-tested rendering artifacts, not the downsampled contact sheets.
+
+**Next:** inspect the latest CI \`moldova-visual-review\` artifact,
+especially the full 03-spending and 12-migration pages, and verify
+the \`moldova-validated-assets\` archive job actually commits the current
+spending/migration SVG/PNG/thumbs and provenance. Require successful
+full Python + JS and all 12 source-lineage mappings before candidate
+registration. Preserve all remaining source and territorial limitations,
+do not modify upstream, and do not merge/deploy.

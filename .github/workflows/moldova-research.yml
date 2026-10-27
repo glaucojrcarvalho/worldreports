@@ -47,7 +47,7 @@ jobs:
       - name: Validate Moldova source code and source tests, offline
         run: |
           python -m compileall -q countries/moldova/fetch countries/moldova/research tests/test_moldova_*.py
-          python -m pytest -q tests/test_moldova_research.py tests/test_moldova_bns_budget.py tests/test_moldova_bns_gdp.py tests/test_moldova_bns_census_foreign_born.py tests/test_moldova_bns_trade.py tests/test_moldova_fiscal_data.py tests/test_moldova_fiscal_preview.py tests/test_moldova_nbm.py tests/test_moldova_imf.py tests/test_moldova_markets_preview.py tests/test_moldova_country_candidate.py tests/test_moldova_ro_numstyle.py tests/test_moldova_bns_poverty.py tests/test_moldova_minimum_wage.py tests/test_moldova_wdi_credit.py tests/test_moldova_nbm_npl.py tests/test_moldova_nbm_npl_fetch.py tests/test_moldova_undp.py tests/test_moldova_ti.py tests/test_moldova_archive_contract.py
+          python -m pytest -q tests/test_moldova_research.py tests/test_moldova_bns_budget.py tests/test_moldova_bns_gdp.py tests/test_moldova_bns_census_foreign_born.py tests/test_moldova_bns_trade.py tests/test_moldova_fiscal_data.py tests/test_moldova_fiscal_preview.py tests/test_moldova_nbm.py tests/test_moldova_imf.py tests/test_moldova_markets_preview.py tests/test_moldova_country_candidate.py tests/test_moldova_ro_numstyle.py tests/test_moldova_bns_poverty.py tests/test_moldova_minimum_wage.py tests/test_moldova_wdi_credit.py tests/test_moldova_nbm_npl.py tests/test_moldova_nbm_npl_fetch.py tests/test_moldova_undp.py tests/test_moldova_ti.py tests/test_moldova_archive_contract.py tests/test_moldova_visual_review.py
       - name: Run cross-country number formatting regression suite
         run: |
           python -m pytest -q tests/test_numbers.py
@@ -107,6 +107,7 @@ jobs:
           python -m core.thumbs moldova
           python -m core.provenance moldova
           python countries/moldova/research/audit_candidate_assets.py
+          python countries/moldova/research/visual_review.py
           python -m core.page --out /tmp/moldova-candidate-site moldova
           python - <<'PY'
           import json
@@ -146,6 +147,14 @@ jobs:
           # country.yaml copy; the rest must pass WITH Moldova in the registry.
           python -m pytest -q --ignore=tests/test_moldova_country_candidate.py
           node --test tests/js/*.test.js
+
+      - name: Store trilingual contact sheets and exact rendered-asset hashes
+        uses: actions/upload-artifact@v4
+        with:
+          name: moldova-visual-review
+          path: /tmp/moldova-visual-review/
+          if-no-files-found: error
+          retention-days: 14
 
       # This artifact is created ONLY after the complete Python/Node gate.
       # The archive job must consume these exact checked bytes, not rerender.
