@@ -24,6 +24,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install offline source test dependencies
+        run: pip install -r requirements.txt
       - name: Test dimension order, source schemas, no invented values and BNS 2025 anchor
         run: python -m pytest -q tests/test_moldova_bns_trade.py
       - name: Download official BNS EXT010200 metadata and the 2006-2025 publisher cube
