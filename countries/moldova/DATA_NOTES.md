@@ -519,3 +519,59 @@ bulletin and checks all four year/precision anchors before writing ONLY
 refuses inconsistent dates, ambiguous metrics, and changed rates without
 editing the canonical `prudential_npl.csv`. A fork-only read-only GitHub
 Actions publisher audit uses that path for repeatable live verification.
+
+## BNS same-territory nominal GDP and national functional spending — 2026-10-27
+
+This resolves the previously missing **nominal-MDL GDP denominator** for the
+2016–2025 BNS *national-public-budget cash execution* classification, but does
+**not** establish a harmonised IMF general-government COFOG/GFS series.
+
+- **GDP 2016–2024** comes directly from the BNS official PxWeb
+  [CNT208100](https://statbank.statistica.md/PxWeb/api/v1/en/40%20Statistica%20economica/13%20CNT/CNT208/CNT208100.px),
+  indicator *GDP, current prices, thousand Lei*, divided by exactly 1,000 to
+  yield **millions of nominal MDL**. The original, guarded live publisher
+  audit [40460281083](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40460281083)
+  passed and archived the nine-year sidecar (2016–2024). Source anchors:
+  2023 **303,554.038** and 2024 **323,932.494** million MDL.
+- **GDP 2025** is not in that PxWeb table. It comes separately from the BNS
+  [11 March 2026 provisional annual GDP release](https://statistica.gov.md/ro/produsul-intern-brut-in-trimestrul-iv-si-anul-2025-9497_62357.html):
+  **353,520.9 million MDL**. Its preliminary status cannot be erased by the
+  fact that 2025 is a fully elapsed calendar year.
+- Both GDP publications and [FIN010100 budget functions](https://statbank.statistica.md/PxWeb/api/v1/en/40%20Statistica%20economica/25%20FIN/FIN010100.px)
+  use calendar years and explicitly exclude the left-bank Nistru districts
+  and municipality Bender. The numerator and denominator therefore share
+  currency, time and publisher geographic scope, unlike an inappropriate
+  conversion from WDI US-dollar GDP at an annual exchange rate.
+- Each spending-function share is calculated as
+  **FIN010100 function expenditure (million MDL) ÷ BNS current-price GDP
+  (million MDL) × 100**, joining by the same calendar year, never by
+  row position. The ten mutually exclusive national functions are grouped
+  as seven atlas categories: social protection; health; education;
+  general services; economic affairs; defence plus public order; and
+  other (environment, housing and culture). All ten function sums are
+  independently checked against the published cash-budget headline for
+  each of the ten years. A category is national budget classification,
+  **not proof of cross-country harmonised COFOG comparability**.
+- The [BNS finance overview](https://statistica.gov.md/en/statistic_indicator_details/21)
+  reports expenditure equal to **38.0% of GDP in 2024** and **39.6% in 2025**.
+  Our ratios from the original full-function FIN010100 release reproduce
+  those published percentages at one decimal. The previously documented
+  **0.1 million MDL 2024** expenditure edition difference is retained rather
+  than overwritten by the finance overview. 2025 budget execution and nominal
+  GDP remain preliminary.
+- The **spending.by_function** and **spending.social_protection** slots now
+  contain observed 2016–2025 national-functional data with these boundaries
+  visible in the chart and site text. **spending.investment** remains WDI
+  *whole-economy* gross fixed capital formation; **spending.public_investment**
+  remains pending because no defensible **government** GFCF series has yet
+  been staged. National cash capital purchases are not substituted for that.
+- `fetch/fetch_bns_gdp.py` only writes
+  `data/fiscal/nominal_gdp_from_bns.csv` for review, never mutating the
+  curated `nominal_gdp_bns.csv`. Its exact unit, 2016–2024 year grid,
+  metadata codes, schema, sample anchors and missing-data rejection are
+  covered by isolated source-audit and offline regression tests.
+
+This change does not alter the IMF WEO/FPP fiscal plate, country registration,
+2026 calendar-year values, national-budget year statuses, or peer chart axes.
+It still requires complete strict trilingual render, source/provenance,
+site/layout QA and final human visual inspection before publication.
