@@ -98,7 +98,7 @@ def test_trilingual_plates_chapters_site_and_provenance_are_source_specific():
         assert all(catalog[key].values())
     ui = json.loads((ROOT / "ui.json").read_text(encoding="utf-8"))
     for lang in ("ro", "en", "pt"):
-        assert len(ui[lang]["unavailable"]) == 8
+        assert len(ui[lang]["unavailable"]) == 7
         assert any("2023" in s and "2025" in s and "2022" in s
                    for s in ui[lang]["notes"])
         assert any("2022" in u["detail"] for u in ui[lang]["unavailable"])
