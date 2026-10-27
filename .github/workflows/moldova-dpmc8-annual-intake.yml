@@ -17,7 +17,7 @@ jobs:
           python-version: '3.12'
       - name: Test evidence intake without staging publisher observations
         run: |
-          python -m pip install -q pytest
+          python -m pip install -r requirements.txt
           python -m compileall -q countries/moldova/research/dpmc8_annual_intake.py tests/test_moldova_dpmc8_annual_intake.py
           python -m pytest -q tests/test_moldova_dpmc8_annual_intake.py
           python -m countries.moldova.research.dpmc8_annual_intake
