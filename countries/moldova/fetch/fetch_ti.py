@@ -35,18 +35,18 @@ def _sheet_rows(z: ZipFile, name: str, shared: list[str]) -> list[dict[str, str]
     """Read cached cell values, not formulas, preserving original cell positions."""
     root = ET.fromstring(z.read(name))
     output: list[dict[str, str]] = []
-    for row in root.findall(".//m:sheetData/m:row", NS):
+    for row in root.findall(".//{*}sheetData/{*}row"):
         cells: dict[str, str] = {}
-        for cell in row.findall("m:c", NS):
+        for cell in row.findall("{*}c"):
             address = cell.get("r", "")
             match = re.fullmatch(r"([A-Z]+)[0-9]+", address)
             if not match:
                 raise ValueError(f"Bad XLSX cell address {address!r}")
             col = match.group(1)
             kind = cell.get("t")
-            value = cell.find("m:v", NS)
+            value = cell.find("{*}v")
             if kind == "inlineStr":
-                token = "".join(n.text or "" for n in cell.findall(".//m:is//m:t", NS))
+                token = "".join(n.text or "" for n in cell.findall(".//{*}is//{*}t"))
             elif value is None:
                 token = ""
             elif kind == "s":
@@ -76,10 +76,10 @@ def _timeseries_rows(payload: bytes) -> list[dict[str, str]]:
         workbook = ET.fromstring(z.read("xl/workbook.xml"))
         relroot = ET.fromstring(z.read("xl/_rels/workbook.xml.rels"))
         rels = {rel.get("Id"): rel.get("Target") for rel in
-                relroot.findall("p:Relationship", NS)}
+                relroot.findall("{*}Relationship")}
         sheets = [
-            (sheet.get("name", ""), sheet.get(f"{{{NS['r']}}}id"))
-            for sheet in workbook.findall(".//m:sheets/m:sheet", NS)
+            (sheet.get("name", ""), next((v for k, v in sheet.attrib.items() if k.rsplit("}", 1)[-1] == "id"), None))
+            for sheet in workbook.findall(".//{*}sheets/{*}sheet")
         ]
         candidates = [(name, rid) for name, rid in sheets
                       if "cpi" in name.lower() and
@@ -97,8 +97,8 @@ def _timeseries_rows(payload: bytes) -> list[dict[str, str]]:
         shared: list[str] = []
         if "xl/sharedStrings.xml" in names:
             root = ET.fromstring(z.read("xl/sharedStrings.xml"))
-            shared = ["".join(t.text or "" for t in item.findall(".//m:t", NS))
-                      for item in root.findall("m:si", NS)]
+            shared = ["".join(t.text or "" for t in item.findall(".//{*}t"))
+                      for item in root.findall("{*}si")]
         rows = _sheet_rows(z, path, shared)
     except (BadZipFile, ET.ParseError, KeyError) as exc:
         raise ValueError("Malformed publisher XLSX XML/ZIP") from exc
@@ -142,7 +142,7 @@ def parse_release(payload: bytes) -> list[tuple[int, int]]:
         if len(country_cols) == 1 and len(year_cols) == 14:
             header_candidates.append((n, country_cols[0], year_cols))
     if len(header_candidates) != 1:
-        raise ValueError(f"Expected one complete CPI 2012–2025 header, found {len(header_candidates)}")
+        raise ValueError(f"Expected one complete CPI 2012–2025 header, found {len(header_candidates)}; first rows: {rows[:6]}")
     start, country_col, cols = header_candidates[0]
     matches = [row for row in rows[start + 1:]
                if row.get(country_col, "").strip().casefold() in
