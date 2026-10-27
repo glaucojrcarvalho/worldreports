@@ -60,7 +60,7 @@ def test_accessibility_and_wrong_language_thumbnails_are_blocked(tmp_path):
     site, output = fixture(tmp_path)
     page = site / "ro/index.html"
     original = page.read_text()
-    page.write_text(original.replace('alt="Chart"', 'alt=""', 1))
+    page.write_text(original.replace(' alt="Chart" width="560"', ' alt="" width="560"', 1))
     with pytest.raises(AssertionError, match="accessible"):
         audit(site, output)
     page.write_text(original.replace("thumbs/03-spending.ro.png",
