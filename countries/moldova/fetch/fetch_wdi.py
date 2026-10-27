@@ -44,6 +44,10 @@ GROUPS: dict[str, tuple[tuple[str, str], ...]] = {
         ("reserves_usd", "FI.RES.TOTL.CD"),
     ),
     "people/gini.csv": (("gini", "SI.POV.GINI"),),
+    # Financial-corporation claims to all private borrowers, not households.
+    "credit/private_credit.csv": (
+        ("private_credit_pct_gdp", "FS.AST.PRVT.GD.ZS"),
+    ),
     "trade/trade.csv": (
         ("exports_pct_gdp", "NE.EXP.GNFS.ZS"),
         ("imports_pct_gdp", "NE.IMP.GNFS.ZS"),

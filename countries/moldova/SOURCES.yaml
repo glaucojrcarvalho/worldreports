@@ -122,6 +122,21 @@ macro:
       unemployment and gross fixed capital formation as share of GDP.
       Not the same perimeter/vintage as Moldova's BNS national indicators.
       BNS's 2025 real-growth release rounds 2.416497% to 2.4%.
+credit:
+  private_credit.csv:
+    source: "World Bank WDI (source 2), FS.AST.PRVT.GD.ZS, domestic private-sector credit (% of GDP)"
+    url: "https://api.worldbank.org/v2/country/MDA/indicator/FS.AST.PRVT.GD.ZS?format=json"
+    official: false
+    refreshed_by: fetch/fetch_wdi.py
+    notes: >-
+      Primary World Bank WDI API sourceid=2 MDA checked on 2026-10-27;
+      lastupdated=2026-10-08, independently archived in source CI
+      https://github.com/glaucojrcarvalho/worldreports/actions/runs/40428253945.
+      Observations 2010-2025; 2006-2009 missing, not zero.
+      This includes total private-sector claims by financial corporations,
+      NOT household-only debt. Some public enterprises may be included.
+      Only chart in credit.lens; all three household canonical panels pending
+      NBM borrower/currency/denominator-compatible primary records.
 world:
   world.csv:
     source: "World Bank WDI, NY.GDP.MKTP.CD, NY.GDP.PCAP.CD, FI.RES.TOTL.CD"
@@ -215,9 +230,19 @@ migration:
 meta:
   phase: C
   status: research_only_not_an_atlas_edition
-  last_checked: "2026-10-26"
+  last_checked: "2026-10-27"
   wdi_vintage: "2026-10-08"
   verified:
+    - name: "WDI domestic private-sector credit 2010–2025"
+      publisher: "World Bank World Development Indicators"
+      official: false
+      url: "https://api.worldbank.org/v2/country/MDA/indicator/FS.AST.PRVT.GD.ZS?format=json"
+      reviewed_utc: "2026-10-27"
+      evidence: "https://github.com/glaucojrcarvalho/worldreports/actions/runs/40428253945"
+      notes: >-
+        Sourceid=2, MDA, vintage 2026-10-08. 2010 29.497046%,
+        2024 29.333210%, 2025 33.593935%; 2006-2009 blank.
+        This is total private-sector credit, NOT household borrowing.
     - name: "Official NBM base rate and annual USD/MDL average, 2006–2025"
       publisher: "National Bank of Moldova"
       official: true

@@ -1,0 +1,24 @@
+# World Bank WDI source=2, country=MDA, direct-API reviewed 2026-10-27.
+# WDI lastupdated=2026-10-08; indicators=FS.AST.PRVT.GD.ZS
+# NOT a BNS national series. Check territory and publisher scope.
+year,private_credit_pct_gdp
+2006,
+2007,
+2008,
+2009,
+2010,29.497046
+2011,29.927832
+2012,33.702488
+2013,35.735088
+2014,31.403845
+2015,28.937135
+2016,25.842113
+2017,23.133680
+2018,23.643593
+2019,25.324225
+2020,28.674820
+2021,28.530935
+2022,27.507446
+2023,25.577316
+2024,29.333210
+2025,33.593935

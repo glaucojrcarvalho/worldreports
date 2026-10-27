@@ -318,3 +318,19 @@ comparable 2018-to-2019 percentage-point change across the method seam.
 other international population/Gini sources remains unresolved.
 This fills only the **national absolute poverty** slot; legal minimum
 wage is still pending.
+
+## WDI domestic private-sector credit, primary API — 2026-10-27
+
+Verified directly from the World Bank WDI API, sourceid=2, MDA,
+indicator FS.AST.PRVT.GD.ZS (lastupdated 2026-10-08). Evidence:
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40428253945 .
+Sixteen annual values are observed (2010–2025); 2006–2009 are blank.
+Source-precision anchors: 2010 29.497046%, 2024 29.333210%,
+2025 33.593935% of GDP. No interpolation or artificial zeros.
+
+**This is not household credit.** The numerator includes financial
+corporations' claims on the broad private sector and can include
+businesses or certain public enterprises. Credit is shown only in
+the fourth credit contextual lens. Household debt, lending rates
+and NPL ratios remain pending borrower-matched NBM official records.
+Territory concordance with the national perimeter is not established.
