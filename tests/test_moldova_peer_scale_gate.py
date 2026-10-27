@@ -48,3 +48,22 @@ def test_one_pixel_font_metric_jitter_is_recorded_not_rejected(tmp_path: Path):
     Image.new("RGB", (32, 25), "white").save(b)
     with pytest.raises(ValueError, match="Material image dimension drift"):
         compare_png(a, b)
+
+
+def test_rgb_channel_difference_counts_without_grayscale_rounding(tmp_path: Path):
+    """Single-channel ±1 RGB differences still change visible pixels."""
+    from PIL import Image
+    baseline = tmp_path / 'baseline.png'
+    variant = tmp_path / 'variant.png'
+    Image.new('RGB', (10, 10), 'white').save(baseline)
+    for rgb in ((254, 255, 255), (255, 255, 254)):
+        Image.new('RGB', (10, 10), rgb).save(variant)
+        diff = compare_png(baseline, variant)
+        assert diff['difference_bbox'] == [0, 0, 10, 10]
+        assert diff['pixel_change_percent'] == 100.0
+    single = Image.new('RGB', (10, 10), 'white')
+    single.putpixel((4, 6), (254, 255, 255))
+    single.save(variant)
+    diff = compare_png(baseline, variant)
+    assert diff['difference_bbox'] == [4, 6, 5, 7]
+    assert diff['pixel_change_percent'] == 1.0

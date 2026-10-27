@@ -77,14 +77,19 @@ def compare_png(baseline: Path, rebuilt: Path) -> dict:
         box = (0, 0, w, height)
         changed = ImageChops.difference(
             b.convert("RGB").crop(box), n.convert("RGB").crop(box))
-        histogram = changed.convert("L").histogram()
-        ratio = round((1 - histogram[0] / (w * height)) * 100, 3)
+        # Luminosity conversion loses some one-channel RGB differences.
+        # Compute a per-pixel maximum-channel difference instead: each
+        # nonzero mask pixel represents at least one changed RGB channel.
+        red, green, blue = changed.split()
+        mask = ImageChops.lighter(red, ImageChops.lighter(green, blue))
+        changed_pixels = (w * height) - mask.histogram()[0]
+        ratio = round(changed_pixels / (w * height) * 100, 3)
         return {
             "baseline_size": list(b.size),
             "rebuilt_size": list(n.size),
             "dimension_drift_px": list(drift),
             "pixel_change_percent": ratio,
-            "difference_bbox": list(changed.getbbox()) if changed.getbbox() else None,
+            "difference_bbox": list(mask.getbbox()) if mask.getbbox() else None,
             "old_sha256": _digest(baseline),
             "new_sha256": _digest(rebuilt),
         }
