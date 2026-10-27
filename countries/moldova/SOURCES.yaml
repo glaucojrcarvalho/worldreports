@@ -80,6 +80,38 @@ fiscal:
       fiscal/budget_summary_from_bns.csv and a separate full
       functional report sidecar; it NEVER silently replaces these
       released outturns or the 2025 preliminary marker.
+  nominal_gdp_bns.csv:
+    source: "National Bureau of Statistics of Moldova (BNS), CNT208100 current-price national accounts and 2025 GDP release"
+    url: "https://statbank.statistica.md/PxWeb/api/v1/en/40%20Statistica%20economica/13%20CNT/CNT208/CNT208100.px"
+    official: true
+    refreshed_by: fetch/fetch_bns_gdp.py
+    notes: >-
+      Source-checked DIRECTLY at the BNS PxWeb API on 2026-10-27:
+      years 2016-2024, GDP in THOUSAND nominal MDL, converted exactly
+      to MILLION MDL by dividing by 1000. Source-run
+      https://github.com/glaucojrcarvalho/worldreports/actions/runs/40460281083
+      validated 2023 303554.038 and 2024 323932.494 million MDL
+      and archived the complete nine-year review sidecar.
+      The API table ends in 2024; 2025 preliminary 353520.9
+      million MDL comes SEPARATELY from the original BNS 2026-03-11
+      GDP release at
+      https://statistica.gov.md/ro/produsul-intern-brut-in-trimestrul-iv-si-anul-2025-9497_62357.html .
+      Both BNS GDP publications expressly exclude the left-bank Nistru
+      districts and Bender, matching the FIN010100 national budget's
+      stated territory and calendar-year basis. Shares in the spending
+      plate divide each FIN010100 expenditure function's million MDL
+      by this same-year BNS GDP million MDL and multiply by 100.
+      The BNS Finance overview independently reports 2024 national
+      cash spending as 38.0% of GDP and 2025 as 39.6%, matching
+      the calculated same-territory ratios after one-decimal rounding.
+      The FUNCIONAL BNS national PUBLIC BUDGET cash-execution perimeter
+      is NOT the same as IMF WEO/FPP general-government accrual GFS/COFOG;
+      do not splice fiscal vintage, infer household effects or call
+      these budget function shares an internationally harmonised COFOG.
+      2025 GDP and budget are PRELIMINARY; 2024 GDP vintages may be
+      revised without retroactively reinterpreting the older budgets.
+      Collector writes *_from_bns review sidecar ONLY.
+
 markets:
   policy.csv:
     source: "National Bank of Moldova (NBM), official base rate decisions effective dates"
