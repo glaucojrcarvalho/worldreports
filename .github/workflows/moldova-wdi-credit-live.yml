@@ -1,0 +1,43 @@
+# Fork-only, live primary-publisher check. Does not write curated CSVs.
+name: Moldova WDI private-credit source audit
+
+on:
+  push:
+    branches:
+      - research/moldova-source-audit
+    paths:
+      - .github/workflows/moldova-wdi-credit-live.yml
+      - countries/moldova/fetch/fetch_wdi.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  wdi-private-credit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch and independently inspect official WDI private-credit indicator
+        run: |
+          python - <<'PY'
+          import importlib.util
+          from pathlib import Path
+          module_path = Path('countries/moldova/fetch/fetch_wdi.py')
+          spec = importlib.util.spec_from_file_location('md_wdi_credit_live', module_path)
+          wdi = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(wdi)
+          code = 'FS.AST.PRVT.GD.ZS'
+          values, vintage = wdi.fetch_indicator(code, refresh=True)
+          assert len(values) >= 10, 'insufficient observed years'
+          assert all(2006 <= year <= 2025 and 0 < value < 300
+                     for year, value in values.items())
+          print('WDI sourceid=2; MDA; ' + code + '; lastupdated=' + vintage)
+          print('=== PRIVATE_CREDIT_SIDECAR_START ===')
+          print(wdi.sidecar_text((('private_credit_pct_gdp', code),),
+                                 {code: values}, vintage), end='')
+          print('=== PRIVATE_CREDIT_SIDECAR_END ===')
+          PY
