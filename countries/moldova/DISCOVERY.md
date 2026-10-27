@@ -1,6 +1,17 @@
 # Moldova — source discovery and perimeter audit
 
-**Status:** research only, **not an atlas edition**.  
+**Status:** research only, **not an atlas edition**.
+**Interpretation:** this is the **original 2026-10-26 discovery snapshot**,
+retained for source-route evidence. Its "not yet audited", "unverified",
+and "no graphs introduced" entries describe the initial discovery date,
+NOT the current 2026-10-27 branch. The subsequently verified official
+BNS functional-cash spending / same-territory nominal GDP 2016–2025,
+BNS poverty, customs partners, IMF vintages, NBM bank-wide NPL/FX,
+UNDP HDI, TI CPI, three-language 12-plate candidate, and remaining
+gaps are documented in [DATA_NOTES.md](DATA_NOTES.md),
+[SOURCES.yaml](SOURCES.yaml), and
+[research/PHASE_B_HANDOFF.md](research/PHASE_B_HANDOFF.md).
+Registration in `country.yaml` is STILL withheld pending final acceptance.  
 **Survey date:** 2026-10-26.  
 **Proposed slug:** `moldova`. **National locale:** `ro` (Romanian), plus `en` and `pt`. **Currency:** MDL.  
 **Repository baseline:** upstream `main` `ff9171c5290a68cfc92f3788542674f0a76dd13a`.  
