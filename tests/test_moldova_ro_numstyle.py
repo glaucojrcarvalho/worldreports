@@ -87,7 +87,14 @@ def test_every_ro_general_number_spec_and_plate_rules_exist() -> None:
 
 
 def test_candidate_can_be_loaded_and_formatted_without_registration(tmp_path: Path) -> None:
-    assert not (CANDIDATE.parent.parent / "country.yaml").exists()
+    # This direct-loader test also runs in the full-atlas CI phase where
+    # country.yaml is intentionally copied to the country root for the
+    # duration of rendering. The separate candidate-only suite enforces
+    # that the *committed branch* stays unregistered.
+    active = CANDIDATE.parent.parent / "country.yaml"
+    if active.exists():
+        assert active.read_bytes() == CANDIDATE.read_bytes(), (
+            "The temporary registered candidate diverges from research source")
     tmp_country = tmp_path / "moldova"
     tmp_country.mkdir()
     shutil.copyfile(CANDIDATE, tmp_country / "country.yaml")
