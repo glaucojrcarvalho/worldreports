@@ -38,17 +38,21 @@ def test_no_missing_canonical_slot_or_unreviewed_pending_conversion():
     with pytest.raises(AssertionError, match="Canonical slots missing"):
         inventory(changed)
 
+    original_call = ('_pending(ctx, ig, ax, '
+                     '"No verified annual-average 10-year secondary\\n"'
+                     '\n             "market yield has been staged.")')
+    assert original_call in PLATES
     changed = PLATES.replace(
-        '_pending(ctx, ig, ax, "No verified annual-average 10-year secondary',
-        'ctx.line(ax, [2025], [4], ctx.p.RED) # No verified annual-average 10-year secondary',
-        1)
+        original_call, 'ctx.line(ax, [2025], [4], ctx.p.RED)', 1)
     assert changed != PLATES
     with pytest.raises(AssertionError, match="Unexpected pending/filled"):
         inventory(changed)
 
 
 def test_pending_reason_cannot_be_empty():
-    original = '"No verified annual-average 10-year secondary\\n"'
+    original = ('"No verified annual-average 10-year secondary\\n"'
+                '\n             "market yield has been staged."')
+    assert original in PLATES
     changed = PLATES.replace(original, '"not audited"')
     assert changed != PLATES
     with pytest.raises(AssertionError, match="lacks a reason"):
