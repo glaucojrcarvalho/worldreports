@@ -95,4 +95,49 @@ def test_source_is_not_implicitly_published():
     # the separate candidate-only guard enforces absence in the checkout.
     assert not (root / "data/world/cpi.csv").exists()
     plate = (root / "plates.py").read_text(encoding="utf-8")
-    assert '_pending(ctx, ig, ax, "Transparency International annual scores' in plate
+    assert '_series(ctx, "world/cpi.csv", "cpi_score")' in plate
+
+
+def test_curated_cpi_matches_pinned_original_publisher_and_provenance():
+    """The canonical plate uses all and only the audited 2025-workbook values."""
+    import csv
+    import json
+    from pathlib import Path
+    import yaml
+    from countries.moldova.fetch.fetch_ti import PINNED_SHA256
+
+    root = Path(__file__).resolve().parents[1] / "countries/moldova"
+    text = (root / "data/world/cpi.csv").read_text(encoding="utf-8")
+    records = list(csv.DictReader(x for x in text.splitlines()
+                                  if x and not x.startswith("#")))
+    expected = {2012: 36, 2013: 35, 2014: 35, 2015: 33, 2016: 30, 2017: 31, 2018: 33, 2019: 32, 2020: 34, 2021: 36, 2022: 39, 2023: 42, 2024: 43, 2025: 42}
+    assert len(records) == 20
+    assert [int(r["year"]) for r in records] == list(range(2006, 2026))
+    assert [int(r["year"]) for r in records if not r["cpi_score"]] == list(range(2006, 2012))
+    found = {int(r["year"]): int(r["cpi_score"]) for r in records if r["cpi_score"]}
+    assert found == expected
+    assert PINNED_SHA256 in text
+    assert "PERCEPTIONS" in text and "CC BY-ND" in text
+
+    manifest = yaml.safe_load((root / "SOURCES.yaml").read_text(encoding="utf-8"))
+    record = manifest["world"]["cpi.csv"]
+    assert record["official"] is True
+    assert record["refreshed_by"] == "fetch/fetch_ti.py"
+    assert PINNED_SHA256 in record["notes"]
+    assert "2012" in record["notes"] and "2006-2011" in record["notes"]
+    assert "CC BY-ND" in record["notes"]
+    provenance = json.loads((root / "provenance.json").read_text(encoding="utf-8"))
+    assert provenance["08-world"] == ["world/cpi.csv", "world/hdi.csv", "world/world.csv"]
+    labels = json.loads((root / "i18n.json").read_text(encoding="utf-8"))
+    for label in ("Transparency International CPI 2025; comparable since 2012",
+                  "World Bank WDI; UNDP HDR 2025; TI CPI 2025"):
+        assert set(labels[label]) == {"ro", "pt"}
+        assert all(labels[label].values())
+    ui = json.loads((root / "ui.json").read_text(encoding="utf-8"))
+    for lang in ("ro", "en", "pt"):
+        assert len(ui[lang]["unavailable"]) == 9
+        assert any("2012" in n and "2025" in n and "42" in n and "43" in n
+                   for n in ui[lang]["notes"])
+        assert not any("corup" in x["term"].casefold() or
+                       "corrup" in x["term"].casefold()
+                       for x in ui[lang]["unavailable"])

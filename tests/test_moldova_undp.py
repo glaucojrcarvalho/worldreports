@@ -96,12 +96,12 @@ def test_curated_hdr_2025_hdi_is_single_vintage_with_missing_later_years():
     assert "_pending(" not in hdi_slot
     assert "UNDP HDR 2025 CSV" in hdi_slot
     chapters = (root / "chapters.py").read_text("utf-8")
-    assert '"world/world.csv", "world/hdi.csv"' in chapters
+    assert '"world/world.csv", "world/hdi.csv", "world/cpi.csv"' in chapters
     prov = json.loads((root / "provenance.json").read_text("utf-8"))
-    assert prov["08-world"] == ["world/hdi.csv", "world/world.csv"]
+    assert prov["08-world"] == ["world/cpi.csv", "world/hdi.csv", "world/world.csv"]
     catalog = json.loads((root / "i18n.json").read_text("utf-8"))
     for label in ("UNDP HDR 2025 CSV; through 2023; see edition note",
-                  "World Bank WDI; UNDP HDR 2025; TI CPI pending"):
+                  "World Bank WDI; UNDP HDR 2025; TI CPI 2025"):
         assert set(catalog[label]) == {"ro", "pt"}
     ui = json.loads((root / "ui.json").read_text("utf-8"))
     for lang, decimals in (("ro", ("0,784", "0,763")),
@@ -110,6 +110,6 @@ def test_curated_hdr_2025_hdi_is_single_vintage_with_missing_later_years():
         assert any(all(token in note for token in decimals)
                    for note in ui[lang]["notes"])
         terms = [x["term"] for x in ui[lang]["unavailable"]]
-        assert len(terms) == 10
-        assert any(any(fragment in word.lower() for fragment in ("corup", "corrup"))
-                   for word in terms)
+        assert len(terms) == 9
+        assert not any(any(fragment in word.lower() for fragment in ("corup", "corrup"))
+                       for word in terms)

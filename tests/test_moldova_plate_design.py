@@ -139,7 +139,7 @@ def test_private_credit_lens_does_not_fill_household_slots():
     assert "credit/private_credit.csv" in credit
     assert "NOT households" in credit
 
-def test_world_hdi_has_observed_data_and_cpi_remains_unverified():
+def test_world_hdi_and_ti_cpi_use_distinct_verified_source_vintages():
     rows = _rows("world/hdi.csv")
     assert [r["year"] for r in rows] == list(range(2006, 2026))
     observed = {r["year"]: r["hdi"] for r in rows if r["hdi"] is not None}
@@ -155,4 +155,11 @@ def test_world_hdi_has_observed_data_and_cpi_remains_unverified():
     assert '"UNDP HDR 2025 CSV' in before_cpi
     assert '_pending(ctx, ig, ax,' not in before_cpi
     cpi = world.split('ig.slot("world.cpi"', 1)[1].split('ig.slot("world.reserves"', 1)[0]
-    assert "_pending(ctx, ig, ax," in cpi
+    assert '_series(ctx, "world/cpi.csv", "cpi_score")' in cpi
+    assert "_pending(ctx, ig, ax," not in cpi
+    rows = _rows("world/cpi.csv")
+    assert [r["year"] for r in rows] == list(range(2006, 2026))
+    assert [r["year"] for r in rows if r["cpi_score"] is None] == list(range(2006, 2012))
+    assert [r["year"] for r in rows if r["cpi_score"] is not None] == list(range(2012, 2026))
+    assert {r["year"]: r["cpi_score"] for r in rows if r["year"] in (2023, 2024, 2025)} == {2023: 42, 2024: 43, 2025: 42}
+    assert all(spine.SLOTS["world.cpi"].ref[0] <= r["cpi_score"] <= spine.SLOTS["world.cpi"].ref[1] for r in rows if r["cpi_score"] is not None)
