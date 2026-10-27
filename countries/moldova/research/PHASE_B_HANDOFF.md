@@ -715,3 +715,27 @@ panel's three-series legend and 2025 disconnected dot. Have the
 research bot archive EXACT validated images without any new rerender
 or production registration. Moldova country.yaml remains unregistered.
 Never merge, deploy, PR or change the upstream repository.
+
+
+## Source-byte fingerprints in the trilingual visual QA manifest — 2026-10-27
+
+The 12-sheet visual review now includes SHA256 not just for 36 PNG,
+36 SVG and 36 thumbnails, but for **every curated CSV named in the
+12 observed provenance maps** and for the five inputs that select
+series, editorial wording, source attribution and candidate locale
+configuration (`plates.py`, `i18n.json`, `ui.json`, `SOURCES.yaml`,
+`research/country_candidate.yaml`). The report blocks absent or duplicate
+source-lineage entries, ambiguous source paths, missing original curated
+CSVs, unreviewed sidecars and entries without an identifiable publisher
+and HTTPS URL. Offline regression covers invalid source attribution and
+source content drift while chart bytes stay unchanged. The report is a
+reproducibility fingerprint, **not proof** that a chart was rendered
+correctly or that a source vintage has remained stable after hashing.
+
+**Next gate:** require a fresh successful full CI with the new source hash
+manifest, rendered trio for `01-economy` showing disconnected BNS 2025,
+`03-spending` and `12-migration`. Verify 108 asset files and exact
+12 plate provenance mappings, then archive via the separately guarded
+fork research job. Retain the root `country.yaml` as unregistered until
+manual locale/layout review and final global regression. No upstream PR,
+merge or deploy.

@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 
 from PIL import Image, ImageDraw
+import yaml
 
 TOPICS = (
     "economy", "fiscal", "spending", "trade", "markets", "credit",
@@ -40,6 +41,50 @@ def build_review(country: Path, destination: Path) -> dict:
     """Generate twelve same-scale RO/EN/PT triptychs and a hash manifest."""
     src = country / "output"
     proven = json.loads((country / "provenance.json").read_text(encoding="utf-8"))
+    expected_plate_keys = {
+        f"{i:02d}-{topic}" for i, topic in enumerate(TOPICS, 1)
+    }
+    if set(proven) != expected_plate_keys:
+        raise AssertionError("Missing or unexpected plate provenance records")
+    catalog = yaml.safe_load((country / "SOURCES.yaml").read_text(encoding="utf-8"))
+    if not isinstance(catalog, dict):
+        raise AssertionError("Source catalogue must be a YAML mapping")
+    source_hashes = {}
+    for plate in sorted(expected_plate_keys):
+        paths = proven[plate]
+        if not isinstance(paths, list) or not paths or len(paths) != len(set(paths)):
+            raise AssertionError(f"{plate}: missing or duplicate source lineage")
+        for rel in paths:
+            if not isinstance(rel, str):
+                raise AssertionError(f"{plate}: non-string source path")
+            identifier = Path(rel)
+            if (identifier.is_absolute() or len(identifier.parts) != 2
+                    or identifier.suffix != ".csv"
+                    or any(part in (".", "..") for part in identifier.parts)
+                    or "_from_" in identifier.name):
+                raise AssertionError(f"{plate}: invalid curated CSV source {rel!r}")
+            data_file = country / "data" / identifier
+            if not data_file.is_file():
+                raise AssertionError(f"{plate}: missing curated source CSV {rel}")
+            group, name = identifier.parts
+            entry = catalog.get(group, {}).get(name)
+            if not (isinstance(entry, dict) and
+                    isinstance(entry.get("official"), bool) and
+                    isinstance(entry.get("source"), str) and entry["source"] and
+                    isinstance(entry.get("url"), str) and
+                    entry["url"].startswith("https://")):
+                raise AssertionError(f"{plate}: missing publisher metadata for {rel}")
+            source_hashes[rel] = _digest(data_file)
+    render_inputs = (
+        "plates.py", "i18n.json", "ui.json", "SOURCES.yaml",
+        "research/country_candidate.yaml",
+    )
+    config_hashes = {}
+    for rel in render_inputs:
+        path = country / rel
+        if not path.is_file():
+            raise AssertionError(f"Required source/configuration missing: {rel}")
+        config_hashes[rel] = _digest(path)
     for plate, required in REQUIRED_LINEAGE.items():
         observed = set(proven.get(plate, ()))
         if not required <= observed:
@@ -69,6 +114,8 @@ def build_review(country: Path, destination: Path) -> dict:
     manifest = {
         "method": "same-scale PNG contact sheets; review only, no publication",
         "provenance_sha256": _digest(country / "provenance.json"),
+        "render_config_sha256": config_hashes,
+        "curated_source_sha256": dict(sorted(source_hashes.items())),
         "plates": [],
     }
     for i, topic in enumerate(TOPICS, 1):
@@ -114,14 +161,16 @@ def build_review(country: Path, destination: Path) -> dict:
         contact.save(destination / filename, optimize=True)
         manifest["plates"].append({
             "stem": stem, "sheet": filename,
-            "observed_sources": proven[stem], "locales": entries,
+            "observed_sources": proven[stem],
+            "source_sha256": {rel: source_hashes[rel] for rel in sorted(proven[stem])},
+            "locales": entries,
         })
     (destination / "visual-review-manifest.json").write_text(
         json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8")
     print(
         f"Moldova visual QA: {len(manifest['plates'])} trilingual sheets / "
-        "108 original assets hashed")
+        f"108 original assets and {len(source_hashes)} source CSVs hashed")
     return manifest
 
 
