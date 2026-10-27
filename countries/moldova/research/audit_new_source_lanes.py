@@ -51,8 +51,12 @@ def verify(mortgage,investment):
             raise AssertionError("ERP value/forecast classification mismatch")
         if not 0<float(r["share_pct_gdp"])<12:
             raise AssertionError("Government GFCF exceeds canonical shared scale")
-    if (ROOT/"country.yaml").exists():
-        raise AssertionError("Research country must remain unregistered")
+    registered = ROOT/"country.yaml"
+    # Full atlas CI temporarily registers an EXACT candidate copy.
+    # The real research Git tree stays unregistered; no other config is valid.
+    if registered.exists() and registered.read_bytes() != (
+        ROOT/"research/country_candidate.yaml").read_bytes():
+        raise AssertionError("Non-candidate Moldova country registered")
     return {
        "decision":"SOURCE_LANES_VERIFIED_NO_CANONICAL_PROMOTION",
        "household_new_loans":{

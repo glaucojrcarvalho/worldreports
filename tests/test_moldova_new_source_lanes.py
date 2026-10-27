@@ -18,7 +18,10 @@ def test_two_official_routes_keep_both_canonical_slots_pending():
     assert r["public_investment"]["program_estimate"]==[2025]
     assert r["public_investment"]["forecast"]==[2026]
     assert r["canonical_data_rows_changed"]==0
-    assert not (ROOT/"country.yaml").exists()
+    registered = ROOT/"country.yaml"
+    if registered.exists():
+        assert registered.read_bytes() == (
+            ROOT/"research/country_candidate.yaml").read_bytes()
 
 @pytest.mark.parametrize("field,bad",[
     ("borrower_category","businesses"),
