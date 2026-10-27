@@ -1,0 +1,41 @@
+# Original BNS LFS 2019-2025 annual query: evidence only, NEVER atlas write.
+name: Moldova BNS national unemployment annual source audit
+
+on:
+  push:
+    branches: [research/moldova-source-audit]
+    paths:
+      - 'countries/moldova/fetch/fetch_bns_lfs_annual.py'
+      - 'tests/test_moldova_bns_lfs_annual.py'
+      - '.github/workflows/moldova-bns-lfs-annual-live.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-audit:
+    if: github.repository == 'glaucojrcarvalho/worldreports'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate year, method-break and JSON-stat2 source parser
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pytest -q tests/test_moldova_bns_lfs.py tests/test_moldova_bns_lfs_annual.py
+      - name: Query exact publisher-code annual rate cells
+        run: |
+          python -m countries.moldova.fetch.fetch_bns_lfs_annual
+          cat countries/moldova/data/macro/national_lfs_from_bns.csv
+      - name: Store review-only original publisher observations and hashes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: moldova-bns-lfs-unemployment-annual-review
+          path: countries/moldova/data/macro/national_lfs_from_bns.csv
+          if-no-files-found: warn
+          retention-days: 14

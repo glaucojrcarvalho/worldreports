@@ -658,3 +658,36 @@ observed BNS budget/census provenance, Node/Python site/layout tests,
 and archive-bot push. If the preceding full suite was cancelled by
 this source-only commit, rerun on the current branch SHA. Never touch
 the upstream repository or deploy.
+
+
+## Source-audit continuation: exact BNS annual rate extraction (2026-10-27)
+
+The **first official live BNS codebook audit passed**:
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40469103972
+and directly returned source SHA256
+\`e32d58d6278434a20a4c316d22c420c0f0b7cd342e2c80cb0c9dc706fcb849e0\`.
+Publisher dimension codes: \`Sexe\` = 0 "Both sexes"; \`Medii\` = 0 "Whole
+country"; \`Ani\` = 2019–2025; \`Trimestre\` = 0 "Annual average".
+The real API path is
+\`/PxWeb/api/v1/en/30%20Statistica%20sociala/03%20FM/03%20MUN/MUN060/MUN160100_2025.px\`.
+
+On this evidence, implemented a *separate read-only annual collector*
+(\`fetch_bns_lfs_annual.py\`) selecting ONLY the four audited code
+dimensions, checking seven years and a real BNS publisher anchor
+**2025 unemployment 3.8%**, and recording raw original JSON-stat SHA256.
+It writes a **review sidecar only**:
+\`data/macro/national_lfs_from_bns.csv\`, with disconnected 2019–2024
+and 2025 columns because BNS revised survey/census weights in 2025.
+An isolated push-triggered GitHub Actions workflow performs offline
+malformed-schema tests then queries the original BNS API and preserves
+the candidate numerical CSV; no plotted WDI rate or other curated
+file is touched.
+
+**Next:** inspect the live annual query before trusting ANY extracted
+values. If BNS JSON-stat schema/indices differ, fix its parser from
+the actual log; if the 2025 3.8% anchor differs, fail closed and
+investigate publication vintage rather than adjusting 3.8 arbitrarily.
+Only after the live audit is green consider a separate official national
+series, never connected through the 2025 break or spliced to old LFS
+or WDI ILO-modelled rates. Also check the newest full atlas QA and visual
+artifact archives; no upstream modification, merge, PR or deployment.
