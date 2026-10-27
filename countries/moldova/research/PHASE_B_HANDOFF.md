@@ -276,3 +276,21 @@ candidate-only test and dedicated peer audit continue to enforce that
 the actual repository does not register Moldova. The new TI source
 test likewise avoids incorrectly failing on the disposable registration.
 The full suite must rerun green before promotion.
+
+## Phase C: original Transparency International CPI 2025 scores promoted — 2026-10-27
+
+The real original publisher XLSX was **successfully** decoded and verified:
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40440734736 .
+The 14 CPI scores (2012–2025) are SHA256-pinned to publisher bytes
+`543a2ad438c4ba9a70367ee10a44a2565de7fae6bcd8a8db0c23d0b993e46e31` and curated to `world/cpi.csv`.
+The world CPI canonical panel now plots **verified observations**, with
+2006–2011 blank because of the 2012 methodology change. Source manifest,
+provenance, all three locales, chapter text, notes and regression contracts
+were updated coherently. CPI measures *perceived* public-sector corruption,
+not proven crimes, and the publisher has CC BY-ND 4.0 attribution/licensing.
+
+**Next:** the full research gate must pass strict ro/en/pt rendering, all
+36 figures and thumbnails, source/provenance, 9 genuinely unavailable items,
+global Python/JS tests, and site layout. Review peer-axis contact sheets and
+regenerate published peer images only after explicit visual signoff. Keep
+Moldova unregistered, do not deploy, merge or modify upstream.

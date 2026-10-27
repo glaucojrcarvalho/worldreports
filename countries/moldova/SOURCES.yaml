@@ -138,6 +138,22 @@ credit:
       Only chart in credit.lens; all three household canonical panels pending
       NBM borrower/currency/denominator-compatible primary records.
 world:
+  cpi.csv:
+    source: "Transparency International, Corruption Perceptions Index 2025, official score timeseries since 2012"
+    url: "https://images.transparencycdn.org/images/CPI2025_Results.xlsx"
+    official: true
+    refreshed_by: fetch/fetch_ti.py
+    notes: >-
+      Original CPI 2025 official XLSX workbook was audited in read-only
+      Actions run 40440734736 on 2026-10-27, original source SHA256
+      543a2ad438c4ba9a70367ee10a44a2565de7fae6bcd8a8db0c23d0b993e46e31. Fourteen annual values 2012-2025;
+      no 2006-2011 scores after the 2012 methodological revision.
+      Anchors 2012=36, 2023=42, 2024=43, 2025=42.
+      Expert/business PERCEPTIONS of public-sector corruption (0-100,
+      higher is cleaner), not observed crimes or regional prevalence.
+      Different territorial scope from national BNS cash accounts may apply.
+      Publisher credit/licence: Transparency International, CC BY-ND 4.0.
+      Method: https://www.transparency.org/en/news/how-cpi-scores-are-calculated
   hdi.csv:
     source: "United Nations Development Programme (UNDP), Human Development Report 2025, complete composite indices time series"
     url: "https://hdr.undp.org/sites/default/files/2025_HDR/HDR25_Composite_indices_complete_time_series.csv"

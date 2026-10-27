@@ -786,5 +786,25 @@
   "GDP and reserves in US dollars; UNDP HDI through 2023; corruption index pending.": {
     "ro": "PIB și rezerve în dolari SUA; IDU PNUD până în 2023; indicele corupției în așteptare.",
     "pt": "PIB e reservas em dólares; IDH PNUD até 2023; índice de corrupção pendente."
+  },
+  "Moldova in the World — GDP, HDI and CPI": {
+    "ro": "Moldova în lume — PIB, IDU și IPC",
+    "pt": "Moldávia no Mundo — PIB, IDH e IPC"
+  },
+  "WDI nominal; UNDP HDR 2025 HDI; TI CPI 2025, comparable since 2012": {
+    "ro": "Serii nominale WDI; IDU PNUD HDR 2025; IPC TI 2025, comparabil din 2012",
+    "pt": "Séries nominais WDI; IDH PNUD RDH 2025; IPC TI 2025, comparável desde 2012"
+  },
+  "World Bank WDI; UNDP HDR 2025; TI CPI 2025": {
+    "ro": "Banca Mondială WDI; PNUD RDU 2025; IPC TI 2025",
+    "pt": "Banco Mundial WDI; PNUD RDH 2025; IPC TI 2025"
+  },
+  "GDP and reserves in US dollars; HDI through 2023; comparable CPI scores for 2012–2025.": {
+    "ro": "PIB și rezerve în dolari SUA; IDU până în 2023; scoruri IPC comparabile din 2012 până în 2025.",
+    "pt": "PIB e reservas em dólares; IDH até 2023; notas IPC comparáveis de 2012 a 2025."
+  },
+  "Transparency International CPI 2025; comparable since 2012": {
+    "ro": "Transparency International IPC 2025; comparabil din 2012",
+    "pt": "Transparency International IPC 2025; comparável desde 2012"
   }
 }

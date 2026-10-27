@@ -363,6 +363,36 @@ causal interpretation, or year-2025 data claim is justified.
 
 HDI is a composite of health, education and income measures (0–1).
 It must not be confused with WDI GDP per person, household inequality
-or the pending Transparency International Corruption Perceptions Index.
+or the separately verified Transparency International Corruption Perceptions Index.
 The UNDP historical national statistical perimeter is not assumed to be
 identical to BNS's 2024 census or its budget execution geography.
+
+## Transparency International CPI 2025 — audited historical workbook, 2026-10-27
+
+The original 2025 publisher [CPI workbook](https://images.transparencycdn.org/images/CPI2025_Results.xlsx)
+was fetched and decoded live, not copied from a third-party aggregator:
+[read-only publisher audit 40440734736](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40440734736).
+Pinned publisher SHA256: `543a2ad438c4ba9a70367ee10a44a2565de7fae6bcd8a8db0c23d0b993e46e31`.
+The score series is exactly:
+
+| Year | Score | Year | Score |
+|---:|---:|---:|---:|
+| 2012 | 36 | 2019 | 32 |
+| 2013 | 35 | 2020 | 34 |
+| 2014 | 35 | 2021 | 36 |
+| 2015 | 33 | 2022 | 39 |
+| 2016 | 30 | 2023 | 42 |
+| 2017 | 31 | 2024 | 43 |
+| 2018 | 33 | 2025 | 42 |
+
+The 2012 index methodology redesign makes **2006–2011 unavailable** in a
+methodologically comparable series; they stay blank (not zero). For 2025
+the score is 42, versus 43 in 2024 and 42 in 2023. This is an expert/business
+perception index of public-sector corruption (0–100; higher is cleaner),
+**not** recorded criminal activity, criminal convictions or household
+experience of bribery. Publisher: Transparency International, CC BY-ND 4.0;
+[official methodology](https://www.transparency.org/en/news/how-cpi-scores-are-calculated).
+The source perimeter is not assumed interchangeable with WDI GDP or BNS
+census areas. `fetch/fetch_ti.py` writes a review-only sidecar and rejects
+unreviewed publisher-byte changes; it never silently overwrites the curated
+`world/cpi.csv`.

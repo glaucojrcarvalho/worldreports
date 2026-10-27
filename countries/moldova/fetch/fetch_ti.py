@@ -24,6 +24,8 @@ SOURCE = "https://images.transparencycdn.org/images/CPI2025_Results.xlsx"
 DEST = ROOT / "data/world/cpi_from_ti.csv"
 YEARS = range(2012, 2026)
 ANCHORS = {2023: 42, 2024: 43, 2025: 42}
+# Official source bytes verified by publisher audit 40440734736.
+PINNED_SHA256 = "543a2ad438c4ba9a70367ee10a44a2565de7fae6bcd8a8db0c23d0b993e46e31"
 NS = {
     "m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main",
     "r": "http://schemas.openxmlformats.org/officeDocument/2006/relationships",
@@ -197,6 +199,9 @@ def main() -> int:
     if target.name != "cpi_from_ti.csv":
         raise SystemExit("Refusing to replace any curated CPI or non-review file")
     raw = fetch_release()
+    digest = hashlib.sha256(raw).hexdigest()
+    if digest != PINNED_SHA256:
+        raise ValueError(f"Publisher CPI 2025 workbook changed: {digest} != {PINNED_SHA256}")
     rows = parse_release(raw)
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(render_sidecar(rows, raw), encoding="utf-8")

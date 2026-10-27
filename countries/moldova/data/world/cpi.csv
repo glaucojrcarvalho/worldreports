@@ -1,0 +1,28 @@
+# Transparency International CPI 2025, official score timeseries for country Moldova.
+# https://images.transparencycdn.org/images/CPI2025_Results.xlsx
+# Original publisher bytes SHA256: 543a2ad438c4ba9a70367ee10a44a2565de7fae6bcd8a8db0c23d0b993e46e31
+# Live source-audit: https://github.com/glaucojrcarvalho/worldreports/actions/runs/40440734736
+# First methodologically comparable year 2012; do not splice older editions or interpolate 2006-2011.
+# Expert/business PERCEPTIONS of public-sector corruption; higher score=less perceived corruption.
+# Publisher attribution and licence: Transparency International, CC BY-ND 4.0.
+year,cpi_score
+2006,
+2007,
+2008,
+2009,
+2010,
+2011,
+2012,36
+2013,35
+2014,35
+2015,33
+2016,30
+2017,31
+2018,33
+2019,32
+2020,34
+2021,36
+2022,39
+2023,42
+2024,43
+2025,42
