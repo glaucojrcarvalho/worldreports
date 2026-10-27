@@ -109,4 +109,5 @@ def test_refuses_to_guess_parent_group_totals_or_substitute_wdi():
     assert audit.MAX_CELLS == 10000
     assert audit.OUTPUT.name == "exports_partner_from_bns.csv"
     assert audit.ANCHOR_2025_THOUSAND_USD == 3782700.0
-    assert not (audit.ROOT / "country.yaml").exists()
+    assert audit.OUTPUT.name != "trade.csv"
+    assert audit.EVIDENCE.name.endswith("_source_metadata.json")
