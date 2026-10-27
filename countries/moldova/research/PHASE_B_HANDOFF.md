@@ -260,3 +260,19 @@ differs, adapt the parser using actual worksheet evidence and rerun the
 offline contract tests. Keep CPI panel explicitly pending until the
 publisher-side audit actually passes. Do not commit output to upstream,
 register Moldova or deploy.
+
+## Full-suite peer-selection gate correction — 2026-10-27
+
+The previous full-atlas run
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40437548930
+exercised **3,418 passing Python tests plus 8 subtests** before one
+test failed: \`test_shared_range_and_complete_peer_selection\` assumed
+Moldova could not have a \`country.yaml\`, contradicting the runner's
+intentionally temporary registration for full-atlas verification. This
+was a **test-harness context collision**, not an observed plate failure.
+The test now excludes the *candidate* from the published peer set,
+regardless of the temporary isolated registration. The independent
+candidate-only test and dedicated peer audit continue to enforce that
+the actual repository does not register Moldova. The new TI source
+test likewise avoids incorrectly failing on the disposable registration.
+The full suite must rerun green before promotion.

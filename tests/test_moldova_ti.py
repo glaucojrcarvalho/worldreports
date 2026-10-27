@@ -91,6 +91,8 @@ def test_cannot_confuse_rank_or_method_break_with_scores():
 def test_source_is_not_implicitly_published():
     from pathlib import Path
     root = Path(__file__).resolve().parents[1] / "countries/moldova"
-    assert not (root / "country.yaml").exists()
+    # The full regression suite temporarily registers the candidate in CI;
+    # the separate candidate-only guard enforces absence in the checkout.
+    assert not (root / "data/world/cpi.csv").exists()
     plate = (root / "plates.py").read_text(encoding="utf-8")
     assert '_pending(ctx, ig, ax, "Transparency International annual scores' in plate
