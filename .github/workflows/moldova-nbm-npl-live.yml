@@ -1,0 +1,36 @@
+name: Moldova bank-wide prudential NPL official source audit
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/moldova-source-audit]
+    paths:
+      - countries/moldova/fetch/fetch_nbm_npl.py
+      - countries/moldova/data/credit/prudential_npl.csv
+      - tests/test_moldova_nbm_npl_fetch.py
+      - .github/workflows/moldova-nbm-npl-live.yml
+
+permissions:
+  contents: read
+
+jobs:
+  verify-nbm-original-year-end-releases:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate parser and publisher report contracts offline
+        run: |
+          pip install pytest
+          python -m pytest -q tests/test_moldova_nbm_npl_fetch.py tests/test_moldova_nbm_npl.py
+      - name: Audit original NBM 2022-2025 published banking-sector reports
+        run: python countries/moldova/fetch/fetch_nbm_npl.py
+      - name: Preserve source HTML checksums and read-only reviewed sidecar
+        uses: actions/upload-artifact@v4
+        with:
+          name: moldova-nbm-npl-original-source-evidence
+          path: |
+            countries/moldova/data/credit/prudential_npl_from_nbm.csv
+            countries/moldova/data/credit/prudential_npl_source_evidence.json
+          retention-days: 14

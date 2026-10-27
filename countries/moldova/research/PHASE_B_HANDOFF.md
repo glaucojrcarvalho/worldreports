@@ -430,3 +430,10 @@ was successful and committed 414 peer PNG/SVG/thumb files at 296c0ddd.
 new credit source is traced to plate 06; review all three localized NPL
 panels visually, along with global peer axis image contact sheets. Keep
 Moldova unregistered and do not merge/deploy or contact upstream.
+
+The NBM banking-sector NPL collector `fetch/fetch_nbm_npl.py` now has an
+offline DOM/text parser contract and a separate read-only publisher-audit
+workflow `moldova-nbm-npl-live.yml`. This source auditor creates review
+sidecars, checks 2022–25 original rates and reference dates and refuses to
+silently change curated figures or the country registry. Review the live
+workflow's source evidence and its response hashes before final release.

@@ -496,3 +496,11 @@ source editions but does not connect the two pairs across that difference.
 never calendar-year averages. The data path is `credit/prudential_npl.csv`.
 It is not a substitute for household debt stocks/new-loan rates, which
 remain unavailable, or for WDI's broader private-credit lens.
+
+The guarded standard-library source refresher `fetch/fetch_nbm_npl.py`
+extracts one explicitly dated prudential NPL ratio from each original HTML
+bulletin and checks all four year/precision anchors before writing ONLY
+`credit/prudential_npl_from_nbm.csv` and an evidence JSON sidecar. It
+refuses inconsistent dates, ambiguous metrics, and changed rates without
+editing the canonical `prudential_npl.csv`. A fork-only read-only GitHub
+Actions publisher audit uses that path for repeatable live verification.

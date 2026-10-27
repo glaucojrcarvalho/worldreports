@@ -142,6 +142,7 @@ credit:
     source: "National Bank of Moldova (NBM), official banking-sector year-end prudential NPL reports"
     url: "https://bnm.md/en/content/financial-situation-banking-sector-year-2022"
     official: true
+    refreshed_by: fetch/fetch_nbm_npl.py
     notes: >-
       Original NBM bank-wide December 31 non-performing loans as a share of
       ALL bank prudential gross loans: 2022=6.4%, 2023=5.6%, 2024=4.1%,

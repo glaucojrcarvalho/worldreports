@@ -45,7 +45,7 @@ def test_manifest_covers_exact_staged_publisher_files() -> None:
     files = {
         str(f.relative_to(MOLDOVA / "data"))
         for f in (MOLDOVA / "data").rglob("*.csv")
-        if not f.stem.endswith(("_from_wb", "_from_bns", "_from_undp", "_from_ti"))
+        if not f.stem.endswith(("_from_wb", "_from_bns", "_from_undp", "_from_ti", "_from_nbm"))
     }
     expected = set(wdi.GROUPS) | {
         "fiscal/budget_summary.csv", "fiscal/public_budget.csv",
