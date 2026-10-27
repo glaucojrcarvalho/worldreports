@@ -10,9 +10,13 @@ def sample():
     refs={f"{i:02d}-{topic}":[f"x/a{i}.csv"]
           for i,topic in enumerate(TOPICS,1)}
     refs.update({k:sorted(v) for k,v in CRITICAL.items()})
+    # Extend ONLY non-critical lens chapters: the four fixed source
+    # contracts must not be contaminated by synthetic fixture data.
+    flexible=("02-fiscal","04-trade","05-markets","07-people",
+              "08-world","09-demography","10-security","11-mortality")
     n=0
     while len(set(sum([list(v) for v in refs.values()],[])))<23:
-        key=f"{(n%8)+1:02d}-{TOPICS[n%8]}"
+        key=flexible[n%len(flexible)]
         p=f"x/a{n+15}.csv"
         if p not in refs[key]: refs[key].append(p)
         n+=1
