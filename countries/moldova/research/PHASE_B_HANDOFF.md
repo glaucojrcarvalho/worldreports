@@ -904,3 +904,33 @@ with the corrected source labels. The preview JSON-LD's GitHub
 upstream data download URL is a **future post-merge destination**, not
 currently a live upstream Moldova dataset. Never alter upstream,
 merge/deploy, or claim the website was published.
+
+## SHA-pinned registered-country parity gate integrated — 2026-10-27
+
+Integrated the independently green, fork-only cross-branch attestation
+from `research/moldova-archive-hardening` (no branch merge).
+The source CI now runs `tests/test_moldova_rehearsal_parity.py` in
+its early source-test stage, then directly compares Git tree/blob IDs
+between the current source-audit and the separately registered
+rehearsal HEAD before its global atlas/Node regression. It enforces
+exact parity of 70+ shared source/render/site inputs, an exact
+candidate-root config match only in the rehearsal, 108 source-branch
+graphic files, 12 exact provenance maps and 23 curated original CSVs.
+It preserves a JSON artifact identifying both Git SHAs. No upstream
+fetch/push, deployment or registration is introduced; only refs in
+the user's fork are fetched.
+
+Independent preceding evidence: focused run
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40492667719
+passed 22 archive tests, 8 source parity tests, 3 HTML tests and the
+real generated site route audit. This work adds the attestation to
+the main research quality workflow, not to the published public atlas.
+
+**Next:** inspect the new source CI. Only a green full source/render,
+source-to-rehearsal parity, all-Python/JS and asset archive job
+constitutes candidate-level CI clearance. Compare upstream again and
+manually review 12 images at full native resolution; missing canonical
+government GFCF, household-only credit, bonds/equity and migration
+registers must remain pending. If the registered rehearsal is updated
+later, the attestation must detect incompatible changes; re-run both
+pipelines without merging or publishing.
