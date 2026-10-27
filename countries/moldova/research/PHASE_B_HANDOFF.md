@@ -960,3 +960,40 @@ the guarded archive must still fail closed unless only the
 allowlisted non-rendering handoff note changed. Re-run the registered
 rehearsal only if the national/shared input blobs change; currently
 the focused green audit has established 70 common source blobs.
+
+## Canonical source-gaps inventory integrated into research CI — 2026-10-27
+
+The SHA-pinned source/rehearsal parity and original research validation
+(https://github.com/glaucojrcarvalho/worldreports/actions/runs/40495644533)
+passed **3,519 Python tests + 8 subtests + 20 browser JavaScript tests**
+and the guarded archive job successfully committed exactly the tested
+108 trilingual graphics plus 12 provenance maps as
+https://github.com/glaucojrcarvalho/worldreports/commit/25fd4cd2fe4529648edfadd574fcc2995bd30ccc .
+The source branch remained unregistered.
+
+A separate isolated fork run
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40497636124
+approved the **AST/spine-based source availability audit** including its
+negative tests. The source quality gate now directly checks the
+42/42 canonical plate slots, distinguishes 36 observed from 9
+explicitly sourced-only pending slots (in a total of 45 claimed), and
+separates three unclaimed OPTIONAL lenses. It requires an actual
+missing-data reason and fails on unreviewed filled/missing panels.
+A JSON machine-readable readiness inventory is an Actions artifact,
+and no publishing, merge, or upstream push is enabled.
+
+Missing canonical slots remain government GFCF, 10-year sovereign
+yield, USD equity index, household credit and new-loan rates,
+excess and COVID underlying-cause deaths, measured migration flows,
+and an annual harmonised foreign-born share. The 2024 BNS census
+single snapshot is correctly located in a country-specific lens,
+NOT relabelled as an annual canonical series. NBM bank-wide NPL is
+already observed but does not proxy household credit.
+
+**Next:** check a full green research QA plus the artifact from this
+commit, visually inspect the native-size trilingual contact sheets,
+and confirm there is no accidental registry country.yaml. Document
+uncertainties in the national census/perimeter and mixed fiscal IMF
+release vintages. The published upstream data paths in preview JSON-LD
+are future post-merge URLs, not active links. No upstream PR, merge,
+deployment, or changes to akitaonrails/worldreports.

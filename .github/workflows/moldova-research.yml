@@ -56,7 +56,7 @@ jobs:
       - name: Validate Moldova source code and source tests, offline
         run: |
           python -m compileall -q countries/moldova/fetch countries/moldova/research tests/test_moldova_*.py
-          python -m pytest -q tests/test_moldova_research.py tests/test_moldova_bns_budget.py tests/test_moldova_bns_gdp.py tests/test_moldova_bns_census_foreign_born.py tests/test_moldova_bns_trade.py tests/test_moldova_fiscal_data.py tests/test_moldova_fiscal_preview.py tests/test_moldova_nbm.py tests/test_moldova_imf.py tests/test_moldova_markets_preview.py tests/test_moldova_country_candidate.py tests/test_moldova_ro_numstyle.py tests/test_moldova_bns_poverty.py tests/test_moldova_minimum_wage.py tests/test_moldova_wdi_credit.py tests/test_moldova_nbm_npl.py tests/test_moldova_nbm_npl_fetch.py tests/test_moldova_undp.py tests/test_moldova_ti.py tests/test_moldova_archive_contract.py tests/test_moldova_visual_review.py tests/test_moldova_archive_branch_guard.py tests/test_moldova_site_routes.py tests/test_moldova_rehearsal_parity.py
+          python -m pytest -q tests/test_moldova_research.py tests/test_moldova_bns_budget.py tests/test_moldova_bns_gdp.py tests/test_moldova_bns_census_foreign_born.py tests/test_moldova_bns_trade.py tests/test_moldova_fiscal_data.py tests/test_moldova_fiscal_preview.py tests/test_moldova_nbm.py tests/test_moldova_imf.py tests/test_moldova_markets_preview.py tests/test_moldova_country_candidate.py tests/test_moldova_ro_numstyle.py tests/test_moldova_bns_poverty.py tests/test_moldova_minimum_wage.py tests/test_moldova_wdi_credit.py tests/test_moldova_nbm_npl.py tests/test_moldova_nbm_npl_fetch.py tests/test_moldova_undp.py tests/test_moldova_ti.py tests/test_moldova_archive_contract.py tests/test_moldova_visual_review.py tests/test_moldova_archive_branch_guard.py tests/test_moldova_site_routes.py tests/test_moldova_rehearsal_parity.py tests/test_moldova_semantic_readiness.py
       - name: Run cross-country number formatting regression suite
         run: |
           python -m pytest -q tests/test_numbers.py
@@ -167,6 +167,28 @@ jobs:
           path: /tmp/moldova-parity.json
           if-no-files-found: error
           retention-days: 14
+
+      - name: Enforce canonical source gaps and archive semantic readiness matrix
+        run: |
+          python -m countries.moldova.research.audit_semantic_readiness
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("/tmp/moldova-semantic-readiness.json").read_text("utf-8"))
+          assert report["counts"] == {
+              "claimed": 45, "canonical": 42, "observed": 36,
+              "pending": 9, "optional_unclaimed_lenses": 3,
+          }
+          assert report["release_status"] == "research_only_pending_canonical_indicators"
+          print("Semantic gaps retained; no fabricated values or automatic registration")
+          PY
+      - name: Preserve exact canonical-slot readiness evidence (not publication)
+        uses: actions/upload-artifact@v4
+        with:
+          name: moldova-canonical-slot-readiness
+          path: /tmp/moldova-semantic-readiness.json
+          retention-days: 14
+          if-no-files-found: error
 
       - name: Exercise full atlas and browser JS tests with isolated Moldova
         run: |
