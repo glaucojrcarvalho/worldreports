@@ -7,6 +7,13 @@ on:
       - research/moldova-source-audit
   workflow_dispatch:
 
+# A single fork research branch receives frequent source and localization
+# commits. Do not spend runner time archiving stale candidate assets or
+# compete with a more recent regression; retain only the newest SHA.
+concurrency:
+  group: moldova-research-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
