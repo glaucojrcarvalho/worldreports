@@ -1,0 +1,7 @@
+# Moldova MoF Economic Reform Programme 2026-2028, published Jan 2026.
+# Annex Table 2a/2b, printed page 82; general government S13 P51.
+# 2025 is a PROGRAMME ESTIMATE; 2026 is a FORECAST, not actuals.
+year,sector,transaction,unit,amount_bn_mdl,share_pct_gdp,edition,status,source_pdf,printed_page
+2024,S13,P51,nominal_bn_mdl,3.20,1.0,2026-01,erp_historical_baseline,https://mf.gov.md/sites/default/files/ERP%202026-2028%20ENG.pdf,82
+2025,S13,P51,nominal_bn_mdl,5.20,1.0,2026-01,erp_program_estimate,https://mf.gov.md/sites/default/files/ERP%202026-2028%20ENG.pdf,82
+2026,S13,P51,nominal_bn_mdl,8.10,1.4,2026-01,erp_forecast_not_observed,https://mf.gov.md/sites/default/files/ERP%202026-2028%20ENG.pdf,82

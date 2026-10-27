@@ -1037,3 +1037,33 @@ registered-rehearsal full regression for the same underlying source
 inputs. The source branch still has NO `country.yaml`; all nine
 unsupported canonical sources stay explicitly pending. Never merge,
 deploy, open PR or modify upstream.
+
+
+## Official 2026 source reconciliation — two canonical lanes identified without promotion
+
+The fork reviewed two official, narrowly defined candidates:
+**National Bank of Moldova DPMC8** annual/monthly new-loan interest
+with filters for MDL/individuals/real-estate loans (not DPMC10
+outstanding balances), and Moldova Ministry of Finance's January
+2026 Economic Reform Programme general-government **S13/P51**
+gross fixed capital formation (not total-economy WDI investment).
+The observed **6.99% December 2024** and **8.24% December 2025**
+housing-loan rates are release-verified MONTHLY snapshots, not
+annual averages. The Ministry's **2024 3.20 bn MDL / 1.0% GDP**
+is its historical programme baseline, while **2025 5.20 bn / 1.0%**
+is a programme ESTIMATE and **2026 8.10 bn / 1.4%** a FORECAST.
+No annual historical observations have been fabricated or filled.
+
+The original source research now has separate review-only CSVs under
+research/source_candidates/, a definition/vintage fail-closed offline
+auditor, negative unit tests and a JSON evidence artifact in the
+original source quality workflow. Both canonical slots
+credit.lending_rate and spending.public_investment remain pending
+until the original annual DPMC8 export and a consistent historical
+S13 P51 series can be validated. The original full suite plus source
+archive and registered rehearsal remain mandatory; upstream
+publication is neither requested nor authorized.
+
+Independently passing short focused run before this integration:
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40513921119
+; new full source CI must independently pass this exact integration.

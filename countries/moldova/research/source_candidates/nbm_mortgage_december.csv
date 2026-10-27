@@ -1,0 +1,5 @@
+# Issuer-published MONTHLY December snapshots, NOT annual means.
+# NBM new-loan purpose: real estate / individuals / MDL / nominal rate.
+year,month,country,borrower_category,loan_purpose,currency,measure,rate_pct,release_date,observation_type,source_url
+2024,12,MDA,individuals,real_estate_new_loans,MDL,nominal_new_loan_rate,6.99,2025-01-20,monthly_december_snapshot,https://bnm.md/en/content/bank-loans-market-development-december-2024-0
+2025,12,MDA,individuals,real_estate_new_loans,MDL,nominal_new_loan_rate,8.24,2026-01-20,monthly_december_snapshot,https://www.bnm.md/en/content/developments-bank-loan-market-december-2025
