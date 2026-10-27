@@ -982,5 +982,9 @@
   "World Bank's comparable macroeconomic measures": {
     "ro": "Indicatori macroeconomici comparabili ai Băncii Mondiale",
     "pt": "Indicadores macroeconômicos comparáveis do Banco Mundial"
+  },
+  "years": {
+    "ro": "ani",
+    "pt": "anos"
   }
 }

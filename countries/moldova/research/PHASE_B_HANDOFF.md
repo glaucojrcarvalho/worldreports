@@ -997,3 +997,43 @@ uncertainties in the national census/perimeter and mixed fiscal IMF
 release vintages. The published upstream data paths in preview JSON-LD
 are future post-merge URLs, not active links. No upstream PR, merge,
 deployment, or changes to akitaonrails/worldreports.
+
+## Mortality optional-lens unit and actual-SVG checks integrated — 2026-10-27
+
+The prior full candidate + global Python/Node gate and fork-only archive
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40498868633
+completed GREEN: **3,523 Python tests, 8 subtests, 20 JS tests**,
+strict RO/EN/PT/source/site layout, the canonical readiness inventory
+and exact SHA-pinned registered/research parity. Its bot archived the
+validated trilingual graphics as
+https://github.com/glaucojrcarvalho/worldreports/commit/baa56591367c68e264c18f44fce3a369d713b47a
+without a deploy or upstream write.
+
+The independent mortality lens research
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40502759866
+and portable recheck
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40504000361
+have now passed. Their EXACT plate, catalogue and test bytes are adopted
+into the original research branch: only Moldova's optional
+`mortality.lens`, a **period life expectancy** series, replaces the
+shared lens default "per 100,000" with **years** on its y axis, localized
+to **ani / years / anos**. The three canonical mortality slots and their
+atlas-wide definitions are unchanged. No mortality data values, dates,
+source vintages, country definition, peer code or shared spine change.
+
+An offline test checks the actual in-memory axis even while the country
+is normally unregistered. A second test parses the post-render SVG
+`mortality.lens` group in each language, rejects wrong-language text
+or "per 100,000" in that life-expectancy lens, and separately checks
+that canonical death-rate panels retain their original units. The main
+workflow runs that SVG gate immediately AFTER rendering the candidate,
+and the portable tests also run during the subsequent complete
+all-country pytest gate. The registered rehearsal already contains
+matching `plates.py` and `i18n.json` bytes.
+
+**Next:** inspect the new full research CI and exact asset archive,
+check the 11-mortality updated PNG/SVG in RO/EN/PT, and confirm the
+registered-rehearsal full regression for the same underlying source
+inputs. The source branch still has NO `country.yaml`; all nine
+unsupported canonical sources stay explicitly pending. Never merge,
+deploy, open PR or modify upstream.
