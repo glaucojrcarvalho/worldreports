@@ -52,6 +52,7 @@ def test_manifest_covers_exact_staged_publisher_files() -> None:
         "fiscal/weo_bal_debt.csv", "fiscal/fpp_finances.csv",
         "markets/policy.csv", "markets/usd_mdl.csv",
         "people/absolute_poverty.csv", "world/hdi.csv", "world/cpi.csv",
+        "trade/destinations.csv",
     }
     assert declared == files == expected
     assert manifest["meta"]["status"] == "research_only_not_an_atlas_edition"
@@ -86,6 +87,11 @@ def test_manifest_covers_exact_staged_publisher_files() -> None:
                 assert details["official"] is True
                 assert details["refreshed_by"] == "fetch/fetch_undp.py"
                 assert "2022=0.784" in details["notes"]
+            elif group == "trade" and name == "destinations.csv":
+                assert details["source"].startswith("National Bureau of Statistics")
+                assert details["official"] is True
+                assert details["refreshed_by"] == "fetch/fetch_bns_trade.py"
+                assert "2024" in details["notes"]
             elif group == "people" and name == "absolute_poverty.csv":
                 assert details["source"].startswith("National Bureau of Statistics")
                 assert details["official"] is True

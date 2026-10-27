@@ -13,13 +13,10 @@
       "Seria ONU de migrație netă este o estimare modelată, nu un registru. Stocul de migranți are doar patru observații (2010, 2015, 2020, 2024); între ele nu se trasează o linie.",
       "Sărăcia absolută BNS folosește consumul gospodăriilor, nu praguri internaționale în dolari sau sărăcia relativă experimentală. Ancheta BNS a fost revizuită în 2019, deci 2014–2018 și 2019–2025 sunt linii neconectate. BNS indică 33,6% în 2024 și 31,1% în 2025.",
       "IDU (indicele dezvoltării umane) folosește exclusiv seria istorică oficială PNUD HDR 2025, 2006–2023: 0,784 în 2022 și 0,785 în 2023; 2024–2025 lipsesc. Comunicatul PNUD Moldova din 6 mai 2025 indică 0,763 pentru 2022; diferența de 0,021 față de CSV nu este ascunsă și edițiile nu sunt combinate.",
-      "Indicele percepției corupției (Transparency International, IPC 2025) este comparabil în această metodologie numai pentru 2012–2025: scor 42 în 2023, 43 în 2024 și 42 în 2025. Scara este 0–100, mai mare = corupție percepută mai redusă. Sunt evaluări ale experților și firmelor, nu numărul faptelor de corupție; 2006–2011 rămân necompletați. Sursa: TI, CC BY-ND 4.0."
+      "Indicele percepției corupției (Transparency International, IPC 2025) este comparabil în această metodologie numai pentru 2012–2025: scor 42 în 2023, 43 în 2024 și 42 în 2025. Scara este 0–100, mai mare = corupție percepută mai redusă. Sunt evaluări ale experților și firmelor, nu numărul faptelor de corupție; 2006–2011 rămân necompletați. Sursa: TI, CC BY-ND 4.0.",
+      "BNS EXT010200: exporturi vamale numai de MĂRFURI. Seriile 2006–2025 prezintă cele cinci destinații cu cele mai mari valori în 2025: România, Turcia, Italia, Cehia și Ucraina, ca pondere în totalul BNS al fiecărui an. Grupele CIS/UE/altele se suprapun cu țările și nu se adună. Ucraina a fost reclasificată din CIS în alte țări în 2024; nu duplicăm țara. Perimetrul exclude exportatorii din stânga Nistrului și Bender. Statbank actual: 3.780,864 milioane USD în 2025; comunicatul preliminar: 3.782,7 milioane USD; ediții distincte."
     ],
     "unavailable": [
-      {
-        "term": "Destinațiile exporturilor de mărfuri",
-        "detail": "Seriile de comerț BNS/Comtrade pe partener și anul de referință nu sunt încă auditate. Exporturile de bunuri și servicii WDI nu înlocuiesc comerțul vamal."
-      },
       {
         "term": "Randamentul titlurilor de stat la 10 ani",
         "detail": "Nu există încă o serie validată a randamentului anual al titlurilor de stat la 10 ani pe piața secundară. Rapoartele BNM și ale Ministerului Finanțelor trebuie verificate."
@@ -60,7 +57,7 @@
       },
       {
         "term": "Biroul Național de Statistică / Ministerul Finanțelor",
-        "detail": "FIN010100, execuția bugetului public național 2016–2025 în milioane MDL, cu edițiile 2024/2025 și diferențele SDDS păstrate separat."
+        "detail": "FIN010100: execuția bugetului public în numerar; EXT010200: partenerii exporturilor vamale de mărfuri 2006–2025. Perimetrele instituționale diferă de WDI."
       },
       {
         "term": "FMI",
@@ -90,13 +87,10 @@
       "UN net migration is modelled, not a register. Migrant stock has only four observations (2010, 2015, 2020 and 2024); no connecting line is interpolated.",
       "BNS absolute poverty uses household consumption, not international dollar thresholds or experimental relative poverty. Its Household Budget Survey revision in 2019 separates unconnected 2014–2018 and 2019–2025 lines. BNS reports 33.6% for 2024 and 31.1% for 2025.",
       "Human Development Index follows only the UNDP HDR 2025 complete historical CSV, 2006–2023: 0.784 in 2022 and 0.785 in 2023; 2024–2025 are missing. UNDP Moldova's 6 May 2025 press release instead prints 0.763 for 2022, a 0.021 difference. These publisher presentations are not spliced.",
-      "Transparency International's CPI 2025 time series is methodologically comparable only for 2012–2025: score 42 in 2023, 43 in 2024 and 42 in 2025. On its 0–100 scale, higher means less perceived public-sector corruption. These are expert/business assessments, not recorded incidents; 2006–2011 remain missing. Source: TI, CC BY-ND 4.0."
+      "Transparency International's CPI 2025 time series is methodologically comparable only for 2012–2025: score 42 in 2023, 43 in 2024 and 42 in 2025. On its 0–100 scale, higher means less perceived public-sector corruption. These are expert/business assessments, not recorded incidents; 2006–2011 remain missing. Source: TI, CC BY-ND 4.0.",
+      "BNS EXT010200: customs exports of GOODS only. The 2006–2025 series shows the five top individual country destinations in 2025—Romania, Turkey, Italy, Czechia and Ukraine—as shares of that year's BNS total. CIS/EU/other groups overlap countries and are never summed with them. Ukraine was moved from CIS to the other-country group in 2024, without duplicating its country series. Left-bank Nistru and Bender exporters are excluded. Current Statbank 2025 total: US$3,780.864m; preliminary release: US$3,782.7m, separate source vintages."
     ],
     "unavailable": [
-      {
-        "term": "Goods-export destinations",
-        "detail": "BNS/Comtrade partner-by-year goods exports have not yet been source-audited. WDI goods-and-services exports are not a substitute for customs merchandise."
-      },
       {
         "term": "Ten-year government bond yield",
         "detail": "No verified annual secondary-market ten-year government yield series has been staged. NBM and Ministry of Finance routes require additional validation."
@@ -137,7 +131,7 @@
       },
       {
         "term": "National Bureau of Statistics / Ministry of Finance",
-        "detail": "FIN010100 public-budget cash execution, 2016–2025, in millions of MDL; 2024/2025 separate editions and SDDS discrepancies retained."
+        "detail": "FIN010100: national cash-budget execution; EXT010200: customs goods-export partners 2006–2025. Publisher territories and definitions differ from WDI national accounts."
       },
       {
         "term": "IMF",
@@ -167,13 +161,10 @@
       "A migração líquida ONU é modelada, não um registro. O estoque de migrantes tem apenas quatro observações (2010, 2015, 2020 e 2024), sem interpolação por linhas.",
       "A pobreza absoluta BNS usa consumo das famílias, não limites internacionais em dólares ou pobreza relativa experimental. A pesquisa domiciliar mudou de método em 2019, deixando 2014–2018 e 2019–2025 em linhas não conectadas. O BNS informa 33,6% em 2024 e 31,1% em 2025.",
       "O IDH usa somente a série histórica completa do PNUD, RDH 2025, de 2006 a 2023: 0,784 em 2022 e 0,785 em 2023; 2024–2025 estão ausentes. O comunicado do PNUD Moldávia de 6 de maio de 2025 informa 0,763 para 2022, divergência de 0,021 em relação ao CSV; não misturamos edições.",
-      "A série CPI 2025 da Transparency International é comparável nesta metodologia apenas entre 2012 e 2025: nota 42 em 2023, 43 em 2024 e 42 em 2025. Na escala de 0–100, maior significa menor corrupção percebida no setor público. São avaliações de especialistas e empresas, não ocorrências registradas; 2006–2011 continuam vazios. Fonte: TI, CC BY-ND 4.0."
+      "A série CPI 2025 da Transparency International é comparável nesta metodologia apenas entre 2012 e 2025: nota 42 em 2023, 43 em 2024 e 42 em 2025. Na escala de 0–100, maior significa menor corrupção percebida no setor público. São avaliações de especialistas e empresas, não ocorrências registradas; 2006–2011 continuam vazios. Fonte: TI, CC BY-ND 4.0.",
+      "BNS EXT010200: exportações aduaneiras apenas de MERCADORIAS. As séries 2006–2025 apresentam os cinco principais destinos individuais de 2025—Romênia, Turquia, Itália, Tchéquia e Ucrânia—como parcelas do total BNS de cada ano. Grupos CEI/UE/outros se sobrepõem aos países e não são somados. A Ucrânia passou de CEI a outros países em 2024, sem duplicação. Exportadores da margem esquerda do Nistru e de Bender são excluídos. Statbank atual: US$ 3.780,864 milhões em 2025; comunicado preliminar: US$ 3.782,7 milhões, edições distintas."
     ],
     "unavailable": [
-      {
-        "term": "Destinos das exportações de mercadorias",
-        "detail": "Dados BNS/Comtrade de exportações de bens por parceiro e ano ainda não foram auditados. Exportações de bens e serviços WDI não substituem os dados alfandegários."
-      },
       {
         "term": "Rendimento dos títulos públicos de dez anos",
         "detail": "Ainda não foi validada uma série anual de rendimento no mercado secundário dos títulos públicos de dez anos. Fontes BNM e Ministério das Finanças precisam de revisão."
@@ -214,7 +205,7 @@
       },
       {
         "term": "Instituto Nacional de Estatística / Ministério das Finanças",
-        "detail": "FIN010100, execução de caixa do orçamento público nacional 2016–2025 em milhões de MDL; edições 2024/2025 e divergências SDDS mantidas separadamente."
+        "detail": "FIN010100: execução de caixa do orçamento; EXT010200: parceiros das exportações aduaneiras de mercadorias 2006–2025. Cobertura e definições diferem das contas WDI."
       },
       {
         "term": "FMI",

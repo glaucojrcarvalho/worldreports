@@ -210,6 +210,27 @@ people:
       World Bank survey-based inequality series. 2025 unavailable in
       the 2026-10-08 WDI release and must stay blank.
 trade:
+  destinations.csv:
+    source: "National Bureau of Statistics of Moldova (BNS), Statbank EXT010200, customs-goods exports by country and country group"
+    url: "https://statbank.statistica.md/PxWeb/pxweb/en/40%20Statistica%20economica/40%20Statistica%20economica__21%20EXT__EXT010__serii%20anuale/EXT010200.px"
+    official: true
+    refreshed_by: fetch/fetch_bns_trade.py
+    notes: >-
+      Annual 2006-2025 percentages for the five largest INDIVIDUAL country
+      destinations in 2025: Romania, Turkey, Italy, Czechia and Ukraine.
+      Numerator: same-year named customs-country exports (thousand USD);
+      denominator: SAME-year BNS all-partner goods-export Total (code 0).
+      NOT WDI goods-and-services national-accounts percent GDP. Source JSON-stat2
+      SHA256 5e1fc55f430c4e75a07c172b99a7b60501217fbfd6816e3dc5a5a32a97454fa4; metadata SHA256 1adfac120905d511a524ed0a8c957e48da88fe9c9a41f4ee76a36d186e7.
+      BNS partner codes 35, 86, 27, 17 and for Ukraine 11 (2006-2023),
+      87 (2024-2025). Ukraine moves from the CIS group to the other-country
+      group in 2024; country observations remain separate from groups.
+      BNS excludes left-bank Nistru and Bender exporters.
+      Current Statbank 2025 total: 3780863.9 thousand USD; BNS preliminary
+      2025 goods-export release: 3782.7 million USD, a 0.049 percent vintage
+      difference, not silently reconciled. No 2026 annual observations.
+      Live official source review:
+      https://github.com/glaucojrcarvalho/worldreports/actions/runs/40446267708
   trade.csv:
     source: "World Bank WDI, NE.EXP.GNFS.ZS and NE.IMP.GNFS.ZS"
     url: "https://api.worldbank.org/v2/country/MDA/indicator/NE.EXP.GNFS.ZS?format=json"

@@ -141,9 +141,17 @@ def plate_trade(ctx, ig):
     _foot(ctx, ax, "WDI exports minus imports; all 2006–2025 years")
 
     ax = ig.slot("trade.destinations", "Top merchandise-export destinations")
-    _pending(ctx, ig, ax, "Customs partner shares are not yet staged.\n"
-             "Goods and services cannot stand in for goods only.")
-    _foot(ctx, ax, "BNS customs or UN Comtrade route not yet verified")
+    for column, label, color in (
+        ("romania_pct", "Romania", p.BLUE),
+        ("turkey_pct", "Turkey", p.GOLD),
+        ("italy_pct", "Italy", p.RED),
+        ("czechia_pct", "Czechia", p.GREEN),
+        ("ukraine_pct", "Ukraine", p.TEAL),
+    ):
+        ctx.line(ax, *_series(ctx, "trade/destinations.csv", column),
+                 color, label=label, lw=1.6, ms=2.8)
+    ax.legend(fontsize=6.8, ncol=2, loc="upper right", frameon=False)
+    _foot(ctx, ax, "BNS EXT010200 customs GOODS; Ukraine group moved in 2024")
     _finish(ig)
 
 
@@ -351,9 +359,9 @@ PLATES = (
          alt="The investment rate, with national cash-spending definitions pending."),
     dict(id="04", slug="trade", topic="trade", builder=plate_trade,
          title="Moldova — Imports, Exports and the Gap",
-         subtitle="Goods and services in national accounts; full deficit in its own lens",
-         source="World Bank WDI, NE.EXP.GNFS.ZS and NE.IMP.GNFS.ZS",
-         alt="Exports, imports and complete merchandise-and-services deficit history."),
+         subtitle="WDI national-accounts trade versus separate BNS customs destinations",
+         source="World Bank WDI; BNS EXT010200 merchandise exports",
+         alt="WDI exports, imports and trade balance; BNS customs-goods partner shares, 2006–2025."),
     dict(id="05", slug="markets", topic="markets", builder=plate_markets,
          title="Moldova — Interest Rates and the Leu",
          subtitle="Official NBM annual rates; WDI inflation; no invented securities",

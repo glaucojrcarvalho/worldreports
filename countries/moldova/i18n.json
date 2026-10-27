@@ -806,5 +806,41 @@
   "Transparency International CPI 2025; comparable since 2012": {
     "ro": "Transparency International IPC 2025; comparabil din 2012",
     "pt": "Transparency International IPC 2025; comparável desde 2012"
+  },
+  "Romania": {
+    "ro": "România",
+    "pt": "Romênia"
+  },
+  "Turkey": {
+    "ro": "Turcia",
+    "pt": "Turquia"
+  },
+  "Italy": {
+    "ro": "Italia",
+    "pt": "Itália"
+  },
+  "Czechia": {
+    "ro": "Cehia",
+    "pt": "Tchéquia"
+  },
+  "Ukraine": {
+    "ro": "Ucraina",
+    "pt": "Ucrânia"
+  },
+  "BNS EXT010200 customs GOODS; Ukraine group moved in 2024": {
+    "ro": "BNS EXT010200, mărfuri vamale; Ucraina schimbă grupa în 2024",
+    "pt": "BNS EXT010200, mercadorias aduaneiras; Ucrânia muda de grupo em 2024"
+  },
+  "WDI national-accounts trade versus separate BNS customs destinations": {
+    "ro": "Comerț WDI în conturile naționale, separat de destinațiile vamale BNS",
+    "pt": "Comércio WDI nas contas nacionais, separado dos destinos aduaneiros BNS"
+  },
+  "World Bank WDI; BNS EXT010200 merchandise exports": {
+    "ro": "Banca Mondială WDI; mărfuri exportate BNS EXT010200",
+    "pt": "Banco Mundial WDI; exportações de mercadorias BNS EXT010200"
+  },
+  "WDI exports, imports and trade balance; BNS customs-goods partner shares, 2006–2025.": {
+    "ro": "Exporturi, importuri și balanță comercială WDI; ponderile partenerilor BNS pentru mărfuri vamale, 2006–2025.",
+    "pt": "Exportações, importações e saldo comercial WDI; parcelas de parceiros aduaneiros BNS para mercadorias, 2006–2025."
   }
 }
