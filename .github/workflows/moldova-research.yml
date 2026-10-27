@@ -20,6 +20,23 @@ jobs:
           python-version: '3.12'
       - name: Install test and source dependencies
         run: pip install -r requirements.txt
+      # Earlier Matplotlib imports create a stale fontlist cache before
+      # fonts-noto-cjk exists. Install/refresh BEFORE any render or pytest.
+      - name: Install CJK publication fonts and invalidate stale Matplotlib cache
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends fonts-noto-cjk
+          fc-cache -f
+          find "${HOME}/.cache/matplotlib" -maxdepth 1 -name 'fontlist-*.json' -delete 2>/dev/null || true
+          python - <<'PY'
+          from core import style
+          for lang in ('ja', 'ko', 'zh-Hans', 'zh-Hant'):
+              assert style.has_script_font(lang), (
+                  f'Missing renderable CJK font for {lang}: '
+                  f'{sorted(style._available())}')
+              print(lang, style.body_font(lang))
+          PY
+
       - name: Validate Moldova source code and source tests, offline
         run: |
           python -m compileall -q countries/moldova/fetch countries/moldova/research tests/test_moldova_*.py
@@ -115,11 +132,6 @@ jobs:
           cat countries/moldova/provenance.json
           echo '=== MOLDOVA GENERATED PROVENANCE END ==='
 
-      - name: Install publication-equivalent CJK fonts for global render QA
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends fonts-noto-cjk
-          fc-cache -f
       - name: Exercise full atlas and browser JS tests with isolated Moldova
         run: |
           # The candidate-only guard was already tested before its temporary
