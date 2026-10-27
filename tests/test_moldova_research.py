@@ -34,7 +34,7 @@ def get(rows: list[dict[str, str]], year: int, column: str) -> float | None:
     return float(row[column]) if row[column] else None
 
 
-def test_manifest_covers_exact_staged_wdi_files() -> None:
+def test_manifest_covers_exact_staged_publisher_files() -> None:
     manifest = yaml.safe_load((MOLDOVA / "SOURCES.yaml").read_text("utf-8"))
     declared = {
         f"{group}/{name}"
@@ -45,13 +45,13 @@ def test_manifest_covers_exact_staged_wdi_files() -> None:
     files = {
         str(f.relative_to(MOLDOVA / "data"))
         for f in (MOLDOVA / "data").rglob("*.csv")
-        if not f.stem.endswith(("_from_wb", "_from_bns"))
+        if not f.stem.endswith(("_from_wb", "_from_bns", "_from_undp"))
     }
     expected = set(wdi.GROUPS) | {
         "fiscal/budget_summary.csv", "fiscal/public_budget.csv",
         "fiscal/weo_bal_debt.csv", "fiscal/fpp_finances.csv",
         "markets/policy.csv", "markets/usd_mdl.csv",
-        "people/absolute_poverty.csv",
+        "people/absolute_poverty.csv", "world/hdi.csv",
     }
     assert declared == files == expected
     assert manifest["meta"]["status"] == "research_only_not_an_atlas_edition"
@@ -76,6 +76,11 @@ def test_manifest_covers_exact_staged_wdi_files() -> None:
                 assert details["source"].startswith("National Bank of Moldova")
                 assert details["official"] is True
                 assert details["refreshed_by"] == "fetch/fetch_nbm.py"
+            elif group == "world" and name == "hdi.csv":
+                assert details["source"].startswith("United Nations Development Programme")
+                assert details["official"] is True
+                assert details["refreshed_by"] == "fetch/fetch_undp.py"
+                assert "2022=0.784" in details["notes"]
             elif group == "people" and name == "absolute_poverty.csv":
                 assert details["source"].startswith("National Bureau of Statistics")
                 assert details["official"] is True
