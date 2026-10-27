@@ -56,7 +56,7 @@ def test_manifest_and_three_locales_disclose_bns_edition_and_method_break():
         assert set(catalog[label]) == {"ro", "pt"}
     ui = json.loads((ROOT / "ui.json").read_text(encoding="utf-8"))
     for language in ("ro", "en", "pt"):
-        # TI CPI moved from pending to source-verified; 8 definitions remain unavailable after BNS trade partner promotion.
-        assert len(ui[language]["unavailable"]) == 8
+        # TI CPI moved from pending to source-verified; 7 definitions remain unavailable after BNS functional-budget GDP promotion.
+        assert len(ui[language]["unavailable"]) == 7
         assert any("2019" in x and "2025" in x for x in ui[language]["notes"])
     assert "people/absolute_poverty.csv" in (ROOT / "chapters.py").read_text(encoding="utf-8")
