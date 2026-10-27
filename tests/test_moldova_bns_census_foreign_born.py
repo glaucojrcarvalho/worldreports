@@ -65,3 +65,18 @@ def test_quoted_publisher_url_and_no_write_back_to_curated_census():
     assert "country.yaml" not in code.replace(
         "never overwrite curated data, plates or country.yaml.", "")
     assert "2024-04-08" in code and "2025-08-25" in code
+
+
+def test_primary_census_evidence_hash_and_publication_are_pinned():
+    """A live source-audit response is identifiable and not confused with WDI."""
+    import yaml
+    root = PATH.parents[1]
+    manifest = yaml.safe_load((root / "SOURCES.yaml").read_text("utf-8"))
+    entry = manifest["migration"]["foreign_born_census.csv"]
+    expected = "e9da05a2fab871578d1e6a62db93fc45480966ab20cbde889b7a7307ceae488b"
+    assert expected in entry["notes"]
+    checked = next(item for item in manifest["meta"]["verified"]
+                   if item["name"].startswith("BNS 2024 census"))
+    assert expected in checked["notes"]
+    assert checked["evidence"] == "https://github.com/glaucojrcarvalho/worldreports/actions/runs/40463501640"
+    assert checked["dataset_paths"] == ["migration/foreign_born_census.csv"]

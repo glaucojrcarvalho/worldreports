@@ -373,7 +373,8 @@ migration:
       immigration/emigration, and UN migrant stock which can use citizenship
       where country of birth is unavailable. The official HTML snapshot
       is guarded by a deterministic source parser; it writes only
-      foreign_born_census_from_bns.csv review evidence.
+      foreign_born_census_from_bns.csv review evidence. Original BNS HTML
+      SHA256 e9da05a2fab871578d1e6a62db93fc45480966ab20cbde889b7a7307ceae488b; live read-only audit: https://github.com/glaucojrcarvalho/worldreports/actions/runs/40463501640 .
   migration.csv:
     source: "World Bank WDI/UN, SM.POP.NETM (annual modeled net migration), SM.POP.TOTL (international migrant stock)"
     url: "https://api.worldbank.org/v2/country/MDA/indicator/SM.POP.NETM?format=json"
@@ -395,12 +396,15 @@ meta:
       official: true
       dataset_paths: ["migration/foreign_born_census.csv"]
       reviewed_utc: "2026-10-27"
-      evidence: "https://statistica.gov.md/en/final-results-of-the-2024-population-and-housing-census-migration-10121_61958.html"
+      evidence: "https://github.com/glaucojrcarvalho/worldreports/actions/runs/40463501640"
       notes: >-
         Final BNS release dated 2025-08-25: 2024-04-08 census, 4.4%
         born abroad and 106.7 thousand persons (rounded). Excludes 157
-        unenumerated localities. Exactly one census snapshot, NOT an annual
-        or UN internationally modelled migration-stock observation.
+        unenumerated localities. Original publisher HTML SHA256
+        e9da05a2fab871578d1e6a62db93fc45480966ab20cbde889b7a7307ceae488b; independent read-only source audit
+        https://github.com/glaucojrcarvalho/worldreports/actions/runs/40463501640 passed 8 offline tests and the live original.
+        Exactly one census snapshot, NOT an annual or UN internationally
+        modelled migration-stock observation.
     - name: "BNS same-territory nominal GDP and functional public-budget shares, 2016–2025"
       publisher: "National Bureau of Statistics of Moldova"
       official: true
