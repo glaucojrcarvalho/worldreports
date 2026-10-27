@@ -1,0 +1,19 @@
+# BNS national accounts, GDP at CURRENT MARKET PRICES, millions of nominal MDL.
+# 2016-2024 official CNT208100 PxWeb, originally thousand lei /1000.
+# Direct publisher audit: https://github.com/glaucojrcarvalho/worldreports/actions/runs/40460281083
+# https://statbank.statistica.md/PxWeb/api/v1/en/40%20Statistica%20economica/13%20CNT/CNT208/CNT208100.px
+# 2025 is a SEPARATE PRELIMINARY GDP press release, 2026-03-11, 353520.9 million MDL.
+# https://statistica.gov.md/ro/produsul-intern-brut-in-trimestrul-iv-si-anul-2025-9497_62357.html
+# Both BNS series exclude the left bank of the Nistru and municipality Bender.
+# Do not substitute WDI USD GDP, annual FX, IMF estimates or quarterly growth.
+year,gdp_mdl_mn
+2016,159010.419
+2017,176007.293
+2018,189062.627
+2019,206256.239
+2020,199733.684
+2021,242078.629
+2022,274488.063
+2023,303554.038
+2024,323932.494
+2025,353520.900
