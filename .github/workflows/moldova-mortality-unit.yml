@@ -1,0 +1,41 @@
+# Fork-only country-specific semantics audit; no deployment, merge or PR.
+name: Moldova mortality lens unit review
+on:
+  push:
+    branches: [research/moldova-mortality-unit]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  review:
+    if: github.repository == 'glaucojrcarvalho/worldreports'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install offline renderer and test dependencies
+        run: |
+          python -m pip install -r requirements.txt
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends fonts-noto-cjk
+          fc-cache -f
+      - name: Test real plot axes and full Romanian/Portuguese catalogue
+        run: |
+          test ! -f countries/moldova/country.yaml
+          python -m pytest -q tests/test_moldova_mortality_unit.py tests/test_moldova_plate_design.py
+      - name: Render all 12 isolated Moldova plates in three languages
+        run: |
+          cp countries/moldova/research/country_candidate.yaml countries/moldova/country.yaml
+          python -m core.render moldova --langs ro,en,pt --out /tmp/moldova-mortality-unit
+          rm countries/moldova/country.yaml
+          test ! -e countries/moldova/country.yaml
+      - name: Retain review-only SVG and PNG; do not archive to research
+        uses: actions/upload-artifact@v4
+        with:
+          name: moldova-mortality-lens-unit-preview
+          path: /tmp/moldova-mortality-unit/
+          retention-days: 10
+          if-no-files-found: error
