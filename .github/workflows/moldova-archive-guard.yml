@@ -59,3 +59,17 @@ jobs:
             --output countries/moldova/output
           rm countries/moldova/country.yaml
           test ! -f countries/moldova/country.yaml
+      - name: Block premature Dataset JSON-LD publication claims
+        run: |
+          python -m pytest -q tests/test_moldova_prerelease_metadata.py
+          python -m countries.moldova.research.audit_prerelease_metadata \
+            --site /tmp/moldova-site-review/moldova
+          cat /tmp/moldova-publication-blockers.json
+      - name: Retain exact prerelease metadata decision, no deploy
+        uses: actions/upload-artifact@v4
+        with:
+          name: moldova-publication-blockers
+          path: /tmp/moldova-publication-blockers.json
+          retention-days: 14
+          if-no-files-found: error
+

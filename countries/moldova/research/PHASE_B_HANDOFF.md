@@ -1046,3 +1046,40 @@ JSON-report upload steps to its research workflow, re-run its full
 suite, and check upstream delta. Source branch must retain unregistered
 root `country.yaml`, while the registered rehearsal stays isolated.
 No PR, merge, deploy or push to `akitaonrails/worldreports`.
+
+## Release editorial preflight — Dataset JSON-LD must not imply a live upstream path
+
+On 2026-10-27, a GitHub API recursive tree inspection of
+`akitaonrails/worldreports:main`, SHA
+`ff9171c5290a68cfc92f3788542674f0a76dd13a`, found **zero**
+`countries/moldova/` paths. The isolated preview's Dataset JSON-LD
+correctly references `worldreports.io/moldova/{ro,en,pt}/` as
+future canonical pages, but `DataDownload.contentUrl` is currently
+`https://github.com/akitaonrails/worldreports/tree/main/countries/moldova/data`,
+which is not live at the inspected upstream commit. It also labels a
+GitHub directory listing as `text/csv` `DataDownload`, rather than
+pointing to a directly downloadable CSV. This is an editorial/schema
+correctness blocker, NOT a reason to modify other countries' shared
+renderer in an unreviewed Moldova PR.
+
+The new `audit_prerelease_metadata.py` is purely read-only, parses
+actual RO/EN/PT HTML structured-data scripts, checks source identity,
+locale URLs, publisher citations, candidate registration separation,
+and produces an explicit **BLOCKED_FOR_PUBLICATION** JSON report
+with the nine semantic canonical gaps and the upstream/schema issues.
+It cannot merge, deploy, authorize publication, or silently mark
+unavailable data as complete. A focused regression rejects malformed
+or substituted Dataset source links. This evidence is written only to
+the fork's QA branch; it is not an upstream PR and not publication.
+Once the author explicitly chooses release, resolve the upstream
+source URL and direct CSV semantics at that time, and check all
+nine compatible canonical indicators before acceptance.
+
+The source audit run
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40504515369
+also completed main Python+JS regression green and its archive bot
+successfully committed SHA
+`9e7827af2c8cd9330db8e73f3110f2139bec64f9`.
+It contains 36 PNG, 36 SVG, 36 thumbs, 12 provenance plate records,
+and no active `countries/moldova/country.yaml`. The independently
+downloaded SVGs for plate 11 show `years` / `ani` / `anos`.
