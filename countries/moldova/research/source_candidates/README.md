@@ -32,8 +32,9 @@ The Ministry of Finance's January 2026 Economic Reform Programme
 https://mf.gov.md/sites/default/files/ERP%202026-2028%20ENG.pdf,
 identifies **sector S13, transaction P51, general-government gross
 fixed capital formation**: historical programme baseline 2024
-3.20 billion MDL and 1.0% GDP, 2025 programme estimate 5.20 billion
-MDL and 1.0%, and 2026 projected 8.10 billion MDL and 1.4%. These
+3.20 billion MDL and 1.0% GDP, 2025 programme estimate 3.40 billion MDL and 1.0%,
+2026 forecast 5.20 billion MDL and 1.4%, 2027 forecast 8.10 billion
+MDL and 2.0%, and 2028 forecast 8.00 billion MDL and 1.8%. These
 are NOT economy-wide investment (S1/P51) and must not be equated
 with national public-budget cash purchases of nonfinancial assets.
 The estimates/forecasts are NOT audited realized outcomes.

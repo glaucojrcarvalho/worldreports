@@ -14,10 +14,18 @@ SNAPSHOTS = {
   (2024, 12): ("6.99", "2025-01-20", "https://bnm.md/en/content/bank-loans-market-development-december-2024-0"),
   (2025, 12): ("8.24", "2026-01-20", "https://www.bnm.md/en/content/developments-bank-loan-market-december-2025"),
 }
+# Column headers cross-checked against both distinct ERP tables
+# and Table 1e GDP for the SAME year, not by positional offset.
 ERP = {
   2024: ("3.20", "1.0", "erp_historical_baseline"),
-  2025: ("5.20", "1.0", "erp_program_estimate"),
-  2026: ("8.10", "1.4", "erp_forecast_not_observed"),
+  2025: ("3.40", "1.0", "erp_program_estimate"),
+  2026: ("5.20", "1.4", "erp_forecast_not_observed"),
+  2027: ("8.10", "2.0", "erp_forecast_not_observed"),
+  2028: ("8.00", "1.8", "erp_forecast_not_observed"),
+}
+ERP_NOMINAL_GDP = {
+  2024: 323.8, 2025: 351.5, 2026: 377.6,
+  2027: 406.9, 2028: 440.0,
 }
 
 def rows(path):
@@ -39,7 +47,7 @@ def verify(mortgage,investment):
             raise AssertionError("Mortgage publisher observation or vintage changed")
         if not 0<float(r["rate_pct"])<100:
             raise AssertionError("Mortgage interest rate out of range")
-    if len(investment)!=3 or {int(r["year"]) for r in investment}!=set(ERP):
+    if len(investment)!=5 or {int(r["year"]) for r in investment}!=set(ERP):
         raise AssertionError("Expected government P51 baseline and estimates")
     for r in investment:
         year=int(r["year"])
@@ -51,6 +59,11 @@ def verify(mortgage,investment):
             raise AssertionError("ERP value/forecast classification mismatch")
         if not 0<float(r["share_pct_gdp"])<12:
             raise AssertionError("Government GFCF exceeds canonical shared scale")
+        # Cross-table invariant: 2b nominal capital / Table 1e nominal GDP
+        # must round to the Table 2a percent-GDP value in SAME year.
+        same_year_share = 100 * float(r["amount_bn_mdl"]) / ERP_NOMINAL_GDP[year]
+        if abs(same_year_share - float(r["share_pct_gdp"])) > 0.06:
+            raise AssertionError("Government GFCF fails same-year nominal GDP reconciliation")
     registered = ROOT/"country.yaml"
     # Full atlas CI temporarily registers an EXACT candidate copy.
     # The real research Git tree stays unregistered; no other config is valid.
@@ -72,11 +85,11 @@ def verify(mortgage,investment):
        },
        "public_investment":{
           "source":ERP_URL,"perimeter":"S13 general government","transaction":"P51",
-          "historical_baseline":[2024],"program_estimate":[2025],"forecast":[2026],
+          "historical_baseline":[2024],"program_estimate":[2025],"forecast":[2026,2027,2028],
           "verified_continuous_historical_series":False,
           "blockers":[
              "S13 P51 January-2026 programme is not a long historical annual series",
-             "2025 estimate and 2026 forecast are not independently verified final outturns",
+             "2025 estimate and 2026-28 forecasts are not independently verified final outturns",
              "Do not substitute economy-wide WDI GFCF or national cash spending",
           ],
        },

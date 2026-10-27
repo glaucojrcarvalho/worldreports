@@ -1067,3 +1067,38 @@ publication is neither requested nor authorized.
 Independently passing short focused run before this integration:
 https://github.com/glaucojrcarvalho/worldreports/actions/runs/40513921119
 ; new full source CI must independently pass this exact integration.
+
+## Official PDF screenshot correction / two-table crosswalk — 2026-10-27
+
+**Critical research-only data correction** reviewed from the original
+Moldova Ministry of Finance `Economic Reform Programme 2026–2028`,
+https://mf.gov.md/sites/default/files/ERP%202026-2028%20ENG.pdf,
+printed page 82 / PDF page index 81, with a visual inspection:
+
+- Table **2a**, P51 under S13, share of GDP 2024–2028:
+  `1.0, 1.0, 1.4, 2.0, 1.8` percent.
+- Table **2b**, P51 under S13, nominal billion MDL 2024–2028:
+  `3.20, 3.40, 5.20, 8.10, 8.00`.
+- Table **1e**, same-year nominal GDP billion MDL:
+  `323.8, 351.5, 377.6, 406.9, 440.0`.
+
+An earlier candidate mistakenly associated 2025 with 5.20 bn MDL
+and 2026 with 8.10 bn MDL. This is now corrected in all candidate
+rows, the source-audit lookup constants and README; negative regression
+tests explicitly reject both original shifted values and reconcile
+each annual amount to its percentage of the *same-year* GDP.
+2024 is a historical ERP baseline, 2025 a programme estimate, and
+2026–2028 are forecasts, NOT realized or complete national outcomes.
+**No rendered Moldova plate ever used these research candidate amounts**,
+and `spending.public_investment` remains among the nine pending
+canonical slots.
+
+Independently approved on fork-only audit branch at
+https://github.com/glaucojrcarvalho/worldreports/commit/e0035c9199ec797d20075ec850321634954fb35a
+and GitHub Actions
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40516521723
+(17 official-source tests passed; all site and parity checks green).
+This source branch correction requires a fresh full CI. Its
+SHA-pinned archive guard intentionally refuses to rebase an older
+artifact over newly changed research-source or workflow content.
+No upstream PR, merge, registration or deployment.
