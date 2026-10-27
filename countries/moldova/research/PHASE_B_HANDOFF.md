@@ -1083,3 +1083,50 @@ successfully committed SHA
 It contains 36 PNG, 36 SVG, 36 thumbs, 12 provenance plate records,
 and no active `countries/moldova/country.yaml`. The independently
 downloaded SVGs for plate 11 show `years` / `ani` / `anos`.
+
+
+## Verified issuer source lanes: NBM new mortgage rate and S13/P51 government capital — 2026-10-27
+
+Two previously unresolved canonical indicator definitions now have
+genuine publisher-specific sourcing paths, without importing a false
+annual history:
+
+1. The **NBM DPMC8** report contains the weighted nominal interest
+   rate and volume of **new loans**, permitting annual / monthly
+   periodicity and the separate MDL, individual, real-estate-credit,
+   total-term selection. The distinct **DPMC10** report describes
+   interest rates on existing LOAN BALANCES (not the new-loan flow).
+   BNM's original releases of **2025-01-20** and **2026-01-20**
+   explicitly report DECEMBER 2024 new housing MDL **6.99%** and
+   DECEMBER 2025 **8.24%**, respectively. These are real monthly
+   snapshots, NOT representative annual interest-rate averages.
+   The annual DPMC8 export itself still needs to be retrieved and
+   reconciled before plotting credit.lending_rate.
+2. The **Moldova Ministry of Finance Economic Reform Programme
+   2026–2028**, issued in JANUARY 2026, Annex Table 2/2b, printed
+   page 82, exposes **general-government S13/P51 fixed capital**:
+   historical 2024 **3.20 bn MDL / 1.0% of GDP**, programme 2025
+   **5.20 bn MDL / 1.0% GDP**, and future 2026 FORECAST
+   **8.10 bn MDL / 1.4% GDP**. Unlike the whole-economy WDI GFCF
+   series, this is correctly defined for the government canonical
+   slot, but it is a programme edition with too little verified
+   historical time coverage. NEVER call 2025 a final outcome or
+   2026 a realized year.
+
+The source-candidate CSV snapshots under
+countries/moldova/research/source_candidates preserve official URLs,
+unit, publishing date and status. The new offline
+audit_new_source_lanes.py plus negative regression tests reject
+wrong borrower/loan purpose/stock-versus-flow/currency, incorrect
+sector code S1 vs S13, or forecasts mislabeled as historical.
+The short CI is read-only and uploads a JSON proof. The original
+nine pending canonical slots remain unchanged, the country root
+configuration stays unregistered, and no upstream/public changes
+are made.
+
+Next: export and inspect the NBM DPMC8 ANNUAL
+MDL/individuals/real-estate/total-terms rate (not DPMC10), verify
+year coverage and publisher weighting; source compatible actual
+government S13/P51 annual outturns across years. Only after
+independent validation should these pending slots be promoted
+as observed country data with new full CI and registered rehearsal.
