@@ -125,3 +125,16 @@ def test_bns_cash_budget_is_not_used_in_fpp_gdp_spine():
     assert '_series(ctx, "fiscal/public_budget.csv"' not in src
     assert 'ig.slot("spending.by_function"' in src
     assert 'ctx.pending(ax)' in src
+
+def test_private_credit_lens_does_not_fill_household_slots():
+    """A verified broad-sector context lens is not a household debt series."""
+    rows = _rows("credit/private_credit.csv")
+    assert [r["year"] for r in rows] == list(range(2006, 2026))
+    assert [r["year"] for r in rows if r["private_credit_pct_gdp"] is None] == [2006, 2007, 2008, 2009]
+    assert next(r for r in rows if r["year"] == 2025)["private_credit_pct_gdp"] == pytest.approx(33.593935)
+    content = (ROOT / "plates.py").read_text("utf-8")
+    credit = content.split("def plate_credit(", 1)[1].split("def plate_people(", 1)[0]
+    assert credit.count("_pending(ctx, ig, ax,") == 3
+    assert all(tag in credit for tag in ("credit.household_debt", "credit.lending_rate", "credit.npl", "credit.lens"))
+    assert "credit/private_credit.csv" in credit
+    assert "NOT households" in credit

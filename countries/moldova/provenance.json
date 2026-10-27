@@ -18,8 +18,11 @@
   "markets/policy.csv",
   "markets/usd_mdl.csv"
  ],
- "06-credit": [],
+ "06-credit": [
+  "credit/private_credit.csv"
+ ],
  "07-people": [
+  "people/absolute_poverty.csv",
   "people/gini.csv"
  ],
  "08-world": [

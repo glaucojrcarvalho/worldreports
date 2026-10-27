@@ -185,6 +185,12 @@ def plate_credit(ctx, ig):
     ax = ig.slot("credit.npl", "Non-performing loans (% of loans)")
     _pending(ctx, ig, ax, "A consistent NBM NPL numerator, denominator\n"
              "and break history are not staged.")
+    # A separate contextual lens, NEVER a household-credit proxy.
+    # FS.AST.PRVT.GD.ZS covers private corporations as well as households.
+    ax = ig.slot("credit.lens", "Domestic credit to private sector (% of GDP)")
+    ctx.line(ax, *_series(ctx, "credit/private_credit.csv",
+                          "private_credit_pct_gdp"), ctx.p.TEAL)
+    _foot(ctx, ax, "WDI FS.AST.PRVT.GD.ZS: private sector, NOT households")
     _finish(ig)
 
 
@@ -354,10 +360,10 @@ PLATES = (
          source="National Bank of Moldova; World Bank WDI",
          alt="The day-weighted policy rate, inflation and indexed MDL against US dollars."),
     dict(id="06", slug="credit", topic="credit", builder=plate_credit,
-         title="Moldova — Household Credit",
-         subtitle="Borrower and loan-definition checks remain necessary",
-         source="NBM route pending; see SOURCES.yaml",
-         alt="Household debt, household lending rate and non-performing loans pending."),
+         title="Moldova — Credit and Its Definitions",
+         subtitle="Private-sector context is not a household loan series",
+         source="World Bank WDI; NBM household loan definitions pending",
+         alt="Private-sector credit is contextual only; household debt, rates and non-performing loans remain unverified."),
     dict(id="07", slug="people", topic="people", builder=plate_people,
          title="Moldova — Household Inequality",
          subtitle="WDI Gini and BNS consumption poverty; 2019 survey break preserved",

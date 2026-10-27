@@ -742,5 +742,29 @@
   "WDI Gini and national absolute consumption poverty in disconnected survey regimes; minimum wage pending.": {
     "ro": "Gini WDI și sărăcia absolută națională după consum în perioade de anchetă neconectate; salariul minim rămâne în așteptare.",
     "pt": "Gini WDI e pobreza absoluta nacional por consumo em períodos metodológicos separados; salário mínimo pendente."
+  },
+  "Domestic credit to private sector (% of GDP)": {
+    "ro": "Creditul intern către sectorul privat (% din PIB)",
+    "pt": "Crédito interno ao setor privado (% do PIB)"
+  },
+  "WDI FS.AST.PRVT.GD.ZS: private sector, NOT households": {
+    "ro": "WDI FS.AST.PRVT.GD.ZS: sectorul privat, NU doar gospodării",
+    "pt": "WDI FS.AST.PRVT.GD.ZS: setor privado, NÃO apenas famílias"
+  },
+  "Moldova — Credit and Its Definitions": {
+    "ro": "Moldova — Creditul și definițiile sale",
+    "pt": "Moldávia — Crédito e Suas Definições"
+  },
+  "Private-sector context is not a household loan series": {
+    "ro": "Creditul privat total nu este o serie de împrumuturi doar pentru gospodării",
+    "pt": "Crédito privado agregado não é uma série de empréstimos familiares"
+  },
+  "World Bank WDI; NBM household loan definitions pending": {
+    "ro": "Banca Mondială WDI; definițiile BNM ale creditului gospodăriilor sunt în așteptare",
+    "pt": "Banco Mundial WDI; definições BNM de crédito familiar pendentes"
+  },
+  "Private-sector credit is contextual only; household debt, rates and non-performing loans remain unverified.": {
+    "ro": "Creditul privat total este doar context; datoria gospodăriilor, dobânzile și creditele neperformante rămân neverificate.",
+    "pt": "Crédito privado total serve apenas como contexto; dívida familiar, juros e inadimplência seguem sem validação."
   }
 }

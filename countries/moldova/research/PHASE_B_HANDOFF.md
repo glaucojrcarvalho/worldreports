@@ -110,3 +110,24 @@ necessary before registering `country.yaml`. The archival workflow now
 tolerates stale concurrent non-fast-forward *without force-pushing* older
 binary figures; a newer source commit must generate its own images.
 Do not merge/deploy the fork or modify upstream automatically.
+
+## Phase C: global CI repairs and contextual WDI credit — 2026-10-27
+
+Previous global test gate 40422585628: 3380 passed, 10 skipped, 12
+failed. Ten failures were missing CJK fonts because Matplotlib cached
+its font list before the late Noto install; CJK fonts now install
+before ALL Python rendering and a smoke test checks script families.
+A second failure asserted research/country.yaml absent even during the
+isolated CI trial registration; temporary copies are now allowed only
+when byte-identical to the candidate, while the separate candidate
+test still refuses committed registration. The final failure was
+an empty 06-credit provenance record: solved by adding independently
+verified WDI broad private-sector data to ONLY the credit lens.
+Publisher API evidence:
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40428253945
+
+Outstanding: await fresh full-suite tests and browser JS; inspect
+generated trilingual PNGs/SVGs and full provenance and peer-axis
+regeneration; source-audit NBM household/NPL/bonds, legal wages, UNDP
+HDI, TI CPI and census concordance before any root country.yaml
+registration. Do not merge, deploy or contact upstream.

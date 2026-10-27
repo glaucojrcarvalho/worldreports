@@ -28,7 +28,7 @@
       },
       {
         "term": "Creditul gospodăriilor",
-        "detail": "Stocul gospodăriilor, dobânda la împrumuturile noi și proporția creditelor neperformante cer serii BNM coerente pe definiții și monedă. Creditul privat agregat nu este un substitut."
+        "detail": "Stocul gospodăriilor, dobânda la împrumuturile noi și creditele neperformante cer serii BNM coerente pe definiții și monedă. Lentila WDI conține doar creditul intern al întregului sector privat (2010–2025), nu datoria gospodăriilor."
       },
       {
         "term": "Cheltuieli pe funcții raportate la PIB",
@@ -107,7 +107,7 @@
       },
       {
         "term": "Household credit",
-        "detail": "Household stocks, new-loan rates and non-performing-loan share need borrower-, currency- and denominator-consistent NBM originals. Aggregate private credit is not substituted."
+        "detail": "Household stocks, new-loan rates and non-performing loans require borrower-, currency- and denominator-consistent NBM series. The WDI lens presents broader private-sector credit (2010–2025), not household borrowing."
       },
       {
         "term": "Functional public spending as GDP shares",
@@ -186,7 +186,7 @@
       },
       {
         "term": "Crédito das famílias",
-        "detail": "Estoque das famílias, juros de novos empréstimos e proporção de créditos inadimplentes exigem dados BNM coerentes por tomador, moeda e denominador. Crédito privado agregado não substitui."
+        "detail": "Estoque das famílias, juros de novos empréstimos e inadimplência exigem séries BNM coerentes por tomador, moeda e denominador. A lente WDI apresenta o crédito do setor privado agregado (2010–2025), não a dívida familiar."
       },
       {
         "term": "Despesas funcionais em proporção do PIB",
