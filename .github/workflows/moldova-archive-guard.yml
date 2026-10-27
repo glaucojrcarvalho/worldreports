@@ -20,7 +20,16 @@ jobs:
           python -m pip install -r requirements.txt
           python -m compileall -q countries/moldova/research/archive_branch_guard.py tests/test_moldova_archive_branch_guard.py
           python -m pytest -q tests/test_moldova_archive_branch_guard.py tests/test_moldova_archive_contract.py
-      - name: Require unregistered focused fork branch
+      - name: Rebuild exact Moldova site and audit three-language asset routes
         run: |
           test "$GITHUB_REPOSITORY" = "glaucojrcarvalho/worldreports"
+          python -m pytest -q tests/test_moldova_site_routes.py
+          cp countries/moldova/research/country_candidate.yaml countries/moldova/country.yaml
+          python -m core.render moldova
+          python -m core.thumbs moldova
+          python -m core.page --out /tmp/moldova-site-review moldova
+          python -m countries.moldova.research.site_route_audit \
+            --site /tmp/moldova-site-review/moldova \
+            --output countries/moldova/output
+          rm countries/moldova/country.yaml
           test ! -f countries/moldova/country.yaml
