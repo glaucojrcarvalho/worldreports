@@ -915,3 +915,24 @@ checks onto `research/moldova-source-audit` as a focused commit
 visually inspect full-resolution page assets. The root
 `country.yaml` stays only in `research/moldova-release-rehearsal`
 until final manual approval.
+
+
+## Fork research-to-registered content parity proof — 2026-10-27
+
+Introduced `research/verify_rehearsal_parity.py` in the focused
+nondeployable QA branch, with read-only Actions evidence. It compares
+Git blob object identities for ALL shared Moldova data/fetchers/plates,
+catalogues, source notes and site/renderer inputs across
+`research/moldova-source-audit` and
+`research/moldova-release-rehearsal`. The rehearsal root country.yaml
+must match the exact research candidate; source research remains
+unregistered. The research branch must hold 108 exact graph outputs
+and 12 provenance records referencing 23 curated CSVs, including
+critical national BNS, NBM and UN/WDI distinctions. Any mismatch
+fails closed. Preliminary direct Git tree inspection confirmed 70
+shared input blobs byte-identical. The JSON evidence is tied to both
+actual branch SHAs, never claimed as publication authorization.
+
+Next: inspect focused guard CI and confirm original research/rehearsal
+runs green. Only then copy this audited parity gate to the research
+branch. Do not alter upstream, merge or deploy.
