@@ -489,3 +489,53 @@ https://databank.worldbank.org/metadataglossary/millennium-development-goals/ser
 The trilingual rendered-asset auditor must pass again on the changed
 mortality SVGs before archiving. Keep country.yaml unregistered until the
 complete fork-only quality gate and outstanding human visual review pass.
+
+## Phase C — 2016–2025 official BNS functional budget / matched nominal GDP, 2026-10-27
+
+A blocking source gap for the `spending` chapter has been resolved without
+filling missing figures with exchange-rate proxies or merging incompatible
+IMF FPP/WEO fiscal vintages. Original BNS GDP 2016–2024 comes from the
+`CNT208100.px` current-price thousand-MDL national accounts API,
+**independently fetched live and verified** in [read-only audit
+40460281083](https://github.com/glaucojrcarvalho/worldreports/actions/runs/40460281083),
+with full nine-year review sidecar. The 2025 nominal GDP
+**353,520.9 million MDL** is from the separately dated **2026-03-11
+preliminary GDP publication**, not fabricated from missing PxWeb values.
+
+The reviewed `data/fiscal/nominal_gdp_bns.csv` supplies the common
+2016–2025 same-territory denominator for ten BNS FIN010100 national
+cash-budget functions; the plate groups them into seven atlas categories
+and renders both `spending.by_function` (stacked shares of GDP) and
+`spending.social_protection` (social versus other). Each source-year
+sum and two external BNS anchors (**2024 38.0%**, **2025 39.6%**) are
+asserted. The source/territory/publication differences and 2025
+preliminary status are documented in `SOURCES.yaml`, `DATA_NOTES.md`,
+and the three-language charts/site cards/notes. The **public investment**
+panel remains pending pending actual government GFCF, and all IMF
+comparable fiscal panels remain separate from national cash execution.
+
+Changed code and data:
+`fetch/fetch_bns_gdp.py`, `data/fiscal/nominal_gdp_bns.csv`,
+`plates.py`, `chapters.py`, `i18n.json`, `ui.json`,
+`tests/test_moldova_bns_gdp.py`, `tests/test_moldova_plate_design.py`,
+`tests/test_moldova_research.py`, updated localized source regression
+checks, `.github/workflows/moldova-bns-gdp-live.yml`, and
+`.github/workflows/moldova-research.yml`. Existing automated asset
+archive will regenerate the three-language PNGs/SVGs, 36 thumbnails
+and provenance ONLY IF the complete quality gate succeeds; it refuses
+stale non-fast-forward pushes. Moldova remains intentionally unregistered.
+
+**Mandatory next work:** confirm the current head's COMPLETE research
+quality gate and full 3,400+ Python/Node tests, not just the successful
+BNS live source audit. Inspect its 36 SVG, PNG, thumbnail, 12 exact
+data-lineage traces and 3 generated local site pages; fix any trilingual
+glyph/layout issues from the denser stacked function legend.
+Verify the research asset archive commit has landed after the new
+nominal GDP and review the updated spending chart in all three languages.
+Check the original BNS 2025 nominal GDP source and the published ratios
+again if publisher edition changes. Check upstream divergence anew
+before considering review; do not automatically register Moldova or
+create/merge a PR against `akitaonrails/worldreports`, deploy or modify
+published peers. Remaining major data gaps are government GFCF, household
+bank lending/stock, 10-year yield/equity, registered migration flows,
+and territory-matched excess mortality/COVID underlying deaths.
