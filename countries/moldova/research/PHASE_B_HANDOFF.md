@@ -861,3 +861,46 @@ source branch and re-check full site and the three locale pages
 before final release-ready status. Keep official BNS methodology breaks,
 IMF WEO versus FPP vintages, incomplete 2026 and all unsupported
 canonical panels explicit. No upstream PR, merge or deploy.
+
+## Final-source archive and registered HTML route gates consolidated — 2026-10-27
+
+The current caption-corrected source research run
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40484830412
+completed GREEN with **3,488 Python + 8 subtests + 20 JavaScript**
+and committed the 108 current trilingual PNG/SVG/thumb assets and
+12 source-lineage records as
+https://github.com/glaucojrcarvalho/worldreports/commit/1f9711a3b3738dd55d6d99e8b6e78262613d3e19 .
+The high-risk plate mappings still correctly distinguish WDI/BNS
+employment, national BNS cash budget and matched GDP, NBM bank-wide
+prudential NPL, and BNS 2024 birthplace census.
+
+Two previously *focused and independently green* safety gates are now
+copied as ordinary file changes into the original source-research branch,
+NOT merged: the exact-path `archive_branch_guard.py` and its tests,
+and the real-HTML `site_route_audit.py` and its tests. The source quality
+workflow now fails when any of its 12 RO/EN/PT chart cards points to a
+wrong-locale thumbnail or SVG, omits a screenreader description, is
+absent from output, or has mismatched canonical/hreflang/OpenGraph
+metadata. Only the original exact `PHASE_B_HANDOFF.md` note is
+allowlisted when safely rebasing a validated-image commit over newer
+fork research commits; any source, code, locale, CSS/site, workflow,
+image, or country configuration change fails closed. No force push.
+
+Proof of focused prior standalone audit:
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40489984989
+(22 archive guard tests, 3 synthetic HTML tests and full real ro/en/pt
+site-route audit). The registered rehearsal of the source-attribution
+revision also needs a full green status; earlier rehearsal
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40478736058
+passed 3,489 Python + 8 subtests, 20 JS, 108 assets and site build,
+but predates the caption corrections.
+
+**Next:** inspect this source branch's new integrated quality run
+and file archive before considering promotion of `country.yaml`;
+compare the upstream delta, visually inspect updated source footers
+in all three language sheets at full size, confirm remaining unsupported
+canonical panels are pending, and verify the registered rehearsal
+with the corrected source labels. The preview JSON-LD's GitHub
+upstream data download URL is a **future post-merge destination**, not
+currently a live upstream Moldova dataset. Never alter upstream,
+merge/deploy, or claim the website was published.
