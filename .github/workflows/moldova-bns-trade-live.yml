@@ -1,0 +1,53 @@
+# Official BNS EXT010200 partner-country/group export audit, research-only.
+# No publishing, no curated dataset writeback, no registry or upstream changes.
+name: Moldova BNS goods partners publisher audit
+
+on:
+  push:
+    branches: [research/moldova-source-audit]
+    paths:
+      - countries/moldova/fetch/fetch_bns_trade.py
+      - tests/test_moldova_bns_trade.py
+      - .github/workflows/moldova-bns-trade-live.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bns-trade:
+    if: github.repository == 'glaucojrcarvalho/worldreports'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test dimension order, source schemas, no invented values and BNS 2025 anchor
+        run: python -m pytest -q tests/test_moldova_bns_trade.py
+      - name: Download official BNS EXT010200 metadata and the 2006-2025 publisher cube
+        run: python -u countries/moldova/fetch/fetch_bns_trade.py
+      - name: Assert review-only output does not edit curated atlas data
+        run: |
+          test ! -e countries/moldova/country.yaml
+          git diff --exit-code -- countries/moldova/data/trade/trade.csv countries/moldova/SOURCES.yaml countries/moldova/plates.py
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          p = Path('countries/moldova/data/trade/exports_partner_from_bns.csv')
+          rows = list(csv.DictReader(x for x in p.read_text(encoding='utf-8').splitlines() if not x.startswith('#')))
+          evidence = json.loads(Path('countries/moldova/data/trade/exports_partner_source_metadata.json').read_text())
+          assert len(rows) == len(evidence['partner_codebook']) * 20
+          assert evidence['status'] == 'publisher_verified_sidecar_not_curated_or_published'
+          assert evidence['table'] == 'EXT010200.px'
+          print('BNS source audit passed:', len(rows), 'partner-year cells, unregistered.')
+          PY
+      - name: Preserve primary-publisher sidecars for controlled curation
+        uses: actions/upload-artifact@v4
+        with:
+          name: moldova-bns-customs-export-partners-review-only
+          path: |
+            countries/moldova/data/trade/exports_partner_from_bns.csv
+            countries/moldova/data/trade/exports_partner_source_metadata.json
+          retention-days: 14

@@ -294,3 +294,47 @@ not proven crimes, and the publisher has CC BY-ND 4.0 attribution/licensing.
 global Python/JS tests, and site layout. Review peer-axis contact sheets and
 regenerate published peer images only after explicit visual signoff. Keep
 Moldova unregistered, do not deploy, merge or modify upstream.
+
+## Phase C source discovery: BNS customs export partners — 2026-10-27
+
+The upstream source catalogue has now been narrowed to an **actual named
+official BNS table**: `EXT010200.px`, exports of goods by countries
+**and country groups**, updated 2026-06-30, original publisher unit
+**thousand USD**, reference years 1997–2025. Its territorial universe
+excludes enterprises on the left bank of the Nistru and Bender. The
+2025 BNS release reports **US$3,782.7 million** of merchandise exports,
+including both domestic exports and re-exports; this amount is NOT
+WDI national-accounts goods-and-services exports. BNS also changed
+Ukraine's CIS/other-country grouping starting with year 2024.
+
+A new guarded, **read-only** live-source audit
+(`fetch/fetch_bns_trade.py` + `moldova-bns-trade-live.yml`) discovers
+the official API table, validates publisher coded metadata, fetches the
+2006–2025 partner-year cube, decodes JSON-stat2 regardless of dimension
+order, preserves blanks, checks the 2025 published total and archives
+a source-codebook + original-payload SHA256 evidence file and a separate
+`exports_partner_from_bns.csv` **review sidecar**. Offline parser tests
+are included. The table contains overlapping *country groups, totals
+and member countries*: no ranking, group share or partner summation is
+permitted before checking its actual publisher taxonomy. This preliminary
+audit does **not** alter curated WDI trade, plates, registry or site.
+
+Publisher:
+https://statbank.statistica.md/PxWeb/pxweb/en/40%20Statistica%20economica/40%20Statistica%20economica__21%20EXT__EXT010__serii%20anuale/EXT010200.px
+
+2025 BNS release:
+https://statistica.gov.md/index.php/en/international-trade-of-goods-of-the-republic-of-moldova-in-december-2025-9539_62323.html
+
+**Next task:** check the initial live workflow's actual API traversal and
+metadata, fix only observed schema/path issues, and review 89 raw BNS
+partner/group codes and year-specific values. Determine additive country-only
+rows vs overlapping group aggregates before curating a new official
+merchandise partner dataset and contextual trade panel. Do not
+substitute customs series for WDI goods-and-services GDP shares.
+Then complete shared peer-asset signoff and human visual QA. The last
+full atlas gate 40441289491 passed **3,431 Python tests + 8 subtests,
+20 Node tests**, 36 Moldova plates, 36 thumbs and 12 provenance records.
+The read-only 40440531390 peer audit regenerated **138 peer-localized
+trade/world charts** and found 414 corresponding modified PNG/SVG assets.
+Those peer assets have NOT been committed to this branch, and require
+careful review before release registration. No merge/deploy or upstream PR.
