@@ -936,3 +936,42 @@ actual branch SHAs, never claimed as publication authorization.
 Next: inspect focused guard CI and confirm original research/rehearsal
 runs green. Only then copy this audited parity gate to the research
 branch. Do not alter upstream, merge or deploy.
+
+
+## Independently verified research/rehearsal input parity — 2026-10-27
+
+**Focused fork-only CI PASS**:
+https://github.com/glaucojrcarvalho/worldreports/actions/runs/40492667719
+
+The independent read-only Git-tree comparison and live generated
+HTML checks passed **22 archive safety tests, 8 cross-branch parity
+tests, 3 route/accessibility tests and the full actual trilingual
+12-card site route audit**. The uploaded `moldova-rehearsal-content-parity`
+JSON evidence pins the evaluated branch heads:
+- Source research SHA `c05985d9e13c2c47d143c90e7cfc1b71d29eaada`.
+- Isolated registered rehearsal SHA
+  `5f0260b5d116d61f3deab57b91c6b76456ce5b2c`.
+- **70 shared input Git blobs identical** (national sources,
+  fetchers, chart/render code, catalogues, core and site).
+- Root rehearsal `country.yaml` equals candidate Git blob SHA
+  `61d92457772dabf2a96ddd23583d6f06d7cc94a4`; source branch
+  intentionally has no `country.yaml`.
+- **108 graphics, 12 nonempty provenance maps, 23 curated CSVs** and
+  exact high-risk economy/spending/credit/migration source relationships.
+
+This audit is a structural reproducibility and compatibility result.
+It does NOT certify that unavailable indicators have been obtained,
+that the upstream future dataset URL resolves, that a human has signed
+off every native full-resolution graphic, or that publishing is allowed.
+
+**Concrete next iteration:** check the source branch's own latest full
+CI run 40490510655 and its archive bot. If both finish green,
+copy the three tested QA files
+(`verify_rehearsal_parity.py`, `test_moldova_rehearsal_parity.py`
+and the corresponding read-only workflow step) from this focused
+branch into the source research branch using SHA-lease guarded commits;
+do not merge branches. Ensure the new test is listed in the short
+source test gate and the corresponding versioned JSON report
+is retained as an Actions artifact. Review its source-vintage and
+translation limitations. Keep the registered rehearsal isolated,
+the public atlas undeployed, and upstream untouched.
