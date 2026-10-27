@@ -170,3 +170,47 @@ statistics/migration/credit/currency data, use the newly added Romanian number a
 implement final `ro/en/pt` catalogs, compile chapter data and
 full atlas output, and run the cross-country suite. This research branch
 is still **not a merge-ready country edition**.
+
+
+## National labour-force unemployment — separate vintage discovery (2026-10-27)
+
+BNS has a machine-readable *Labour Force Survey (AFM/LFS)* unemployment
+table distinct from the already rendered harmonised WDI ILO-modelled
+unemployment. Its official [MUN160100_2025 table](https://statbank.statistica.md/PxWeb/pxweb/en/30%20Statistica%20sociala/30%20Statistica%20sociala__03%20FM__03%20MUN__MUN060/MUN160100_2025.px/) covers **2019–2025**, with sex,
+residence-area, year and quarter dimensions and percent units. BNS says
+the territory excludes left-bank Nistru districts and Bender.
+
+**Important discontinuities:** BNS marks the pre-2019 unemployment series
+discontinued after the household survey/employment-definition redesign;
+2014–2018 usual-resident reweighting and the older stable-population
+2000–2018 series are *not* two interchangeable 2019-base extensions.
+BNS's 2025 release and table metadata warn that EMDOS 3 sample adoption,
+2024-census population weighting and revised AFM methodology introduce
+a **second break in 2025**. A **third** EU-harmonisation change in 2026
+is outside any complete annual 2025 observation. BNS's independent
+2025 annual release reports **3.8%** unemployment under its national
+ILO-concept AFM, but that SINGLE press-release anchor cannot license
+a guessed 2019–2024 annual series or replacing WDI ILO modelled rates.
+
+Added an isolated, read-only PxWeb metadata/codebook fetcher and offline
+contract tests. It looks up the BNS table by **publisher ID**, validates
+the four named dimensions and complete 2019–25 year categories, fingerprints
+the original source bytes, and writes only a \`*_from_bns.json\`
+**review sidecar**. A separate fork-only workflow audits original
+publisher access and uploads metadata for manual code selection.
+There are NO invented national unemployment CSV values, no new chart
+observations, no country registration, and no alteration to any historical
+WDI unemployment line.
+
+Sources:
+- https://statbank.statistica.md/PxWeb/pxweb/en/30%20Statistica%20sociala/30%20Statistica%20sociala__03%20FM__03%20MUN__MUN060/MUN160100_2025.px/
+- https://statistica.gov.md/ro/metodologii-statistice-104.html
+- https://statistica.gov.md/index.php/ro/forta-de-munca-ocuparea-si-somajul-in-anul-2025-9430_62388.html
+- https://statbank.statistica.md/PxWeb/pxweb/en/30%20Statistica%20sociala/30%20Statistica%20sociala__03%20FM__03%20MUN__MUN060/MUN160100.px/
+
+Next: inspect the **actual live source audit** and metadata codes before
+requesting annual "total sex/total area" and "annual" data from 2019–2025.
+After the primary BNS 2025 anchor validates, curate source-consistent
+segments with **an explicit 2024–2025 break**, and only add as a separately
+labelled national secondary line if its time basis and spine semantics pass.
+Do not ever splice to WDI modelled or the discontinued 2000–18 series.

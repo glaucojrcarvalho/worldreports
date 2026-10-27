@@ -1,0 +1,41 @@
+# BNS labor-force survey read-only metadata discovery, not atlas publication.
+name: Moldova BNS LFS unemployment publisher metadata audit
+
+on:
+  push:
+    branches: [research/moldova-source-audit]
+    paths:
+      - 'countries/moldova/fetch/fetch_bns_lfs.py'
+      - 'tests/test_moldova_bns_lfs.py'
+      - '.github/workflows/moldova-bns-lfs-live.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bns-lfs-codebook:
+    if: github.repository == 'glaucojrcarvalho/worldreports'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify metadata parser, discontinued vintages and guards offline
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pytest -q tests/test_moldova_bns_lfs.py
+      - name: Fetch ONLY the official BNS unemployment codebook
+        run: |
+          python countries/moldova/fetch/fetch_bns_lfs.py
+          cat countries/moldova/data/macro/lfs_source_codebook_from_bns.json
+      - name: Preserve source audit codebook for later national series extraction
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: moldova-bns-lfs-unemployment-source-codebook
+          path: countries/moldova/data/macro/lfs_source_codebook_from_bns.json
+          if-no-files-found: warn
+          retention-days: 14

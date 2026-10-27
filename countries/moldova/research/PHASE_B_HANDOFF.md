@@ -635,3 +635,26 @@ spending/migration SVG/PNG/thumbs and provenance. Require successful
 full Python + JS and all 12 source-lineage mappings before candidate
 registration. Preserve all remaining source and territorial limitations,
 do not modify upstream, and do not merge/deploy.
+
+
+## New source lane: national BNS unemployment and 2025 method break
+
+Found the BNS official 2019–2025 LFS unemployment PxWeb table and its
+explicit 2025 household-survey break (new EMDOS 3, 2024 census weights,
+changed LFS method). The pre-2019 survey is separately marked discontinued;
+BNS also publishes a new 2026 EU-aligned methodology. This national
+series must never be conflated with WDI modelled unemployment. Added a
+read-only discovery fetcher, test contract and fork-only official codebook
+audit. **No BNS unemployment year-series values were invented or promoted.**
+Next run should inspect that independent BNS workflow and retrieve the
+publisher's actual category codes/annual national rates, then consider
+two *disconnected national* observations/segments only after original
+source verification. The official BNS 2025 annual release says 3.8%.
+Keep existing data/spine and research country registration unchanged.
+
+Also verify the newest full atlas gate including the visual-review
+contact sheets, exact image SHA256 report, 36 plates and thumbs,
+observed BNS budget/census provenance, Node/Python site/layout tests,
+and archive-bot push. If the preceding full suite was cancelled by
+this source-only commit, rerun on the current branch SHA. Never touch
+the upstream repository or deploy.
